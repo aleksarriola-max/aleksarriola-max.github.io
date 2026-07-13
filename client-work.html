@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aleks Arriola — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1b2d42;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --gray: #8a8f9d;
+      --light-bg: #f9f7f4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(13, 27, 42, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 4rem;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-accent {
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title span { color: var(--gold); }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-tag {
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: scrollDown 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 6rem 4rem;
+    }
+
+    .section-alt {
+      background: var(--white);
+    }
+
+    .section-dark {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #444;
+    }
+
+    .about-body p + p { margin-top: 1.2rem; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat-card {
+      background: var(--navy);
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+
+    .card-top {
+      height: 8px;
+      background: var(--gold);
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .card-type {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.7rem;
+      background: var(--light-bg);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* dark card variant */
+    .card-dark {
+      background: var(--navy-mid);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .card-dark .card-title { color: var(--white); }
+    .card-dark .card-desc { color: rgba(255,255,255,0.55); }
+    .card-dark .tag { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
+
+    /* ── CERTIFICATES ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .cert-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.5rem;
+      background: var(--light-bg);
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.07);
+      transition: border-color 0.2s;
+    }
+
+    .cert-card:hover { border-color: var(--gold); }
+
+    .cert-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+    }
+
+    .cert-info h4 {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .cert-info p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* ── FINANCE ── */
+    .finance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .finance-card {
+      padding: 2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .finance-card:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .finance-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    .finance-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .finance-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+
+    #contact .section-divider {
+      margin: 0 auto 3rem;
+    }
+
+    .contact-email {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: var(--gold);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 3rem;
+      transition: opacity 0.2s;
+    }
+
+    .contact-email:hover { opacity: 0.75; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.25);
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+
+    /* ── PLACEHOLDER BANNER ── */
+    .placeholder-banner {
+      background: rgba(201,168,76,0.1);
+      border: 1px dashed var(--gold);
+      border-radius: 8px;
+      padding: 1.2rem 1.8rem;
+      margin-bottom: 3rem;
+      font-size: 0.85rem;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .section { padding: 4rem 1.5rem; }
+      #hero { padding: 0 1.5rem; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="index.html">A.A.</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="coding.html">Coding</a></li>
+    <li><a href="client-work.html">Client Work</a></li>
+    <li><a href="finance.html">Finance</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+<section id="client-work" class="section section-alt">
+  <p class="section-label">Real-World Experience</p>
+  <h2 class="section-title">Client Work & Presentations</h2>
+  <div class="section-divider"></div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-top" style="background: #1b2d42;"></div>
+      <div class="card-body">
+        <p class="card-type">Marketing Internship · Summer 2024</p>
+        <h3 class="card-title">Western Union — Digital Marketing</h3>
+        <p class="card-desc">
+          Worked directly under the Digital Marketing Director at Western Union's central agency in Guatemala. Supported planning, execution, and tracking of multi-channel marketing strategies — including billboard placements, print collateral, and local brand awareness campaigns.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Digital Marketing</span>
+          <span class="tag">Campaign Strategy</span>
+          <span class="tag">Brand Awareness</span>
+          <span class="tag">Print & OOH</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #1b2d42;"></div>
+      <div class="card-body">
+        <p class="card-type">Client Relations · May – Aug 2025</p>
+        <h3 class="card-title">SeOnline — Client Specialist</h3>
+        <p class="card-desc">
+          Managed the full sales lifecycle from initial outreach and contract negotiation via chat and video to strategic closing. Redesigned the client-onboarding system — organizing client information and streamlining how sales calls were handled — <strong>boosting process efficiency by 35%</strong>.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Client Negotiation</span>
+          <span class="tag">Sales Strategy</span>
+          <span class="tag">Contract Closing</span>
+          <span class="tag">Process Optimization</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #1b2d42;"></div>
+      <div class="card-body">
+        <p class="card-type">Operations · Summer 2023</p>
+        <h3 class="card-title">Western Union Sub-Agency — Cashier & Remittance</h3>
+        <p class="card-desc">
+          Managed daily cash operations of up to Q15,000, overseeing accurate processing of remittances and financial transactions. Served as primary point of contact for customers, handling an average of <strong>50 daily transactions</strong> while improving service speed by 10% through efficient cash reconciliation.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Cash Management</span>
+          <span class="tag">Remittances</span>
+          <span class="tag">Financial Operations</span>
+          <span class="tag">Customer Service</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #1a3a5c;"></div>
+      <div class="card-body">
+        <p class="card-type">Live Client · Operations & Analytics</p>
+        <h3 class="card-title">AeroShield — KPI Performance Dashboard</h3>
+        <p class="card-desc">
+          Designed a 19-sheet KPI dashboard for AeroShield, a deeptech manufacturer scaling from 6 to 300 units/week. Identified the production vessel as the #1 bottleneck (38 of 101 cycle hours) and built a centralized tracking system covering output, quality gates, vessel utilization, cycle time, labor productivity, and energy intensity. Projected $40–80K in annual savings with a ~12-month payback period.
+        </p>
+        <div class="card-tags" style="margin-bottom:1.25rem;">
+          <span class="tag">Operations Management</span>
+          <span class="tag">KPI Design</span>
+          <span class="tag">Excel Dashboard</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Manufacturing Analytics</span>
+        </div>
+        <a href="AeroShield_Complete_excel.xlsx" download
+           style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--navy); color:var(--gold); padding:0.55rem 1.2rem; border-radius:4px; font-size:0.82rem; font-weight:600; text-decoration:none; transition:background 0.2s;"
+           onmouseover="this.style.background='#1b2d42'" onmouseout="this.style.background='var(--navy)'">
+          ⬇ Download Workbook
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #1a3a5c;"></div>
+      <div class="card-body">
+        <p class="card-type">Live Client · Strategy & Market Entry</p>
+        <h3 class="card-title">Jet Rose — US Market Expansion Strategy</h3>
+        <p class="card-desc">
+          Developed a full go-to-market expansion strategy for Jet Rose, a European bespoke private aviation broker entering the Americas. Delivered a self-funded growth model, competitive analysis against Jettly, JetFinder, and Amalfi Jets, a $99/month membership pricing framework, and a brand differentiation strategy positioning Jet Rose as the European expert in the US market.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Market Entry Strategy</span>
+          <span class="tag">Competitive Analysis</span>
+          <span class="tag">Pricing Strategy</span>
+          <span class="tag">Private Aviation</span>
+          <span class="tag">Brand Differentiation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #2d1a5c;"></div>
+      <div class="card-body">
+        <p class="card-type">Marketing Analytics · Research Project</p>
+        <h3 class="card-title">Coachella TikTok — Predictive Attention Analysis</h3>
+        <p class="card-desc">
+          Built a predictive attention framework for Coachella TikTok content using R, analyzing 1,351 videos across 2018–2026. Developed 3 regression models (Baseline, Sentiment Amplification, Topic Model), implemented Z-Score early warning signals to detect pre-burst windows, and recommended a share-seeding managerial lever based on coefficient analysis.
+        </p>
+        <div class="card-tags">
+          <span class="tag">R / Statistical Modeling</span>
+          <span class="tag">Sentiment Analysis</span>
+          <span class="tag">TikTok Analytics</span>
+          <span class="tag">Forecasting</span>
+          <span class="tag">Regression Models</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #1a4a2a;"></div>
+      <div class="card-body">
+        <p class="card-type">Live Client · Brand & Growth Strategy</p>
+        <h3 class="card-title">Far Out Ice Cream — Winter Strategy & Menu Innovation</h3>
+        <p class="card-desc">
+          Developed a full winter strategy for Far Out Ice Cream, a Kiwi-style ice cream brand facing seasonal slowdown. Delivered a new "Winter Warm-Up" menu (affogatos, warm apple crisp, local bakery brownies), seasonal flavor calendar with limited monthly releases, holiday gift kit strategy, culinary school partnership recommendations (Cambridge School of Culinary Arts, Le Cordon Bleu), and a catering launch plan with influencer campaign and loyalty program to drive year-round revenue.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Brand Strategy</span>
+          <span class="tag">Menu Innovation</span>
+          <span class="tag">Seasonal Marketing</span>
+          <span class="tag">Partnership Strategy</span>
+          <span class="tag">F&B Industry</span>
+
+    <div class="card">
+      <div class="card-top" style="background: #2a3a1a;"></div>
+      <div class="card-body">
+        <p class="card-type">Live Client · Hospitality & Guest Experience Strategy</p>
+        <h3 class="card-title">Kaktus Somabay — Customer Experience & Loyalty Strategy</h3>
+        <p class="card-desc">
+          Designed a comprehensive guest experience and loyalty strategy for Kaktus Somabay, a luxury resort on Egypt&#x2019;s Red Sea coast. Delivered a full loyalty program architecture, a local partnership ecosystem (Wunder Chocolatier, Scuba World Divers, ORCA Dive Club, Safari Sahara), a curated boutique retail concept inspired by Egyptian aesthetics, and niche wellness programming &#x2014; including desert escapes, gourmet dining partnerships, and daily movement experiences &#x2014; to drive repeat guest engagement and premium positioning.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Hospitality Strategy</span>
+          <span class="tag">Loyalty Programs</span>
+          <span class="tag">Partnership Development</span>
+          <span class="tag">Guest Experience</span>
+          <span class="tag">Luxury Branding</span>
+        </div>
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #1a3a5c;"></div>
+      <div class="card-body">
+        <p class="card-type">Live Client · Growth & Market Entry · May 2025</p>
+        <h3 class="card-title">Explurger — US Market Entry Strategy</h3>
+        <p class="card-desc">
+          Developed a full US market entry strategy for Explurger, a gamified travel-social app competing with Instagram, TikTok, and TripAdvisor. Delivered a 3-phase launch roadmap (influencer partnerships → city expansion → airport/Amtrak advertising), competitive feature analysis, customer persona mapping, a full conversion funnel, and channel prioritization across TikTok, Instagram, and YouTube — with a US Trending Page rollout as the immediate activation step.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Market Entry Strategy</span>
+          <span class="tag">Growth Marketing</span>
+          <span class="tag">App Marketing</span>
+          <span class="tag">Channel Strategy</span>
+          <span class="tag">Competitive Analysis</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: #1a4a2a;"></div>
+      <div class="card-body">
+        <p class="card-type">Marketing Research · Individual Project</p>
+        <h3 class="card-title">The GLP-1 Revolution — Influencer & Market Analysis</h3>
+        <p class="card-desc">
+          Conducted a strategic marketing analysis of the GLP-1 weight-loss medication market (Ozempic, Wegovy). Mapped information diffusion dynamics across Broadcaster, Viral Spreader, and Community Builder roles, built a Priority Map and Virality Map, and revealed that mid-sized creators outperform headline influencers in conversion efficiency — a key insight for pharma marketing strategy.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Market Research</span>
+          <span class="tag">Influencer Strategy</span>
+          <span class="tag">Healthcare Marketing</span>
+          <span class="tag">Diffusion Analysis</span>
+          <span class="tag">Pharma Strategy</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FINANCE PORTFOLIO ── -->
+<footer>
+  © 2026 Aleks Arriola — Built with purpose.
+</footer>
+
+</body>
+</html>

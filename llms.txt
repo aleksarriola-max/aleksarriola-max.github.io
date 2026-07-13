@@ -1,0 +1,109 @@
+# Aleks Arriola — Portfolio
+
+> Finance & Marketing student at Hult International Business School.
+> Building institutional-grade financial tools, live AI apps, and real-world client strategies.
+> Contact: aleksarriola@gmail.com | LinkedIn: https://www.linkedin.com/in/aleks-arriola/
+
+## About
+Aleks Arriola is a Finance & Marketing student at Hult International Business School with expertise spanning investment banking, AI & blockchain development, marketing strategy, and financial modeling. He builds production-grade tools and has completed 38 Forage industry simulations across Goldman Sachs, JP Morgan, Bank of America, Citi, McKinsey, BCG, and more.
+
+## Coding Projects
+
+### PitMind — Live AI App
+- URL: https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/
+- Stack: Python, Streamlit, IBM Granite AI, Live Telemetry
+- AI-powered Formula 1 strategy platform with Fan and Engineer modes. Uses IBM Granite AI and 2025 live telemetry with three custom models — Driver Soul, Momentum, Race Forecast — making pit-wall analysis accessible worldwide.
+
+### OpsFlow — AI Operations Agent
+- URL: https://opsflow-hso3.onrender.com/
+- Stack: Sui Blockchain, Move Smart Contracts, AI Agent, Python
+- Policy-bound AI operations agent built on Sui that turns natural-language requests into secure, stateful on-chain workflows. Features revocable agent authority, vendor trust scoring, fraud detection, veto windows, self-suspension safeguards, and full audit trails with human validation.
+
+### MatchMind — Football AI Analyst
+- URL: https://mainpy-hpdupmoyakddvxo348e4yn.streamlit.app/
+- Stack: IBM Granite AI, Hallucination Detection, Live Data, Sports Analytics
+- AI system that explains football decisions with a two-layer hallucination firewall — combining a lexical evidence check and a second IBM Granite validation pass. Outputs are labeled Verified or Unverified with full evidence trails.
+
+### Adaptive Funding Engine
+- URL: https://adaptive-funding-deepsurge.vercel.app/
+- Stack: Sui Blockchain, Move, Smart Contracts, DeFi
+- Fully on-chain scholarship and grant system built on Sui that replaces fixed payouts with milestone-based adaptive funding. Recipients earn bonuses for early delivery, lose value for delays, and unused funds recycle to waitlisted applicants.
+
+### DeepBook Market OS
+- URL: https://aleksarriola-max.github.io/deepbook-market-os/
+- Stack: Sui Blockchain, DeepBookV3, On-Chain Analytics, Trading Systems
+- Market operating system built on Sui's DeepBookV3 combining spot, margin, and prediction markets into one unified console. Runs entirely on live on-chain data with no backend or mock inputs.
+
+### Auto Company Valuation Kit — Orcen Capital
+- Stack: Python (~39,000 lines), SEC EDGAR API, yfinance, Excel, Word, PPTX, Streamlit
+- Single-analyst equity research automation system. One YAML config → 84-sheet Excel model + CFA-style Word report + 16-slide PPTX deck. Full valuation stack: DCF, comparable companies, precedent transactions, LBO, blended fair value. Layered with 7 cognitive bias-correction modules: Narrative Bridge, Options Probability Engine, Behavioral Fingerprint, Analyst Calibration Ledger, Anti-Thesis Simulator, Shadow Pods, Portfolio Network.
+- Verified end-to-end with real Apple FY2024 data, producing a live HOLD verdict.
+
+## Finance Portfolio
+
+### Company Health Red-Flag Scanner (Flagship)
+- Stack: Python, SEC EDGAR XBRL API, Excel, 11 academic models
+- Institutional-grade screening tool that evaluates 600+ US-listed companies. Runs Altman Z-Score, Beneish M-Score, Piotroski F-Score, Dechow F-Score, Montier C-Score, and 6 more models producing a composite Health Score (0–100) and fraud risk rating. 80 financial ratios, 45 variables, fully automated — zero manual updates.
+
+### Auto Company Valuation Kit — Orcen Capital (Flagship)
+- 84 Excel sheets per company, 7 bias-correction modules, ~39,000 lines of Python
+- See Coding Projects section above for full description.
+
+### Forage Investment Banking Simulations
+- 38 Forage simulations completed across: Goldman Sachs, JP Morgan, Bank of America, Citi, Fidelity International, Wells Fargo, McKinsey, BCG, Deloitte, KPMG, PwC, AIG, Standard Chartered, Bloomberg, and more.
+
+## Client Work
+
+### AeroShield — KPI Performance Dashboard
+- Live Client · Operations & Finance
+- 19-sheet KPI dashboard for a deeptech manufacturer scaling from 6 to 300 units/week. Identified the #1 production bottleneck (38 of 101 cycle hours). Projected $40–80K in annual savings with ~12-month payback.
+
+### Jet Rose — US Market Expansion Strategy
+- Live Client · Strategy & Market Entry · Private Aviation
+- Full go-to-market strategy for a European bespoke private aviation broker entering the Americas. Delivered a self-funded growth model, competitive analysis, $99/month membership framework, and brand differentiation strategy.
+
+### Explurger — US Market Entry Strategy
+- Live Client · Growth Marketing · App
+- Full US market entry strategy for a gamified travel-social app. 3-phase launch roadmap, competitive feature analysis, customer persona mapping, full conversion funnel.
+
+### Kaktus Somabay — Customer Experience & Loyalty Strategy
+- Live Client · Hospitality · Egypt Red Sea
+- Guest experience and loyalty strategy for a luxury resort. Full loyalty program architecture, local partnership ecosystem, boutique retail concept, wellness programming.
+
+### Far Out Ice Cream — Winter Strategy & Menu Innovation
+- Live Client · Brand & Growth · F&B
+- Full winter strategy including new menu (affogatos, warm apple crisp), seasonal flavor calendar, holiday gift kits, culinary school partnerships, catering launch plan.
+
+### Coachella TikTok — Predictive Attention Analysis
+- Research Project · Marketing Analytics
+- Predictive attention framework analyzing 1,351 TikTok videos across 2018–2026 using R. Built 3 regression models, Z-Score early warning signals, and share-seeding managerial recommendations.
+
+### The GLP-1 Revolution — Influencer & Market Analysis
+- Research · Healthcare Marketing
+- Strategic marketing analysis of the GLP-1 weight-loss medication market. Mapped information diffusion dynamics, built Priority Map and Virality Map, revealed mid-sized creators outperform headline influencers in conversion.
+
+## Writing & Published Articles
+
+### AI Systems
+- "When Your AI Agent Calls the Lawyer: Building Multi-Agent Systems That Know Their Limits" — Practical architecture for multi-agent systems with hard boundaries, human-in-the-loop triggers, and agent authority models.
+
+### Finance
+- "The Quiet Shift in How Institutions Read Risk" — How alternative data (satellite imagery, card transactions, web traffic) is replacing traditional financial signals in institutional risk assessment.
+- "Why the Market Always Feels Expensive" — Behavioral finance analysis of valuation anchoring, recency bias, and the psychology behind perpetual overvaluation perception.
+
+### Perspective
+- "The Student Who Built a Bloomberg Terminal" — Personal essay on building institutional-grade financial tools as a student without Wall Street access, and what that process revealed about information asymmetry.
+
+## Certifications
+- 44 total credentials
+- 38 Forage virtual simulations
+- Goldman Sachs (3 simulations), JP Morgan (3), Bank of America (2), Citi (2), McKinsey, BCG, Deloitte, KPMG, PwC, Morgan Stanley, Wells Fargo, Fidelity, AIG, Standard Chartered, Bloomberg, and more
+- Bloomberg Market Concepts certified
+
+## Skills & Stack
+- Languages: Python, R, JavaScript, Move (Sui)
+- Finance: DCF, LBO, Comparable Companies, Precedent Transactions, Financial Modeling, SEC EDGAR API, Bloomberg Terminal
+- AI/ML: IBM Granite AI, LLM integration, Hallucination detection, Agent architectures
+- Blockchain: Sui, Move smart contracts, DeFi systems
+- Tools: Excel (advanced), PowerPoint, Streamlit, Pandas, Matplotlib, NetworkX, SQLite
+- Strategy: Market entry, Brand positioning, Go-to-market, Competitive analysis

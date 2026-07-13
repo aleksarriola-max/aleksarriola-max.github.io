@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aleks Arriola — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1b2d42;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --gray: #8a8f9d;
+      --light-bg: #f9f7f4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(13, 27, 42, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 4rem;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-accent {
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title span { color: var(--gold); }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-tag {
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: scrollDown 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 6rem 4rem;
+    }
+
+    .section-alt {
+      background: var(--white);
+    }
+
+    .section-dark {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #444;
+    }
+
+    .about-body p + p { margin-top: 1.2rem; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat-card {
+      background: var(--navy);
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+
+    .card-top {
+      height: 8px;
+      background: var(--gold);
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .card-type {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.7rem;
+      background: var(--light-bg);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* dark card variant */
+    .card-dark {
+      background: var(--navy-mid);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .card-dark .card-title { color: var(--white); }
+    .card-dark .card-desc { color: rgba(255,255,255,0.55); }
+    .card-dark .tag { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
+
+    /* ── CERTIFICATES ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .cert-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.5rem;
+      background: var(--light-bg);
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.07);
+      transition: border-color 0.2s;
+    }
+
+    .cert-card:hover { border-color: var(--gold); }
+
+    .cert-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+    }
+
+    .cert-info h4 {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .cert-info p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* ── FINANCE ── */
+    .finance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .finance-card {
+      padding: 2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .finance-card:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .finance-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    .finance-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .finance-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+
+    #contact .section-divider {
+      margin: 0 auto 3rem;
+    }
+
+    .contact-email {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: var(--gold);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 3rem;
+      transition: opacity 0.2s;
+    }
+
+    .contact-email:hover { opacity: 0.75; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.25);
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+
+    /* ── PLACEHOLDER BANNER ── */
+    .placeholder-banner {
+      background: rgba(201,168,76,0.1);
+      border: 1px dashed var(--gold);
+      border-radius: 8px;
+      padding: 1.2rem 1.8rem;
+      margin-bottom: 3rem;
+      font-size: 0.85rem;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .section { padding: 4rem 1.5rem; }
+      #hero { padding: 0 1.5rem; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="index.html">A.A.</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="coding.html">Coding</a></li>
+    <li><a href="client-work.html">Client Work</a></li>
+    <li><a href="finance.html">Finance</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+<section id="certificates" class="section section-alt">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Certificates & Achievements</h2>
+  <div class="section-divider"></div>
+
+  <p style="color:#666; font-size:0.95rem; margin-bottom:2rem;">
+    <strong style="color:var(--navy)">34 Forage virtual job simulations</strong> and <strong style="color:var(--navy)">6 Coursera courses</strong> completed across banking, finance, consulting, technology, and business.
+  </p>
+
+  <!-- Filter Buttons -->
+  <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.5rem;" id="cert-filters">
+    <button onclick="filterCerts('all')" class="cert-filter-btn active" data-filter="all">All (40)</button>
+    <button onclick="filterCerts('coursera')" class="cert-filter-btn" data-filter="coursera">🎓 Coursera</button>
+    <button onclick="filterCerts('banking')" class="cert-filter-btn" data-filter="banking">🏦 Banking</button>
+    <button onclick="filterCerts('finance')" class="cert-filter-btn" data-filter="finance">📊 Finance</button>
+    <button onclick="filterCerts('consulting')" class="cert-filter-btn" data-filter="consulting">💼 Consulting</button>
+    <button onclick="filterCerts('tech')" class="cert-filter-btn" data-filter="tech">🌐 Tech & Data</button>
+    <button onclick="filterCerts('insurance')" class="cert-filter-btn" data-filter="insurance">🛡️ Insurance</button>
+  </div>
+
+  <style>
+    .cert-filter-btn {
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: transparent;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: #555;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .cert-filter-btn:hover, .cert-filter-btn.active {
+      background: var(--navy);
+      color: var(--gold);
+      border-color: var(--navy);
+    }
+    .cert-card[hidden] { display: none; }
+  </style>
+
+  <div class="cert-grid" id="cert-grid">
+
+    <!-- COURSERA -->
+    <div class="cert-card" data-cat="coursera">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-info">
+        <h4>Power BI for Beginners: Interactive Dashboard Fundamentals</h4>
+        <p>Coursera · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="coursera">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-info">
+        <h4>Emotional Intelligence: Cultivating Immensely Human Interactions</h4>
+        <p>University of Michigan · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="coursera">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-info">
+        <h4>Introduction to Personal Finance</h4>
+        <p>SoFi · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="coursera">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-info">
+        <h4>Modern Art & Ideas</h4>
+        <p>The Museum of Modern Art · February 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="coursera">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-info">
+        <h4>Introduction to Financial Accounting</h4>
+        <p>University of Pennsylvania · February 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="coursera">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-info">
+        <h4>Creative Thinking: Techniques and Tools for Success</h4>
+        <p>Imperial College London · December 2025</p>
+      </div>
+    </div>
+
+    <!-- BANKING -->
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Markets Sales & Trading</h4>
+        <p>Citi · May 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Banking at PNC: Building Career Skills</h4>
+        <p>PNC · May 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Business & Commercial Banking Introduction</h4>
+        <p>Lloyds Banking Group · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Commercial Banking</h4>
+        <p>Wells Fargo · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Personal Banker</h4>
+        <p>Wells Fargo · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Consumer & Small Business Banking</h4>
+        <p>Wells Fargo · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Bank Teller</h4>
+        <p>Wells Fargo · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Personal Banking</h4>
+        <p>Citi · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Treasury & Trade Solutions</h4>
+        <p>Citi · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Private Bank</h4>
+        <p>Bank of America · 2026</p>
+      </div>
+    </div>
+
+    <!-- FINANCE -->
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Investment Management</h4>
+        <p>Fidelity International · May 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Operations</h4>
+        <p>Goldman Sachs · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Internal Audit</h4>
+        <p>Goldman Sachs · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Bloomberg Essentials</h4>
+        <p>Bloomberg · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Client Service</h4>
+        <p>Bloomberg · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Risk</h4>
+        <p>Goldman Sachs · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Controllers</h4>
+        <p>Goldman Sachs · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Sales & Trading Analyst</h4>
+        <p>Bank of America · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Investment Banking</h4>
+        <p>Bank of America · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Financial Analyst</h4>
+        <p>New York Jobs CEO Council · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Accounting</h4>
+        <p>Koch · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Run Your Own Business</h4>
+        <p>Chartered Accountants ANZ · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Transaction Tax Consulting</h4>
+        <p>Ryan, LLC · May 2026</p>
+      </div>
+    </div>
+
+    <!-- CONSULTING -->
+    <div class="cert-card" data-cat="consulting">
+      <div class="cert-icon">💼</div>
+      <div class="cert-info">
+        <h4>Intro to Strategy Consulting</h4>
+        <p>BCG · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="consulting">
+      <div class="cert-icon">💼</div>
+      <div class="cert-info">
+        <h4>Advisors & Consulting Services</h4>
+        <p>Mastercard · March 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="consulting">
+      <div class="cert-icon">💼</div>
+      <div class="cert-info">
+        <h4>Ryan Company Pathway</h4>
+        <p>Ryan · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="consulting">
+      <div class="cert-icon">💼</div>
+      <div class="cert-info">
+        <h4>UX Design Introduction</h4>
+        <p>Lloyds Banking Group · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="consulting">
+      <div class="cert-icon">💼</div>
+      <div class="cert-info">
+        <h4>Branding & Design</h4>
+        <p>Sydney Romantics · 2026</p>
+      </div>
+    </div>
+
+    <!-- TECH & DATA -->
+    <div class="cert-card" data-cat="tech">
+      <div class="cert-icon">🌐</div>
+      <div class="cert-info">
+        <h4>Cybersecurity</h4>
+        <p>Mastercard · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="tech">
+      <div class="cert-icon">🌐</div>
+      <div class="cert-info">
+        <h4>AI in Action</h4>
+        <p>Vista Equity Partners · 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="tech">
+      <div class="cert-icon">🌐</div>
+      <div class="cert-info">
+        <h4>Resume Writing with AI Support</h4>
+        <p>Forage Learning · March 2026</p>
+      </div>
+    </div>
+
+    <!-- INSURANCE -->
+    <div class="cert-card" data-cat="insurance">
+      <div class="cert-icon">🛡️</div>
+      <div class="cert-info">
+        <h4>London Market Claims Adjuster</h4>
+        <p>London Insurance Life · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="insurance">
+      <div class="cert-icon">🛡️</div>
+      <div class="cert-info">
+        <h4>London Market Claims Operations</h4>
+        <p>London Insurance Life · April 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="insurance">
+      <div class="cert-icon">🛡️</div>
+      <div class="cert-info">
+        <h4>Underwriting</h4>
+        <p>AIG · 2026</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function filterCerts(cat) {
+      document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('[data-filter="' + cat + '"]').classList.add('active');
+      document.querySelectorAll('.cert-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.removeAttribute('hidden');
+        } else {
+          card.setAttribute('hidden', '');
+        }
+      });
+    }
+  </script>
+</section>
+
+<!-- ── CONTACT ── -->
+
+<!-- ── CERT MODAL ── -->
+<div id="cert-modal" style="display:none; position:fixed; inset:0; z-index:999; background:rgba(13,27,42,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:2rem;">
+  <div style="background:var(--white); border-radius:12px; max-width:520px; width:100%; padding:2.5rem; position:relative; box-shadow:0 30px 80px rgba(0,0,0,0.3);">
+    <button onclick="closeCertModal()" style="position:absolute; top:1.2rem; right:1.2rem; background:none; border:none; font-size:1.4rem; cursor:pointer; color:#999; line-height:1;">×</button>
+    <div id="modal-icon" style="font-size:2.5rem; margin-bottom:1rem;"></div>
+    <p id="modal-cat" style="font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem;"></p>
+    <h3 id="modal-title" style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--navy); margin-bottom:0.3rem;"></h3>
+    <p id="modal-company" style="font-size:0.85rem; color:var(--gray); margin-bottom:1.5rem; font-weight:500;"></p>
+    <p id="modal-desc" style="font-size:0.95rem; line-height:1.75; color:#444;"></p>
+    <div id="modal-skills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem;"></div>
+  </div>
+</div>
+
+<style>
+  #cert-modal.open { display:flex; }
+  .cert-card { cursor:pointer; }
+  .cert-card:hover { border-color:var(--gold); box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+</style>
+
+<script>
+const certData = {
+  "Power BI for Beginners: Interactive Dashboard Fundamentals": {
+    company:"Coursera", icon:"🎓", cat:"Coursera",
+    desc:"Learned to build interactive business dashboards in Microsoft Power BI — connecting data sources, creating visualizations, designing reports, and publishing dashboards for business decision-making.",
+    skills:["Power BI","Data Visualization","Dashboards","Business Intelligence"]
+  },
+  "Emotional Intelligence: Cultivating Immensely Human Interactions": {
+    company:"University of Michigan · Coursera", icon:"🎓", cat:"Coursera",
+    desc:"Explored the science of emotional intelligence — self-awareness, empathy, social skills, and managing emotions in professional and personal contexts to build stronger, more productive relationships.",
+    skills:["Emotional Intelligence","Leadership","Communication","Self-Awareness"]
+  },
+  "Introduction to Personal Finance": {
+    company:"SoFi · Coursera", icon:"🎓", cat:"Coursera",
+    desc:"Covered the fundamentals of personal financial planning — budgeting, saving, investing, debt management, credit, and building long-term financial wellness strategies.",
+    skills:["Personal Finance","Budgeting","Investing","Financial Planning"]
+  },
+  "Modern Art & Ideas": {
+    company:"The Museum of Modern Art · Coursera", icon:"🎓", cat:"Coursera",
+    desc:"Explored modern and contemporary art through MoMA's collection — analyzing movements, understanding how art reflects cultural and social contexts, and developing visual literacy and creative perspective.",
+    skills:["Art History","Visual Literacy","Critical Thinking","Cultural Analysis"]
+  },
+  "Introduction to Financial Accounting": {
+    company:"University of Pennsylvania · Coursera", icon:"🎓", cat:"Coursera",
+    desc:"Wharton School's foundational accounting course — reading and interpreting financial statements, understanding GAAP, balance sheet analysis, income statements, and cash flow reporting.",
+    skills:["Financial Accounting","GAAP","Financial Statements","Balance Sheet","Wharton"]
+  },
+  "Creative Thinking: Techniques and Tools for Success": {
+    company:"Imperial College London · Coursera", icon:"🎓", cat:"Coursera",
+    desc:"Developed structured creative thinking skills using proven ideation frameworks — brainstorming techniques, lateral thinking, problem reframing, and applying creativity to business and engineering challenges.",
+    skills:["Creative Thinking","Problem Solving","Ideation","Innovation","Design Thinking"]
+  },
+  "Markets Sales & Trading": {
+    company:"Citi", icon:"🏦", cat:"Banking",
+    desc:"Simulated working on Citi's Markets desk — analyzing market conditions, building trade ideas, and understanding how sales and trading teams communicate with institutional clients. Covered equity derivatives, bond markets, and client pitching.",
+    skills:["Derivatives","Market Analysis","Client Pitching","Fixed Income"]
+  },
+  "Banking at PNC: Building Career Skills": {
+    company:"PNC", icon:"🏦", cat:"Banking",
+    desc:"Explored core career skills needed in a banking environment at PNC — including financial counseling, customer relationship management, and understanding retail banking products. Focused on real-world client scenarios.",
+    skills:["Retail Banking","Customer Relations","Financial Counseling"]
+  },
+  "Business & Commercial Banking Introduction": {
+    company:"Lloyds Banking Group", icon:"🏦", cat:"Banking",
+    desc:"Gained exposure to commercial lending, business credit assessment, and how banks support SME clients. Worked through loan structuring scenarios and assessed business risk for corporate clients.",
+    skills:["Commercial Lending","Credit Analysis","Business Banking","Risk Assessment"]
+  },
+  "Commercial Banking": {
+    company:"Wells Fargo", icon:"🏦", cat:"Banking",
+    desc:"Simulated the role of a commercial banker at Wells Fargo — evaluating business loan applications, analyzing company financials, and structuring credit facilities for middle-market clients.",
+    skills:["Credit Underwriting","Financial Analysis","Loan Structuring"]
+  },
+  "Personal Banker": {
+    company:"Wells Fargo", icon:"🏦", cat:"Banking",
+    desc:"Took on the role of a personal banker helping clients with deposit accounts, lending products, and financial planning. Practiced consultative selling and needs-based product recommendations.",
+    skills:["Retail Banking","Consultative Sales","Financial Planning"]
+  },
+  "Consumer & Small Business Banking": {
+    company:"Wells Fargo", icon:"🏦", cat:"Banking",
+    desc:"Explored Wells Fargo's consumer and small business banking division — from deposit products and cash management to small business credit solutions and digital banking tools.",
+    skills:["Small Business Banking","Cash Management","Consumer Finance"]
+  },
+  "Bank Teller": {
+    company:"Wells Fargo", icon:"🏦", cat:"Banking",
+    desc:"Shadowed the frontline banking experience — processing transactions, identifying fraud indicators, and delivering excellent customer service in a branch environment.",
+    skills:["Transaction Processing","Fraud Detection","Customer Service"]
+  },
+  "Personal Banking": {
+    company:"Citi", icon:"🏦", cat:"Banking",
+    desc:"Explored Citi's consumer banking operations — understanding personal loan products, credit card services, and how relationship managers engage retail clients across different life stages.",
+    skills:["Consumer Products","Client Relationships","Credit Cards"]
+  },
+  "Treasury & Trade Solutions": {
+    company:"Citi", icon:"🏦", cat:"Banking",
+    desc:"Dived into Citi's TTS division — how the bank manages global cash flow, trade finance, and cross-border payment solutions for multinational corporate clients.",
+    skills:["Trade Finance","Cash Management","FX","Global Payments"]
+  },
+  "Private Bank": {
+    company:"Bank of America", icon:"🏦", cat:"Banking",
+    desc:"Simulated working with ultra-high-net-worth clients in BofA's private banking division — providing bespoke wealth management solutions, trust services, and portfolio advisory.",
+    skills:["Wealth Management","UHNW Clients","Trust & Estate","Portfolio Advisory"]
+  },
+  "Investment Management": {
+    company:"Fidelity International", icon:"📊", cat:"Finance",
+    desc:"Practiced the investment process at a global asset manager — conducting equity research, building financial models, and presenting investment recommendations within a portfolio context.",
+    skills:["Equity Research","Financial Modeling","Portfolio Management","DCF"]
+  },
+  "Operations": {
+    company:"Goldman Sachs", icon:"📊", cat:"Finance",
+    desc:"Explored the operations function at Goldman Sachs — managing post-trade processes, settlement, reconciliation, and ensuring accurate books and records across business divisions.",
+    skills:["Trade Settlement","Reconciliation","Risk Controls","Operations"]
+  },
+  "Internal Audit": {
+    company:"Goldman Sachs", icon:"📊", cat:"Finance",
+    desc:"Simulated conducting an internal audit at Goldman Sachs — identifying control gaps, assessing operational risk, and writing audit findings for senior management review.",
+    skills:["Audit Planning","Risk Assessment","Control Testing","Reporting"]
+  },
+  "Bloomberg Essentials": {
+    company:"Bloomberg", icon:"📊", cat:"Finance",
+    desc:"Completed Bloomberg's foundational training on the Bloomberg Terminal — navigating equity, fixed income, and derivatives data, using core functions (DES, GP, YAS), and building market awareness.",
+    skills:["Bloomberg Terminal","Equity Data","Fixed Income","Market Data"]
+  },
+  "Client Service": {
+    company:"Bloomberg", icon:"📊", cat:"Finance",
+    desc:"Practiced resolving client issues in Bloomberg's customer-facing support environment — troubleshooting terminal questions, communicating complex financial data clearly, and maintaining client satisfaction.",
+    skills:["Client Support","Bloomberg Terminal","Communication","Problem Solving"]
+  },
+  "Risk": {
+    company:"Goldman Sachs", icon:"📊", cat:"Finance",
+    desc:"Analyzed market and credit risk scenarios at Goldman Sachs — using quantitative tools to assess portfolio exposure, stress test positions, and communicate risk to trading desks.",
+    skills:["Market Risk","Credit Risk","VaR","Stress Testing"]
+  },
+  "Controllers": {
+    company:"Goldman Sachs", icon:"📊", cat:"Finance",
+    desc:"Explored the Controllers division at Goldman Sachs — financial reporting, P&L attribution, and ensuring the accuracy of the firm's balance sheet across business lines.",
+    skills:["Financial Reporting","P&L Attribution","Accounting","Controls"]
+  },
+  "Sales & Trading Analyst": {
+    company:"Bank of America", icon:"📊", cat:"Finance",
+    desc:"Simulated the analyst experience on BofA's sales and trading floor — executing equity and fixed income trades, preparing market commentary, and supporting senior traders with research.",
+    skills:["Equity Trading","Fixed Income","Market Commentary","Analytics"]
+  },
+  "Investment Banking": {
+    company:"Bank of America · Forage", icon:"📊", cat:"Finance",
+    desc:"Identified an ideal acquisition target through SWOT analysis and strategic alignment assessment. Constructed a DCF model to determine the target's equity and share value, then applied sensitivity analysis to illustrate how valuation fluctuates based on variable shifts — presenting findings to simulate a real IB deal process.",
+    skills:["DCF Modeling","SWOT Analysis","M&A","Sensitivity Analysis","Equity Valuation"]
+  },
+  "Financial Analyst": {
+    company:"New York Jobs CEO Council · Forage", icon:"📊", cat:"Finance",
+    desc:"Executed an investment banking simulation analyzing the feasibility of a strategic partnership with a major technology firm. Synthesized data-driven findings and presented recommendations to senior bankers to guide high-stakes decision-making.",
+    skills:["Investment Banking","Strategic Analysis","Financial Modeling","Presentation","Due Diligence"]
+  },
+  "Accounting": {
+    company:"Koch", icon:"📊", cat:"Finance",
+    desc:"Worked through core accounting concepts in a Koch Industries context — journal entries, financial statement preparation, and understanding how accounting supports business decision-making.",
+    skills:["Accounting","Financial Statements","Journal Entries","GAAP"]
+  },
+  "Run Your Own Business": {
+    company:"Chartered Accountants ANZ · Forage", icon:"📊", cat:"Finance",
+    desc:"Completed a financial analysis simulation assessing business performance through P&L statements and break-even analysis. Developed data-driven pricing strategy recommendations designed to enhance revenue potential for a small business client.",
+    skills:["P&L Analysis","Break-Even Analysis","Pricing Strategy","Financial Planning","Small Business"]
+  },
+  "Transaction Tax Consulting": {
+    company:"Ryan, LLC", icon:"💼", cat:"Finance",
+    desc:"Simulated transaction tax consulting at Ryan — identifying tax savings opportunities in M&A deals, reviewing tax due diligence materials, and advising clients on transaction structuring.",
+    skills:["Tax Consulting","M&A Tax","Due Diligence","Transaction Structuring"]
+  },
+  "Intro to Strategy Consulting": {
+    company:"BCG", icon:"💼", cat:"Consulting",
+    desc:"Learned how BCG approaches complex business problems — structuring issues using MECE frameworks, conducting market sizing, synthesizing data, and presenting recommendations to client leadership.",
+    skills:["Problem Structuring","MECE","Market Sizing","Slide Decks","Consulting"]
+  },
+  "Advisors & Consulting Services": {
+    company:"Mastercard", icon:"💼", cat:"Consulting",
+    desc:"Simulated working on Mastercard's consulting arm — analyzing client data, building data-driven recommendations, and helping financial institutions optimize loyalty and payments strategy.",
+    skills:["Data Analytics","Client Strategy","Loyalty Programs","Payments"]
+  },
+  "Ryan Company Pathway": {
+    company:"Ryan", icon:"💼", cat:"Consulting",
+    desc:"Explored Ryan's tax consulting practice areas — from property tax and sales tax to credits and incentives — learning how a global tax firm delivers value to clients.",
+    skills:["Tax Advisory","Property Tax","Incentives","Client Consulting"]
+  },
+  "UX Design Introduction": {
+    company:"Lloyds Banking Group", icon:"💼", cat:"Consulting",
+    desc:"Applied human-centered design principles within a banking context at Lloyds — conducting user research, sketching wireframes, and iterating on digital product designs for banking customers.",
+    skills:["UX Research","Wireframing","User Testing","Design Thinking"]
+  },
+  "Branding & Design": {
+    company:"Sydney Romantics", icon:"💼", cat:"Consulting",
+    desc:"Created a branding strategy and visual design assets for a creative business — developing brand identity, color systems, and marketing materials aligned to a target audience.",
+    skills:["Brand Strategy","Visual Design","Marketing","Creative Direction"]
+  },
+  "Cybersecurity": {
+    company:"Mastercard", icon:"🌐", cat:"Tech & Data",
+    desc:"Simulated working on Mastercard's cybersecurity team — identifying phishing threats, analyzing security vulnerabilities in business processes, and recommending controls to protect payment infrastructure.",
+    skills:["Phishing Analysis","Threat Detection","Security Controls","Risk Mitigation"]
+  },
+  "AI in Action": {
+    company:"Vista Equity Partners", icon:"🌐", cat:"Tech & Data",
+    desc:"Explored how AI is being applied in private equity and enterprise software — from automating due diligence workflows to using machine learning for portfolio company performance analysis.",
+    skills:["AI/ML","Private Equity","Due Diligence","Automation","Data Analysis"]
+  },
+  "Resume Writing with AI Support": {
+    company:"Forage Learning", icon:"🌐", cat:"Tech & Data",
+    desc:"Practiced crafting compelling, ATS-optimized resumes with AI assistance — learning how to tailor experience bullets to job descriptions, highlight transferable skills, and present a professional brand.",
+    skills:["Resume Writing","ATS Optimization","Personal Branding","Career Development"]
+  },
+  "London Market Claims Adjuster": {
+    company:"London Insurance Life", icon:"🛡️", cat:"Insurance",
+    desc:"Simulated the claims adjuster role in the London insurance market — evaluating claim validity, reviewing policy coverage, and negotiating settlements for complex commercial insurance claims.",
+    skills:["Claims Assessment","Policy Review","Negotiation","Commercial Insurance"]
+  },
+  "London Market Claims Operations": {
+    company:"London Insurance Life", icon:"🛡️", cat:"Insurance",
+    desc:"Explored the operations side of Lloyd's of London-style claims processing — managing documentation, coordinating between underwriters and brokers, and ensuring accurate claims records.",
+    skills:["Claims Operations","Lloyd's Market","Broking","Documentation"]
+  },
+  "Underwriting": {
+    company:"AIG", icon:"🛡️", cat:"Insurance",
+    desc:"Practiced underwriting decisions at AIG — assessing risk profiles for commercial insurance applications, pricing policies, and determining coverage terms based on client risk data.",
+    skills:["Risk Assessment","Policy Pricing","Commercial Insurance","Underwriting"]
+  }
+};
+
+function openCertModal(title) {
+  const d = certData[title];
+  if (!d) return;
+  document.getElementById('modal-icon').textContent = d.icon;
+  document.getElementById('modal-cat').textContent = d.cat;
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-company').textContent = d.company + ' · Forage Virtual Job Simulation';
+  document.getElementById('modal-desc').textContent = d.desc;
+  const skillsEl = document.getElementById('modal-skills');
+  skillsEl.innerHTML = d.skills.map(s => `<span style="padding:0.25rem 0.7rem;background:var(--light-bg);border-radius:100px;font-size:0.72rem;font-weight:600;color:var(--navy);">${s}</span>`).join('');
+  const modal = document.getElementById('cert-modal');
+  modal.classList.add('open');
+  modal.style.display = 'flex';
+}
+
+function closeCertModal() {
+  const modal = document.getElementById('cert-modal');
+  modal.classList.remove('open');
+  modal.style.display = 'none';
+}
+
+document.getElementById('cert-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeCertModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeCertModal();
+});
+
+// Wire up all cert cards
+document.querySelectorAll('.cert-card').forEach(card => {
+  const title = card.querySelector('h4').textContent;
+  card.addEventListener('click', () => openCertModal(title));
+});
+</script>
+
+<!-- ── FOOTER ── -->
+<footer>
+  © 2026 Aleks Arriola — Built with purpose.
+</footer>
+
+</body>
+</html>
