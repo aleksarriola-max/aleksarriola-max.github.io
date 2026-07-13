@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aleks Arriola — Portfolio</title>
+  <meta name="description" content="Aleks Arriola — Finance & Marketing student at Hult. Building institutional-grade financial tools (84-sheet valuation models, SEC EDGAR scanners), live AI apps (PitMind, OpsFlow), and real-world client strategies. 38 Forage simulations, 44 credentials."/>
+  <meta name="author" content="Aleks Arriola"/>
+  <meta name="keywords" content="Aleks Arriola, finance, investment banking, AI, blockchain, Sui, Python, financial modeling, DCF, LBO, equity research, Hult, portfolio"/>
+  <meta property="og:title" content="Aleks Arriola — Finance. Code. Strategy."/>
+  <meta property="og:description" content="Finance & Marketing student building institutional-grade financial tools, live AI apps, and real-world client strategies."/>
+  <meta property="og:type" content="website"/>
+  <!-- AI-readable content index: llms.txt -->
+  <link rel="alternate" type="text/plain" title="AI-readable site index" href="llms.txt"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -518,107 +526,239 @@
 <body>
 
 <!-- ── NAV ── -->
+
+<style>
+.nav-links a.nav-active {
+  color: var(--gold) !important;
+  border-bottom: 2px solid var(--gold);
+}
+</style>
 <nav>
-  <a class="nav-logo" href="#hero">A.A.</a>
+  <a class="nav-logo" href="#" onclick="showPage('home'); return false;">A.A.</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#client-work">Client Work</a></li>
-    <li><a href="#finance">Finance</a></li>
-    <li><a href="#certificates">Certificates</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" onclick="showPage('home'); return false;" data-nav="home">Home</a></li>
+    <li><a href="#" onclick="showPage('coding'); return false;" data-nav="coding">Coding</a></li>
+    <li><a href="#" onclick="showPage('client'); return false;" data-nav="client">Client Work</a></li>
+    <li><a href="#" onclick="showPage('finance'); return false;" data-nav="finance">Finance</a></li>
+    <li><a href="#" onclick="showPage('writing'); return false;" data-nav="writing">Writing</a></li>
+    <li><a href="#" onclick="showPage('certs'); return false;" data-nav="certs">Certifications</a></li>
   </ul>
 </nav>
+<div id="page-home" class="page-section" style="display:none;">
 
-<!-- ── HERO ── -->
 <section id="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-accent"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Portfolio — Aleks Arriola</p>
-    <h1 class="hero-title">Finance. Analytics.<br/><span>Business Strategy.</span></h1>
-    <p class="hero-subtitle">
-      A curated showcase of my work across financial analysis, data-driven marketing,
-      business analytics, and software — built through college and real-world client projects.
-    </p>
+    <h1 class="hero-title">Finance. Code.<br/><span>Strategy.</span></h1>
+    <p class="hero-subtitle">Finance &amp; Marketing student at Hult — building institutional-grade financial tools, live AI apps, and real-world client strategies.</p>
     <div class="hero-tags">
-      <span class="hero-tag">Finance</span>
-      <span class="hero-tag">Business Analytics</span>
-      <span class="hero-tag">Marketing</span>
-      <span class="hero-tag">Data Analysis</span>
-      <span class="hero-tag">Software Projects</span>
+      <span class="hero-tag">Investment Banking</span>
+      <span class="hero-tag">AI &amp; Blockchain</span>
+      <span class="hero-tag">Marketing Strategy</span>
+      <span class="hero-tag">Financial Modeling</span>
     </div>
-    <a href="#about" class="hero-cta">Explore My Work ↓</a>
+    <a href="#" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;" class="hero-cta">Get In Touch ↓</a>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Scroll
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<!-- STATS BAR -->
+<section class="section" style="padding:2.5rem 5vw; background:var(--navy);">
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:3rem;">
+    <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;">5</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Live Apps</div></div>
+    <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;">600+</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Companies Screened</div></div>
+    <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;">8</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Client Projects</div></div>
+    <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;">40</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Certifications</div></div>
+    <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;">11</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Financial Models</div></div>
   </div>
 </section>
 
-<!-- ── ABOUT ── -->
-<section id="about" class="section section-alt">
-  <p class="section-label">The Story</p>
-  <h2 class="section-title">About Me</h2>
+<!-- FEATURED CODING -->
+<section class="section section-alt">
+  <p class="section-label">Featured Apps</p>
+  <h2 class="section-title">Live Coding Projects</h2>
+  <div class="section-divider"></div>
+  <div class="cards-grid" style="margin-top:1.5rem;grid-template-columns:repeat(2,1fr);">
+
+    <div class="card">
+      <div class="iframe-preview" id="preview-pitmind" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#0f1b2d,#1a2d4a);cursor:pointer;" onclick="loadIframe('pitmind','https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/')">
+        <div id="overlay-pitmind" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.75rem;">
+          <div style="font-size:2.5rem;">🏎️</div>
+          <div style="color:rgba(255,255,255,0.9);font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Click to Preview Live App</div>
+          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:0.4rem 1rem;border-radius:20px;font-size:0.75rem;backdrop-filter:blur(4px);">▶ Launch Preview</div>
+        </div>
+        <iframe id="iframe-pitmind" src="" style="width:100%;height:100%;border:none;position:absolute;inset:0;display:none;" loading="lazy" title="pitmind"></iframe>
+      </div>
+      <div class="card-body">
+        <p class="card-type">🚀 Live App · AI · Formula 1 Strategy</p>
+        <h3 class="card-title">PitMind</h3>
+        <p class="card-desc">AI-powered F1 strategy platform with Fan and Engineer modes. Uses IBM Granite AI and 2025 live telemetry with three custom models — Driver Soul, Momentum, Race Forecast — making pit-wall analysis accessible worldwide.</p>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">IBM Granite AI</span></div>
+        <a href="https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">↗ Launch Live App</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="iframe-preview" id="preview-opsflow-home" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#2a0a0a,#5a1a1a);cursor:pointer;" onclick="loadIframe('opsflow-home','https://opsflow-hso3.onrender.com/')">
+        <div id="overlay-opsflow-home" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.75rem;">
+          <div style="font-size:2.5rem;">🤖</div>
+          <div style="color:rgba(255,255,255,0.9);font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Click to Preview Live App</div>
+          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:0.4rem 1rem;border-radius:20px;font-size:0.75rem;backdrop-filter:blur(4px);">▶ Launch Preview</div>
+        </div>
+        <iframe id="iframe-opsflow-home" src="" style="width:100%;height:100%;border:none;position:absolute;inset:0;display:none;" loading="lazy" title="opsflow-home"></iframe>
+      </div>
+      <div class="card-body">
+        <p class="card-type">🤖 Live App · AI Agent · Blockchain</p>
+        <h3 class="card-title">OpsFlow</h3>
+        <p class="card-desc">Policy-bound AI operations agent built on Sui that turns natural-language requests into secure, stateful on-chain workflows. Features revocable authority, vendor trust scoring, fraud detection, and full audit trails.</p>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Sui Blockchain</span><span class="tag">AI Agent</span><span class="tag">Move</span></div>
+        <a href="https://opsflow-hso3.onrender.com/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;margin-right:0.6rem;">↗ Launch Live App</a>
+        <a href="#" onclick="showPage('coding'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--navy);color:var(--navy);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All 5 →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURED FINANCE -->
+<section class="section">
+  <p class="section-label">Featured Finance Projects</p>
+  <h2 class="section-title">Finance & Quantitative Tools</h2>
+  <div class="section-divider"></div>
+  <div class="cards-grid" style="margin-top:1.5rem;grid-template-columns:repeat(2,1fr);">
+
+    <div class="card">
+      <div class="card-top" style="background:linear-gradient(90deg,var(--navy),#1b4f8a);height:6px;"></div>
+      <div class="card-body">
+        <p class="card-type">📊 Institutional-Grade · Python · SEC EDGAR API</p>
+        <h3 class="card-title">Company Health Red-Flag Scanner</h3>
+        <p class="card-desc">Screens 600+ US-listed companies using live SEC EDGAR XBRL data. Runs 11 academic models (Altman Z-Score, Beneish M-Score, Piotroski F-Score + more) producing a composite Health Score and auto-generated fraud risk card. Fully automated — 80 financial ratios, 45 variables, zero manual updates.</p>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Python</span><span class="tag">SEC EDGAR API</span><span class="tag">Altman Z-Score</span><span class="tag">Beneish M-Score</span></div>
+        <a href="#" onclick="showPage('finance'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See Finance Portfolio →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background:linear-gradient(90deg,#0a2a1a,#1a5c3a);height:6px;"></div>
+      <div class="card-body" style="padding-top:1.5rem;">
+        <p class="card-type">📊 Equity Research Automation · Python</p>
+        <h3 class="card-title">Orcen Capital — Valuation Kit</h3>
+        <p class="card-desc">One YAML config → 84-sheet Excel model + Word report + PPTX deck. Full valuation stack (DCF, comps, LBO, precedent transactions) layered with 7 cognitive bias-correction modules. Verified end-to-end with real Apple FY2024 data. ~39,000 lines of Python.</p>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin:0.75rem 0 1rem;">
+          <div style="background:rgba(10,42,26,0.08);border:1px solid rgba(26,92,58,0.25);border-radius:8px;padding:0.5rem 0.8rem;text-align:center;flex:1;min-width:70px;">
+            <div style="font-size:1.3rem;font-weight:800;color:#1a5c3a;">84</div>
+            <div style="font-size:0.65rem;color:#666;margin-top:0.1rem;">Excel sheets</div>
+          </div>
+          <div style="background:rgba(10,42,26,0.08);border:1px solid rgba(26,92,58,0.25);border-radius:8px;padding:0.5rem 0.8rem;text-align:center;flex:1;min-width:70px;">
+            <div style="font-size:1.3rem;font-weight:800;color:#1a5c3a;">7</div>
+            <div style="font-size:0.65rem;color:#666;margin-top:0.1rem;">Bias modules</div>
+          </div>
+          <div style="background:rgba(10,42,26,0.08);border:1px solid rgba(26,92,58,0.25);border-radius:8px;padding:0.5rem 0.8rem;text-align:center;flex:1;min-width:70px;">
+            <div style="font-size:1.3rem;font-weight:800;color:#1a5c3a;">39K</div>
+            <div style="font-size:0.65rem;color:#666;margin-top:0.1rem;">Lines Python</div>
+          </div>
+        </div>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">DCF · LBO · Comps</span><span class="tag">SEC EDGAR</span><span class="tag">Python</span></div>
+        <a href="#" onclick="showPage('finance'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See Finance Portfolio →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURED CLIENT -->
+<section class="section section-alt">
+  <p class="section-label">Featured Client Work</p>
+  <h2 class="section-title">Real-World Engagements</h2>
+  <div class="section-divider"></div>
+  <div class="cards-grid" style="margin-top:1.5rem;grid-template-columns:repeat(2,1fr);">
+
+    <div class="card">
+      <div class="card-top" style="background:linear-gradient(90deg,#1b2d42,#2a5280);height:6px;"></div>
+      <div class="card-body">
+        <p class="card-type">🤝 Live Client · Operations & Finance</p>
+        <h3 class="card-title">AeroShield — KPI Dashboard</h3>
+        <p class="card-desc">19-sheet KPI dashboard for a deeptech manufacturer scaling 6→300 units/week. Identified the #1 production bottleneck, modeled financial scenarios, and projected $40–80K in annual savings with a ~12-month payback. Delivered as a fully functional Excel workbook.</p>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Excel</span><span class="tag">KPI Modeling</span><span class="tag">Operations</span><span class="tag">Financial Analysis</span></div>
+        <a href="AeroShield_Complete_excel.xlsx" download style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;margin-right:0.6rem;">⬇ Download Workbook</a>
+        <a href="#" onclick="showPage('client'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--navy);color:var(--navy);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background:linear-gradient(90deg,#1a2d42,#3a6a9a);height:6px;"></div>
+      <div class="card-body">
+        <p class="card-type">✈️ Live Client · Strategy & Market Entry</p>
+        <h3 class="card-title">Jet Rose — US Market Expansion</h3>
+        <p class="card-desc">Full go-to-market strategy for a European bespoke private aviation broker entering the Americas. Delivered a self-funded growth model, competitive analysis against Jettly & Amalfi Jets, a $99/month membership framework, and brand differentiation positioning Jet Rose as the European expert in the US market.</p>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Market Entry Strategy</span><span class="tag">Competitive Analysis</span><span class="tag">Pricing Strategy</span><span class="tag">Private Aviation</span></div>
+        <a href="#" onclick="showPage('client'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All Client Work →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPLORE GRID -->
+<section class="section" style="background:var(--navy);padding:3rem 5vw;">
+  <p class="section-label" style="color:var(--gold);">Keep Exploring</p>
+  <h2 class="section-title" style="color:var(--white);">Everything in the Portfolio</h2>
+  <div class="section-divider" style="background:var(--gold);"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;margin-top:2rem;">
+    <a href="#" onclick="showPage('coding'); return false;" style="text-decoration:none;"><div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1.5rem;text-align:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><div style="font-size:2rem;margin-bottom:0.6rem;">💻</div><div style="font-weight:700;color:var(--white);margin-bottom:0.3rem;">Coding Projects</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.55);">5 live apps deployed</div></div></a>
+    <a href="#" onclick="showPage('client'); return false;" style="text-decoration:none;"><div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1.5rem;text-align:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><div style="font-size:2rem;margin-bottom:0.6rem;">🤝</div><div style="font-weight:700;color:var(--white);margin-bottom:0.3rem;">Client Work</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.55);">8 live engagements</div></div></a>
+    <a href="#" onclick="showPage('finance'); return false;" style="text-decoration:none;"><div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1.5rem;text-align:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><div style="font-size:2rem;margin-bottom:0.6rem;">📊</div><div style="font-weight:700;color:var(--white);margin-bottom:0.3rem;">Finance Portfolio</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.55);">Tools & IB simulations</div></div></a>
+    <a href="#" onclick="showPage('certs'); return false;" style="text-decoration:none;"><div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1.5rem;text-align:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><div style="font-size:2rem;margin-bottom:0.6rem;">🏅</div><div style="font-weight:700;color:var(--white);margin-bottom:0.3rem;">Certifications</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.55);">44 credentials</div></div></a>
+  </div>
+</section>
+
+<section id="contact" class="section section-dark">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title" style="color: var(--white);">Let's Connect</h2>
   <div class="section-divider"></div>
 
-  <div class="about-grid">
-    <div class="about-body">
-      <p>
-        Hi, I'm Aleks — a Finance & Accounting student at <strong>Hult International Business School</strong> in Cambridge, MA, passionate about Investment Banking and Strategic Marketing.
-      </p>
-      <p>
-        My work spans financial modeling, fraud detection, multi-channel marketing, and software — from supporting the Digital Marketing Director at <strong>Western Union</strong> to building institutional-grade screening tools that automate what hedge funds do manually.
-      </p>
-      <p>
-        I believe the best work is both analytically rigorous and beautifully communicated. This is my museum — every project, certificate, and client engagement tells part of the story.
-      </p>
-    </div>
+  <a href="mailto:aleksarriola@gmail.com" class="contact-email">aleksarriola@gmail.com</a>
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">600+</div>
-        <div class="stat-label">Companies Screened by My Tools</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">34</div>
-        <div class="stat-label">Forage Certifications</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">11</div>
-        <div class="stat-label">Financial Models Built</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">2</div>
-        <div class="stat-label">Live Apps Deployed</div>
-      </div>
-    </div>
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/aleks-arriola/" target="_blank" class="social-link">
+      🔗 LinkedIn
+    </a>
+    <a href="https://github.com/YOUR-HANDLE" target="_blank" class="social-link">
+      💻 GitHub
+    </a>
+    <a href="data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,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" download="Aleks_Arriola_Resume_Finance.docx" class="social-link">
+      📄 Resume — Finance
+    </a>
+    <a href="data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,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" download="Aleks_Arriola_Resume_Marketing.docx" class="social-link">
+      📄 Resume — Marketing
+    </a>
   </div>
 </section>
+</div>
 
-<!-- ── CODING PROJECTS ── -->
+
+<div id="page-coding" class="page-section" style="display:none;">
 <section id="projects" class="section">
   <p class="section-label">Engineering & Tech</p>
   <h2 class="section-title">Coding Projects</h2>
   <div class="section-divider"></div>
-
-  <div class="placeholder-banner">
-    💡 Add more coding projects below as you build them.
-  </div>
 
   <div class="cards-grid">
 
     <!-- FEATURED: Live Streamlit App -->
     <div class="card" style="grid-column: 1 / -1; max-width: 620px;">
       <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
+      <a href="https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/" target="_blank" style="display:block; overflow:hidden; max-height:200px; border-bottom:1px solid rgba(0,0,0,0.07);">
+        <img src="https://image.thum.io/get/width/800/https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/" alt="PitMind preview" style="width:100%; display:block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
       <div class="card-body" style="display:flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
         <div style="flex: 1; min-width: 220px;">
           <p class="card-type" style="display:flex; align-items:center; gap:0.4rem;">🚀 Live App · Featured</p>
           <h3 class="card-title">PitMind</h3>
           <p class="card-desc">
-            A live, deployed web application built with Python and Streamlit.
-            Tell visitors what it does — e.g. "An AI-powered pitch analysis tool that helps
-            founders evaluate their startup ideas and investor readiness."
+            AI-powered Formula 1 strategy platform with Fan and Engineer modes, using IBM Granite AI and 2025 telemetry. Three custom models — Driver Soul, Momentum, and Race Forecast — simulate performance and strategy, making elite racing analysis accessible to anyone worldwide.
           </p>
           <div class="card-tags" style="margin-bottom: 1.25rem;">
             <span class="tag">Python</span>
@@ -640,34 +780,122 @@
     </div>
 
     <div class="card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <p class="card-type">Data Tool</p>
-        <h3 class="card-title">Project Title Two</h3>
-        <p class="card-desc">
-          Brief description of what this project does, what problem it solves, and what you
-          learned building it. 2–3 sentences max.
-        </p>
-        <div class="card-tags">
-          <span class="tag">Excel VBA</span>
-          <span class="tag">Power BI</span>
+      <div class="card-top" style="background: linear-gradient(90deg, #1a3a5c, #2a5c8a);"></div>
+      <div class="iframe-preview" id="preview-matchmind" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#0d1f3c,#1a3a6e);cursor:pointer;" onclick="loadIframe('matchmind','https://mainpy-hpdupmoyakddvxo348e4yn.streamlit.app/')">
+        <div id="overlay-matchmind" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
+          <div style="font-size:2.5rem;">⚽</div>
+          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:0.45rem 1.1rem;border-radius:20px;font-size:0.78rem;font-weight:600;backdrop-filter:blur(4px);">▶ Preview Live App</div>
         </div>
+        <iframe id="iframe-matchmind" src="" style="width:100%;height:100%;border:none;position:absolute;inset:0;display:none;" loading="lazy"></iframe>
+      </div>
+      <div class="card-body">
+        <p class="card-type">AI · Sports Analytics</p>
+        <h3 class="card-title">MatchMind</h3>
+        <p class="card-desc">
+          AI system that explains football decisions with a two-layer hallucination firewall — combining a lexical evidence check and a second IBM Granite validation pass. Outputs are labeled Verified or Unverified with full evidence trails, every metric computed from real formulas. Uses live and historical World Cup data with five persona-based explanation styles for different audiences.
+        </p>
+        <div class="card-tags" style="margin-bottom: 1rem;">
+          <span class="tag">IBM Granite AI</span>
+          <span class="tag">Hallucination Detection</span>
+          <span class="tag">Live Data</span>
+          <span class="tag">Sports Analytics</span>
+        </div>
+        <a href="https://mainpy-hpdupmoyakddvxo348e4yn.streamlit.app/" target="_blank" style="display:inline-flex; align-items:center; gap:0.5rem; background: var(--navy); color: var(--gold); padding: 0.5rem 1.1rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; text-decoration: none;">↗ Launch Live App</a>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <p class="card-type">Automation</p>
-        <h3 class="card-title">Project Title Three</h3>
-        <p class="card-desc">
-          Brief description of what this project does, what problem it solves, and what you
-          learned building it. 2–3 sentences max.
-        </p>
-        <div class="card-tags">
-          <span class="tag">JavaScript</span>
-          <span class="tag">APIs</span>
+      <div class="card-top" style="background: linear-gradient(90deg, #2a1a5c, #5c2a8a);"></div>
+      <div class="iframe-preview" id="preview-adaptive" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#1a0a3c,#3a1a7a);cursor:pointer;" onclick="loadIframe('adaptive','https://adaptive-funding-deepsurge.vercel.app/')">
+        <div id="overlay-adaptive" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
+          <div style="font-size:2.5rem;">🎓</div>
+          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:0.45rem 1.1rem;border-radius:20px;font-size:0.78rem;font-weight:600;backdrop-filter:blur(4px);">▶ Preview Live App</div>
         </div>
+        <iframe id="iframe-adaptive" src="" style="width:100%;height:100%;border:none;position:absolute;inset:0;display:none;" loading="lazy"></iframe>
+      </div>
+      <div class="card-body">
+        <p class="card-type">Blockchain · Sui · DeFi</p>
+        <h3 class="card-title">Adaptive Funding Engine</h3>
+        <p class="card-desc">
+          Fully on-chain scholarship and grant system built on Sui that replaces fixed payouts with milestone-based adaptive funding. Recipients earn bonuses for early delivery, lose value for delays, and unused funds recycle to waitlisted applicants. Built with Move smart contracts, escrow locking, quorum-based approvals, configurable vesting curves, and soulbound credentials minted upon completion.
+        </p>
+        <div class="card-tags" style="margin-bottom: 1rem;">
+          <span class="tag">Sui Blockchain</span>
+          <span class="tag">Move</span>
+          <span class="tag">Smart Contracts</span>
+          <span class="tag">DeFi</span>
+        </div>
+        <a href="https://adaptive-funding-deepsurge.vercel.app/" target="_blank" style="display:inline-flex; align-items:center; gap:0.5rem; background: var(--navy); color: var(--gold); padding: 0.5rem 1.1rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; text-decoration: none;">↗ Launch Live App</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: linear-gradient(90deg, #1a4a3a, #2a8a5c);"></div>
+      <div class="iframe-preview" id="preview-deepbook" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#0a1f12,#0f3d1f);cursor:pointer;" onclick="loadIframe('deepbook','https://aleksarriola-max.github.io/deepbook-market-os/')">
+        <div id="overlay-deepbook" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
+          <div style="font-size:2.5rem;">📈</div>
+          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:0.45rem 1.1rem;border-radius:20px;font-size:0.78rem;font-weight:600;backdrop-filter:blur(4px);">▶ Preview Live App</div>
+        </div>
+        <iframe id="iframe-deepbook" src="" style="width:100%;height:100%;border:none;position:absolute;inset:0;display:none;" loading="lazy"></iframe>
+      </div>
+      <div class="card-body">
+        <p class="card-type">Blockchain · Sui · Trading</p>
+        <h3 class="card-title">DeepBook Market OS</h3>
+        <p class="card-desc">
+          Market operating system built on Sui&#x2019;s DeepBookV3 combining spot, margin, and prediction markets into one unified console. Runs entirely on live on-chain data with no backend or mock inputs — all analytics computed client-side with transparent formulas. Includes execution tools, strategy building, liquidity tracking, structured products, and market creation.
+        </p>
+        <div class="card-tags" style="margin-bottom: 1rem;">
+          <span class="tag">Sui Blockchain</span>
+          <span class="tag">DeepBookV3</span>
+          <span class="tag">On-Chain Analytics</span>
+          <span class="tag">Trading Systems</span>
+        </div>
+        <a href="https://aleksarriola-max.github.io/deepbook-market-os/" target="_blank" style="display:inline-flex; align-items:center; gap:0.5rem; background: var(--navy); color: var(--gold); padding: 0.5rem 1.1rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; text-decoration: none;">↗ Launch Live App</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: linear-gradient(90deg, #4a1a1a, #8a2a2a);"></div>
+      <div class="iframe-preview" id="preview-opsflow" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#2a0a0a,#5a1a1a);cursor:pointer;" onclick="loadIframe('opsflow','https://opsflow-hso3.onrender.com/')">
+        <div id="overlay-opsflow" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
+          <div style="font-size:2.5rem;">🤖</div>
+          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:0.45rem 1.1rem;border-radius:20px;font-size:0.78rem;font-weight:600;backdrop-filter:blur(4px);">▶ Preview Live App</div>
+        </div>
+        <iframe id="iframe-opsflow" src="" style="width:100%;height:100%;border:none;position:absolute;inset:0;display:none;" loading="lazy"></iframe>
+      </div>
+      <div class="card-body">
+        <p class="card-type">Blockchain · Sui · AI Agent</p>
+        <h3 class="card-title">OpsFlow</h3>
+        <p class="card-desc">
+          Policy-bound AI operations agent built on Sui that turns natural-language requests into secure, stateful on-chain workflows. The LLM proposes actions, but deterministic code and Move smart contracts enforce decisions, approvals, and payments. Features revocable agent authority, vendor trust scoring, fraud detection, veto windows, self-suspension safeguards, and full audit trails with human validation.
+        </p>
+        <div class="card-tags" style="margin-bottom: 1rem;">
+          <span class="tag">Sui Blockchain</span>
+          <span class="tag">AI Agent</span>
+          <span class="tag">Move</span>
+          <span class="tag">Autonomous Systems</span>
+        </div>
+        <a href="https://opsflow-hso3.onrender.com/" target="_blank" style="display:inline-flex; align-items:center; gap:0.5rem; background: var(--navy); color: var(--gold); padding: 0.5rem 1.1rem; border-radius: 4px; font-size: 0.82rem; font-weight: 600; text-decoration: none;">↗ Launch Live App</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top" style="background: linear-gradient(90deg, #0a2a1a, #1a5c3a);"></div>
+      <div class="card-body">
+        <p class="card-type">📊 Equity Research Automation · Finance × Code</p>
+        <h3 class="card-title">Auto Company Valuation Kit — Orcen Capital</h3>
+        <p class="card-desc">
+          Single-analyst equity research system that takes one YAML config and outputs an 84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck in one command. Full valuation stack — DCF, comps, precedent transactions, LBO, blended fair value — layered with 7 cognitive bias-correction modules (narrative bridge, behavioral fingerprint, options probability engine, analyst calibration ledger, anti-thesis simulator, shadow pods, portfolio network). Verified end-to-end with real Apple FY2024 data. ~39,000 lines of Python.
+        </p>
+        <div class="card-tags" style="margin-bottom: 1rem;">
+          <span class="tag">Python</span>
+          <span class="tag">DCF · LBO · Comps</span>
+          <span class="tag">SEC EDGAR API</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Excel · Word · PPTX</span>
+        </div>
+        <a href="Apple_Valuation_v45.xlsx" download style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;margin-right:0.6rem;">⬇ Download Apple Model (v45)</a>
+        <a href="Apple_Valuation_v29_Report.docx" download style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--navy);color:var(--navy);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">⬇ Word Report</a>
       </div>
     </div>
 
@@ -675,6 +903,8 @@
 </section>
 
 <!-- ── CLIENT WORK ── -->
+</div>
+<div id="page-client" class="page-section" style="display:none;">
 <section id="client-work" class="section section-alt">
   <p class="section-label">Real-World Experience</p>
   <h2 class="section-title">Client Work & Presentations</h2>
@@ -806,6 +1036,24 @@
           <span class="tag">Seasonal Marketing</span>
           <span class="tag">Partnership Strategy</span>
           <span class="tag">F&B Industry</span>
+
+    <div class="card">
+      <div class="card-top" style="background: #2a3a1a;"></div>
+      <div class="card-body">
+        <p class="card-type">Live Client · Hospitality & Guest Experience Strategy</p>
+        <h3 class="card-title">Kaktus Somabay — Customer Experience & Loyalty Strategy</h3>
+        <p class="card-desc">
+          Designed a comprehensive guest experience and loyalty strategy for Kaktus Somabay, a luxury resort on Egypt&#x2019;s Red Sea coast. Delivered a full loyalty program architecture, a local partnership ecosystem (Wunder Chocolatier, Scuba World Divers, ORCA Dive Club, Safari Sahara), a curated boutique retail concept inspired by Egyptian aesthetics, and niche wellness programming &#x2014; including desert escapes, gourmet dining partnerships, and daily movement experiences &#x2014; to drive repeat guest engagement and premium positioning.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Hospitality Strategy</span>
+          <span class="tag">Loyalty Programs</span>
+          <span class="tag">Partnership Development</span>
+          <span class="tag">Guest Experience</span>
+          <span class="tag">Luxury Branding</span>
+        </div>
+      </div>
+    </div>
         </div>
       </div>
     </div>
@@ -850,6 +1098,8 @@
 </section>
 
 <!-- ── FINANCE PORTFOLIO ── -->
+</div>
+<div id="page-finance" class="page-section" style="display:none;">
 <section id="finance" class="section section-dark">
   <p class="section-label">Financial Work</p>
   <h2 class="section-title" style="color: var(--white);">Finance Portfolio</h2>
@@ -885,6 +1135,44 @@
       <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem 1.5rem; text-align:center;">
         <div style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">80</div>
         <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:0.2rem;">Financial ratios</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flagship: Orcen Capital Valuation Kit -->
+  <div style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.35); border-radius: 12px; padding: 2.5rem; margin-bottom: 3rem; display:flex; gap:2.5rem; flex-wrap:wrap; align-items:flex-start;">
+    <div style="flex:1; min-width:260px;">
+      <p style="font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">🏆 Flagship Project</p>
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--white); margin-bottom:0.75rem; line-height:1.2;">Auto Company Valuation Kit — Orcen Capital</h3>
+      <p style="font-size:0.92rem; color:rgba(255,255,255,0.65); line-height:1.75; margin-bottom:1.25rem;">
+        A single-analyst equity research automation system that turns one YAML config into a full institutional-grade research package — <strong style="color:rgba(255,255,255,0.85);">84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck</strong> — in one command. The pipeline runs DCF, comparable companies, precedent transactions, LBO returns, and blended fair-value output, layered with seven cognitive bias-correction modules targeting anchoring, optimism bias, and narrative contamination. Verified end-to-end with real Apple FY2024 data, producing a live HOLD verdict. ~39,000 lines of Python.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;">
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">DCF · LBO · Comps</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Behavioral Fingerprint</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Anti-Thesis Simulator</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Options Probability Engine</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Analyst Calibration Ledger</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Python · SEC EDGAR · yfinance</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Streamlit Dashboard</span>
+      </div>
+      <div style="margin-top:0.5rem;">
+        <a href="Apple_Valuation_v45.xlsx" download style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--navy);padding:0.6rem 1.4rem;border-radius:4px;font-size:0.85rem;font-weight:700;text-decoration:none;margin-right:0.75rem;">⬇ Download Apple Model (v45)</a>
+        <a href="Apple_Valuation_v29_Report.docx" download style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--gold);color:var(--gold);padding:0.6rem 1.4rem;border-radius:4px;font-size:0.85rem;font-weight:700;text-decoration:none;">⬇ Download Word Report</a>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:1rem; flex-shrink:0;">
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem 1.5rem; text-align:center; min-width:150px;">
+        <div style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">84</div>
+        <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:0.2rem;">Excel sheets / company</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem 1.5rem; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">7</div>
+        <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:0.2rem;">Bias-correction modules</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem 1.5rem; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">39K</div>
+        <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:0.2rem;">Lines of Python</div>
       </div>
     </div>
   </div>
@@ -949,18 +1237,20 @@
 </section>
 
 <!-- ── CERTIFICATES ── -->
+</div>
+<div id="page-certs" class="page-section" style="display:none;">
 <section id="certificates" class="section section-alt">
   <p class="section-label">Credentials</p>
   <h2 class="section-title">Certificates & Achievements</h2>
   <div class="section-divider"></div>
 
   <p style="color:#666; font-size:0.95rem; margin-bottom:2rem;">
-    <strong style="color:var(--navy)">34 Forage virtual job simulations</strong> and <strong style="color:var(--navy)">6 Coursera courses</strong> completed across banking, finance, consulting, technology, and business.
+    <strong style="color:var(--navy)">38 Forage virtual job simulations</strong> and <strong style="color:var(--navy)">6 Coursera courses</strong> completed across banking, finance, consulting, technology, and business.
   </p>
 
   <!-- Filter Buttons -->
   <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.5rem;" id="cert-filters">
-    <button onclick="filterCerts('all')" class="cert-filter-btn active" data-filter="all">All (40)</button>
+    <button onclick="filterCerts('all')" class="cert-filter-btn active" data-filter="all">All (44)</button>
     <button onclick="filterCerts('coursera')" class="cert-filter-btn" data-filter="coursera">🎓 Coursera</button>
     <button onclick="filterCerts('banking')" class="cert-filter-btn" data-filter="banking">🏦 Banking</button>
     <button onclick="filterCerts('finance')" class="cert-filter-btn" data-filter="finance">📊 Finance</button>
@@ -1284,6 +1574,36 @@
       </div>
     </div>
 
+    <!-- NEW JULY 2026 -->
+    <div class="cert-card" data-cat="banking">
+      <div class="cert-icon">🏦</div>
+      <div class="cert-info">
+        <h4>Credit Analyst</h4>
+        <p>Standard Chartered · July 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Client Engagement</h4>
+        <p>Bloomberg · July 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="finance">
+      <div class="cert-icon">📊</div>
+      <div class="cert-info">
+        <h4>Quantitative Research</h4>
+        <p>J.P. Morgan · June 2026</p>
+      </div>
+    </div>
+    <div class="cert-card" data-cat="insurance">
+      <div class="cert-icon">🛡️</div>
+      <div class="cert-info">
+        <h4>Actuarial Analyst</h4>
+        <p>AIG · June 2026</p>
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -1302,25 +1622,91 @@
 </section>
 
 <!-- ── CONTACT ── -->
-<section id="contact" class="section section-dark">
-  <p class="section-label">Get In Touch</p>
-  <h2 class="section-title" style="color: var(--white);">Let's Connect</h2>
-  <div class="section-divider"></div>
 
-  <a href="mailto:aleksarriola@gmail.com" class="contact-email">aleksarriola@gmail.com</a>
 
-  <div class="social-links">
-    <a href="https://linkedin.com/in/YOUR-HANDLE" target="_blank" class="social-link">
-      🔗 LinkedIn
-    </a>
-    <a href="https://github.com/YOUR-HANDLE" target="_blank" class="social-link">
-      💻 GitHub
-    </a>
-    <a href="#" class="social-link">
-      📄 Resume
-    </a>
+</div>
+
+<!-- ── WRITING ── -->
+<div id="page-writing" class="page-section" style="display:none;">
+  <div style="max-width:760px; margin:0 auto; padding:4rem 2rem;">
+
+    <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Essays</p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--navy);margin-bottom:0.5rem;line-height:1.2;">Writing</h1>
+    <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
+
+    <!-- ARTICLE 1 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · July 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Only Architecture That Makes Agentic AI Safe</h2>
+
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">Everyone building agentic AI right now is making the same mistake: they&#8217;re letting the model decide and act at the same time.</p>
+        <p style="margin-bottom:1.4rem;">In demos, this looks impressive. The model reads a prompt, plans a sequence of steps, calls some tools, and produces an output. It feels autonomous. It feels like the future.</p>
+        <p style="margin-bottom:1.4rem;">In production, it&#8217;s a liability.</p>
+        <p style="margin-bottom:1.4rem;">I found this out building OpsFlow &#8212; an AI operations agent that handles vendor payments, approvals, and workflow routing. The first version did what most agentic systems do: the LLM received a request, generated a plan, and executed it. Fast to build. Flexible. And completely unacceptable for anything involving money.</p>
+        <p style="margin-bottom:1.4rem;">The problem isn&#8217;t that language models are bad at planning. They&#8217;re surprisingly good. The problem is that when they&#8217;re wrong &#8212; and they will be wrong &#8212; there&#8217;s no catch. One hallucination, one misread context window, one ambiguous instruction and the model sends a payment to the wrong address, routes an approval to the wrong person, or skips a required review step. By the time a human notices, the damage is done.</p>
+        <p style="margin-bottom:1.4rem;">The fix isn&#8217;t to make the model smarter. It&#8217;s to change what the model is allowed to do.</p>
+        <p style="margin-bottom:1.4rem;">The architecture I settled on separates reasoning from execution. The LLM receives a request and generates a proposed action plan &#8212; a structured list of steps with parameters. That proposal passes through a deterministic policy layer: hard-coded rules that validate each action against predefined constraints. Vendor in the approved list? Payment within the authorized range? Quorum threshold met for this approval tier? If any check fails, the action is blocked. The model can&#8217;t override it.</p>
+        <p style="margin-bottom:1.4rem;">What executes is never what the model decided alone. It&#8217;s what the model proposed, filtered through rules that don&#8217;t hallucinate.</p>
+        <p style="margin-bottom:1.4rem;">Think of it like the relationship between a junior analyst and a compliance department. The analyst can be creative, thorough, insightful. But the compliance rules exist precisely because individual judgment &#8212; even good judgment &#8212; isn&#8217;t sufficient for high-stakes decisions. The rules run independently of how confident the analyst sounds.</p>
+        <p style="margin-bottom:1.4rem;">The secondary benefit is auditability. When every action passes through a deterministic layer before execution, you get a complete record of what was proposed, what was validated, what was rejected, and why. Not just logs of what the model said, but a verifiable trail of what the system actually did. In regulated environments, that trail isn&#8217;t optional.</p>
+        <p style="margin-bottom:0;">The insight I keep coming back to: trustworthy agentic systems aren&#8217;t built by making models more reliable. They&#8217;re built by designing systems where model unreliability has bounded consequences. The model can be wrong. The system shouldn&#8217;t be.</p>
+      </div>
+    </article>
+
+    <!-- ARTICLE 2 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · June 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What 600 Company Balance Sheets Look Like Before They Break</h2>
+
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">I built a tool that screens 600+ public companies for financial distress using eleven academic models simultaneously. Running it has taught me more about financial analysis than any course I&#8217;ve taken.</p>
+        <p style="margin-bottom:1.4rem;">The models &#8212; Altman Z-Score, Beneish M-Score, Piotroski F-Score, Dechow F-Score, and seven others &#8212; each look at the same company from a different angle. Altman asks whether the capital structure suggests insolvency within two years. Beneish asks whether the earnings have been manipulated. Piotroski asks whether the business is fundamentally improving or deteriorating. None of them, alone, tells you much. Together, they tell you almost everything.</p>
+        <p style="margin-bottom:1.4rem;">The pattern I keep seeing in companies that score poorly across multiple models: the accruals gap opens first.</p>
+        <p style="margin-bottom:1.4rem;">Accruals are the difference between reported earnings and actual cash generated. A company can report profit while burning cash if its accounting choices consistently favor recognizing revenue early or deferring expenses. For a quarter or two, this is manageable and sometimes legitimate. Over multiple years, a widening gap between net income and operating cash flow is almost always a warning sign &#8212; either the business model is deteriorating, or the accounting is being stretched.</p>
+        <p style="margin-bottom:1.4rem;">What&#8217;s striking is that this signal appears before the other models catch it. A company&#8217;s Altman Z-Score might still look acceptable while its accruals ratio is already deteriorating. By the time the Z-Score flags distress, the accruals problem is usually severe and the stock has already moved.</p>
+        <p style="margin-bottom:1.4rem;">Running the same screen across hundreds of companies simultaneously changes how you think about analysis. Individual company work is about depth. Cross-sectional work is about pattern recognition. When you can see all 600 companies ranked by accruals quality at once, outliers that would be invisible in isolation become obvious immediately.</p>
+        <p style="margin-bottom:1.4rem;">The tool also surfaced something about sector interpretation: certain industries structurally produce companies with poor scores on specific models &#8212; not because the businesses are failing but because the accounting characteristics of the sector look like deterioration to a model calibrated on the broader market. Capital-intensive industrials often score poorly on asset turnover. Biotech companies in development phase look terrible on profitability metrics. The models are useful, but they require interpretation. Knowing when to trust the signal and when to adjust for sector structure is as important as running the models.</p>
+        <p style="margin-bottom:0;">What I&#8217;ve taken from this: financial analysis is fundamentally a pattern recognition problem that happens to require deep domain knowledge to interpret correctly. The models don&#8217;t replace understanding the business. They systematically surface where the understanding is most needed.</p>
+      </div>
+    </article>
+
+    <!-- ARTICLE 3 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:2rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · May 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Finance Students Build Better AI</h2>
+
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">There&#8217;s a conventional assumption in the AI space that the best builders come from computer science. Strong priors on system design, algorithms, and software architecture. For purely technical problems, this is probably right.</p>
+        <p style="margin-bottom:1.4rem;">But most of the valuable AI to be built in the next decade isn&#8217;t purely technical. It&#8217;s operational. Workflow automation, decision support, financial analysis, risk assessment &#8212; problems that exist inside organizations with existing processes, compliance requirements, and human stakeholders. Problems where the hard part isn&#8217;t building the model. It&#8217;s understanding what the model is actually supposed to do.</p>
+        <p style="margin-bottom:1.4rem;">This is where domain knowledge compounds technical skill rather than competing with it.</p>
+        <p style="margin-bottom:1.4rem;">When I built OpsFlow, the interesting design decisions weren&#8217;t technical. They were operational. What counts as a valid vendor approval? What does a quorum requirement mean in an async workflow? What happens when a payment is initiated but the approval chain breaks halfway through? These questions don&#8217;t have clean answers in a CS curriculum. They have answers in the messy reality of how organizations actually make decisions and move money.</p>
+        <p style="margin-bottom:1.4rem;">When I built the Health Scanner, the hard problems were interpretive. Which financial ratios matter in which industries? When does a high Beneish M-Score reflect genuine manipulation and when does it reflect legitimate sector accounting? The tool is Python. The judgment is finance.</p>
+        <p style="margin-bottom:1.4rem;">My background creates a specific kind of advantage: I know what the workflows are actually trying to accomplish, so I can design systems that fit the workflow rather than systems the workflow has to accommodate. The user of an agentic system doesn&#8217;t think in API calls and state machines. They think in business logic. Building for them requires fluency in both.</p>
+        <p style="margin-bottom:1.4rem;">Purely technical builders often produce systems that are sophisticated and brittle &#8212; technically impressive but operationally naive. A payment system that doesn&#8217;t model the approval hierarchy correctly isn&#8217;t a payment system. An AI document processor that doesn&#8217;t understand the compliance context of what it&#8217;s processing creates liability rather than efficiency.</p>
+        <p style="margin-bottom:0;">In the class of problems where AI is going to create the most value &#8212; automating knowledge work inside complex organizations &#8212; the combination of domain depth and technical skill is more powerful than either alone. And that combination is rare enough, right now, to be a genuine edge.</p>
+      </div>
+    </article>
+
+
+    <!-- ARTICLE 4 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:2rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · July 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Accruals Anomaly: The Signal Quants Have Known About for 30 Years</h2>
+
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">In 1996, Richard Sloan published a paper showing that companies with high accruals &#8212; where reported earnings exceed actual cash generated &#8212; consistently underperformed the market in the following year. The effect was large, persistent, and largely ignored by the companies reporting those numbers. He called it the accruals anomaly. Nearly three decades later, it&#8217;s still one of the most robust signals in empirical finance.</p>
+        <p style="margin-bottom:1.4rem;">The mechanism is straightforward. Accrual accounting lets companies recognize revenue before cash arrives and defer expenses into future periods. Done legitimately, this smooths out lumpy business cycles and gives a cleaner picture of economic performance. Done aggressively, it creates a gap between what the income statement says and what actually landed in the bank account. The market, Sloan found, tends to price the reported number and only corrects when cash flows eventually reveal the discrepancy.</p>
+        <p style="margin-bottom:1.4rem;">What makes the anomaly interesting from a screening perspective is how early it shows up. In the companies I&#8217;ve run through the Health Scanner, the accruals ratio starts deteriorating before the solvency models catch anything meaningful. A company&#8217;s Altman Z-Score might still sit comfortably in the safe zone while its accruals-to-assets ratio has been widening for two or three years. By the time Z-Score flags distress, the accruals problem is usually severe &#8212; and anyone watching the stock price has already seen the correction.</p>
+        <p style="margin-bottom:1.4rem;">The Dechow F-Score, one of the eleven models in my screening tool, is built almost entirely around this insight. It measures the probability of earnings manipulation using accruals-based inputs: the ratio of non-cash working capital to revenue, changes in cash sales versus reported sales, and the gap between reported earnings and operating cash flow. A high F-Score doesn&#8217;t prove fraud &#8212; it identifies companies where the accounting is stretched in ways that historically precede restatements and stock price collapses.</p>
+        <p style="margin-bottom:1.4rem;">Running this cross-sectionally across 600 companies at once changes the interpretive challenge. A single high accruals ratio in isolation could be legitimate &#8212; a company that just signed a large contract and recognized upfront revenue with deferred cash collection. But a company with high accruals AND a deteriorating Piotroski F-Score AND weakening Beneish signals is telling a different story. The convergence of signals across independent models is where the real information sits.</p>
+        <p style="margin-bottom:1.4rem;">The counterintuitive implication is that the most dangerous companies to own are often the ones that look fine. Strong reported earnings, reasonable leverage, growing revenue &#8212; but cash flow from operations quietly underperforming net income for four consecutive quarters. The headline numbers pass every basic screen. The accruals ratio doesn&#8217;t.</p>
+        <p style="margin-bottom:0;">Sloan&#8217;s 1996 finding has been replicated across markets, time periods, and asset classes. The anomaly persists not because the market doesn&#8217;t know about it &#8212; it&#8217;s been published, taught, and traded for thirty years &#8212; but because most investors still anchor on reported earnings. That anchor is expensive.</p>
+      </div>
+    </article>
+
   </div>
-</section>
+</div>
 
 <!-- ── CERT MODAL ── -->
 <div id="cert-modal" style="display:none; position:fixed; inset:0; z-index:999; background:rgba(13,27,42,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:2rem;">
@@ -1542,6 +1928,26 @@ const certData = {
     company:"AIG", icon:"🛡️", cat:"Insurance",
     desc:"Practiced underwriting decisions at AIG — assessing risk profiles for commercial insurance applications, pricing policies, and determining coverage terms based on client risk data.",
     skills:["Risk Assessment","Policy Pricing","Commercial Insurance","Underwriting"]
+  },
+  "Credit Analyst": {
+    company:"Standard Chartered", icon:"🏦", cat:"Banking",
+    desc:"Simulated the role of a credit analyst at Standard Chartered — assessing creditworthiness of corporate borrowers, analyzing financial statements, calculating key credit ratios, and preparing credit approval memos for lending decisions.",
+    skills:["Credit Analysis","Financial Statement Analysis","Credit Risk","Loan Structuring","Corporate Banking"]
+  },
+  "Client Engagement": {
+    company:"Bloomberg", icon:"📊", cat:"Finance",
+    desc:"Explored how Bloomberg's client-facing teams deliver data solutions to institutional clients — understanding terminal workflows, communicating complex financial data products, and building relationships with traders, analysts, and portfolio managers.",
+    skills:["Client Engagement","Financial Data","Bloomberg Terminal","Institutional Sales","Communication"]
+  },
+  "Quantitative Research": {
+    company:"J.P. Morgan", icon:"📊", cat:"Finance",
+    desc:"Applied quantitative methods to financial research in a J.P. Morgan context — building models, working with large datasets, backtesting strategies, and producing quantitative insights for trading and investment decisions.",
+    skills:["Quantitative Research","Python","Statistical Modeling","Backtesting","Financial Modeling"]
+  },
+  "Actuarial Analyst": {
+    company:"AIG", icon:"🛡️", cat:"Insurance",
+    desc:"Practiced actuarial analysis at AIG — using statistical models to assess insurance risk, pricing products, projecting loss reserves, and communicating quantitative findings to underwriting and finance teams.",
+    skills:["Actuarial Science","Risk Modeling","Statistical Analysis","Loss Reserving","Insurance Pricing"]
   }
 };
 
@@ -1582,9 +1988,36 @@ document.querySelectorAll('.cert-card').forEach(card => {
 </script>
 
 <!-- ── FOOTER ── -->
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
+  document.getElementById('page-' + id).style.display = 'block';
+  document.querySelectorAll('[data-nav]').forEach(a => a.classList.remove('nav-active'));
+  const activeLink = document.querySelector('[data-nav="' + id + '"]');
+  if (activeLink) activeLink.classList.add('nav-active');
+  window.scrollTo(0, 0);
+}
+// Show home on load
+document.addEventListener('DOMContentLoaded', () => showPage('home'));
+</script>
+
+
+
+<script>
+function loadIframe(id, url) {
+  const overlay = document.getElementById('overlay-' + id);
+  const iframe = document.getElementById('iframe-' + id);
+  if (iframe && overlay) {
+    overlay.style.display = 'none';
+    iframe.style.display = 'block';
+    iframe.src = url;
+  }
+}
+</script>
+
+
 <footer>
   © 2026 Aleks Arriola — Built with purpose.
 </footer>
-
 </body>
 </html>
