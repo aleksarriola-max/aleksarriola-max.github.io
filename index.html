@@ -1908,6 +1908,15 @@
       </div>
     </article>
 
+    <!-- ARTICLE 12 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · July 15, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">State Is the Hard Part of Agentic AI</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">Most agentic AI failures are state failures. Not reasoning failures, not capability failures &#8212; failures to correctly track what has happened, what is currently true, and what commitments have been made across a multi-step workflow.</p><p style="margin-bottom:1.4rem;">In a single-turn interaction, state is trivial. The user sends a message, the model responds, the interaction ends. Nothing carries over. In an agentic system that spans multiple steps, possibly across time, possibly across multiple model calls, state becomes the central engineering problem. What did the agent agree to? What actions has it already taken? What is it still waiting for? What should it do if a prior step is invalidated?</p><p style="margin-bottom:1.4rem;">The naive implementation treats each model call as independent &#8212; passing the full context window and letting the model reconstruct its understanding of where things stand. This works until the context grows large enough that relevant information gets diluted, or until the model makes an inconsistent assumption about a prior action. In production, both happen regularly.</p><p style="margin-bottom:1.4rem;">Building OpsFlow forced me to treat state as a first-class concern. Every action the agent proposes is logged to an SQLite ledger before execution. Every approval is recorded with its authority level and timestamp. Every pending item has an explicit status. The model doesn&#8217;t need to reconstruct state from the conversation history &#8212; it reads from a structured record that was written deterministically. What the model said it would do and what the system recorded it as doing are two separate things, and the system&#8217;s record is authoritative.</p><p style="margin-bottom:1.4rem;">The practical benefit is auditability. But the design benefit is more important: when state lives in the database rather than in the model&#8217;s context window, the system doesn&#8217;t fail when the context gets long, doesn&#8217;t forget commitments made three steps ago, and doesn&#8217;t make inconsistent assumptions about what has already happened.</p><p style="margin-bottom:0;">State management is boring infrastructure. It&#8217;s also the difference between a demo and a system that works in production.</p>
+      </div>
+    </article>
+
   </div>
 </div>
 
