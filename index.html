@@ -1935,6 +1935,15 @@
       </div>
     </article>
 
+    <!-- ARTICLE 15 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · July 18, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">When the Agent Should Stop and Ask</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">One of the underappreciated design decisions in agentic AI is the stopping condition &#8212; the set of circumstances under which the agent should pause and request human input rather than proceeding autonomously. Getting this wrong in either direction is expensive: an agent that stops too often is just a chatbot with extra steps; one that stops too rarely is a liability.</p><p style="margin-bottom:1.4rem;">The naive approach is to define stopping conditions by action type: the agent always asks before making a payment, always asks before sending external communications, always asks before modifying shared data. This is safe but blunt. It treats all payments as equivalent, all communications as equivalent. A $50 invoice and a $500,000 wire transfer trigger the same review process.</p><p style="margin-bottom:1.4rem;">A better model parameterizes the stopping condition by risk, not by action type. The relevant variables are reversibility (can this be undone?), magnitude (how large are the potential consequences?), novelty (has the system handled this exact situation before?), and confidence (how certain is the model about its interpretation of the request?). High scores on any of these dimensions push toward human review; low scores on all four allow autonomous execution.</p><p style="margin-bottom:1.4rem;">In OpsFlow, the authority matrix encodes this logic. Routine vendor payments within approved ranges and to verified vendors execute autonomously. Payments to new vendors, amounts above threshold, or any action flagged as novel by the system goes to a human approval queue. The agent doesn&#8217;t stop on a fixed schedule &#8212; it stops when the risk profile of the action warrants it.</p><p style="margin-bottom:1.4rem;">The deeper design principle is that human oversight should be proportional to uncertainty, not proportional to action category. The value of autonomy is that it handles the predictable efficiently. The value of human review is that it catches the unpredictable before it becomes a problem. Designing the handoff between the two is where most of the real engineering work in agentic systems lives.</p><p style="margin-bottom:0;">The goal isn&#8217;t to minimize interruptions. It&#8217;s to interrupt only when the interruption is worth more than the cost of the delay.</p>
+      </div>
+    </article>
+
   </div>
 </div>
 
