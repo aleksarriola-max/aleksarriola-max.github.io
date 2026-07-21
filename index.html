@@ -1923,6 +1923,15 @@
       </div>
     </article>
 
+    <!-- ARTICLE 19 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · July 22, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Case for Boring AI Architecture</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">There&#8217;s a version of AI system design that chases novelty &#8212; multi-model orchestration, dynamic tool selection, emergent agent collaboration, recursive self-improvement. These are interesting research directions. They&#8217;re also catastrophically unreliable when something real is at stake.</p><p style="margin-bottom:1.4rem;">The most reliable AI systems I&#8217;ve built use boring architecture: a single model call with well-structured inputs, deterministic post-processing of the output, explicit state management in a database, and hard-coded policy enforcement at the action layer. No emergent behavior. No dynamic tool selection. No agent deciding which agent to call next.</p><p style="margin-bottom:1.4rem;">Boring architecture is predictable. Predictable systems fail in predictable ways, which means you can design for the failure modes in advance. Novel architectures fail in novel ways &#8212; ways you didn&#8217;t anticipate because the system&#8217;s behavior emerges from the interaction of components rather than from the explicit logic you wrote.</p><p style="margin-bottom:1.4rem;">In OpsFlow, every major architectural decision I made was in the direction of explicitness over elegance. The action proposals are structured JSON, not natural language. The policy enforcement is if-else logic, not another model call. The state is stored in SQLite rows, not inferred from conversation history. Each of these choices sacrifices some flexibility for a significant gain in predictability.</p><p style="margin-bottom:1.4rem;">The counterargument is that boring architecture limits capability. This is sometimes true. But capability is only valuable if the system behaves correctly when capability is exercised. A system that can theoretically handle any workflow but fails unpredictably is less useful than one that handles a narrower set of workflows reliably.</p><p style="margin-bottom:0;">The most impressive AI demos use the most sophisticated architecture. The most useful AI systems use the simplest architecture that gets the job done. These are almost never the same thing.</p>
+      </div>
+    </article>
+
   </div>
 </div>
 
