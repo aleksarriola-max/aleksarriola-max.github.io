@@ -1,0 +1,295 @@
+{
+  "_comment": "Ledger of essay topics already written for the portfolio daily-essay pipeline. The refill task reads this to avoid repeating topics, and appends each new essay's title+category+theme after writing. Do not delete entries.",
+  "used_topics": [
+    {
+      "title": "Why Management Guidance Is Priced Wrong",
+      "category": "Finance",
+      "source": "queue",
+      "id": 11
+    },
+    {
+      "title": "State Is the Hard Part of Agentic AI",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 12
+    },
+    {
+      "title": "The Recruiter Test No One Tells You About",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 13
+    },
+    {
+      "title": "LBO Models Are a Stress Test, Not a Price Target",
+      "category": "Finance",
+      "source": "queue",
+      "id": 14
+    },
+    {
+      "title": "When the Agent Should Stop and Ask",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 15
+    },
+    {
+      "title": "The Information Edge Is Narrowing. The Interpretation Edge Is Not.",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 16
+    },
+    {
+      "title": "What Quality of Earnings Analysis Actually Catches",
+      "category": "Finance",
+      "source": "queue",
+      "id": 17
+    },
+    {
+      "title": "Why I Build Things I Can&#8217;t Fully Use",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 18
+    },
+    {
+      "title": "The Case for Boring AI Architecture",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 19
+    },
+    {
+      "title": "Comparable Companies Analysis Is Storytelling With Numbers",
+      "category": "Finance",
+      "source": "queue",
+      "id": 20
+    },
+    {
+      "title": "Working Capital Is Where Value Quietly Leaks",
+      "category": "Finance",
+      "source": "queue",
+      "id": 21
+    },
+    {
+      "title": "The Cost of Capital Is a Judgment Call Dressed as Math",
+      "category": "Finance",
+      "source": "queue",
+      "id": 22
+    },
+    {
+      "title": "Why Free Cash Flow Beats Earnings, Until It Doesn&#8217;t",
+      "category": "Finance",
+      "source": "queue",
+      "id": 23
+    },
+    {
+      "title": "Precedent Transactions Lie About Control Premiums",
+      "category": "Finance",
+      "source": "queue",
+      "id": 24
+    },
+    {
+      "title": "What a Debt Schedule Reveals That an Income Statement Hides",
+      "category": "Finance",
+      "source": "queue",
+      "id": 25
+    },
+    {
+      "title": "Sensitivity Tables Are the Most Honest Part of a Model",
+      "category": "Finance",
+      "source": "queue",
+      "id": 26
+    },
+    {
+      "title": "Goodwill Is a Bet You Can Read on the Balance Sheet",
+      "category": "Finance",
+      "source": "queue",
+      "id": 27
+    },
+    {
+      "title": "Segment Reporting Is Where the Real Business Lives",
+      "category": "Finance",
+      "source": "queue",
+      "id": 28
+    },
+    {
+      "title": "The Quiet Power of the Cash Conversion Cycle",
+      "category": "Finance",
+      "source": "queue",
+      "id": 29
+    },
+    {
+      "title": "Why Margin of Safety Survives Every Market Regime",
+      "category": "Finance",
+      "source": "queue",
+      "id": 30
+    },
+    {
+      "title": "Retrieval Is Not Memory",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 31
+    },
+    {
+      "title": "Why Tool Design Matters More Than Model Choice",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 32
+    },
+    {
+      "title": "The Hidden Cost of Every Extra Agent Step",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 33
+    },
+    {
+      "title": "Evaluation Is the Product, Not the Afterthought",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 34
+    },
+    {
+      "title": "Determinism Is a Feature You Have to Engineer",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 35
+    },
+    {
+      "title": "Why Guardrails Belong in the Environment, Not the Prompt",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 36
+    },
+    {
+      "title": "The Context Window Is a Budget, Spend It Deliberately",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 37
+    },
+    {
+      "title": "Human-in-the-Loop Is a Design Decision, Not a Fallback",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 38
+    },
+    {
+      "title": "Why Most Agent Failures Are Data Problems in Disguise",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 39
+    },
+    {
+      "title": "Latency Is a Correctness Problem for Agents",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 40
+    },
+    {
+      "title": "Depth Compounds Faster Than Breadth",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 41
+    },
+    {
+      "title": "The Portfolio Is the Resume Now",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 42
+    },
+    {
+      "title": "Why I Write These Essays",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 43
+    },
+    {
+      "title": "Learning in Public Is a Forcing Function",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 44
+    },
+    {
+      "title": "The Skill That Doesn&#8217;t Show Up on a Transcript",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 45
+    },
+    {
+      "title": "Being International Made Me a Better Builder",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 46
+    },
+    {
+      "title": "Why I Study the Boundary Between Two Fields",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 47
+    },
+    {
+      "title": "The Underrated Value of Finishing Small Things",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 48
+    },
+    {
+      "title": "What Cold Emails Taught Me About Signal",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 49
+    },
+    {
+      "title": "Optionality Is a Career Strategy, Not Just a Greek",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 50
+    },
+    {
+      "title": "Why Prompt Engineering Is the Wrong Mental Model",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "What Finance Taught Me About Debugging Code",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "How the Options Market Prices What Equity Analysts Miss",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "Building Alone Is a Feature, Not a Bug",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "What DCF Models Get Wrong About Terminal Value",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "The Difference Between an AI Tool and an AI System",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "The Accruals Anomaly: The Signal Quants Have Known About for 30 Years",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "Why Finance Students Build Better AI",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "What 600 Company Balance Sheets Look Like Before They Break",
+      "category": "",
+      "source": "published"
+    },
+    {
+      "title": "The Only Architecture That Makes Agentic AI Safe",
+      "category": "",
+      "source": "published"
+    }
+  ]
+}
