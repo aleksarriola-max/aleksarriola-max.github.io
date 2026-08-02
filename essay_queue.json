@@ -68,5 +68,215 @@
     "date_label": "July 23, 2026",
     "title": "Comparable Companies Analysis Is Storytelling With Numbers",
     "body": "<p style=\"margin-bottom:1.4rem;\">Every comparable companies analysis makes the same implicit claim: these businesses are similar enough that their market multiples should be in the same range. The methodology is mechanical &#8212; collect EV/EBITDA, EV/Revenue, P/E across a peer set, apply to the subject company. What&#8217;s non-mechanical is the judgment call embedded in that implicit claim.</p><p style=\"margin-bottom:1.4rem;\">Selecting the comparable set is the most consequential step in the analysis, and it&#8217;s entirely discretionary. An analyst who wants a higher valuation selects comps trading at higher multiples. An analyst who wants a lower one selects conservative comps. Neither is technically wrong. The selection criteria &#8212; geographic market, business model, growth profile, margin structure, customer type &#8212; can all be argued plausibly in either direction.</p><p style=\"margin-bottom:1.4rem;\">This is why I think of comps analysis as storytelling with numbers. The numbers are real. The story you&#8217;re telling about why these specific companies are the right reference points is a narrative choice that drives the output as much as the multiples themselves.</p><p style=\"margin-bottom:1.4rem;\">In the Orcen Capital system, the comps section pulls from a structured peer database and applies explicit selection criteria that are logged and version-controlled alongside the model. The criteria don&#8217;t remove the judgment &#8212; they make the judgment explicit, so it can be examined and challenged. A comp set selected with documented criteria is worth more than an undocumented one because you can identify exactly which assumption is driving the output and test whether it holds.</p><p style=\"margin-bottom:1.4rem;\">The output of comps analysis is a range, not a number. Treating it as a number &#8212; the average of the peer multiples applied precisely to the subject &#8212; is false precision. The real output is a distribution of plausible values conditional on the comp set being appropriate. That conditionality matters.</p><p style=\"margin-bottom:0;\">Comps tell you what the market is paying for similar businesses. They tell you nothing about whether the market is right.</p>"
+  },
+  {
+    "category": "Finance",
+    "title": "Working Capital Is Where Value Quietly Leaks",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Analysts spend most of their time on the income statement, because that&#8217;s where growth lives. But a surprising amount of enterprise value is won or lost on the working capital line &#8212; the unglamorous gap between when a company pays its suppliers and when it collects from its customers.</p><p style=\"margin-bottom:1.4rem;\">A business growing revenue at 20% while its receivables grow at 35% is not the same business it appears to be. The growth is real, but it&#8217;s being funded by cash that leaves the door faster than it comes back. On a DCF, that shows up as a persistent drag on free cash flow that the earnings headline never mentions.</p><p style=\"margin-bottom:1.4rem;\">When I model a company, I watch the cash conversion cycle before I trust the margin. Improving terms with suppliers, tightening collections, and turning inventory faster can create more value than a full point of gross margin &#8212; and unlike margin, it usually costs nothing but discipline. Working capital is where operational quality either compounds or quietly bleeds out.</p>",
+    "id": 21,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "The Cost of Capital Is a Judgment Call Dressed as Math",
+    "body": "<p style=\"margin-bottom:1.4rem;\">WACC looks like a precise number. It has decimals. It comes out of a formula. And that precision is exactly what makes it dangerous, because almost every input is an estimate wearing a lab coat.</p><p style=\"margin-bottom:1.4rem;\">The equity risk premium is a debated range, not a fact. Beta depends on the lookback window you happen to choose. The cost of debt assumes a capital structure that may not persist. Move any of these half a point and the terminal value swings by double digits. The formula is real; the confidence it projects is mostly borrowed.</p><p style=\"margin-bottom:1.4rem;\">This isn&#8217;t an argument against discounting &#8212; it&#8217;s an argument for humility about it. In the Orcen Capital valuation stack I treat the discount rate as a scenario variable, not a constant. If a thesis only works at an 8% WACC and falls apart at 9%, that fragility is the finding. The honest move is to show the range and let the sensitivity speak.</p>",
+    "id": 22,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "Why Free Cash Flow Beats Earnings, Until It Doesn&#8217;t",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Free cash flow is rightly prized because it&#8217;s harder to fake than earnings. You can defer expenses and pull revenue forward on the income statement, but the cash line eventually tells on you. That&#8217;s why cash-based investors sleep better.</p><p style=\"margin-bottom:1.4rem;\">But free cash flow has its own blind spots. A company can generate beautiful cash by underinvesting &#8212; starving maintenance capex, letting the asset base decay, harvesting a business it should be renewing. For a few years the cash looks pristine. The decline arrives later, off-model.</p><p style=\"margin-bottom:1.4rem;\">So I read the two statements against each other rather than picking a favorite. Earnings that consistently exceed cash flow is a red flag; cash flow that consistently exceeds earnings deserves a question about whether the company is investing enough to survive. The signal isn&#8217;t in either number alone &#8212; it&#8217;s in the gap between them and why it&#8217;s there.</p>",
+    "id": 23,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "Precedent Transactions Lie About Control Premiums",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Precedent transaction analysis is seductive because it&#8217;s grounded in reality: these are prices real buyers actually paid. But that realism hides a bias. Deals that close are not a random sample of deals that were contemplated.</p><p style=\"margin-bottom:1.4rem;\">Every multiple in a precedent set carries a control premium and, often, a strategic buyer&#8217;s synergy assumptions baked into the price. Applying those multiples to a minority stake or a standalone valuation quietly imports someone else&#8217;s synergies as if they were yours. The comparable looks clean; the assumption underneath it isn&#8217;t.</p><p style=\"margin-bottom:1.4rem;\">I use precedent transactions as a ceiling, not an anchor. They tell me what the most motivated buyer paid under the most favorable narrative &#8212; useful context, but the wrong number to build a base case on. The interesting work is stripping the premium back out to see what the asset is worth to someone who doesn&#8217;t already believe the story.</p>",
+    "id": 24,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "What a Debt Schedule Reveals That an Income Statement Hides",
+    "body": "<p style=\"margin-bottom:1.4rem;\">The income statement tells you whether a company made money. The debt schedule tells you whether it will be allowed to keep operating the way it does. For distressed or leveraged businesses, the second question is the one that actually decides outcomes.</p><p style=\"margin-bottom:1.4rem;\">Maturities, covenants, and cash sweeps are where the real constraints live. A profitable company with a wall of debt maturing into a tight credit market is in more danger than a breakeven company with a clean runway. None of that is visible in EPS &#8212; it&#8217;s in the footnotes and the amortization table.</p><p style=\"margin-bottom:1.4rem;\">Building the debt schedule by hand is tedious, which is exactly why it&#8217;s valuable. Working through the mandatory paydowns and the covenant headroom forces you to see the year the model breaks. More than once, that exercise has changed a thesis from attractive to untouchable, on numbers the summary metrics never surfaced.</p>",
+    "id": 25,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "Sensitivity Tables Are the Most Honest Part of a Model",
+    "body": "<p style=\"margin-bottom:1.4rem;\">A single-point valuation is a story with the uncertainty edited out. It says the business is worth $47 a share, as if the analyst has resolved every assumption. Nobody believes that, including the analyst, but the format pretends otherwise.</p><p style=\"margin-bottom:1.4rem;\">The sensitivity table is where the model stops performing confidence and starts telling the truth. It shows how the answer moves as growth, margin, and discount rate flex across plausible ranges. A thesis that only survives in one corner of the grid isn&#8217;t a thesis &#8212; it&#8217;s a hope with a spreadsheet attached.</p><p style=\"margin-bottom:1.4rem;\">I&#8217;ve come to read the table before the base case. If the value is stable across a wide band of reasonable inputs, the idea is robust and the point estimate is almost beside the point. If it&#8217;s knife-edge sensitive to a single cell, that cell is the whole investment, and it deserves far more scrutiny than the polished output ever gets.</p>",
+    "id": 26,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "Goodwill Is a Bet You Can Read on the Balance Sheet",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Goodwill is what a company paid for an acquisition above the fair value of the assets it received. Accounting treats it as an asset, but it&#8217;s really a frozen record of a bet &#8212; management&#8217;s conviction that the acquired business was worth more than its parts.</p><p style=\"margin-bottom:1.4rem;\">That makes the goodwill line unusually revealing. A balance sheet where goodwill dwarfs tangible assets is telling you the company&#8217;s value rests on integrations working out as promised. When they don&#8217;t, the impairment charge arrives &#8212; a public admission, in accrual form, that the price was wrong.</p><p style=\"margin-bottom:1.4rem;\">I read goodwill and its impairment history as a track record of capital allocation. Serial acquirers who never write anything down are either exceptional operators or optimistic accountants, and the difference matters. The line item nobody discusses at dinner is often the clearest window into whether management has actually created value or just moved it around.</p>",
+    "id": 27,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "Segment Reporting Is Where the Real Business Lives",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Consolidated financials blend everything into one story, which is convenient for a headline and misleading for analysis. A company is rarely one business &#8212; it&#8217;s a portfolio, and the portfolio&#8217;s average hides the parts that matter.</p><p style=\"margin-bottom:1.4rem;\">Segment disclosures are where the blend comes apart. One division may be a high-margin compounder quietly subsidizing a declining legacy unit that drags the consolidated multiple down. The market prices the average; the opportunity is in seeing the components the average conceals.</p><p style=\"margin-bottom:1.4rem;\">When I dig into a company, the segment footnote is the first place I go after the cash flow statement. It&#8217;s where you find the business that deserves a premium trapped inside a company the market treats as ordinary. Sum-of-the-parts analysis isn&#8217;t a gimmick &#8212; it&#8217;s just refusing to accept the consolidated average as the truth.</p>",
+    "id": 28,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "The Quiet Power of the Cash Conversion Cycle",
+    "body": "<p style=\"margin-bottom:1.4rem;\">The cash conversion cycle measures how many days a company&#8217;s cash is tied up between paying for inputs and collecting on sales. It&#8217;s a single number, and it quietly captures the operational health that ratios like margin tend to flatter.</p><p style=\"margin-bottom:1.4rem;\">A shrinking cycle means the business is getting more efficient at turning effort into cash &#8212; often a leading indicator of operational discipline before it shows up anywhere else. A stretching cycle, even alongside rising revenue, is a warning that growth is being funded internally in ways that won&#8217;t scale.</p><p style=\"margin-bottom:1.4rem;\">What I like about the metric is that it&#8217;s hard to game. You can massage reported earnings, but the physical reality of inventory sitting and receivables aging is stubborn. Watching the cycle over several quarters tells you whether a company is actually running tighter or just reporting that it is.</p>",
+    "id": 29,
+    "date_label": ""
+  },
+  {
+    "category": "Finance",
+    "title": "Why Margin of Safety Survives Every Market Regime",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Investing frameworks come and go with the cycle. Growth works until it doesn&#8217;t; value languishes until it doesn&#8217;t; momentum is brilliant right up until the reversal. The one idea that keeps earning its keep across regimes is the oldest one: buy meaningfully below your estimate of worth.</p><p style=\"margin-bottom:1.4rem;\">Margin of safety isn&#8217;t a strategy so much as an admission &#8212; that your estimate is probably wrong, and the gap between price and value is what protects you when it is. It converts analytical humility into downside protection. The wider the gap, the more the world is allowed to surprise you without ruining the outcome.</p><p style=\"margin-bottom:1.4rem;\">Every model I build ends with the same question, whatever the asset: how wrong can I be and still be fine? If the answer is not very, I pass, no matter how compelling the story. Precision is satisfying, but survival comes from the discount, not the decimal places.</p>",
+    "id": 30,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Retrieval Is Not Memory",
+    "body": "<p style=\"margin-bottom:1.4rem;\">It&#8217;s tempting to describe a retrieval-augmented system as having memory. It looks the part &#8212; ask a question, and relevant facts appear in context. But retrieval and memory are different mechanisms, and conflating them leads to systems that fail in confusing ways.</p><p style=\"margin-bottom:1.4rem;\">Retrieval fetches whatever the query happens to match, with no sense of what the agent has already learned, decided, or committed to. It has no continuity. Real memory is stateful: it accumulates, updates, and privileges what mattered before. A retrieval system will happily surface a fact it contradicted three steps ago, because it isn&#8217;t remembering anything &#8212; it&#8217;s searching, every time, from scratch.</p><p style=\"margin-bottom:1.4rem;\">When I design agent systems, I keep the two layers distinct. Retrieval handles breadth: pulling relevant knowledge from a large corpus on demand. A separate, deliberately managed state layer handles continuity: what this run has established and must stay consistent with. Blur them together and the agent becomes fluent and forgetful at the same time &#8212; confident, well-sourced, and quietly incoherent.</p>",
+    "id": 31,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Why Tool Design Matters More Than Model Choice",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Teams debating which model to use are often optimizing the wrong variable. Once you&#8217;re past a capability threshold, the gap between good models is smaller than the gap between good and bad tool design around them.</p><p style=\"margin-bottom:1.4rem;\">A powerful model handed vague, overlapping, poorly documented tools will flounder. A modest model given clean, well-named tools with clear inputs and honest error messages will run circles around it. The tools are the interface between reasoning and action, and a bad interface caps how well any model can perform.</p><p style=\"margin-bottom:1.4rem;\">So I spend my design time on the tool layer: narrow responsibilities, predictable behavior, error messages written for a confused reader rather than a stack trace. The model is a given I don&#8217;t control; the tools are the part I do. Most of the reliability I&#8217;ve ever gotten out of an agent came from making its tools boring and legible, not from upgrading the brain behind them.</p>",
+    "id": 32,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "The Hidden Cost of Every Extra Agent Step",
+    "body": "<p style=\"margin-bottom:1.4rem;\">A single model call is fairly reliable. Chain twenty of them into an autonomous loop and reliability doesn&#8217;t add &#8212; it multiplies. Each step that&#8217;s 97% reliable sounds fine until you compound it: twenty of them in a row lands you around 54%.</p><p style=\"margin-bottom:1.4rem;\">This is the arithmetic that quietly kills ambitious agent designs. The instinct is to give the agent more autonomy and more steps to handle complexity, but each step is another place for a small error to enter and propagate. Longer chains don&#8217;t just cost latency and tokens &#8212; they compound the probability of drift.</p><p style=\"margin-bottom:1.4rem;\">The design lesson is to treat steps as expensive even when they&#8217;re cheap to run. Collapse what can be collapsed, checkpoint state between phases so a failure doesn&#8217;t poison everything downstream, and prefer a few well-verified moves over many speculative ones. In agent systems, the shortest correct path beats the cleverest long one almost every time.</p>",
+    "id": 33,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Evaluation Is the Product, Not the Afterthought",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Most agent projects treat evaluation as something you bolt on near the end, once the interesting building is done. That ordering is backwards, and it&#8217;s why so many demos never survive contact with real use.</p><p style=\"margin-bottom:1.4rem;\">Without a real evaluation harness, you&#8217;re tuning by vibes &#8212; a prompt tweak feels better, so you ship it, with no idea what it broke. An agent that improves on the cases you happened to try can silently regress on the ones you didn&#8217;t. You can&#8217;t improve what you can&#8217;t measure, and impressions aren&#8217;t measurement.</p><p style=\"margin-bottom:1.4rem;\">I now build the eval set before the agent, not after. A modest suite of realistic cases with clear pass criteria turns development from guesswork into engineering. It&#8217;s slower to start and far faster to finish, because every change gets scored against reality instead of intuition. The eval isn&#8217;t overhead around the product &#8212; for an agent, it largely is the product.</p>",
+    "id": 34,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Determinism Is a Feature You Have to Engineer",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Language models are probabilistic by nature, and that&#8217;s often a strength &#8212; it&#8217;s where flexibility and fluency come from. But for many real workflows, unpredictability is a liability, and determinism doesn&#8217;t arrive on its own. You have to build it in.</p><p style=\"margin-bottom:1.4rem;\">The instinct to fix this by lowering temperature only goes so far. Real determinism comes from structure around the model: constrained output formats, validation that rejects anything off-spec, and deterministic code handling the parts that must be exact. The model proposes within a box you&#8217;ve drawn; the box is what makes the behavior repeatable.</p><p style=\"margin-bottom:1.4rem;\">In financial workflows this is non-negotiable. A number that renders differently on two identical runs isn&#8217;t a quirk, it&#8217;s a defect. So I push everything that must be exact &#8212; calculations, formatting, thresholds &#8212; out of the model and into deterministic code, and let the model do the genuinely open-ended reasoning. Knowing which parts must never vary is half of designing the system.</p>",
+    "id": 35,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Why Guardrails Belong in the Environment, Not the Prompt",
+    "body": "<p style=\"margin-bottom:1.4rem;\">The common way to constrain an agent is to tell it what not to do in the prompt. Don&#8217;t touch production. Don&#8217;t spend over a threshold. Don&#8217;t delete anything. This works until the one time it doesn&#8217;t, and prompts are the weakest possible place to enforce a rule.</p><p style=\"margin-bottom:1.4rem;\">Instructions are suggestions the model usually follows. Under an unusual input or a long enough context, following degrades. A rule that matters shouldn&#8217;t depend on the model choosing to honor it in the moment &#8212; it should be enforced by the environment, where compliance isn&#8217;t optional.</p><p style=\"margin-bottom:1.4rem;\">So I put hard limits in the tools and the surrounding system, not the prompt. If an agent must never exceed a spending cap, the tool refuses the call above the cap, full stop. The prompt still explains intent, because clarity helps &#8212; but the guarantee lives in code. Prompts are for guidance; environments are for guarantees, and confusing the two is how agents cause real damage.</p>",
+    "id": 36,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "The Context Window Is a Budget, Spend It Deliberately",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Larger context windows get sold as a reason to stop worrying about what you include. Just put everything in and let the model sort it out. In practice, a context window is a budget, and spending it carelessly degrades the very reasoning you were trying to help.</p><p style=\"margin-bottom:1.4rem;\">Models don&#8217;t attend to a hundred thousand tokens as evenly as they attend to a thousand. Bury the critical detail in the middle of a huge dump and it competes with noise for attention. More context can mean worse answers, because the signal-to-noise ratio, not the raw capacity, is what drives quality.</p><p style=\"margin-bottom:1.4rem;\">I treat context assembly as an active design decision: what does the model need for this step, in what order, and what should be left out. Curating a tight, relevant context usually beats stuffing a large one. The window is a resource with real limits, and spending it deliberately is one of the highest-leverage things you can do for an agent&#8217;s reliability.</p>",
+    "id": 37,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Human-in-the-Loop Is a Design Decision, Not a Fallback",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Human-in-the-loop often gets treated as an admission of failure &#8212; the thing you keep until the agent is good enough to remove it. That framing quietly leads to worse systems, because it aims at the wrong target.</p><p style=\"margin-bottom:1.4rem;\">For consequential actions, human review isn&#8217;t a crutch; it&#8217;s the correct architecture. The question is not whether a human is involved but where. A well-placed checkpoint before an irreversible step adds enormous safety at almost no cost. A badly placed one that interrupts every trivial move adds friction and trains people to click through without looking.</p><p style=\"margin-bottom:1.4rem;\">So I design the checkpoints deliberately, mapping which actions are reversible and which aren&#8217;t, and putting the human exactly where a mistake would be expensive and hard to undo. Done well, the goal isn&#8217;t to remove the human &#8212; it&#8217;s to make their attention count, spending it on the few decisions that genuinely need judgment and nowhere else.</p>",
+    "id": 38,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Why Most Agent Failures Are Data Problems in Disguise",
+    "body": "<p style=\"margin-bottom:1.4rem;\">When an agent misbehaves, the reflex is to blame the model or rewrite the prompt. Often the real culprit is upstream: the agent was reasoning correctly over data that was stale, malformed, or missing the piece it actually needed.</p><p style=\"margin-bottom:1.4rem;\">An agent is only as good as what it can see. Give it an outdated document, an inconsistent record, or a tool that returns partial results, and it will produce a confident, well-argued, wrong answer. From the outside that looks like a reasoning failure. Underneath it&#8217;s a data failure the model faithfully reflected.</p><p style=\"margin-bottom:1.4rem;\">This has changed how I debug. Before touching the prompt, I inspect exactly what the agent received at the moment it went wrong. More often than I&#8217;d like, the fix is in the pipeline, not the intelligence &#8212; a better retrieval, a validation step, a freshness guarantee. Treating agent behavior as downstream of data quality solves a surprising share of what first looks like the model simply being dumb.</p>",
+    "id": 39,
+    "date_label": ""
+  },
+  {
+    "category": "AI Systems",
+    "title": "Latency Is a Correctness Problem for Agents",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Latency is usually filed under user experience &#8212; a slower system is a more annoying one. For autonomous agents, slowness crosses over into something more serious: it changes what the agent is reasoning about, because the world can move while the agent is thinking.</p><p style=\"margin-bottom:1.4rem;\">An agent that reads a price, deliberates for thirty seconds, and then acts may be acting on a state that no longer exists. In any domain where the underlying data changes &#8212; markets, inventory, live systems &#8212; accumulated latency across a chain of steps means decisions land in a world that has already shifted. Slow isn&#8217;t just sluggish; it&#8217;s occasionally wrong.</p><p style=\"margin-bottom:1.4rem;\">So I treat latency as a correctness constraint, not just a performance metric. That means shortening chains, caching what&#8217;s stable, and being explicit about how fresh each input has to be for a decision to remain valid. For an agent operating in a moving environment, speed isn&#8217;t a luxury on top of accuracy &#8212; past a point, it&#8217;s part of what accuracy means.</p>",
+    "id": 40,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "Depth Compounds Faster Than Breadth",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Early on, the appealing strategy is to sample widely &#8212; a bit of everything, so no door is closed. It feels safe. But breadth without depth tends to produce a long list of things you&#8217;ve touched and nothing you can actually do, and that list impresses no one for long.</p><p style=\"margin-bottom:1.4rem;\">Depth behaves differently. Push far enough into one thing and you stop learning facts and start learning how the thing really works &#8212; the failure modes, the judgment calls, the parts the overview left out. That kind of understanding transfers. Someone who has gone deep once knows how to go deep again, in a new domain, faster.</p><p style=\"margin-bottom:1.4rem;\">I&#8217;ve tried to build at the intersection of finance and AI not by skimming both but by going far enough into each that they start informing each other. The compounding shows up at the seam, where a genuine understanding of one field reframes a problem in the other. Breadth is a collection; depth is a capability, and only one of them keeps paying you back.</p>",
+    "id": 41,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "The Portfolio Is the Resume Now",
+    "body": "<p style=\"margin-bottom:1.4rem;\">A resume is a claim: here is what I say I can do. A portfolio is evidence: here is a thing I built that you can open and inspect. As it gets easier to make claims and harder to trust them, the balance of proof has shifted decisively toward the evidence.</p><p style=\"margin-bottom:1.4rem;\">This is freeing if you take it seriously. You don&#8217;t need permission or a prestigious title to demonstrate capability &#8212; you need to build something real and put it where people can see it. The work argues for you in a way a bullet point never can, and it argues even while you sleep.</p><p style=\"margin-bottom:1.4rem;\">That conviction is why I&#8217;ve put so much into this site. Every project here is something someone can actually examine, not a phrase on a page. The resume still opens doors, but the portfolio is what convinces the person on the other side that the claims were true. Increasingly, showing beats telling &#8212; so I try to have something to show.</p>",
+    "id": 42,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "Why I Write These Essays",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Writing a short essay every day isn&#8217;t a content strategy. It&#8217;s a thinking discipline. The act of putting an idea into clear prose is a stress test the idea has to survive, and plenty of things I was sure I understood didn&#8217;t make it through the first paragraph.</p><p style=\"margin-bottom:1.4rem;\">You can hold a fuzzy notion in your head indefinitely and feel like you know it. Writing removes that comfort. The sentence either says something specific or it doesn&#8217;t, and the gap between a real understanding and a vague impression becomes impossible to ignore once you try to make it legible to a stranger.</p><p style=\"margin-bottom:1.4rem;\">So these essays are partly for a reader and mostly for me. They force me to actually finish a thought instead of collecting half-formed ones. If a piece reads clearly, it usually means I finally understood the thing well enough to explain it &#8212; and if it doesn&#8217;t, that&#8217;s useful information too. Writing is how I find out what I actually know.</p>",
+    "id": 43,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "Learning in Public Is a Forcing Function",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Learning privately is comfortable. You can stay in the phase where everything is tentative and nothing is finished, indefinitely. Learning in public removes that comfort, and the discomfort is precisely the point.</p><p style=\"margin-bottom:1.4rem;\">When you commit to shipping something others will see, you can&#8217;t hide behind almost-done. The work has to reach a state you&#8217;re willing to stand behind, which forces decisions you&#8217;d otherwise defer forever. Publishing is a deadline you impose on yourself, and deadlines are where half-formed things finally get finished.</p><p style=\"margin-bottom:1.4rem;\">It also invites correction, which stings and helps in equal measure. Someone points out a flaw, and you learn faster than any amount of solo study would have taught you. The exposure is the mechanism &#8212; being seen is what converts passive learning into the kind that actually sticks. I&#8217;d rather be usefully wrong in public than comfortably vague in private.</p>",
+    "id": 44,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "The Skill That Doesn&#8217;t Show Up on a Transcript",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Transcripts measure a narrow band of ability: how well you performed on defined problems under supervision. That&#8217;s real, but it leaves out the thing that turns out to matter most once the supervision ends &#8212; the ability to make progress on a problem no one has scoped for you.</p><p style=\"margin-bottom:1.4rem;\">School hands you well-formed questions with known answers. Actual work hands you a vague dissatisfaction and asks you to turn it into something. Nobody grades the intermediate steps, and there&#8217;s no answer key. The skill of navigating that ambiguity &#8212; deciding what to build, learning what you need as you go, knowing when it&#8217;s good enough &#8212; is invisible to any transcript.</p><p style=\"margin-bottom:1.4rem;\">I&#8217;ve learned it the only way it seems learnable: by building things that weren&#8217;t assigned. Every self-directed project is practice at operating without a rubric, and that practice compounds into the exact capability the transcript can&#8217;t capture. The grades open some doors; the unscoped work is what determines whether you can do anything once you&#8217;re through them.</p>",
+    "id": 45,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "Being International Made Me a Better Builder",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Studying far from where I grew up came with obvious costs &#8212; visa constraints, distance, the friction of always being slightly outside the default. It would be easy to file all of that under disadvantage. But the same conditions quietly trained a way of working I now rely on.</p><p style=\"margin-bottom:1.4rem;\">Being the outsider means you can&#8217;t coast on assumed context. You question things locals take for granted, notice conventions that are actually just habits, and build for a wider set of users because you were never inside the narrow default to begin with. Not fitting the mold makes the mold visible, and visible things can be redesigned.</p><p style=\"margin-bottom:1.4rem;\">It also raises the bar on self-reliance. When the safety nets are thinner, you learn to figure things out and to build your own leverage rather than wait for it to be handed over. I wouldn&#8217;t romanticize the hard parts, but the resourcefulness they forced is real, and it shows up in the work. The constraint became a habit of mind, and the habit outlasts the constraint.</p>",
+    "id": 46,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "Why I Study the Boundary Between Two Fields",
+    "body": "<p style=\"margin-bottom:1.4rem;\">The center of any established field is crowded. The problems are well-defined, the experts are numerous, and the returns to being one more competent person there are shrinking. The boundary between two fields is a different place entirely &#8212; less crowded, less mapped, and far more interesting.</p><p style=\"margin-bottom:1.4rem;\">At the seam between finance and AI, the useful move is often just translation: taking an idea that&#8217;s obvious to one side and carrying it to the other, where it isn&#8217;t. Neither community has fully absorbed the other&#8217;s tools, so the person fluent in both can see connections invisible from inside either. Scarcity of that fluency is exactly where the leverage lives.</p><p style=\"margin-bottom:1.4rem;\">That&#8217;s a deliberate bet on my part rather than an accident of interest. Going deep enough in two fields to work at their intersection is slower than specializing in one, and for a while it looks less legible. But the boundary is where the unclaimed problems are, and being early to a seam beats being one more voice at a crowded center.</p>",
+    "id": 47,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "The Underrated Value of Finishing Small Things",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Ambition tends to reward for scale &#8212; the big project, the grand plan, the thing that will matter once it&#8217;s done. But grand plans have a way of never being done, and a graveyard of impressive unfinished work teaches you almost nothing except how to start.</p><p style=\"margin-bottom:1.4rem;\">Finishing is a separate skill from starting, and it&#8217;s the rarer one. A small thing carried all the way to done &#8212; shipped, closed, actually complete &#8212; teaches you the whole arc: the unglamorous last mile where the real problems hide, the discipline of calling something good enough. Starters are common; finishers compound.</p><p style=\"margin-bottom:1.4rem;\">So I&#8217;ve made a habit of completing small things rather than perpetually beginning large ones. Each finished piece is practice at the ending, the part most people skip. The daily essay is exactly this: modest in scope, but shipped every day. The size is beside the point &#8212; the reps at finishing are the point, and they add up faster than any single big thing would.</p>",
+    "id": 48,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "What Cold Emails Taught Me About Signal",
+    "body": "<p style=\"margin-bottom:1.4rem;\">Sending cold emails is an exercise in humility and, quietly, in information theory. Most go unanswered. But the pattern of which ones land teaches you something you can&#8217;t learn from a guide: the difference between noise and signal in how you present yourself.</p><p style=\"margin-bottom:1.4rem;\">The messages that work aren&#8217;t the polished, generic ones. They&#8217;re specific &#8212; clearly written by someone who did the homework, aimed at this person for a real reason, asking for something concrete. Genericness is noise; specificity is signal, and the reply rate is a brutally honest measure of which one you actually sent.</p><p style=\"margin-bottom:1.4rem;\">That lesson generalizes well past email. In a world drowning in low-cost, generic output, specific and genuine stands out precisely because it&#8217;s expensive to fake. Every unanswered message was feedback pointing the same direction: be more particular, do more homework, earn the reply. Learning to send real signal, not more noise, turned out to be worth far more than any single introduction it produced.</p>",
+    "id": 49,
+    "date_label": ""
+  },
+  {
+    "category": "Perspective",
+    "title": "Optionality Is a Career Strategy, Not Just a Greek",
+    "body": "<p style=\"margin-bottom:1.4rem;\">In finance, optionality is the value of having choices you aren&#8217;t forced to exercise. The same idea, applied to a career, is one of the more useful frames I&#8217;ve found &#8212; and one most early planning quietly ignores in favor of committing to a single narrow path.</p><p style=\"margin-bottom:1.4rem;\">Building at the intersection of finance and AI is, in option terms, deliberately holding several strikes at once. It keeps engineering, fintech, and finance roles all live rather than foreclosing on any of them prematurely. That breadth costs something now &#8212; a less tidy story, a slower-looking specialization &#8212; in exchange for the freedom to move as the landscape changes.</p><p style=\"margin-bottom:1.4rem;\">The point isn&#8217;t to avoid ever committing; options you never exercise expire worthless. The point is to keep the valuable ones open until you have enough information to commit well. In a field shifting as fast as this one, the ability to change direction without starting over is worth paying for &#8212; and like any option, it&#8217;s most valuable exactly when uncertainty is highest.</p>",
+    "id": 50,
+    "date_label": ""
   }
 ]
