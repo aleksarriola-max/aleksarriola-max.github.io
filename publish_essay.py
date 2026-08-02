@@ -21,9 +21,13 @@ def save_state(state):
     with open(STATE_FILE, "w") as f:
         json.dump(state, f, indent=2)
 
+def today_label():
+    # Stamp the real publish date so essays never show stale queued dates.
+    return date.today().strftime("%B %d, %Y").replace(" 0", " ")
+
 def build_article(essay):
     category = essay["category"]
-    date_label = essay["date_label"]
+    date_label = today_label()
     title = essay["title"]
     body = essay["body"]
     return f'''
