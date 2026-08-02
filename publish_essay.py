@@ -60,13 +60,13 @@ def main():
     with open(INDEX_FILE, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Insert before the cert modal closing marker
-    anchor = "\n  </div>\n</div>\n\n<!-- ── CERT MODAL ── -->"
+    # Insert at the TOP of the essay list (newest first)
+    anchor = "<!-- ESSAYS-TOP -->"
     if anchor not in content:
         print("ERROR: Could not find insertion anchor in index.html")
         sys.exit(1)
 
-    content = content.replace(anchor, article_html + anchor, 1)
+    content = content.replace(anchor, anchor + article_html, 1)
 
     with open(INDEX_FILE, "w", encoding="utf-8") as f:
         f.write(content)
