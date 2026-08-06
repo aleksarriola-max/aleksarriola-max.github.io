@@ -42,6 +42,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Prune non-site files from the Pages artifact
+        run: |
+          # Session logs, audit data, local config and credentials are not
+          # part of the website. Removing them shrinks the deploy artifact
+          # from ~11MB to under 1MB (fixes the Pages deploy timeout) and
+          # keeps them off the public site.
+          rm -f *.jsonl .audit-key .last-cleanup .lock 1.json || true
+          rm -f .credentials.json .claude.json .claude.json.backup.* || true
+          rm -f essay_state.json || true
+          echo "Artifact size:"; du -sh --exclude=.git .
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
