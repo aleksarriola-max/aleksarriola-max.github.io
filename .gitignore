@@ -1,0 +1,14 @@
+# Local agent / session artifacts — these must never be published to the site or repo
+*.jsonl
+audit.jsonl
+.audit-key
+.last-cleanup
+.lock
+1.json
+# Local config and credentials — never commit
+.credentials.json
+.claude.json
+.claude.json.backup.*
+.claude/
+node_modules/
+# Note: essay_state.json IS intentionally tracked (the daily publisher needs it) and is NOT ignored.
