@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Aleks Arriola — Writing</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
+<language>en-us</language>
+<atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>Fri, 07 Aug 2026 03:39:30 +0000</lastBuildDate>
+<item>
+<title>When the Agent Should Stop and Ask</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-15</guid>
+<category>AI Systems</category>
+<pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
+<description>One of the underappreciated design decisions in agentic AI is the stopping condition — the set of circumstances under which the agent should pause and request human input rather than proceeding autonomously. Getting this wrong in either direction is expensive: an agent that stops too often is just a</description>
+</item>
+<item>
+<title>LBO Models Are a Stress Test, Not a Price Target</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-14</guid>
+<category>Finance</category>
+<pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
+<description>Most people encounter LBO analysis as a valuation tool — a way to determine what a private equity firm would pay for a business. This is a reasonable description of the mechanics but a slightly misleading description of what the model is actually doing. An LBO model doesn’t ask “what is this busines</description>
+</item>
+<item>
+<title>The Recruiter Test No One Tells You About</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-13</guid>
+<category>Perspective</category>
+<pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
+<description>There’s an informal test that experienced recruiters apply to candidates before the first interview. It’s not about GPA or prestige. It’s about specificity. A resume that says “developed financial models” is generic. One that says “built a DCF with 84 output sheets, 5 valuation methods, and 7 behavi</description>
+</item>
+<item>
+<title>State Is the Hard Part of Agentic AI</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-12</guid>
+<category>AI Systems</category>
+<pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
+<description>Most agentic AI failures are state failures. Not reasoning failures, not capability failures — failures to correctly track what has happened, what is currently true, and what commitments have been made across a multi-step workflow. In a single-turn interaction, state is trivial. The user sends a mes</description>
+</item>
+<item>
+<title>Why Management Guidance Is Priced Wrong</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-11</guid>
+<category>Finance</category>
+<pubDate>Sun, 02 Aug 2026 00:00:00 +0000</pubDate>
+<description>Every quarter, management teams tell analysts what to expect. Revenue guidance, margin outlook, capex plans. Analysts update their models. The stock moves. And yet, academic research consistently shows that management guidance is systematically optimistic — and that the market consistently underweig</description>
+</item>
+<item>
+<title>The Difference Between an AI Tool and an AI System</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-5</guid>
+<category>AI Systems</category>
+<pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+<description>Most things marketed as AI systems are actually AI tools. The distinction matters more than people realize, and it determines whether what you’ve built is genuinely useful or just impressive in a demo. A tool does something when you ask it to. You provide input, it produces output. A chatbot is a to</description>
+</item>
+<item>
+<title>What DCF Models Get Wrong About Terminal Value</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-6</guid>
+<category>Finance</category>
+<pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+<description>In most DCF models, terminal value accounts for 60 to 80 percent of the total enterprise value. Which means most of what you’re doing when you build a DCF isn’t forecasting — it’s making a very precise-looking assumption about a number that depends entirely on what happens in perpetuity. The standar</description>
+</item>
+<item>
+<title>Building Alone Is a Feature, Not a Bug</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-7</guid>
+<category>Perspective</category>
+<pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+<description>Most of what I’ve built has been solo. One person, one codebase, every decision mine to make and mine to live with. In the technology world, this is often framed as a limitation — real systems require teams, collaboration, code review, specialized roles. And that’s true, at scale. But there’s someth</description>
+</item>
+<item>
+<title>How the Options Market Prices What Equity Analysts Miss</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-8</guid>
+<category>Finance</category>
+<pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+<description>Equity analysts set price targets by forecasting cash flows. Options markets set prices by forecasting distributions. The difference is not semantic — it reflects fundamentally different information about the same company, and the options market is often earlier. A standard equity price target is a </description>
+</item>
+<item>
+<title>What Finance Taught Me About Debugging Code</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-9</guid>
+<category>Perspective</category>
+<pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
+<description>Financial analysts have a debugging practice they don’t call debugging. They call it reconciliation. You take a number that doesn’t match what you expected, and you work backward systematically until you find where the discrepancy entered. You don’t guess. You trace. I learned this doing financial m</description>
+</item>
+<item>
+<title>Why Prompt Engineering Is the Wrong Mental Model</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-10</guid>
+<category>AI Systems</category>
+<pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+<description>Prompt engineering treats LLMs as black boxes with a specific input format that produces better or worse outputs depending on how you phrase the request. There’s truth in this. Phrasing matters. Structure matters. Context matters. But framing the entire practice around “engineering the prompt” leads</description>
+</item>
+<item>
+<title>The Accruals Anomaly: The Signal Quants Have Known About for 30 Years</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-4</guid>
+<category>Finance</category>
+<pubDate>Sat, 04 Jul 2026 00:00:00 +0000</pubDate>
+<description>In 1996, Richard Sloan published a paper showing that companies with high accruals — where reported earnings exceed actual cash generated — consistently underperformed the market in the following year. The effect was large, persistent, and largely ignored by the companies reporting those numbers. He</description>
+</item>
+<item>
+<title>The Only Architecture That Makes Agentic AI Safe</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-1</guid>
+<category>AI Systems</category>
+<pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+<description>Everyone building agentic AI right now is making the same mistake: they’re letting the model decide and act at the same time. In demos, this looks impressive. The model reads a prompt, plans a sequence of steps, calls some tools, and produces an output. It feels autonomous. It feels like the future.</description>
+</item>
+<item>
+<title>What 600 Company Balance Sheets Look Like Before They Break</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-2</guid>
+<category>Finance</category>
+<pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+<description>I built a tool that screens 600+ public companies for financial distress using eleven academic models simultaneously. Running it has taught me more about financial analysis than any course I’ve taken. The models — Altman Z-Score, Beneish M-Score, Piotroski F-Score, Dechow F-Score, and seven others —</description>
+</item>
+<item>
+<title>Why Finance Students Build Better AI</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-3</guid>
+<category>Perspective</category>
+<pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+<description>There’s a conventional assumption in the AI space that the best builders come from computer science. Strong priors on system design, algorithms, and software architecture. For purely technical problems, this is probably right. But most of the valuable AI to be built in the next decade isn’t purely t</description>
+</item>
+</channel>
+</rss>

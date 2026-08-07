@@ -23,10 +23,13 @@ jobs:
       - name: Run publisher
         run: python publish_essay.py
 
+      - name: Rebuild RSS feed + sitemap
+        run: python .github/scripts/build_feed.py
+
       - name: Commit and push
         run: |
           git config user.name "Aleks Portfolio Bot"
           git config user.email "aleksarriola@gmail.com"
-          git add index.html essay_state.json
+          git add index.html essay_state.json feed.xml sitemap.xml
           git diff --staged --quiet || git commit -m "Daily essay: $(date +'%Y-%m-%d')"
           git push
