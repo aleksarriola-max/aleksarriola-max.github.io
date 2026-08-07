@@ -1,0 +1,13 @@
+# Keeps GitHub Actions versions current so deploys don't drift onto
+# deprecated runtimes (e.g. the Node 20 -> 24 deprecation). Dependabot
+# opens a reviewable PR when a newer action version is available.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependencies"
