@@ -1,0 +1,25 @@
+name: Site & Security Checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Broken-link & placeholder check
+        run: python3 .github/scripts/check_site.py
+      - name: Sensitive-file & secret guard
+        run: python3 .github/scripts/check_secrets.py
