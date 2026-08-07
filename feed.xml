@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 07 Aug 2026 03:39:30 +0000</lastBuildDate>
+<lastBuildDate>Fri, 07 Aug 2026 09:52:15 +0000</lastBuildDate>
+<item>
+<title>The Information Edge Is Narrowing. The Interpretation Edge Is Not.</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-16</guid>
+<category>Perspective</category>
+<pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+<description>For most of financial history, information was the edge. If you had the earnings data before it was public, you had an advantage. If you had access to the terminal and the analyst knew how to use it, you had an advantage. The information asymmetry was real and durable. That edge has largely disappea</description>
+</item>
 <item>
 <title>When the Agent Should Stop and Ask</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
