@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 07 Aug 2026 09:52:15 +0000</lastBuildDate>
+<lastBuildDate>Sat, 08 Aug 2026 09:28:11 +0000</lastBuildDate>
+<item>
+<title>What Quality of Earnings Analysis Actually Catches</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-17</guid>
+<category>Finance</category>
+<pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
+<description>Quality of earnings analysis sounds like accounting. It’s actually forensics. The goal isn’t to verify that the financial statements comply with GAAP — the auditors handle that. The goal is to identify the gap between reported earnings and the cash-generative reality of the business, and to understa</description>
+</item>
 <item>
 <title>The Information Edge Is Narrowing. The Interpretation Edge Is Not.</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
