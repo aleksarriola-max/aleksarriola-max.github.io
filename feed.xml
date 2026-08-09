@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 08 Aug 2026 09:28:11 +0000</lastBuildDate>
+<lastBuildDate>Sun, 09 Aug 2026 09:29:27 +0000</lastBuildDate>
+<item>
+<title>Why I Build Things I Can’t Fully Use</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-18</guid>
+<category>Perspective</category>
+<pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
+<description>The Orcen Capital valuation system outputs institutional-grade research. Eighty-four Excel sheets, a Word report, a sixteen-slide deck. The kind of deliverable that would cost tens of thousands of dollars from a boutique advisory firm. I don’t manage a fund. I don’t have a portfolio to run the analy</description>
+</item>
 <item>
 <title>What Quality of Earnings Analysis Actually Catches</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
