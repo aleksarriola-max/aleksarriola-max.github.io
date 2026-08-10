@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 09 Aug 2026 09:29:27 +0000</lastBuildDate>
+<lastBuildDate>Mon, 10 Aug 2026 10:09:24 +0000</lastBuildDate>
+<item>
+<title>The Case for Boring AI Architecture</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-19</guid>
+<category>AI Systems</category>
+<pubDate>Mon, 10 Aug 2026 00:00:00 +0000</pubDate>
+<description>There’s a version of AI system design that chases novelty — multi-model orchestration, dynamic tool selection, emergent agent collaboration, recursive self-improvement. These are interesting research directions. They’re also catastrophically unreliable when something real is at stake. The most relia</description>
+</item>
 <item>
 <title>Why I Build Things I Can’t Fully Use</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
