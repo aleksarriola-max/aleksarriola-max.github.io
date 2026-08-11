@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 10 Aug 2026 10:09:24 +0000</lastBuildDate>
+<lastBuildDate>Tue, 11 Aug 2026 09:51:54 +0000</lastBuildDate>
+<item>
+<title>Comparable Companies Analysis Is Storytelling With Numbers</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-20</guid>
+<category>Finance</category>
+<pubDate>Tue, 11 Aug 2026 00:00:00 +0000</pubDate>
+<description>Every comparable companies analysis makes the same implicit claim: these businesses are similar enough that their market multiples should be in the same range. The methodology is mechanical — collect EV/EBITDA, EV/Revenue, P/E across a peer set, apply to the subject company. What’s non-mechanical is</description>
+</item>
 <item>
 <title>The Case for Boring AI Architecture</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
