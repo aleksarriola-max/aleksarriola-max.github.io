@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 12 Aug 2026 09:53:51 +0000</lastBuildDate>
+<lastBuildDate>Thu, 13 Aug 2026 09:54:01 +0000</lastBuildDate>
+<item>
+<title>The Cost of Capital Is a Judgment Call Dressed as Math</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-22</guid>
+<category>Finance</category>
+<pubDate>Thu, 13 Aug 2026 00:00:00 +0000</pubDate>
+<description>WACC looks like a precise number. It has decimals. It comes out of a formula. And that precision is exactly what makes it dangerous, because almost every input is an estimate wearing a lab coat. The equity risk premium is a debated range, not a fact. Beta depends on the lookback window you happen to</description>
+</item>
 <item>
 <title>Working Capital Is Where Value Quietly Leaks</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
