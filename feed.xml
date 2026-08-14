@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 13 Aug 2026 09:54:01 +0000</lastBuildDate>
+<lastBuildDate>Fri, 14 Aug 2026 09:52:07 +0000</lastBuildDate>
+<item>
+<title>Why Free Cash Flow Beats Earnings, Until It Doesn’t</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-23</guid>
+<category>Finance</category>
+<pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate>
+<description>Free cash flow is rightly prized because it’s harder to fake than earnings. You can defer expenses and pull revenue forward on the income statement, but the cash line eventually tells on you. That’s why cash-based investors sleep better. But free cash flow has its own blind spots. A company can gene</description>
+</item>
 <item>
 <title>The Cost of Capital Is a Judgment Call Dressed as Math</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
