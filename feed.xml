@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 15 Aug 2026 09:16:53 +0000</lastBuildDate>
+<lastBuildDate>Sun, 16 Aug 2026 09:18:41 +0000</lastBuildDate>
+<item>
+<title>What a Debt Schedule Reveals That an Income Statement Hides</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-25</guid>
+<category>Finance</category>
+<pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+<description>The income statement tells you whether a company made money. The debt schedule tells you whether it will be allowed to keep operating the way it does. For distressed or leveraged businesses, the second question is the one that actually decides outcomes. Maturities, covenants, and cash sweeps are whe</description>
+</item>
 <item>
 <title>Precedent Transactions Lie About Control Premiums</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
