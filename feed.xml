@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 16 Aug 2026 09:18:41 +0000</lastBuildDate>
+<lastBuildDate>Mon, 17 Aug 2026 09:31:16 +0000</lastBuildDate>
+<item>
+<title>Sensitivity Tables Are the Most Honest Part of a Model</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-26</guid>
+<category>Finance</category>
+<pubDate>Mon, 17 Aug 2026 00:00:00 +0000</pubDate>
+<description>A single-point valuation is a story with the uncertainty edited out. It says the business is worth $47 a share, as if the analyst has resolved every assumption. Nobody believes that, including the analyst, but the format pretends otherwise. The sensitivity table is where the model stops performing c</description>
+</item>
 <item>
 <title>What a Debt Schedule Reveals That an Income Statement Hides</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
