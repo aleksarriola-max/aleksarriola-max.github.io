@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 17 Aug 2026 09:31:16 +0000</lastBuildDate>
+<lastBuildDate>Tue, 18 Aug 2026 09:22:55 +0000</lastBuildDate>
+<item>
+<title>Goodwill Is a Bet You Can Read on the Balance Sheet</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-27</guid>
+<category>Finance</category>
+<pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
+<description>Goodwill is what a company paid for an acquisition above the fair value of the assets it received. Accounting treats it as an asset, but it’s really a frozen record of a bet — management’s conviction that the acquired business was worth more than its parts. That makes the goodwill line unusually rev</description>
+</item>
 <item>
 <title>Sensitivity Tables Are the Most Honest Part of a Model</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
