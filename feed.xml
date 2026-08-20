@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 19 Aug 2026 09:23:45 +0000</lastBuildDate>
+<lastBuildDate>Thu, 20 Aug 2026 09:24:19 +0000</lastBuildDate>
+<item>
+<title>The Quiet Power of the Cash Conversion Cycle</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-29</guid>
+<category>Finance</category>
+<pubDate>Thu, 20 Aug 2026 00:00:00 +0000</pubDate>
+<description>The cash conversion cycle measures how many days a company’s cash is tied up between paying for inputs and collecting on sales. It’s a single number, and it quietly captures the operational health that ratios like margin tend to flatter. A shrinking cycle means the business is getting more efficient</description>
+</item>
 <item>
 <title>Segment Reporting Is Where the Real Business Lives</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
