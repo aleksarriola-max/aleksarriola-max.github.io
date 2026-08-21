@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 20 Aug 2026 09:24:19 +0000</lastBuildDate>
+<lastBuildDate>Fri, 21 Aug 2026 09:26:31 +0000</lastBuildDate>
+<item>
+<title>Why Margin of Safety Survives Every Market Regime</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-30</guid>
+<category>Finance</category>
+<pubDate>Fri, 21 Aug 2026 00:00:00 +0000</pubDate>
+<description>Investing frameworks come and go with the cycle. Growth works until it doesn’t; value languishes until it doesn’t; momentum is brilliant right up until the reversal. The one idea that keeps earning its keep across regimes is the oldest one: buy meaningfully below your estimate of worth. Margin of sa</description>
+</item>
 <item>
 <title>The Quiet Power of the Cash Conversion Cycle</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
