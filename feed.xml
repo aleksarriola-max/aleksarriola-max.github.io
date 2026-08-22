@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 21 Aug 2026 09:26:31 +0000</lastBuildDate>
+<lastBuildDate>Sat, 22 Aug 2026 09:18:21 +0000</lastBuildDate>
+<item>
+<title>Retrieval Is Not Memory</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-31</guid>
+<category>AI Systems</category>
+<pubDate>Sat, 22 Aug 2026 00:00:00 +0000</pubDate>
+<description>It’s tempting to describe a retrieval-augmented system as having memory. It looks the part — ask a question, and relevant facts appear in context. But retrieval and memory are different mechanisms, and conflating them leads to systems that fail in confusing ways. Retrieval fetches whatever the query</description>
+</item>
 <item>
 <title>Why Margin of Safety Survives Every Market Regime</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
