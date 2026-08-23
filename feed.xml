@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 22 Aug 2026 09:18:21 +0000</lastBuildDate>
+<lastBuildDate>Sun, 23 Aug 2026 09:18:43 +0000</lastBuildDate>
+<item>
+<title>Why Tool Design Matters More Than Model Choice</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-32</guid>
+<category>AI Systems</category>
+<pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+<description>Teams debating which model to use are often optimizing the wrong variable. Once you’re past a capability threshold, the gap between good models is smaller than the gap between good and bad tool design around them. A powerful model handed vague, overlapping, poorly documented tools will flounder. A m</description>
+</item>
 <item>
 <title>Retrieval Is Not Memory</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
