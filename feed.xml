@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 23 Aug 2026 09:18:43 +0000</lastBuildDate>
+<lastBuildDate>Mon, 24 Aug 2026 09:36:48 +0000</lastBuildDate>
+<item>
+<title>The Hidden Cost of Every Extra Agent Step</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-33</guid>
+<category>AI Systems</category>
+<pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+<description>A single model call is fairly reliable. Chain twenty of them into an autonomous loop and reliability doesn’t add — it multiplies. Each step that’s 97% reliable sounds fine until you compound it: twenty of them in a row lands you around 54%. This is the arithmetic that quietly kills ambitious agent d</description>
+</item>
 <item>
 <title>Why Tool Design Matters More Than Model Choice</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
