@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 24 Aug 2026 09:36:48 +0000</lastBuildDate>
+<lastBuildDate>Tue, 25 Aug 2026 09:25:14 +0000</lastBuildDate>
+<item>
+<title>Evaluation Is the Product, Not the Afterthought</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-34</guid>
+<category>AI Systems</category>
+<pubDate>Tue, 25 Aug 2026 00:00:00 +0000</pubDate>
+<description>Most agent projects treat evaluation as something you bolt on near the end, once the interesting building is done. That ordering is backwards, and it’s why so many demos never survive contact with real use. Without a real evaluation harness, you’re tuning by vibes — a prompt tweak feels better, so y</description>
+</item>
 <item>
 <title>The Hidden Cost of Every Extra Agent Step</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
