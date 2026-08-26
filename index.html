@@ -625,6 +625,35 @@
     }
   </style>
   <link rel="alternate" type="application/rss+xml" title="Aleks Arriola — Writing" href="feed.xml"/>
+
+<style>
+/* Clean slide-out drawer navigation (all screen sizes) */
+.nav-toggle{ display:flex !important; }
+.nav-toggle span{ background:var(--gold); height:3px; border-radius:2px; display:block; transition:transform .2s,opacity .2s; }
+.nav-toggle.open span:nth-child(1){ transform:translateY(9px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ transform:translateY(-9px) rotate(-45deg); }
+.nav-links{
+  position:fixed; top:0; right:0; height:100vh; width:min(320px,86vw);
+  background:#f5f0e8; display:flex !important; flex-direction:column; align-items:stretch; gap:0;
+  transform:translateX(106%); transition:transform .28s ease; margin:0; padding:0;
+  box-shadow:-8px 0 34px rgba(0,0,0,0.28); z-index:130; overflow-y:auto; list-style:none;
+}
+.nav-links.open{ transform:translateX(0); }
+.nav-drawer-head{ background:var(--navy); color:#fff; padding:1.6rem 1.4rem 1.35rem; display:flex; align-items:center; gap:0.9rem; position:relative; }
+.nav-drawer-head .mono{ width:46px; height:46px; border-radius:50%; background:var(--gold); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:800; font-family:'Playfair Display',serif; font-size:1.05rem; flex:none; }
+.nav-drawer-head .who b{ display:block; font-size:1rem; line-height:1.2; }
+.nav-drawer-head .who span{ font-size:0.75rem; color:rgba(255,255,255,0.72); }
+.nav-close{ position:absolute; top:0.7rem; right:0.85rem; background:none; border:none; color:rgba(255,255,255,0.85); font-size:1.5rem; line-height:1; cursor:pointer; }
+.nav-menu{ list-style:none; margin:0; padding:0.4rem 0 1rem; display:flex; flex-direction:column; }
+.nav-menu li{ margin:0; }
+.nav-menu li a{ display:block; padding:0.85rem 1.4rem; color:var(--navy); text-decoration:none; font-size:0.95rem; font-weight:500; border-left:3px solid transparent; border-bottom:none !important; transition:background .15s; }
+.nav-menu li a:hover{ background:rgba(201,168,76,0.12); }
+.nav-menu li a.nav-active{ color:var(--navy) !important; border-left:3px solid var(--gold) !important; border-bottom:none !important; background:rgba(201,168,76,0.16); font-weight:700; }
+.nav-overlay{ position:fixed; inset:0; background:rgba(10,18,30,0.45); opacity:0; visibility:hidden; transition:opacity .25s; z-index:120; }
+.nav-overlay.open{ opacity:1; visibility:visible; }
+body.nav-open{ overflow:hidden; }
+</style>
 </head>
 <body>
 
@@ -638,7 +667,7 @@
 </style>
 <nav>
   <a class="nav-logo" href="#" onclick="showPage('home'); return false;">A.A.</a>
-  <ul class="nav-links">
+  <div class="nav-overlay" onclick="closeMenu()"></div><div class="nav-links"><div class="nav-drawer-head"><div class="mono">AA</div><div class="who"><b>Aleks Arriola</b><span>Finance &amp; AI Builder</span></div><button class="nav-close" aria-label="Close menu" onclick="closeMenu()">&times;</button></div><ul class="nav-menu">
     <li><a href="#" onclick="showPage('home'); return false;" data-nav="home">Home</a></li>
     <li><a href="#" onclick="showPage('casestudies'); return false;" data-nav="casestudies">Case Studies</a></li>
     <li><a href="#" onclick="showPage('coding'); return false;" data-nav="coding">Coding</a></li>
@@ -647,7 +676,7 @@
     <li><a href="#" onclick="showPage('marketing'); return false;" data-nav="marketing">Experience</a></li>
     <li><a href="#" onclick="showPage('writing'); return false;" data-nav="writing">Writing</a></li>
     <li><a href="#" onclick="showPage('certs'); return false;" data-nav="certs">Certifications</a></li><li><a href="#" onclick="showPage('recommendations'); return false;" data-nav="recommendations">Recommendations</a></li>
-  </ul>
+  </ul></div>
   <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
@@ -2665,6 +2694,7 @@ function showPage(id) {
   const activeLink = document.querySelector('[data-nav="' + id + '"]');
   if (activeLink) activeLink.classList.add('nav-active');
   window.scrollTo(0, 0);
+  if(typeof closeMenu==='function') closeMenu();
 }
 // Show home on load
 document.addEventListener('DOMContentLoaded', () => showPage('home'));
@@ -2690,16 +2720,20 @@ function loadIframe(id, url) {
 </footer>
 <script>
 function toggleMenu(){
-  var t=document.querySelector('.nav-toggle'), l=document.querySelector('.nav-links');
+  var l=document.querySelector('.nav-links'), o=document.querySelector('.nav-overlay'), t=document.querySelector('.nav-toggle');
   var open=l.classList.toggle('open');
-  t.classList.toggle('open', open);
-  t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(o) o.classList.toggle('open', open);
+  if(t){ t.classList.toggle('open', open); t.setAttribute('aria-expanded', open?'true':'false'); }
+  document.body.classList.toggle('nav-open', open);
 }
 function closeMenu(){
-  var t=document.querySelector('.nav-toggle'), l=document.querySelector('.nav-links');
-  l.classList.remove('open'); t.classList.remove('open');
-  t.setAttribute('aria-expanded','false');
+  var l=document.querySelector('.nav-links'), o=document.querySelector('.nav-overlay'), t=document.querySelector('.nav-toggle');
+  if(l) l.classList.remove('open');
+  if(o) o.classList.remove('open');
+  if(t){ t.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
+  document.body.classList.remove('nav-open');
 }
+
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click', closeMenu); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
