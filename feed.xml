@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 25 Aug 2026 09:25:14 +0000</lastBuildDate>
+<lastBuildDate>Wed, 26 Aug 2026 09:31:18 +0000</lastBuildDate>
+<item>
+<title>Determinism Is a Feature You Have to Engineer</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-35</guid>
+<category>AI Systems</category>
+<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+<description>Language models are probabilistic by nature, and that’s often a strength — it’s where flexibility and fluency come from. But for many real workflows, unpredictability is a liability, and determinism doesn’t arrive on its own. You have to build it in. The instinct to fix this by lowering temperature </description>
+</item>
 <item>
 <title>Evaluation Is the Product, Not the Afterthought</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
