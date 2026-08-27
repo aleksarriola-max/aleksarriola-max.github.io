@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 26 Aug 2026 09:31:18 +0000</lastBuildDate>
+<lastBuildDate>Thu, 27 Aug 2026 19:20:18 +0000</lastBuildDate>
+<item>
+<title>Why Guardrails Belong in the Environment, Not the Prompt</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-36</guid>
+<category>AI Systems</category>
+<pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+<description>The common way to constrain an agent is to tell it what not to do in the prompt. Don’t touch production. Don’t spend over a threshold. Don’t delete anything. This works until the one time it doesn’t, and prompts are the weakest possible place to enforce a rule. Instructions are suggestions the model</description>
+</item>
 <item>
 <title>Determinism Is a Feature You Have to Engineer</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

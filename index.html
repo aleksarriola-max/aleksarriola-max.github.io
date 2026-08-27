@@ -2004,6 +2004,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 36 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 27, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Guardrails Belong in the Environment, Not the Prompt</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">The common way to constrain an agent is to tell it what not to do in the prompt. Don&#8217;t touch production. Don&#8217;t spend over a threshold. Don&#8217;t delete anything. This works until the one time it doesn&#8217;t, and prompts are the weakest possible place to enforce a rule.</p><p style="margin-bottom:1.4rem;">Instructions are suggestions the model usually follows. Under an unusual input or a long enough context, following degrades. A rule that matters shouldn&#8217;t depend on the model choosing to honor it in the moment &#8212; it should be enforced by the environment, where compliance isn&#8217;t optional.</p><p style="margin-bottom:1.4rem;">So I put hard limits in the tools and the surrounding system, not the prompt. If an agent must never exceed a spending cap, the tool refuses the call above the cap, full stop. The prompt still explains intent, because clarity helps &#8212; but the guarantee lives in code. Prompts are for guidance; environments are for guarantees, and confusing the two is how agents cause real damage.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 35 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 26, 2026</p>
