@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 27 Aug 2026 19:20:18 +0000</lastBuildDate>
+<lastBuildDate>Fri, 28 Aug 2026 20:29:59 +0000</lastBuildDate>
+<item>
+<title>The Context Window Is a Budget, Spend It Deliberately</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-37</guid>
+<category>AI Systems</category>
+<pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+<description>Larger context windows get sold as a reason to stop worrying about what you include. Just put everything in and let the model sort it out. In practice, a context window is a budget, and spending it carelessly degrades the very reasoning you were trying to help. Models don’t attend to a hundred thous</description>
+</item>
 <item>
 <title>Why Guardrails Belong in the Environment, Not the Prompt</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
