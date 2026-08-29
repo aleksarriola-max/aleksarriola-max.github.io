@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 28 Aug 2026 20:29:59 +0000</lastBuildDate>
+<lastBuildDate>Sat, 29 Aug 2026 14:05:08 +0000</lastBuildDate>
+<item>
+<title>Human-in-the-Loop Is a Design Decision, Not a Fallback</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-38</guid>
+<category>AI Systems</category>
+<pubDate>Sat, 29 Aug 2026 00:00:00 +0000</pubDate>
+<description>Human-in-the-loop often gets treated as an admission of failure — the thing you keep until the agent is good enough to remove it. That framing quietly leads to worse systems, because it aims at the wrong target. For consequential actions, human review isn’t a crutch; it’s the correct architecture. T</description>
+</item>
 <item>
 <title>The Context Window Is a Budget, Spend It Deliberately</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
