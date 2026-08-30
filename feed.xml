@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 29 Aug 2026 14:05:08 +0000</lastBuildDate>
+<lastBuildDate>Sun, 30 Aug 2026 14:06:33 +0000</lastBuildDate>
+<item>
+<title>Why Most Agent Failures Are Data Problems in Disguise</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-39</guid>
+<category>AI Systems</category>
+<pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+<description>When an agent misbehaves, the reflex is to blame the model or rewrite the prompt. Often the real culprit is upstream: the agent was reasoning correctly over data that was stale, malformed, or missing the piece it actually needed. An agent is only as good as what it can see. Give it an outdated docum</description>
+</item>
 <item>
 <title>Human-in-the-Loop Is a Design Decision, Not a Fallback</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

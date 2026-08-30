@@ -2005,6 +2005,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 39 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 30, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Most Agent Failures Are Data Problems in Disguise</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">When an agent misbehaves, the reflex is to blame the model or rewrite the prompt. Often the real culprit is upstream: the agent was reasoning correctly over data that was stale, malformed, or missing the piece it actually needed.</p><p style="margin-bottom:1.4rem;">An agent is only as good as what it can see. Give it an outdated document, an inconsistent record, or a tool that returns partial results, and it will produce a confident, well-argued, wrong answer. From the outside that looks like a reasoning failure. Underneath it&#8217;s a data failure the model faithfully reflected.</p><p style="margin-bottom:1.4rem;">This has changed how I debug. Before touching the prompt, I inspect exactly what the agent received at the moment it went wrong. More often than I&#8217;d like, the fix is in the pipeline, not the intelligence &#8212; a better retrieval, a validation step, a freshness guarantee. Treating agent behavior as downstream of data quality solves a surprising share of what first looks like the model simply being dumb.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 38 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 29, 2026</p>
