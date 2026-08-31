@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 30 Aug 2026 14:06:33 +0000</lastBuildDate>
+<lastBuildDate>Mon, 31 Aug 2026 16:32:02 +0000</lastBuildDate>
+<item>
+<title>Latency Is a Correctness Problem for Agents</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-40</guid>
+<category>AI Systems</category>
+<pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
+<description>Latency is usually filed under user experience — a slower system is a more annoying one. For autonomous agents, slowness crosses over into something more serious: it changes what the agent is reasoning about, because the world can move while the agent is thinking. An agent that reads a price, delibe</description>
+</item>
 <item>
 <title>Why Most Agent Failures Are Data Problems in Disguise</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
