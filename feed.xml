@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 31 Aug 2026 16:32:02 +0000</lastBuildDate>
+<lastBuildDate>Tue, 01 Sep 2026 13:48:25 +0000</lastBuildDate>
+<item>
+<title>Depth Compounds Faster Than Breadth</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-41</guid>
+<category>Perspective</category>
+<pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
+<description>Early on, the appealing strategy is to sample widely — a bit of everything, so no door is closed. It feels safe. But breadth without depth tends to produce a long list of things you’ve touched and nothing you can actually do, and that list impresses no one for long. Depth behaves differently. Push f</description>
+</item>
 <item>
 <title>Latency Is a Correctness Problem for Agents</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
