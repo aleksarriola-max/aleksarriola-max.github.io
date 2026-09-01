@@ -290,6 +290,216 @@
       "title": "The Only Architecture That Makes Agentic AI Safe",
       "category": "",
       "source": "published"
+    },
+    {
+      "title": "What the Red-Flag Scanner Actually Looks For",
+      "category": "Finance",
+      "source": "queue",
+      "id": 51,
+      "theme": "Company Health Red-Flag Scanner"
+    },
+    {
+      "title": "The Valuation Kit Taught Me Valuation Is a Pipeline Problem",
+      "category": "Finance",
+      "source": "queue",
+      "id": 52,
+      "theme": "Orcen Capital valuation kit"
+    },
+    {
+      "title": "What the Bloomberg Terminal Certification Doesn&#8217;t Teach You",
+      "category": "Finance",
+      "source": "queue",
+      "id": 53,
+      "theme": "Bloomberg Terminal certification"
+    },
+    {
+      "title": "Tax Structure Is Where Deal Value Actually Moves",
+      "category": "Finance",
+      "source": "queue",
+      "id": 54,
+      "theme": "Tax & Transaction Advisory certification"
+    },
+    {
+      "title": "What Sales and Trading Teaches About Spreads as Information",
+      "category": "Finance",
+      "source": "queue",
+      "id": 55,
+      "theme": "Sales & Trading certification"
+    },
+    {
+      "title": "What Risk and Audit Work Reveals About Control Failures",
+      "category": "Finance",
+      "source": "queue",
+      "id": 56,
+      "theme": "Risk & Audit certification"
+    },
+    {
+      "title": "What a Repricing Narrative Does to a Sector",
+      "category": "Finance",
+      "source": "queue",
+      "id": 57,
+      "theme": "GLP-1 Revolution market analysis"
+    },
+    {
+      "title": "Attention Is a Leading Indicator, Not a Proxy for Revenue",
+      "category": "Finance",
+      "source": "queue",
+      "id": 58,
+      "theme": "Coachella TikTok attention analysis"
+    },
+    {
+      "title": "Why I Rebuild Every Model From the Filing, Not the Summary",
+      "category": "Finance",
+      "source": "queue",
+      "id": 59,
+      "theme": "Apple valuation report"
+    },
+    {
+      "title": "The Auto Valuation Kit&#8217;s Real Job Is Catching My Own Mistakes",
+      "category": "Finance",
+      "source": "queue",
+      "id": 60,
+      "theme": "Orcen Capital auto valuation kit"
+    },
+    {
+      "title": "What a Multi-Agent Deal Swarm Taught Me About Coordination Cost",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 61,
+      "theme": "LangGraph M&A Deal Swarm"
+    },
+    {
+      "title": "OpsFlow and the Case for Narrow Agents",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 62,
+      "theme": "OpsFlow policy-bound agent"
+    },
+    {
+      "title": "Why PitMind Extracts Instead of Generates",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 63,
+      "theme": "PitMind pitch deck analyzer"
+    },
+    {
+      "title": "MatchMind and the Limits of Letting a Model Search",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 64,
+      "theme": "MatchMind matching engine"
+    },
+    {
+      "title": "The Adaptive Funding Engine&#8217;s Feedback Loop Is the Whole Point",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 65,
+      "theme": "Adaptive Funding Engine"
+    },
+    {
+      "title": "DeepBook Market OS: The Boring Ninety Percent",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 66,
+      "theme": "DeepBook Market OS"
+    },
+    {
+      "title": "What I Stopped Letting Agents Write Directly",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 67,
+      "theme": "OpsFlow write safety"
+    },
+    {
+      "title": "Planning and Execution Need Different Agents",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 68,
+      "theme": "LangGraph Deal Swarm architecture"
+    },
+    {
+      "title": "Schema Validation Fixed More Bugs Than Any Model Upgrade",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 69,
+      "theme": "PitMind/MatchMind/Deal Swarm reliability"
+    },
+    {
+      "title": "Why I Measure Latency Before I Measure Accuracy",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 70,
+      "theme": "multi-agent workflow latency"
+    },
+    {
+      "title": "What Three Years of Client Work Taught Me About Scope",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 71,
+      "theme": "Western Union/SeOnline/Jet Rose client work"
+    },
+    {
+      "title": "Why I Took the Cashier Job Before I Touched a Model",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 72,
+      "theme": "Western Union sub-agency cashier role"
+    },
+    {
+      "title": "What Switching Between Finance and Marketing Case Studies Taught Me About Audience",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 73,
+      "theme": "Kaktus Somabay/Explurger client work"
+    },
+    {
+      "title": "The Unglamorous Work Behind Every Portfolio Project",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 74,
+      "theme": "AeroShield KPI dashboard"
+    },
+    {
+      "title": "Why I Chase Certifications That Don&#8217;t Show Up in Interviews",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 75,
+      "theme": "Bloomberg/Risk & Audit/Tax certifications"
+    },
+    {
+      "title": "What a KPI Dashboard Taught Me About What Executives Actually Want",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 76,
+      "theme": "AeroShield KPI dashboard design"
+    },
+    {
+      "title": "Why I Stopped Using Templates for Market Expansion Work",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 77,
+      "theme": "Jet Rose US market expansion"
+    },
+    {
+      "title": "The Best Career Advice I Got Wasn&#8217;t About Skills",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 78,
+      "theme": "building in public career lesson"
+    },
+    {
+      "title": "Why the Finance Page and the Coding Page Live on the Same Site",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 79,
+      "theme": "site structure / dual-discipline identity"
+    },
+    {
+      "title": "What Doing Predictive Attention Analysis Taught Me About Hype Cycles",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 80,
+      "theme": "Coachella TikTok hype cycle analysis"
     }
   ]
 }
