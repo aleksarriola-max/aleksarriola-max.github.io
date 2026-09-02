@@ -1,0 +1,24 @@
+name: Keep demo apps awake
+
+# Pings the free-tier demo apps so visitors don't hit a "waking up" / sleep screen.
+# Windowed to ~16h/day (12:00-03:59 UTC ≈ US daytime→late evening) so OpsFlow on
+# Render stays well under the 750 free hours/month. Render is kept warm reliably;
+# Streamlit apps get regular traffic (may still sleep — they gate on real sessions).
+on:
+  schedule:
+    - cron: "*/12 0-3,12-23 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping apps
+        run: |
+          for u in \
+            "https://opsflow-hso3.onrender.com/" \
+            "https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/" \
+            "https://mainpy-hpdupmoyakddvxo348e4yn.streamlit.app/"; do
+            code=$(curl -sS -o /dev/null -w "%{http_code}" -m 45 "$u" || echo "ERR")
+            echo "$code  $u"
+          done
