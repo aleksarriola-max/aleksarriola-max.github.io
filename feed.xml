@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 01 Sep 2026 13:48:25 +0000</lastBuildDate>
+<lastBuildDate>Wed, 02 Sep 2026 13:05:41 +0000</lastBuildDate>
+<item>
+<title>The Portfolio Is the Resume Now</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-42</guid>
+<category>Perspective</category>
+<pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+<description>A resume is a claim: here is what I say I can do. A portfolio is evidence: here is a thing I built that you can open and inspect. As it gets easier to make claims and harder to trust them, the balance of proof has shifted decisively toward the evidence. This is freeing if you take it seriously. You </description>
+</item>
 <item>
 <title>Depth Compounds Faster Than Breadth</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
