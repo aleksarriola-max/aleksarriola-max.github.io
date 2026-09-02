@@ -655,6 +655,15 @@
 body.nav-open{ overflow:hidden; }
 </style>
 <style>.hero-title span{font-family:'Parisienne',cursive;font-weight:400;font-size:1.12em;}</style>
+<style>
+/* Accessibility: bright gold (#C9A84C) fails WCAG contrast on light/white sections.
+   Use a darker gold for gold text that sits on .section-alt (white) backgrounds.
+   Dark navy sections keep the bright gold (which passes there). */
+.section-alt .section-label,
+.section-alt .card-type,
+.section-alt .cert-filter-btn.active { color: #b8892b !important; }
+.section-alt .cert-filter-btn.active { border-color:#b8892b !important; }
+</style>
 </head>
 <body>
 
