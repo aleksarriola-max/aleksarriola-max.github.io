@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 03 Sep 2026 13:07:25 +0000</lastBuildDate>
+<lastBuildDate>Fri, 04 Sep 2026 13:01:14 +0000</lastBuildDate>
+<item>
+<title>Learning in Public Is a Forcing Function</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-44</guid>
+<category>Perspective</category>
+<pubDate>Fri, 04 Sep 2026 00:00:00 +0000</pubDate>
+<description>Learning privately is comfortable. You can stay in the phase where everything is tentative and nothing is finished, indefinitely. Learning in public removes that comfort, and the discomfort is precisely the point. When you commit to shipping something others will see, you can’t hide behind almost-do</description>
+</item>
 <item>
 <title>Why I Write These Essays</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
