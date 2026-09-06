@@ -2023,7 +2023,11 @@ body.nav-open{ overflow:hidden; }
         <h4>In finance terms</h4>
         <ul><li><strong>Model risk</strong> — each score's reliability is documented by sector</li><li><strong>Limits</strong> — composite thresholds define the watchlist</li><li><strong>Escalation</strong> — convergent red flags auto-generate a manual analysis card</li><li><strong>Explainability</strong> — every score reconciles to its inputs, with no gaps</li><li><strong>Early warning</strong> — the accruals gap moves before solvency models react</li></ul>
       </div>
-      <div class="case-distrust">
+      <h4>Key assumptions</h4>
+        <p>Scores assume SEC EDGAR XBRL fields are tagged consistently across filers (they aren&#8217;t always), that academic model thresholds calibrated on historical samples still hold today, and that sector medians are a fair benchmark. The tool flags where a signal may be a sector artifact rather than real distress.</p>
+        <h4>Reproducible &amp; reviewable</h4>
+        <p>The pipeline recomputes every ratio the moment a new 10-K is filed &#8212; same inputs, same output, no manual edits, versioned in git. A reviewer can trace any company&#8217;s health score back through the ratios to the exact source XBRL field.</p>
+        <div class="case-distrust">
         <h4>When I'd distrust it — and the safeguard I'd add</h4>
         <p>I distrust a single high score in a capital-intensive or pre-revenue name, and re-anchor to sector base rates before acting on it. The next safeguard I'd add: a sector-adjusted overlay plus a data-quality confidence flag that down-weights companies with sparse or non-standard XBRL tags.</p>
       </div>
@@ -2042,7 +2046,11 @@ body.nav-open{ overflow:hidden; }
         <h4>In finance terms</h4>
         <ul><li><strong>Limits</strong> — authorized payment ranges and vendor allow-lists</li><li><strong>Escalation</strong> — quorum thresholds and veto windows route to the right authority</li><li><strong>Model risk</strong> — LLM unreliability is contained, not trusted</li><li><strong>Explainability &amp; audit</strong> — a verifiable trail of what was proposed, validated, rejected, and why</li><li><strong>Controls</strong> — deterministic enforcement the model can't override</li></ul>
       </div>
-      <div class="case-distrust">
+      <h4>Key assumptions</h4>
+        <p>The agent assumes the policy and budget rules are complete and current, that the on-chain contracts enforce what the policy intends, and that a human is reachable for anything outside the approved envelope. Where those assumptions break, the action is blocked &#8212; never guessed.</p>
+        <h4>Reproducible &amp; reviewable</h4>
+        <p>Every agent decision is logged with the policy that gated it and the state it read, so the whole run is auditable and replayable. A reviewer sees not just what the agent did, but which rule allowed it and exactly what it would have taken to stop it.</p>
+        <div class="case-distrust">
         <h4>When I'd distrust it — and the safeguard I'd add</h4>
         <p>I never let the model's confidence override the policy layer — a confident wrong plan is still blocked. The safeguard I lean on: human validation on any novel action type, plus rollback capability, so an unexpected state is reversible rather than final.</p>
       </div>
@@ -2061,7 +2069,11 @@ body.nav-open{ overflow:hidden; }
         <h4>In finance terms</h4>
         <ul><li><strong>Model risk</strong> — terminal-value sensitivity is made explicit, not buried</li><li><strong>Limits</strong> — a valuation range, not a false-precision point target</li><li><strong>Explainability</strong> — every output reconciles to its inputs and its method</li><li><strong>Decision link</strong> — the blended output and HOLD verdict tie to a buy / hold / sell call</li></ul>
       </div>
-      <div class="case-distrust">
+      <h4>Key assumptions</h4>
+        <p>The blended value assumes the four methods are semi-independent reads (they partly aren&#8217;t), that the discount rate and terminal growth hold across the forecast, and that FY2024 XBRL fields map cleanly to the model&#8217;s line items. Every one of these lives in the config, not buried in a cell.</p>
+        <h4>Reproducible &amp; reviewable</h4>
+        <p>The entire 84-sheet model is generated from a single YAML config and versioned in git &#8212; change an input, rerun, and every sheet recalculates identically. A reviewer can open the config, see exactly which assumptions drove the number, and challenge any one of them.</p>
+        <div class="case-distrust">
         <h4>When I'd distrust it — and the safeguard I'd add</h4>
         <p>I distrust any DCF where terminal value dominates and the growth assumption is doing the heavy lifting — I re-check it against the exit multiple and the reinvestment rate. My safeguard: present the sensitivity range and the method spread by default, never a single number, so the reader sees the uncertainty I did.</p>
       </div>
