@@ -623,7 +623,26 @@
       color: var(--navy-mid);
       border: 1px solid rgba(27,45,66,0.22);
     }
-  </style>
+  
+    /* language switch */
+    .lang-switch{background:none;border:1px solid rgba(201,168,76,0.5);color:var(--gold);border-radius:100px;font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;padding:0.32rem 0.7rem;cursor:pointer;margin-right:0.6rem;transition:background 0.2s,color 0.2s;}
+    .lang-switch:hover{background:rgba(201,168,76,0.12);}
+    .lang-switch .ls-sep{opacity:0.4;margin:0 0.28rem;}
+    .lang-switch .ls-en,.lang-switch .ls-es{opacity:0.5;}
+    html[lang="en"] .lang-switch .ls-en{opacity:1;color:var(--gold-light);}
+    html[lang="es"] .lang-switch .ls-es{opacity:1;color:var(--gold-light);}
+    /* hero currently-status */
+    .hero-status{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(201,168,76,0.09);border:1px solid rgba(201,168,76,0.3);border-radius:100px;padding:0.55rem 1.1rem;margin-bottom:2rem;max-width:560px;}
+    .hero-status-text{font-size:0.86rem;line-height:1.4;color:rgba(255,255,255,0.82);}
+    .hero-status-text strong{color:var(--gold-light);font-weight:600;}
+    .hero-status-dot{width:9px;height:9px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 0 0 rgba(74,222,128,0.6);animation:statusPulse 2.2s infinite;}
+    @keyframes statusPulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,0.55);}70%{box-shadow:0 0 0 8px rgba(74,222,128,0);}100%{box-shadow:0 0 0 0 rgba(74,222,128,0);}}
+    /* toolkit strip */
+    .toolkit-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:0.55rem;max-width:900px;margin:0 auto;}
+    .tk-tag{padding:0.4rem 0.95rem;background:var(--white);border:1px solid rgba(13,27,42,0.12);border-radius:100px;font-size:0.8rem;font-weight:500;color:var(--navy);transition:border-color 0.2s,color 0.2s;}
+    .tk-tag:hover{border-color:var(--gold);color:#b8892b;}
+    @media (max-width:600px){.hero-status{margin-bottom:1.5rem;}.tk-tag{font-size:0.74rem;padding:0.34rem 0.75rem;}}
+</style>
   <link rel="alternate" type="application/rss+xml" title="Aleks Arriola — Writing" href="feed.xml"/>
 
 <style>
@@ -687,6 +706,7 @@ body.nav-open{ overflow:hidden; }
     <li><a href="#" onclick="showPage('writing'); return false;" data-nav="writing">Writing</a></li>
     <li><a href="#" onclick="showPage('certs'); return false;" data-nav="certs">Certifications</a></li><li><a href="#" onclick="showPage('recommendations'); return false;" data-nav="recommendations">Recommendations</a></li>
   </ul></div>
+  <button class="lang-switch" id="lang-switch" aria-label="Switch language" onclick="toggleLang()"><span class="ls-en">EN</span><span class="ls-sep">|</span><span class="ls-es">ES</span></button>
   <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
@@ -706,6 +726,10 @@ body.nav-open{ overflow:hidden; }
       <span class="hero-tag">LLM Agents</span>
       <span class="hero-tag">Financial Modeling</span>
     </div>
+    <div class="hero-status" data-i18n="currently">
+      <span class="hero-status-dot"></span>
+      <span class="hero-status-text">Finance Intern at <strong>The 1525</strong> this fall — studying &amp; building, and open to finance &amp; AI opportunities.</span>
+    </div>
     <a href="#" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;" class="hero-cta">Get In Touch ↓</a>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
@@ -720,6 +744,26 @@ body.nav-open{ overflow:hidden; }
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;">11</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Financial Models</div></div>
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;">8</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Client Projects</div></div>
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;">50</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Certifications</div></div>
+  </div>
+</section>
+
+<!-- SKILLS STRIP -->
+<section class="section" id="toolkit" style="padding:2.6rem 5vw; background:var(--light-bg); border-bottom:1px solid rgba(0,0,0,0.06);">
+  <p class="section-label" style="text-align:center; margin-bottom:1.2rem;" data-tk="label">Toolkit — what I build with</p>
+  <div class="toolkit-strip">
+    <span class="tk-tag" data-tk="t">Python</span>
+    <span class="tk-tag" data-tk="t">LangGraph / LLM Agents</span>
+    <span class="tk-tag" data-tk="t">Financial Modeling</span>
+    <span class="tk-tag" data-tk="t">DCF · LBO · Comps</span>
+    <span class="tk-tag" data-tk="t">SEC EDGAR / XBRL</span>
+    <span class="tk-tag" data-tk="t">Equity Research</span>
+    <span class="tk-tag" data-tk="t">Excel Automation</span>
+    <span class="tk-tag" data-tk="t">NumPy · SciPy</span>
+    <span class="tk-tag" data-tk="t">Streamlit</span>
+    <span class="tk-tag" data-tk="t">Sui · Move</span>
+    <span class="tk-tag" data-tk="t">Risk &amp; Controls</span>
+    <span class="tk-tag" data-tk="t">Bloomberg Terminal</span>
+    <span class="tk-tag" data-tk="t">Bilingual (EN / ES)</span>
   </div>
 </section>
 
@@ -2952,5 +2996,312 @@ function showCase(id){
 }
 </script>
   <script data-goatcounter="https://aleksarriola.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<!-- ── i18n EN/ES ── -->
+<script>
+(function(){
+  // Element-level dictionary. Keys are the ENGLISH text as it appears on the
+  // page (matched tolerantly: whitespace collapsed, curly quotes/dashes normalised).
+  // Only strings listed here are translated; everything else stays in English.
+  var DICT = {
+    // NAV
+    "Home":"Inicio",
+    "Case Studies":"Casos de estudio",
+    "Coding":"Programación",
+    "Client Work":"Trabajo con clientes",
+    "Finance":"Finanzas",
+    "Experience":"Experiencia",
+    "Writing":"Escritos",
+    "Certifications":"Certificaciones",
+    "Recommendations":"Recomendaciones",
+    "Finance & AI Builder":"Constructor de finanzas e IA",
+    // HERO
+    "Portfolio - Aleks Arriola":"Portafolio - Aleks Arriola",
+    "Finance & Accounting student at Hult, building AI agents and automation for real financial workflows - where generative AI meets quantitative finance and complex data pipelines.":"Estudiante de Finanzas y Contabilidad en Hult, construyendo agentes de IA y automatización para flujos de trabajo financieros reales, donde la IA generativa se encuentra con las finanzas cuantitativas y los pipelines de datos complejos.",
+    "Agentic AI":"IA agéntica",
+    "Quantitative Finance":"Finanzas cuantitativas",
+    "LLM Agents":"Agentes LLM",
+    "Financial Modeling":"Modelado financiero",
+    "Get In Touch ↓":"Contáctame ↓",
+    "Scroll":"Desliza",
+    // HERO STATUS (data-i18n="currently") handled specially below too
+    "Finance Intern at The 1525 this fall - studying & building, and open to finance & AI opportunities.":"Practicante de finanzas en The 1525 este semestre - estudiando y construyendo, y abierto a oportunidades en finanzas e IA.",
+    // STATS
+    "Live Apps":"Apps en vivo",
+    "Companies Screened":"Empresas analizadas",
+    "Financial Models":"Modelos financieros",
+    "Client Projects":"Proyectos con clientes",
+    // TOOLKIT
+    "Toolkit - what I build with":"Herramientas - con lo que construyo",
+    "Risk & Controls":"Riesgo y controles",
+    "Bilingual (EN / ES)":"Bilingüe (EN / ES)",
+    "Excel Automation":"Automatización de Excel",
+    "Equity Research":"Análisis de acciones",
+    // ABOUT
+    "About":"Sobre mí",
+    "Finance, meet agentic AI":"Finanzas, te presento la IA agéntica",
+    "I'm a Finance & Accounting student at Hult who builds AI agents and automation systems for real financial and operational workflows - working at the intersection of generative AI, quantitative finance, and complex data pipelines.":"Soy estudiante de Finanzas y Contabilidad en Hult y construyo agentes de IA y sistemas de automatización para flujos de trabajo financieros y operativos reales, trabajando en la intersección de la IA generativa, las finanzas cuantitativas y los pipelines de datos complejos.",
+    "I've shipped systems that are more than demos. PitMind is an AI Formula 1 strategy platform built on IBM Granite and live race telemetry; OpsFlow is a policy-bound AI operations agent on the Sui blockchain that turns natural language into secure, auditable workflows. Each one taught me how to design multi-step agents, enforce guardrails, and ship reliably.":"He lanzado sistemas que son más que demos. PitMind es una plataforma de estrategia de Fórmula 1 con IA construida sobre IBM Granite y telemetría de carrera en vivo; OpsFlow es un agente de operaciones con IA limitado por políticas en la blockchain de Sui que convierte lenguaje natural en flujos de trabajo seguros y auditables. Cada uno me enseñó a diseñar agentes de múltiples pasos, aplicar salvaguardas y lanzar con fiabilidad.",
+    "On the finance side, a finance internship plus tools built on SEC data and market analysis gave me a working foundation in valuation, risk, and capital markets. I'm most interested in roles that combine agentic AI, robust financial modeling, and systems thinking - in AI engineering, fintech, or finance teams that want to use modern AI well.":"En el lado financiero, una pasantía en finanzas más herramientas construidas sobre datos de la SEC y análisis de mercado me dieron una base práctica en valoración, riesgo y mercados de capital. Me interesan sobre todo los roles que combinan IA agéntica, modelado financiero robusto y pensamiento sistémico, en ingeniería de IA, fintech o equipos de finanzas que quieran usar bien la IA moderna.",
+    "Currently building":"Construyendo actualmente",
+    "An autonomous agent system that replicates key parts of an investment-banking deal team: LLM agents handle structured data extraction while deterministic Python engines (NumPy / SciPy) run the corporate-finance math - feeding multi-tab Excel models and long-form memos.":"Un sistema de agentes autónomos que replica partes clave de un equipo de banca de inversión: los agentes LLM se encargan de la extracción de datos estructurados mientras que motores deterministas en Python (NumPy / SciPy) ejecutan la matemática de finanzas corporativas, alimentando modelos de Excel de múltiples pestañas y memos extensos.",
+    // TESTIMONIAL
+    "From my internship at The 1525":"De mi pasantía en The 1525",
+    "He could take an objective, work through ambiguity, and deliver thoughtful, polished work without requiring constant supervision. As a founder, that level of reliability is something I value tremendously.":"Podía tomar un objetivo, abrirse paso a través de la ambigüedad y entregar un trabajo reflexivo y pulido sin necesitar supervisión constante. Como fundador, ese nivel de fiabilidad es algo que valoro enormemente.",
+    "Read the full recommendation →":"Leer la recomendación completa →",
+    // FEATURED HOME
+    "Featured Apps":"Apps destacadas",
+    "Live Coding Projects":"Proyectos de programación en vivo",
+    "Featured Finance Projects":"Proyectos de finanzas destacados",
+    "Finance & Quantitative Tools":"Herramientas financieras y cuantitativas",
+    "Featured Client Work":"Trabajo con clientes destacado",
+    "Real-World Engagements":"Proyectos del mundo real",
+    "Keep Exploring":"Sigue explorando",
+    "Everything in the Portfolio":"Todo el portafolio",
+    "Systems → risk decisions":"Sistemas → decisiones de riesgo",
+    "Coding Projects":"Proyectos de programación",
+    "6 live apps deployed":"6 apps en vivo desplegadas",
+    "Client Work":"Trabajo con clientes",
+    "8 live engagements":"8 proyectos en vivo",
+    "Finance Portfolio":"Portafolio de finanzas",
+    "Tools & IB simulations":"Herramientas y simulaciones de IB",
+    "50 credentials":"50 credenciales",
+    "Internships & roles":"Pasantías y roles",
+    "Explainable-AI mission control for space operations (IBM Bob AI Challenge). A live ops console - mission dashboard, anomaly investigation, an autonomy explainer, and plan-vs-actual tracking - that makes autonomous decisions auditable for the humans in the loop.":"Control de misión de IA explicable para operaciones espaciales (IBM Bob AI Challenge). Una consola de operaciones en vivo - panel de misión, investigación de anomalías, un explicador de autonomía y seguimiento de plan vs. real - que hace auditables las decisiones autónomas para las personas en el proceso.",
+    "↗ Launch Live App":"↗ Abrir app en vivo",
+    "AI-powered F1 strategy platform with Fan and Engineer modes. Uses IBM Granite AI and 2025 live telemetry with three custom models - Driver Soul, Momentum, Race Forecast - making pit-wall analysis accessible worldwide.":"Plataforma de estrategia de F1 con IA con modos Aficionado e Ingeniero. Usa IBM Granite AI y telemetría en vivo de 2025 con tres modelos propios - Driver Soul, Momentum, Race Forecast - haciendo accesible el análisis de pit-wall en todo el mundo.",
+    "Free demo · allow ~30s to wake":"Demo gratuita · espera ~30s a que despierte",
+    "Policy-bound AI operations agent built on Sui that turns natural-language requests into secure, stateful on-chain workflows. Features revocable authority, vendor trust scoring, fraud detection, and full audit trails.":"Agente de operaciones con IA limitado por políticas construido sobre Sui que convierte solicitudes en lenguaje natural en flujos de trabajo on-chain seguros y con estado. Incluye autoridad revocable, puntuación de confianza de proveedores, detección de fraude y registros de auditoría completos.",
+    "See All 5 →":"Ver los 5 →",
+    "Screens 600+ US-listed companies using live SEC EDGAR XBRL data. Runs 11 academic models (Altman Z-Score, Beneish M-Score, Piotroski F-Score + more) producing a composite Health Score and auto-generated fraud risk card. Fully automated - 80 financial ratios, 45 variables, zero manual updates.":"Analiza más de 600 empresas cotizadas en EE. UU. usando datos XBRL de SEC EDGAR en vivo. Ejecuta 11 modelos académicos (Altman Z-Score, Beneish M-Score, Piotroski F-Score y más) produciendo una puntuación de salud compuesta y una tarjeta de riesgo de fraude autogenerada. Totalmente automatizado - 80 ratios financieros, 45 variables, cero actualizaciones manuales.",
+    "See Finance Portfolio →":"Ver portafolio de finanzas →",
+    "One YAML config → 84-sheet Excel model + Word report + PPTX deck. Full valuation stack (DCF, comps, LBO, precedent transactions) layered with 7 cognitive bias-correction modules. Verified end-to-end with real Apple FY2024 data. ~39,000 lines of Python.":"Una configuración YAML → modelo de Excel de 84 hojas + informe en Word + presentación PPTX. Stack de valoración completo (DCF, comparables, LBO, transacciones precedentes) con 7 módulos de corrección de sesgos cognitivos. Verificado de extremo a extremo con datos reales de Apple del año fiscal 2024. ~39,000 líneas de Python.",
+    "Excel sheets":"Hojas de Excel",
+    "Bias modules":"Módulos de sesgo",
+    "Lines Python":"Líneas de Python",
+    "19-sheet KPI dashboard for a deeptech manufacturer scaling 6→300 units/week. Identified the #1 production bottleneck, modeled financial scenarios, and projected $40-80K in annual savings with a ~12-month payback. Delivered as a fully functional Excel workbook.":"Panel de KPI de 19 hojas para un fabricante deeptech que escalaba de 6 a 300 unidades/semana. Identifiqué el cuello de botella de producción número 1, modelé escenarios financieros y proyecté entre $40-80K de ahorro anual con un retorno de ~12 meses. Entregado como un libro de Excel totalmente funcional.",
+    "See All →":"Ver todo →",
+    "Full go-to-market strategy for a European bespoke private aviation broker entering the Americas. Delivered a self-funded growth model, competitive analysis against Jettly & Amalfi Jets, a $99/month membership framework, and brand differentiation positioning Jet Rose as the European expert in the US market.":"Estrategia completa de salida al mercado para un bróker europeo de aviación privada a medida que entra a las Américas. Entregué un modelo de crecimiento autofinanciado, análisis competitivo frente a Jettly y Amalfi Jets, un marco de membresía de $99/mes y una diferenciación de marca que posiciona a Jet Rose como el experto europeo en el mercado estadounidense.",
+    "See All Client Work →":"Ver todo el trabajo con clientes →",
+    // CONTACT
+    "Get In Touch":"Contacto",
+    "Let's Connect":"Conectemos",
+    "Resume - Finance":"CV - Finanzas",
+    "Resume - Marketing":"CV - Marketing",
+    // CODING PAGE
+    "Engineering & Tech":"Ingeniería y tecnología",
+    "🚀 Live App · Featured":"🚀 App en vivo · Destacada",
+    "AI-powered Formula 1 strategy platform with Fan and Engineer modes, using IBM Granite AI and 2025 telemetry. Three custom models - Driver Soul, Momentum, and Race Forecast - simulate performance and strategy, making elite racing analysis accessible to anyone worldwide.":"Plataforma de estrategia de Fórmula 1 con IA con modos Aficionado e Ingeniero, usando IBM Granite AI y telemetría de 2025. Tres modelos propios - Driver Soul, Momentum y Race Forecast - simulan rendimiento y estrategia, haciendo accesible el análisis de carreras de élite para cualquiera en el mundo.",
+    "DEPLOYED ON":"DESPLEGADO EN",
+    "AI system that explains football decisions with a two-layer hallucination firewall - combining a lexical evidence check and a second IBM Granite validation pass. Outputs are labeled Verified or Unverified with full evidence trails, every metric computed from real formulas. Uses live and historical World Cup data with five persona-based explanation styles for different audiences.":"Sistema de IA que explica decisiones de fútbol con un cortafuegos de alucinaciones de dos capas - combinando una verificación léxica de evidencia y un segundo pase de validación con IBM Granite. Las salidas se etiquetan como Verificadas o No verificadas con rastros de evidencia completos, y cada métrica se calcula con fórmulas reales. Usa datos en vivo e históricos del Mundial con cinco estilos de explicación basados en personas para distintas audiencias.",
+    "Fully on-chain scholarship and grant system built on Sui that replaces fixed payouts with milestone-based adaptive funding. Recipients earn bonuses for early delivery, lose value for delays, and unused funds recycle to waitlisted applicants. Built with Move smart contracts, escrow locking, quorum-based approvals, configurable vesting curves, and soulbound credentials minted upon completion.":"Sistema de becas y subvenciones totalmente on-chain construido sobre Sui que reemplaza los pagos fijos por financiamiento adaptativo basado en hitos. Los beneficiarios ganan bonos por entrega temprana, pierden valor por retrasos y los fondos no usados se reciclan a los solicitantes en lista de espera. Construido con contratos inteligentes Move, bloqueo en depósito de garantía, aprobaciones por quórum, curvas de vesting configurables y credenciales soulbound emitidas al completar.",
+    "Market operating system built on Sui's DeepBookV3 combining spot, margin, and prediction markets into one unified console. Runs entirely on live on-chain data with no backend or mock inputs - all analytics computed client-side with transparent formulas. Includes execution tools, strategy building, liquidity tracking, structured products, and market creation.":"Sistema operativo de mercado construido sobre DeepBookV3 de Sui que combina mercados spot, de margen y de predicción en una sola consola unificada. Funciona completamente con datos on-chain en vivo, sin backend ni entradas simuladas - todo el análisis se calcula del lado del cliente con fórmulas transparentes. Incluye herramientas de ejecución, construcción de estrategias, seguimiento de liquidez, productos estructurados y creación de mercados.",
+    "Policy-bound AI operations agent built on Sui that turns natural-language requests into secure, stateful on-chain workflows. The LLM proposes actions, but deterministic code and Move smart contracts enforce decisions, approvals, and payments. Features revocable agent authority, vendor trust scoring, fraud detection, veto windows, self-suspension safeguards, and full audit trails with human validation.":"Agente de operaciones con IA limitado por políticas construido sobre Sui que convierte solicitudes en lenguaje natural en flujos de trabajo on-chain seguros y con estado. El LLM propone acciones, pero el código determinista y los contratos inteligentes Move hacen cumplir decisiones, aprobaciones y pagos. Incluye autoridad de agente revocable, puntuación de confianza de proveedores, detección de fraude, ventanas de veto, salvaguardas de autosuspensión y registros de auditoría completos con validación humana.",
+    "Read the full case study →":"Leer el caso de estudio completo →",
+    "Single-analyst equity research system that takes one YAML config and outputs an 84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck in one command. Full valuation stack - DCF, comps, precedent transactions, LBO, blended fair value - layered with 7 cognitive bias-correction modules (narrative bridge, behavioral fingerprint, options probability engine, analyst calibration ledger, anti-thesis simulator, shadow pods, portfolio network). Verified end-to-end with real Apple FY2024 data. ~39,000 lines of Python.":"Sistema de análisis de acciones para un solo analista que toma una configuración YAML y produce un modelo de Excel de 84 hojas, un informe en Word estilo CFA y una presentación PPTX de 16 diapositivas en un solo comando. Stack de valoración completo - DCF, comparables, transacciones precedentes, LBO, valor razonable combinado - con 7 módulos de corrección de sesgos cognitivos (puente narrativo, huella conductual, motor de probabilidad de opciones, libro de calibración del analista, simulador de antítesis, cápsulas sombra, red de portafolio). Verificado de extremo a extremo con datos reales de Apple del año fiscal 2024. ~39,000 líneas de Python.",
+    "⬇ Download Apple Model (v45)":"⬇ Descargar modelo de Apple (v45)",
+    "⬇ Word Report":"⬇ Informe en Word",
+    "⬇ Download Word Report":"⬇ Descargar informe en Word",
+    // CLIENT PAGE
+    "Real-World Experience":"Experiencia del mundo real",
+    "Client Work & Presentations":"Trabajo con clientes y presentaciones",
+    "Worked directly under the Digital Marketing Director at Western Union's central agency in Guatemala. Supported planning, execution, and tracking of multi-channel marketing strategies - including billboard placements, print collateral, and local brand awareness campaigns.":"Trabajé directamente bajo el Director de Marketing Digital en la agencia central de Western Union en Guatemala. Apoyé la planificación, ejecución y seguimiento de estrategias de marketing multicanal, incluyendo vallas publicitarias, material impreso y campañas locales de reconocimiento de marca.",
+    "Managed the full sales lifecycle from initial outreach and contract negotiation via chat and video to strategic closing. Redesigned the client-onboarding system - organizing client information and streamlining how sales calls were handled - boosting process efficiency by 35%.":"Gestioné el ciclo de ventas completo, desde el primer contacto y la negociación de contratos por chat y video hasta el cierre estratégico. Rediseñé el sistema de incorporación de clientes - organizando la información del cliente y agilizando el manejo de las llamadas de ventas - aumentando la eficiencia del proceso en un 35%.",
+    "Managed daily cash operations of up to Q15,000, overseeing accurate processing of remittances and financial transactions. Served as primary point of contact for customers, handling an average of 50 daily transactions while improving service speed by 10% through efficient cash reconciliation.":"Gestioné operaciones diarias de efectivo de hasta Q15,000, supervisando el procesamiento preciso de remesas y transacciones financieras. Fui el principal punto de contacto para los clientes, manejando un promedio de 50 transacciones diarias y mejorando la velocidad del servicio en un 10% mediante una conciliación de efectivo eficiente.",
+    "Designed a 19-sheet KPI dashboard for AeroShield, a deeptech manufacturer scaling from 6 to 300 units/week. Identified the production vessel as the #1 bottleneck (38 of 101 cycle hours) and built a centralized tracking system covering output, quality gates, vessel utilization, cycle time, labor productivity, and energy intensity. Projected $40-80K in annual savings with a ~12-month payback period.":"Diseñé un panel de KPI de 19 hojas para AeroShield, un fabricante deeptech que escalaba de 6 a 300 unidades/semana. Identifiqué el reactor de producción como el cuello de botella número 1 (38 de 101 horas de ciclo) y construí un sistema centralizado de seguimiento que cubría producción, controles de calidad, utilización del reactor, tiempo de ciclo, productividad laboral e intensidad energética. Proyecté entre $40-80K de ahorro anual con un periodo de retorno de ~12 meses.",
+    "Developed a full go-to-market expansion strategy for Jet Rose, a European bespoke private aviation broker entering the Americas. Delivered a self-funded growth model, competitive analysis against Jettly, JetFinder, and Amalfi Jets, a $99/month membership pricing framework, and a brand differentiation strategy positioning Jet Rose as the European expert in the US market.":"Desarrollé una estrategia completa de expansión y salida al mercado para Jet Rose, un bróker europeo de aviación privada a medida que entra a las Américas. Entregué un modelo de crecimiento autofinanciado, análisis competitivo frente a Jettly, JetFinder y Amalfi Jets, un marco de precios de membresía de $99/mes y una estrategia de diferenciación de marca que posiciona a Jet Rose como el experto europeo en el mercado estadounidense.",
+    "Marketing":"Marketing",
+    "Marketing Projects & Research":"Proyectos e investigación de marketing",
+    "Built a predictive attention framework for Coachella TikTok content using R, analyzing 1,351 videos across 2018-2026. Developed 3 regression models (Baseline, Sentiment Amplification, Topic Model), implemented Z-Score early warning signals to detect pre-burst windows, and recommended a share-seeding managerial lever based on coefficient analysis.":"Construí un marco predictivo de atención para el contenido de Coachella en TikTok usando R, analizando 1,351 videos entre 2018 y 2026. Desarrollé 3 modelos de regresión (Base, Amplificación de Sentimiento, Modelo de Temas), implementé señales de alerta temprana con Z-Score para detectar ventanas previas al pico y recomendé una palanca gerencial de siembra de contenido compartido con base en el análisis de coeficientes.",
+    "Developed a full winter strategy for Far Out Ice Cream, a Kiwi-style ice cream brand facing seasonal slowdown. Delivered a new \"Winter Warm-Up\" menu (affogatos, warm apple crisp, local bakery brownies), seasonal flavor calendar with limited monthly releases, holiday gift kit strategy, culinary school partnership recommendations (Cambridge School of Culinary Arts, Le Cordon Bleu), and a catering launch plan with influencer campaign and loyalty program to drive year-round revenue.":"Desarrollé una estrategia completa de invierno para Far Out Ice Cream, una marca de helados al estilo neozelandés que enfrentaba una desaceleración estacional. Entregué un nuevo menú \"Winter Warm-Up\" (affogatos, crumble de manzana caliente, brownies de panadería local), un calendario de sabores de temporada con lanzamientos mensuales limitados, una estrategia de kits de regalo navideños, recomendaciones de alianzas con escuelas culinarias (Cambridge School of Culinary Arts, Le Cordon Bleu) y un plan de lanzamiento de catering con campaña de influencers y programa de lealtad para generar ingresos todo el año.",
+    "Designed a comprehensive guest experience and loyalty strategy for Kaktus Somabay, a luxury resort on Egypt's Red Sea coast. Delivered a full loyalty program architecture, a local partnership ecosystem (Wunder Chocolatier, Scuba World Divers, ORCA Dive Club, Safari Sahara), a curated boutique retail concept inspired by Egyptian aesthetics, and niche wellness programming - including desert escapes, gourmet dining partnerships, and daily movement experiences - to drive repeat guest engagement and premium positioning.":"Diseñé una estrategia integral de experiencia del huésped y lealtad para Kaktus Somabay, un resort de lujo en la costa del Mar Rojo de Egipto. Entregué una arquitectura completa de programa de lealtad, un ecosistema de alianzas locales (Wunder Chocolatier, Scuba World Divers, ORCA Dive Club, Safari Sahara), un concepto curado de retail boutique inspirado en la estética egipcia y una programación de bienestar de nicho - incluyendo escapadas al desierto, alianzas gastronómicas gourmet y experiencias diarias de movimiento - para impulsar la fidelización de huéspedes y un posicionamiento premium.",
+    "Developed a full US market entry strategy for Explurger, a gamified travel-social app competing with Instagram, TikTok, and TripAdvisor. Delivered a 3-phase launch roadmap (influencer partnerships → city expansion → airport/Amtrak advertising), competitive feature analysis, customer persona mapping, a full conversion funnel, and channel prioritization across TikTok, Instagram, and YouTube - with a US Trending Page rollout as the immediate activation step.":"Desarrollé una estrategia completa de entrada al mercado de EE. UU. para Explurger, una app social de viajes gamificada que compite con Instagram, TikTok y TripAdvisor. Entregué una hoja de ruta de lanzamiento en 3 fases (alianzas con influencers → expansión por ciudades → publicidad en aeropuertos/Amtrak), análisis competitivo de funciones, mapeo de perfiles de cliente, un embudo de conversión completo y priorización de canales en TikTok, Instagram y YouTube - con el despliegue de una página de tendencias en EE. UU. como paso de activación inmediato.",
+    "Conducted a strategic marketing analysis of the GLP-1 weight-loss medication market (Ozempic, Wegovy). Mapped information diffusion dynamics across Broadcaster, Viral Spreader, and Community Builder roles, built a Priority Map and Virality Map, and revealed that mid-sized creators outperform headline influencers in conversion efficiency - a key insight for pharma marketing strategy.":"Realicé un análisis estratégico de marketing del mercado de medicamentos GLP-1 para pérdida de peso (Ozempic, Wegovy). Mapeé la dinámica de difusión de información entre los roles de Difusor, Propagador Viral y Constructor de Comunidad, construí un Mapa de Prioridades y un Mapa de Viralidad, y revelé que los creadores medianos superan a los influencers principales en eficiencia de conversión, un hallazgo clave para la estrategia de marketing farmacéutico.",
+    // FINANCE PAGE
+    "Financial Work":"Trabajo financiero",
+    "Finance Portfolio":"Portafolio de finanzas",
+    "🏆 Flagship Project":"🏆 Proyecto insignia",
+    "An institutional-grade screening tool that quantitatively evaluates 600+ US-listed companies using SEC EDGAR XBRL data. Runs 11 academic fraud and solvency models across 5 dimensions - producing a composite Health Score (0-100), a fraud risk rating, and an auto-generated analysis card per company. Built in Excel + Python with a fully automated pipeline that recalculates every ratio the moment a new 10-K is filed. No manual updates. Ever.":"Una herramienta de análisis de grado institucional que evalúa cuantitativamente más de 600 empresas cotizadas en EE. UU. usando datos XBRL de SEC EDGAR. Ejecuta 11 modelos académicos de fraude y solvencia en 5 dimensiones, produciendo una puntuación de salud compuesta (0-100), una calificación de riesgo de fraude y una tarjeta de análisis autogenerada por empresa. Construida en Excel + Python con un pipeline totalmente automatizado que recalcula cada ratio en el momento en que se presenta un nuevo 10-K. Sin actualizaciones manuales. Nunca.",
+    "↓ Download the Excel (sample)":"↓ Descargar el Excel (muestra)",
+    "Companies screened":"Empresas analizadas",
+    "Academic models":"Modelos académicos",
+    "Financial ratios":"Ratios financieros",
+    "A single-analyst equity research automation system that turns one YAML config into a full institutional-grade research package - 84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck - in one command. The pipeline runs DCF, comparable companies, precedent transactions, LBO returns, and blended fair-value output, layered with seven cognitive bias-correction modules targeting anchoring, optimism bias, and narrative contamination. Verified end-to-end with real Apple FY2024 data, producing a live HOLD verdict. ~39,000 lines of Python.":"Un sistema de automatización de análisis de acciones para un solo analista que convierte una configuración YAML en un paquete de investigación de grado institucional completo - modelo de Excel de 84 hojas, informe en Word estilo CFA y presentación PPTX de 16 diapositivas - en un solo comando. El pipeline ejecuta DCF, empresas comparables, transacciones precedentes, retornos de LBO y una salida de valor razonable combinado, con siete módulos de corrección de sesgos cognitivos que abordan el anclaje, el sesgo de optimismo y la contaminación narrativa. Verificado de extremo a extremo con datos reales de Apple del año fiscal 2024, produciendo un veredicto HOLD en vivo. ~39,000 líneas de Python.",
+    "Excel sheets / company":"Hojas de Excel / empresa",
+    "Bias-correction modules":"Módulos de corrección de sesgos",
+    "Lines of Python":"Líneas de Python",
+    "Investment Analysis":"Análisis de inversiones",
+    "Equity research, sector analysis, and company valuation work completed through Forage simulations at Fidelity International and Goldman Sachs.":"Análisis de acciones, análisis sectorial y valoración de empresas realizados a través de simulaciones de Forage en Fidelity International y Goldman Sachs.",
+    "Banking & Credit":"Banca y crédito",
+    "Commercial lending, credit underwriting, and relationship banking practice across simulations at Wells Fargo, Citi, and Bank of America.":"Práctica de préstamos comerciales, evaluación de crédito y banca de relación a través de simulaciones en Wells Fargo, Citi y Bank of America.",
+    "Risk & Audit":"Riesgo y auditoría",
+    "Market risk, credit risk, and internal audit workflows at Goldman Sachs - stress testing, VaR analysis, and control gap identification.":"Flujos de trabajo de riesgo de mercado, riesgo de crédito y auditoría interna en Goldman Sachs - pruebas de estrés, análisis de VaR e identificación de brechas de control.",
+    "Sales & Trading":"Ventas y trading",
+    "Simulated equity and fixed income trading at Citi and Bank of America - market commentary, trade execution, and client pitching.":"Trading simulado de acciones y renta fija en Citi y Bank of America - comentario de mercado, ejecución de operaciones y presentación a clientes.",
+    "Tax & Transaction Advisory":"Asesoría fiscal y de transacciones",
+    "M&A tax due diligence and transaction structuring through Ryan LLC's Transaction Tax Consulting simulation.":"Due diligence fiscal de M&A y estructuración de transacciones a través de la simulación de Transaction Tax Consulting de Ryan LLC.",
+    "Bloomberg Terminal":"Bloomberg Terminal",
+    "Bloomberg Essentials certified - equity and fixed income data, core terminal functions (DES, GP, YAS), and market data navigation.":"Certificado en Bloomberg Essentials - datos de acciones y renta fija, funciones centrales de la terminal (DES, GP, YAS) y navegación de datos de mercado.",
+    // CERTS PAGE
+    "Credentials":"Credenciales",
+    "Certificates & Achievements":"Certificados y logros",
+    "All (50)":"Todas (50)",
+    "🎓 Coursera":"🎓 Coursera",
+    "🏦 Banking":"🏦 Banca",
+    "📊 Finance":"📊 Finanzas",
+    "💼 Consulting":"💼 Consultoría",
+    "🌐 Tech & Data":"🌐 Tecnología y datos",
+    "🛡️ Insurance":"🛡️ Seguros",
+    // EXPERIENCE PAGE
+    "Professional Experience":"Experiencia profesional",
+    "Finance-focused experience across analytical, client-facing, and operational roles - the groundwork behind the finance-and-AI systems I build today.":"Experiencia enfocada en finanzas en roles analíticos, de cara al cliente y operativos - la base detrás de los sistemas de finanzas e IA que construyo hoy.",
+    "The thread across all of them: turning messy inputs into reliable, decision-ready output - whether that's an equity-screening pipeline, a client proposal, or a day's cash reconciliation.":"El hilo común en todos ellos: convertir entradas desordenadas en resultados fiables y listos para la toma de decisiones, ya sea un pipeline de análisis de acciones, una propuesta a un cliente o la conciliación de efectivo de un día.",
+    "Finance Intern":"Practicante de finanzas",
+    "Built a semi-automated Python screening pipeline that raised analyst throughput an estimated 400x - cutting review from roughly 2 hours per company to screening 2,000+ companies in ~10 hours.":"Construí un pipeline de análisis semiautomatizado en Python que elevó la productividad del analista un estimado de 400x - reduciendo la revisión de unas 2 horas por empresa a analizar más de 2,000 empresas en ~10 horas.",
+    "Turned a manual, analyst-by-analyst review into a repeatable, automated screen that surfaces the names worth a closer look.":"Convertí una revisión manual, analista por analista, en un análisis automatizado y repetible que destaca los nombres que merecen una mirada más cercana.",
+    "Client Specialist":"Especialista de clientes",
+    "Managed the full sales cycle from outreach through contract close, and redesigned the client-onboarding process - improving efficiency by 35%.":"Gestioné el ciclo de ventas completo, desde el primer contacto hasta el cierre del contrato, y rediseñé el proceso de incorporación de clientes - mejorando la eficiencia en un 35%.",
+    "Prospected new business through outbound cold calling, led needs-assessment meetings, and built tailored proposals that converted leads into signed contracts.":"Prospecté nuevos negocios mediante llamadas en frío, dirigí reuniones de evaluación de necesidades y elaboré propuestas a medida que convirtieron prospectos en contratos firmados.",
+    "Digital Marketing Intern":"Practicante de marketing digital",
+    "Supported the Digital Marketing Director in planning, executing, and tracking multi-channel campaigns across Central America.":"Apoyé al Director de Marketing Digital en la planificación, ejecución y seguimiento de campañas multicanal en Centroamérica.",
+    "Contributed to regional brand-awareness initiatives spanning billboard placements, print collateral, and broader marketing efforts.":"Contribuí a iniciativas regionales de reconocimiento de marca que abarcaban vallas publicitarias, material impreso y esfuerzos de marketing más amplios.",
+    "Cashier & Remittance":"Cajero y remesas",
+    "Managed daily cash operations of up to Q15,000, processing remittances and financial transactions accurately.":"Gestioné operaciones diarias de efectivo de hasta Q15,000, procesando remesas y transacciones financieras con precisión.",
+    "Handled ~50 daily transactions and improved service speed by 10% through efficient cash reconciliation.":"Manejé ~50 transacciones diarias y mejoré la velocidad del servicio en un 10% mediante una conciliación de efectivo eficiente.",
+    // CASE STUDIES
+    "Systems → Risk Decisions":"Sistemas → decisiones de riesgo",
+    "The strongest signal isn't the number of tools you know - it's whether a technical system connects to an actual risk decision. Each project below is framed that way.":"La señal más fuerte no es la cantidad de herramientas que conoces, sino si un sistema técnico se conecta con una decisión de riesgo real. Cada proyecto a continuación está planteado de esa forma.",
+    "For every one: the uncertainty it faced, the control I designed to bound it, the trade-offs that introduced, how I tried to break it - and when I'd distrust it, plus the safeguard I'd add next.":"Para cada uno: la incertidumbre que enfrentó, el control que diseñé para acotarla, los compromisos que eso introdujo, cómo intenté romperlo, y cuándo desconfiaría de él, además de la salvaguarda que agregaría después.",
+    "The uncertainty":"La incertidumbre",
+    "How I got here":"Cómo llegué aquí",
+    "Control & monitoring I designed":"Control y monitoreo que diseñé",
+    "Trade-offs it introduced":"Los compromisos que introdujo",
+    "How I tested failure modes":"Cómo probé los modos de fallo",
+    "In finance terms":"En términos financieros",
+    "Key assumptions":"Supuestos clave",
+    "Reproducible & reviewable":"Reproducible y revisable",
+    "When I'd distrust it - and the safeguard I'd add":"Cuándo desconfiaría de él - y la salvaguarda que agregaría",
+    // WRITING PAGE (framing only; essays stay in English)
+    "Essays":"Ensayos",
+    "Ideas from building - AI systems, financial analysis, and what happens when you combine the two.":"Ideas desde la práctica - sistemas de IA, análisis financiero y lo que ocurre cuando combinas ambos. (Ensayos en inglés.)",
+    // CASE STUDY BODIES
+    "Risk decision it informs: Before trusting a company's reported health, where is the accounting most likely stretched - and is a distress signal real, or a sector artifact?":"Decisión de riesgo que informa: antes de confiar en la salud reportada de una empresa, ¿dónde es más probable que la contabilidad esté forzada, y una señal de estrés es real o un artefacto del sector?",
+    "Reported earnings diverge from the cash a business actually generates (accruals). Any single model is a noisy read, XBRL fields aren't tagged uniformly across filers, and base rates differ by sector.":"Las ganancias reportadas divergen del efectivo que un negocio realmente genera (devengos). Cualquier modelo por sí solo es una lectura ruidosa, los campos XBRL no se etiquetan de forma uniforme entre las empresas y las tasas base difieren por sector.",
+    "I started with a single model - Altman's Z-score. It broke fast: any one model is a noisy read, and a single mis-tagged XBRL field can flip the verdict. So I stopped trusting any single number and built an ensemble across bankruptcy and earnings-quality models, then added sector benchmarking so a low score in a capital-heavy sector wasn't misread as distress. The composite health score is that correction - not the first idea.":"Empecé con un solo modelo - el Z-score de Altman. Falló rápido: cualquier modelo por sí solo es una lectura ruidosa, y un solo campo XBRL mal etiquetado puede invertir el veredicto. Así que dejé de confiar en un solo número y construí un ensamble entre modelos de quiebra y de calidad de ganancias, y luego agregué comparación por sector para que una puntuación baja en un sector intensivo en capital no se interpretara como estrés. La puntuación de salud compuesta es esa corrección, no la primera idea.",
+    "Eleven independent academic models across five dimensions collapse into one composite Health Score. A flag requires convergence across independent models - Altman (solvency), Beneish (manipulation), Piotroski (quality), Dechow (accruals) - not any single trigger. The pipeline recalculates every ratio the moment a new 10-K is filed, so the signal never goes stale.":"Once modelos académicos independientes en cinco dimensiones se resumen en una única puntuación de salud compuesta. Una alerta requiere convergencia entre modelos independientes - Altman (solvencia), Beneish (manipulación), Piotroski (calidad), Dechow (devengos) - no un solo disparador. El pipeline recalcula cada ratio en el momento en que se presenta un nuevo 10-K, por lo que la señal nunca queda desactualizada.",
+    "Convergence suppresses false alarms but adds lag - the Z-Score often flags only after the accruals gap has widened for years. The model is deliberately conservative, so it structurally over-flags capital-intensive industrials (asset turnover) and pre-revenue biotech (profitability). Automation also removes human judgment at the ingestion step.":"La convergencia suprime falsas alarmas pero añade retraso - el Z-Score a menudo alerta solo después de que la brecha de devengos se ha ampliado durante años. El modelo es deliberadamente conservador, por lo que estructuralmente sobre-alerta a las industriales intensivas en capital (rotación de activos) y a la biotecnología sin ingresos (rentabilidad). La automatización también elimina el juicio humano en el paso de ingesta.",
+    "Stress-tested the XBRL parser against non-standard tag formats - a real defect where certain filers tagged fields differently produced anomalous scores, caught by reconciling raw → cleaned → model-input data rather than re-checking the formulas. Ran the screen cross-sectionally across 600+ names so outliers invisible in isolation become obvious.":"Sometí a prueba de estrés el analizador de XBRL frente a formatos de etiqueta no estándar - un defecto real en el que ciertas empresas etiquetaban campos de forma distinta produjo puntuaciones anómalas, detectado al reconciliar los datos crudos → limpios → de entrada al modelo en lugar de revisar de nuevo las fórmulas. Ejecuté el análisis de forma transversal sobre más de 600 nombres para que los valores atípicos, invisibles de manera aislada, se vuelvan evidentes.",
+    "Model risk - each score's reliability is documented by sector":"Riesgo de modelo - la fiabilidad de cada puntuación está documentada por sector",
+    "Limits - composite thresholds define the watchlist":"Límites - los umbrales compuestos definen la lista de vigilancia",
+    "Escalation - convergent red flags auto-generate a manual analysis card":"Escalamiento - las alertas rojas convergentes generan automáticamente una tarjeta de análisis manual",
+    "Explainability - every score reconciles to its inputs, with no gaps":"Explicabilidad - cada puntuación se reconcilia con sus entradas, sin brechas",
+    "Early warning - the accruals gap moves before solvency models react":"Alerta temprana - la brecha de devengos se mueve antes de que reaccionen los modelos de solvencia",
+    "Scores assume SEC EDGAR XBRL fields are tagged consistently across filers (they aren't always), that academic model thresholds calibrated on historical samples still hold today, and that sector medians are a fair benchmark. The tool flags where a signal may be a sector artifact rather than real distress.":"Las puntuaciones asumen que los campos XBRL de SEC EDGAR se etiquetan de forma coherente entre empresas (no siempre es así), que los umbrales de los modelos académicos calibrados sobre muestras históricas siguen siendo válidos hoy, y que las medianas del sector son un punto de referencia justo. La herramienta señala dónde una señal puede ser un artefacto del sector en lugar de estrés real.",
+    "The pipeline recomputes every ratio the moment a new 10-K is filed - same inputs, same output, no manual edits, versioned in git. A reviewer can trace any company's health score back through the ratios to the exact source XBRL field.":"El pipeline recalcula cada ratio en el momento en que se presenta un nuevo 10-K - mismas entradas, misma salida, sin ediciones manuales, versionado en git. Un revisor puede rastrear la puntuación de salud de cualquier empresa a través de los ratios hasta el campo XBRL de origen exacto.",
+    "I distrust a single high score in a capital-intensive or pre-revenue name, and re-anchor to sector base rates before acting on it. The next safeguard I'd add: a sector-adjusted overlay plus a data-quality confidence flag that down-weights companies with sparse or non-standard XBRL tags.":"Desconfío de una única puntuación alta en un nombre intensivo en capital o sin ingresos, y me reancla a las tasas base del sector antes de actuar. La siguiente salvaguarda que agregaría: una capa ajustada por sector más un indicador de confianza en la calidad de los datos que reste peso a las empresas con etiquetas XBRL escasas o no estándar.",
+    "Risk decision it informs: Should an AI agent be allowed to move money and route approvals on its own - and what has to be true before it can?":"Decisión de riesgo que informa: ¿debería permitirse que un agente de IA mueva dinero y encamine aprobaciones por su cuenta, y qué debe ser cierto antes de que pueda hacerlo?",
+    "LLM plans are strong but occasionally wrong. A single hallucination, misread context, or ambiguous instruction can send a payment to the wrong party or skip a required review - and by the time a human notices, the action is already done.":"Los planes del LLM son sólidos pero a veces equivocados. Una sola alucinación, un contexto mal leído o una instrucción ambigua pueden enviar un pago a la parte equivocada u omitir una revisión requerida - y para cuando un humano lo nota, la acción ya está hecha.",
+    "I first let the LLM plan and act freely - then realized a single hallucination could route a payment to the wrong party. So I inverted the design: rather than trust the model and check afterward, I bound it with explicit policy and budget rules enforced on-chain, so anything outside the approved envelope is blocked before it happens and escalated to a human. The policy layer isn't a feature I bolted on - it's the whole reason the agent is safe to run.":"Al principio dejé que el LLM planeara y actuara libremente - luego me di cuenta de que una sola alucinación podía encaminar un pago a la parte equivocada. Así que invertí el diseño: en lugar de confiar en el modelo y verificar después, lo limité con reglas explícitas de política y presupuesto aplicadas on-chain, de modo que cualquier cosa fuera del margen aprobado se bloquea antes de ocurrir y se escala a un humano. La capa de políticas no es una función que añadí encima - es la razón misma por la que el agente es seguro de ejecutar.",
+    "Reasoning is separated from execution: the LLM only proposes an action plan; a deterministic policy layer and Move smart contracts enforce every decision - approved-vendor check, payment within an authorized range, quorum met for the approval tier. Revocable authority, veto windows, self-suspension safeguards, and full audit trails with human validation bound what can happen autonomously.":"El razonamiento está separado de la ejecución: el LLM solo propone un plan de acción; una capa de política determinista y los contratos inteligentes Move hacen cumplir cada decisión - verificación de proveedor aprobado, pago dentro de un rango autorizado, quórum alcanzado para el nivel de aprobación. La autoridad revocable, las ventanas de veto, las salvaguardas de autosuspensión y los registros de auditoría completos con validación humana acotan lo que puede ocurrir de forma autónoma.",
+    "Hard policy boundaries cost flexibility and speed - the agent can't improvise around an edge case - in exchange for a bounded blast radius when the model is wrong. For anything touching money, that trade is the whole point.":"Los límites duros de política cuestan flexibilidad y velocidad - el agente no puede improvisar ante un caso límite - a cambio de un radio de impacto acotado cuando el modelo se equivoca. Para cualquier cosa que toque dinero, ese intercambio es precisamente el objetivo.",
+    "Probed the cases most demos skip: an approval chain that breaks halfway through, a payment outside the authorized range, a vendor not on the approved list - confirming the policy layer blocks the action rather than the model talking its way past it.":"Investigué los casos que la mayoría de las demos omiten: una cadena de aprobación que se rompe a la mitad, un pago fuera del rango autorizado, un proveedor que no está en la lista aprobada - confirmando que la capa de política bloquea la acción en lugar de que el modelo la sortee con argumentos.",
+    "Limits - authorized payment ranges and vendor allow-lists":"Límites - rangos de pago autorizados y listas de proveedores permitidos",
+    "Escalation - quorum thresholds and veto windows route to the right authority":"Escalamiento - los umbrales de quórum y las ventanas de veto dirigen a la autoridad correcta",
+    "Model risk - LLM unreliability is contained, not trusted":"Riesgo de modelo - la falta de fiabilidad del LLM se contiene, no se confía en ella",
+    "Explainability & audit - a verifiable trail of what was proposed, validated, rejected, and why":"Explicabilidad y auditoría - un rastro verificable de lo que se propuso, validó, rechazó y por qué",
+    "Controls - deterministic enforcement the model can't override":"Controles - aplicación determinista que el modelo no puede anular",
+    "The agent assumes the policy and budget rules are complete and current, that the on-chain contracts enforce what the policy intends, and that a human is reachable for anything outside the approved envelope. Where those assumptions break, the action is blocked - never guessed.":"El agente asume que las reglas de política y presupuesto están completas y actualizadas, que los contratos on-chain hacen cumplir lo que la política pretende, y que hay un humano disponible para cualquier cosa fuera del margen aprobado. Donde esos supuestos fallan, la acción se bloquea - nunca se adivina.",
+    "Every agent decision is logged with the policy that gated it and the state it read, so the whole run is auditable and replayable. A reviewer sees not just what the agent did, but which rule allowed it and exactly what it would have taken to stop it.":"Cada decisión del agente se registra con la política que la limitó y el estado que leyó, de modo que toda la ejecución es auditable y reproducible. Un revisor ve no solo lo que hizo el agente, sino qué regla lo permitió y exactamente qué habría hecho falta para detenerlo.",
+    "I never let the model's confidence override the policy layer - a confident wrong plan is still blocked. The safeguard I lean on: human validation on any novel action type, plus rollback capability, so an unexpected state is reversible rather than final.":"Nunca dejo que la confianza del modelo anule la capa de política - un plan equivocado pero seguro de sí mismo sigue estando bloqueado. La salvaguarda en la que me apoyo: validación humana en cualquier tipo de acción nueva, además de capacidad de reversión, para que un estado inesperado sea reversible en lugar de definitivo.",
+    "Risk decision it informs: How much of this valuation is analysis, and how much is an assumption dressed up as a number - and where does the answer actually live?":"Decisión de riesgo que informa: ¿cuánto de esta valoración es análisis y cuánto es un supuesto disfrazado de número, y dónde vive realmente la respuesta?",
+    "In most DCFs, terminal value is 60-80% of enterprise value, and a one-point change in the terminal growth rate can move the output by ~30%. Analysts also anchor on narratives and on their own prior targets.":"En la mayoría de los DCF, el valor terminal representa entre el 60 y el 80% del valor de la empresa, y un cambio de un punto en la tasa de crecimiento terminal puede mover el resultado en ~30%. Los analistas también se anclan en narrativas y en sus propios objetivos previos.",
+    "The first version was one DCF. Building it, I watched terminal value swamp 60-80% of the answer - the \"number\" was really an assumption in disguise. Instead of polishing one method, I added comps, LBO, and precedent transactions as independent cross-checks and layered in bias-correction modules, so the output shows a spread and where the value actually lives rather than false-precision. That reframe - from \"compute the value\" to \"show how much is analysis vs assumption\" - is why the kit looks the way it does.":"La primera versión era un solo DCF. Al construirlo, vi cómo el valor terminal abarcaba entre el 60 y el 80% de la respuesta - el \"número\" era en realidad un supuesto disfrazado. En lugar de pulir un solo método, añadí comparables, LBO y transacciones precedentes como verificaciones cruzadas independientes y agregué módulos de corrección de sesgos, de modo que el resultado muestra un rango y dónde vive realmente el valor en vez de una falsa precisión. Ese replanteo - de \"calcular el valor\" a \"mostrar cuánto es análisis frente a supuesto\" - es la razón por la que el kit luce como luce.",
+    "A blended fair value cross-checks the Gordon Growth terminal against an exit-multiple and a reinvestment-adjusted growth estimate - when the three diverge, the divergence is flagged rather than averaged away. Seven cognitive bias-correction modules target anchoring, optimism bias, and narrative contamination. Verified end-to-end on real Apple FY2024 data, producing a live HOLD.":"Un valor razonable combinado contrasta el terminal de Crecimiento de Gordon con un múltiplo de salida y una estimación de crecimiento ajustada por reinversión - cuando los tres divergen, la divergencia se señala en lugar de promediarse. Siete módulos de corrección de sesgos cognitivos abordan el anclaje, el sesgo de optimismo y la contaminación narrativa. Verificado de extremo a extremo con datos reales de Apple del año fiscal 2024, produciendo un HOLD en vivo.",
+    "Surfacing disagreement instead of resolving it to a single tidy number is less clean to present - but it shows where the uncertainty is instead of hiding it. The bias modules also add real complexity to the pipeline (~39,000 lines of Python).":"Sacar a la luz el desacuerdo en lugar de resolverlo en un único número ordenado es menos limpio de presentar - pero muestra dónde está la incertidumbre en vez de ocultarla. Los módulos de sesgo también añaden complejidad real al pipeline (~39,000 líneas de Python).",
+    "Ran explicit terminal-value sensitivity so the output is a range with a clear statement of how far it moves as assumptions change, and cross-checked the DCF against comparable transactions and an LBO return to catch a single method drifting.":"Ejecuté una sensibilidad explícita del valor terminal para que el resultado sea un rango con una declaración clara de cuánto se mueve al cambiar los supuestos, y contrasté el DCF con transacciones comparables y un retorno de LBO para detectar si un solo método se desviaba.",
+    "Model risk - terminal-value sensitivity is made explicit, not buried":"Riesgo de modelo - la sensibilidad del valor terminal se hace explícita, no se oculta",
+    "Limits - a valuation range, not a false-precision point target":"Límites - un rango de valoración, no un objetivo puntual de falsa precisión",
+    "Explainability - every output reconciles to its inputs and its method":"Explicabilidad - cada resultado se reconcilia con sus entradas y su método",
+    "Decision link - the blended output and HOLD verdict tie to a buy / hold / sell call":"Vínculo con la decisión - el resultado combinado y el veredicto HOLD se ligan a una recomendación de comprar / mantener / vender",
+    "The blended value assumes the four methods are semi-independent reads (they partly aren't), that the discount rate and terminal growth hold across the forecast, and that FY2024 XBRL fields map cleanly to the model's line items. Every one of these lives in the config, not buried in a cell.":"El valor combinado asume que los cuatro métodos son lecturas semiindependientes (en parte no lo son), que la tasa de descuento y el crecimiento terminal se mantienen a lo largo del pronóstico, y que los campos XBRL del año fiscal 2024 se corresponden limpiamente con las partidas del modelo. Cada uno de estos supuestos vive en la configuración, no escondido en una celda.",
+    "The entire 84-sheet model is generated from a single YAML config and versioned in git - change an input, rerun, and every sheet recalculates identically. A reviewer can open the config, see exactly which assumptions drove the number, and challenge any one of them.":"El modelo completo de 84 hojas se genera a partir de una única configuración YAML y se versiona en git - cambia una entrada, vuelve a ejecutarlo y cada hoja se recalcula de forma idéntica. Un revisor puede abrir la configuración, ver exactamente qué supuestos impulsaron el número y cuestionar cualquiera de ellos.",
+    "I distrust any DCF where terminal value dominates and the growth assumption is doing the heavy lifting - I re-check it against the exit multiple and the reinvestment rate. My safeguard: present the sensitivity range and the method spread by default, never a single number, so the reader sees the uncertainty I did.":"Desconfío de cualquier DCF donde el valor terminal domina y el supuesto de crecimiento hace el trabajo pesado - lo vuelvo a contrastar con el múltiplo de salida y la tasa de reinversión. Mi salvaguarda: presentar por defecto el rango de sensibilidad y la dispersión entre métodos, nunca un solo número, para que el lector vea la incertidumbre que yo vi.",
+    // FOOTER
+    "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
+  };
+
+  // Special innerHTML swaps (preserve inline markup)
+  var HTML_SWAP = {
+    ".hero-title": {
+      en: 'Agentic AI,<br>built for <span>finance.</span>',
+      es: 'IA agéntica,<br>hecha para <span>finanzas.</span>'
+    }
+  };
+
+  function norm(s){
+    return (s||"").replace(/\s+/g,' ').trim()
+      .replace(/[‘’]/g,"'")
+      .replace(/[“”]/g,'"')
+      .replace(/[–—]/g,'-')
+      .replace(/ /g,' ')
+      .replace(/×/g,'x');
+  }
+  // build normalised lookup
+  var NDICT={}; for(var k in DICT){ NDICT[norm(k)] = DICT[k]; }
+
+  var SEL = 'a,p,h1,h2,h3,h4,h5,h6,li,span,button,div,footer';
+
+  function hasTranslatableChild(el){
+    var kids = el.querySelectorAll(SEL);
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].id==='lang-switch') continue;
+      if(kids[i].textContent && kids[i].textContent.trim()) return true;
+    }
+    return false;
+  }
+  function applyLang(lang){
+    document.documentElement.setAttribute('lang', lang);
+    if(lang==='en'){
+      // restore originals only
+      document.querySelectorAll('[data-en-html]').forEach(function(el){
+        el.innerHTML = el.getAttribute('data-en-html');
+      });
+    } else {
+      // translate: only leaf-level containers (never flatten a parent that holds links/spans)
+      document.querySelectorAll(SEL).forEach(function(el){
+        if(el.id==='lang-switch' || el.closest('#lang-switch')) return;
+        if(hasTranslatableChild(el)) return;
+        var key = norm(el.textContent);
+        if(!key) return;
+        var es = NDICT[key];
+        if(es===undefined) return;
+        if(!el.hasAttribute('data-en-html')) el.setAttribute('data-en-html', el.innerHTML);
+        el.textContent = es;
+      });
+    }
+    // innerHTML swaps (hero title etc.)
+    for(var sel in HTML_SWAP){
+      document.querySelectorAll(sel).forEach(function(el){
+        el.innerHTML = HTML_SWAP[sel][lang] || HTML_SWAP[sel].en;
+      });
+    }
+    try{ localStorage.setItem('site-lang', lang); }catch(e){}
+  }
+  window.applyLang = applyLang;
+  window.toggleLang = function(){
+    var cur = document.documentElement.getAttribute('lang')==='es' ? 'es':'en';
+    applyLang(cur==='es' ? 'en':'es');
+  };
+
+  function init(){
+    var saved='en';
+    try{ saved = localStorage.getItem('site-lang')||'en'; }catch(e){}
+    if(saved==='es') applyLang('es'); else document.documentElement.setAttribute('lang','en');
+  }
+  if(document.readyState!=='loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
 </body>
 </html>
