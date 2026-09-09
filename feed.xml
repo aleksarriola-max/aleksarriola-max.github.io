@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 08 Sep 2026 13:10:33 +0000</lastBuildDate>
+<lastBuildDate>Wed, 09 Sep 2026 13:15:39 +0000</lastBuildDate>
+<item>
+<title>What Cold Emails Taught Me About Signal</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-49</guid>
+<category>Perspective</category>
+<pubDate>Wed, 09 Sep 2026 00:00:00 +0000</pubDate>
+<description>Sending cold emails is an exercise in humility and, quietly, in information theory. Most go unanswered. But the pattern of which ones land teaches you something you can’t learn from a guide: the difference between noise and signal in how you present yourself. The messages that work aren’t the polish</description>
+</item>
 <item>
 <title>The Underrated Value of Finishing Small Things</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
