@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 51 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 11, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What the Red-Flag Scanner Actually Looks For</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">When I built the Company Health Red-Flag Scanner, the hard part was not the scoring logic. It was deciding which ratios lie. Current ratio looks fine right up until a company times its receivables collection to land two days before the balance sheet date. Interest coverage looks fine right up until a covenant amendment quietly resets the denominator. The scanner does not trust any single ratio &#8212; it triangulates. A deteriorating cash conversion cycle plus flat gross margin plus rising days sales outstanding is a different signal than any one of those alone.</p><p style="margin-bottom:1.4rem;">What surprised me is how much of financial distress shows up in the footnotes before it shows up in the numbers. Related-party transactions, changes in revenue recognition timing, auditor language that softens from &#8220;unqualified&#8221; to &#8220;unqualified with an emphasis of matter&#8221; &#8212; these are cheap to read and expensive to model, so most screens skip them. I built mine to flag the language, not just the arithmetic.</p><p style="margin-bottom:1.4rem;">Running it across a few hundred companies taught me that most red flags are not fraud. They are ordinary stress: a customer concentration problem, a refinancing wall eighteen months out, a management team optimizing for the metric analysts watch instead of the one that matters. The scanner does not diagnose intent. It just makes the stress visible earlier than a quarterly earnings call would.</p><p style="margin-bottom:1.4rem;">The real lesson was about tooling, not accounting. A rule-based scanner will always miss novel failure modes. But it does something a human analyst covering forty names cannot: it never gets bored and it never skips the tenth company on the list.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 50 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 10, 2026</p>

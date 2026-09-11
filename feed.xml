@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 10 Sep 2026 13:13:18 +0000</lastBuildDate>
+<lastBuildDate>Fri, 11 Sep 2026 13:07:01 +0000</lastBuildDate>
+<item>
+<title>What the Red-Flag Scanner Actually Looks For</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-51</guid>
+<category>Finance</category>
+<pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+<description>When I built the Company Health Red-Flag Scanner, the hard part was not the scoring logic. It was deciding which ratios lie. Current ratio looks fine right up until a company times its receivables collection to land two days before the balance sheet date. Interest coverage looks fine right up until </description>
+</item>
 <item>
 <title>Optionality Is a Career Strategy, Not Just a Greek</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
