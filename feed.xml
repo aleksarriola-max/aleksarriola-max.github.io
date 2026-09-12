@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 11 Sep 2026 13:07:01 +0000</lastBuildDate>
+<lastBuildDate>Sat, 12 Sep 2026 12:30:45 +0000</lastBuildDate>
+<item>
+<title>The Valuation Kit Taught Me Valuation Is a Pipeline Problem</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-52</guid>
+<category>Finance</category>
+<pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+<description>I built the Orcen Capital auto valuation kit expecting the hard part to be the DCF math. It was not. The hard part was getting clean, comparable inputs out of ten different filing formats, three different fiscal year conventions, and at least one company that changed its segment definitions mid-year</description>
+</item>
 <item>
 <title>What the Red-Flag Scanner Actually Looks For</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
