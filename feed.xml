@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 12 Sep 2026 12:30:45 +0000</lastBuildDate>
+<lastBuildDate>Sun, 13 Sep 2026 13:32:35 +0000</lastBuildDate>
+<item>
+<title>What the Bloomberg Terminal Certification Doesn’t Teach You</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-53</guid>
+<category>Finance</category>
+<pubDate>Sun, 13 Sep 2026 00:00:00 +0000</pubDate>
+<description>The Bloomberg Terminal certification is a good crash course in function codes and a bad substitute for understanding why the data looks the way it does. Every screen on the terminal is an aggregation choice someone made — which pricing source to default to, how to handle a thinly traded bond, what c</description>
+</item>
 <item>
 <title>The Valuation Kit Taught Me Valuation Is a Pipeline Problem</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
