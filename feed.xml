@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 13 Sep 2026 13:32:35 +0000</lastBuildDate>
+<lastBuildDate>Mon, 14 Sep 2026 15:27:30 +0000</lastBuildDate>
+<item>
+<title>Tax Structure Is Where Deal Value Actually Moves</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-54</guid>
+<category>Finance</category>
+<pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
+<description>Studying tax and transaction advisory changed how I read deal announcements. Two acquisitions with identical purchase prices and identical target companies can produce wildly different after-tax outcomes depending on whether the deal is structured as a stock purchase or an asset purchase, whether a </description>
+</item>
 <item>
 <title>What the Bloomberg Terminal Certification Doesn’t Teach You</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
