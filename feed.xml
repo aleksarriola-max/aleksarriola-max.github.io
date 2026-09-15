@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 14 Sep 2026 15:27:30 +0000</lastBuildDate>
+<lastBuildDate>Tue, 15 Sep 2026 13:59:40 +0000</lastBuildDate>
+<item>
+<title>What Sales and Trading Teaches About Spreads as Information</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-55</guid>
+<category>Finance</category>
+<pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
+<description>The instinct in most valuation work is to treat the bid-ask spread as friction — a cost to be minimized, not a signal to be read. Studying sales and trading changed that. A widening spread on a name is often the earliest available marker that liquidity providers are repricing uncertainty, well befor</description>
+</item>
 <item>
 <title>Tax Structure Is Where Deal Value Actually Moves</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
