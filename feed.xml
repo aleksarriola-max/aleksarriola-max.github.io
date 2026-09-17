@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 16 Sep 2026 13:53:54 +0000</lastBuildDate>
+<lastBuildDate>Thu, 17 Sep 2026 13:57:16 +0000</lastBuildDate>
+<item>
+<title>What a Repricing Narrative Does to a Sector</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-57</guid>
+<category>Finance</category>
+<pubDate>Thu, 17 Sep 2026 00:00:00 +0000</pubDate>
+<description>Working on the GLP-1 market analysis was a case study in how fast a single drug class can reprice an entire adjacent sector. The direct beneficiaries — the manufacturers — were the obvious trade. The more interesting moves happened one and two steps removed: snack food companies, gym chains, and med</description>
+</item>
 <item>
 <title>What Risk and Audit Work Reveals About Control Failures</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
