@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 17 Sep 2026 13:57:16 +0000</lastBuildDate>
+<lastBuildDate>Fri, 18 Sep 2026 13:15:47 +0000</lastBuildDate>
+<item>
+<title>Attention Is a Leading Indicator, Not a Proxy for Revenue</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-58</guid>
+<category>Finance</category>
+<pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
+<description>The predictive attention analysis I built around Coachella’s TikTok presence started from a simple question: does online attention actually predict commercial outcomes, or does it just correlate with them after the fact. The honest answer is that it depends entirely on what kind of attention you are</description>
+</item>
 <item>
 <title>What a Repricing Narrative Does to a Sector</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
