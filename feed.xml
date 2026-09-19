@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 18 Sep 2026 13:15:47 +0000</lastBuildDate>
+<lastBuildDate>Sat, 19 Sep 2026 12:46:43 +0000</lastBuildDate>
+<item>
+<title>Why I Rebuild Every Model From the Filing, Not the Summary</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-59</guid>
+<category>Finance</category>
+<pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+<description>After enough hours inside the Apple valuation work, I stopped trusting any pre-built financial summary, including my own from a prior quarter. Summarized data — whether from a terminal, a database, or a research note — has already had someone’s judgment applied to it: what counts as an operating exp</description>
+</item>
 <item>
 <title>Attention Is a Leading Indicator, Not a Proxy for Revenue</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
