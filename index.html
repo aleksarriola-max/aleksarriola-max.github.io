@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 60 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 20, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Auto Valuation Kit&#8217;s Real Job Is Catching My Own Mistakes</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">I originally built the automated valuation kit to save time. What it actually turned out to be good for was catching my own inconsistency. When I build a DCF by hand, I make small, silent judgment calls throughout &#8212; rounding a growth rate, picking a discount rate that felt right two models ago, forgetting to flow a working capital assumption through to the terminal year. None of these mistakes are individually large, but they compound, and they are nearly invisible to a human reviewer, including me.</p><p style="margin-bottom:1.4rem;">A codified model cannot make that kind of silent mistake, because every assumption has to be stated explicitly somewhere for the calculation to run at all. Building the kit forced me to write down every assumption I had previously been making implicitly, and a surprising number of them did not survive being written down. A discount rate I had been treating as fixed turned out to depend on an unstated view about capital structure that changed every time I updated the comps set.</p><p style="margin-bottom:1.4rem;">The speed gain from automation was real, but it was the smaller benefit. The larger one was that the process of automating a workflow is also the process of auditing it, because you cannot automate a step you cannot first state precisely.</p><p style="margin-bottom:1.4rem;">I now think of any repeated analytical process as a candidate for this kind of forced explicitness, whether or not it ever actually gets automated. Writing the pseudocode is often more valuable than running it.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 59 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 19, 2026</p>

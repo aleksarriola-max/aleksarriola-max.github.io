@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 19 Sep 2026 12:46:43 +0000</lastBuildDate>
+<lastBuildDate>Sun, 20 Sep 2026 13:19:57 +0000</lastBuildDate>
+<item>
+<title>The Auto Valuation Kit’s Real Job Is Catching My Own Mistakes</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-60</guid>
+<category>Finance</category>
+<pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+<description>I originally built the automated valuation kit to save time. What it actually turned out to be good for was catching my own inconsistency. When I build a DCF by hand, I make small, silent judgment calls throughout — rounding a growth rate, picking a discount rate that felt right two models ago, forg</description>
+</item>
 <item>
 <title>Why I Rebuild Every Model From the Filing, Not the Summary</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
