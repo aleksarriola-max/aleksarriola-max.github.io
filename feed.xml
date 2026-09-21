@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 20 Sep 2026 13:19:57 +0000</lastBuildDate>
+<lastBuildDate>Mon, 21 Sep 2026 15:29:28 +0000</lastBuildDate>
+<item>
+<title>What a Multi-Agent Deal Swarm Taught Me About Coordination Cost</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-61</guid>
+<category>AI Systems</category>
+<pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
+<description>Building a LangGraph-based “deal swarm” to work through M&amp;A analysis in parallel — one agent on the target’s financials, one on comparable transactions, one on synergy assumptions — looked like an obvious win on paper. More agents, more parallel work, faster answer. In practice, the coordination ove</description>
+</item>
 <item>
 <title>The Auto Valuation Kit’s Real Job Is Catching My Own Mistakes</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 61 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 21, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What a Multi-Agent Deal Swarm Taught Me About Coordination Cost</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">Building a LangGraph-based &#8220;deal swarm&#8221; to work through M&A analysis in parallel &#8212; one agent on the target&#8217;s financials, one on comparable transactions, one on synergy assumptions &#8212; looked like an obvious win on paper. More agents, more parallel work, faster answer. In practice, the coordination overhead between agents ate a large share of the speed gain, because each agent&#8217;s output had to be reconciled against assumptions the others were making independently.</p><p style="margin-bottom:1.4rem;">The failure mode was subtle: the comps agent and the DCF agent would each produce internally consistent, individually reasonable output that contradicted the other&#8217;s implicit assumptions about growth or margin trajectory. Neither agent was wrong in isolation. The system was wrong in aggregate, and nothing in the architecture caught that until a human read both outputs side by side.</p><p style="margin-bottom:1.4rem;">The fix was not a smarter model. It was a shared, explicit state object that every agent had to read from and write to, so that an assumption made in one branch was visible and binding for the others, rather than implicit in that agent&#8217;s own context window. This is closer to distributed systems engineering than to prompting.</p><p style="margin-bottom:1.4rem;">Parallelism in a multi-agent system buys you speed on independent subtasks. It does not buy you consistency for free, and consistency is usually the harder problem in analytical work, where two locally correct answers can be globally incoherent.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 60 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 20, 2026</p>
