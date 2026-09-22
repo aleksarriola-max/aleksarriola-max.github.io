@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 62 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 22, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">OpsFlow and the Case for Narrow Agents</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">OpsFlow started as a general-purpose operations agent and got more useful every time I made it less general. The version that tried to handle any operational task with a broad toolset was harder to test, harder to trust, and harder to debug when it failed, because a failure could originate from almost anywhere in a large action space.</p><p style="margin-bottom:1.4rem;">Narrowing its scope to a specific, well-bounded set of policy-governed operations &#8212; with a fixed vocabulary of allowed actions and explicit preconditions for each &#8212; made it dramatically more reliable, not because the underlying model got better, but because the space of things that could go wrong shrank to something a human could actually reason about and test exhaustively.</p><p style="margin-bottom:1.4rem;">There is a real tradeoff here that I do not think the current enthusiasm for general agents takes seriously enough. A general agent is more impressive in a demo. A narrow agent is more trustworthy in production, because trust in an automated system is mostly a function of how completely you can enumerate its failure modes, and that enumeration gets exponentially harder as the action space grows.</p><p style="margin-bottom:1.4rem;">I would rather ship ten narrow agents that each do one policy-bound thing reliably than one broad agent that does many things at a confidence level I cannot actually verify.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 61 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 21, 2026</p>
