@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 22 Sep 2026 13:46:41 +0000</lastBuildDate>
+<lastBuildDate>Wed, 23 Sep 2026 13:58:15 +0000</lastBuildDate>
+<item>
+<title>Why PitMind Extracts Instead of Generates</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-63</guid>
+<category>AI Systems</category>
+<pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+<description>PitMind analyzes pitch decks, and the earliest version made the mistake most LLM tools make by default: it summarized freely, in its own words, which meant every output required a human to go back and verify against the source deck before trusting a single claim. The summary was readable and frequen</description>
+</item>
 <item>
 <title>OpsFlow and the Case for Narrow Agents</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

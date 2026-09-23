@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 63 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 23, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why PitMind Extracts Instead of Generates</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">PitMind analyzes pitch decks, and the earliest version made the mistake most LLM tools make by default: it summarized freely, in its own words, which meant every output required a human to go back and verify against the source deck before trusting a single claim. The summary was readable and frequently wrong in small, hard-to-catch ways &#8212; a number rounded differently than the deck stated, a claim attributed to the wrong slide.</p><p style="margin-bottom:1.4rem;">The fix was to shift the task from generation to structured extraction. Instead of asking the model to describe what a slide says, I ask it to populate a fixed schema &#8212; market size claim, source cited, time horizon, growth rate &#8212; with a pointer back to the exact slide and text span it came from. The model still does real work, but the work is constrained to a verifiable retrieval task rather than an open-ended writing task.</p><p style="margin-bottom:1.4rem;">This trades some flexibility for a property that matters more in this use case: every claim in the output can be checked against its source in seconds, because the system tells you exactly where to look. A free-form summary offers no such anchor.</p><p style="margin-bottom:1.4rem;">The general principle: if the output needs to be trusted rather than just read, prefer extraction with provenance over generation with fluency, even when generation would produce a nicer-sounding result.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 62 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 22, 2026</p>
