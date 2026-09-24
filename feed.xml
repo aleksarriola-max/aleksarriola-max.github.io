@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 23 Sep 2026 13:58:15 +0000</lastBuildDate>
+<lastBuildDate>Thu, 24 Sep 2026 13:54:47 +0000</lastBuildDate>
+<item>
+<title>MatchMind and the Limits of Letting a Model Search</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-64</guid>
+<category>AI Systems</category>
+<pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
+<description>MatchMind solves a matching problem — pairing candidates against opportunities across a large set of constraints. My first instinct was to hand the whole thing to an LLM: describe both sides and ask it to propose the best pairing. It produced plausible-sounding matches that were frequently suboptima</description>
+</item>
 <item>
 <title>Why PitMind Extracts Instead of Generates</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

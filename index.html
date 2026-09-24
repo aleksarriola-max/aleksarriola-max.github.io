@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 64 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 24, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">MatchMind and the Limits of Letting a Model Search</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">MatchMind solves a matching problem &#8212; pairing candidates against opportunities across a large set of constraints. My first instinct was to hand the whole thing to an LLM: describe both sides and ask it to propose the best pairing. It produced plausible-sounding matches that were frequently suboptimal in ways that were expensive to catch, because the model was not actually solving the combinatorial problem, it was pattern-matching toward a locally reasonable-looking answer.</p><p style="margin-bottom:1.4rem;">Matching is a well-studied optimization problem with exact and near-exact algorithms that guarantee properties an LLM cannot: stability, optimality within a defined objective, and reproducibility. Handing that problem to a language model instead of a solver is choosing a fuzzier tool for a task where a sharper one already exists and is cheaper to run.</p><p style="margin-bottom:1.4rem;">The architecture that worked put the LLM at the edges, not the center: it extracts and normalizes unstructured attributes from candidate and opportunity descriptions into structured features, and a conventional matching algorithm does the actual pairing on those features. The model is good at turning messy text into structured input. It is not good at solving the optimization problem underneath.</p><p style="margin-bottom:1.4rem;">The broader lesson is about knowing which parts of a system need a language model and which parts need a fifty-year-old algorithm. Novelty is not the same as fit.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 63 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 23, 2026</p>
