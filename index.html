@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 65 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 25, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Adaptive Funding Engine&#8217;s Feedback Loop Is the Whole Point</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">The Adaptive Funding Engine is not interesting because of any single model call inside it. It is interesting because of the feedback loop wrapped around those calls: every funding decision gets logged with its inputs and, eventually, its outcome, and that outcome data feeds back into how future decisions are weighted. Without that loop, &#8220;adaptive&#8221; is just a label on a static system.</p><p style="margin-bottom:1.4rem;">Building the loop was harder than building the initial decision logic, because outcomes in funding decisions arrive late and noisily. A decision that looks wrong after one quarter can look right after four, and a system that adapts too eagerly to short-term outcome noise will overfit to it, chasing signal that is really variance.</p><p style="margin-bottom:1.4rem;">The design choice that mattered most was decoupling the rate of adaptation from the rate of decision-making &#8212; the engine makes decisions continuously but only updates its own weighting on a much slower cadence, after enough outcome data has accumulated to distinguish signal from noise. That patience is not a natural instinct for a system built on models that can, technically, update instantly.</p><p style="margin-bottom:1.4rem;">A system that can update immediately should not always update immediately. Knowing when to hold a belief steady is as much a part of the design as knowing how to update it.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 64 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 24, 2026</p>

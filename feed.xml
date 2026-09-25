@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 24 Sep 2026 13:54:47 +0000</lastBuildDate>
+<lastBuildDate>Fri, 25 Sep 2026 14:18:41 +0000</lastBuildDate>
+<item>
+<title>The Adaptive Funding Engine’s Feedback Loop Is the Whole Point</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-65</guid>
+<category>AI Systems</category>
+<pubDate>Fri, 25 Sep 2026 00:00:00 +0000</pubDate>
+<description>The Adaptive Funding Engine is not interesting because of any single model call inside it. It is interesting because of the feedback loop wrapped around those calls: every funding decision gets logged with its inputs and, eventually, its outcome, and that outcome data feeds back into how future deci</description>
+</item>
 <item>
 <title>MatchMind and the Limits of Letting a Model Search</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
