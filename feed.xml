@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 25 Sep 2026 14:18:41 +0000</lastBuildDate>
+<lastBuildDate>Sat, 26 Sep 2026 13:28:57 +0000</lastBuildDate>
+<item>
+<title>DeepBook Market OS: The Boring Ninety Percent</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-66</guid>
+<category>AI Systems</category>
+<pubDate>Sat, 26 Sep 2026 00:00:00 +0000</pubDate>
+<description>DeepBook Market OS was meant to be a market data and analysis layer, and the part I expected to spend my time on — the analytical layer, the signals, the interesting model work — ended up being a small fraction of the actual build. The overwhelming majority of the effort went into the boring layer u</description>
+</item>
 <item>
 <title>The Adaptive Funding Engine’s Feedback Loop Is the Whole Point</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

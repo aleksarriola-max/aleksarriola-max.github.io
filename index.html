@@ -2138,6 +2138,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 66 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 26, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">DeepBook Market OS: The Boring Ninety Percent</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">DeepBook Market OS was meant to be a market data and analysis layer, and the part I expected to spend my time on &#8212; the analytical layer, the signals, the interesting model work &#8212; ended up being a small fraction of the actual build. The overwhelming majority of the effort went into the boring layer underneath: normalizing timestamps across venues, handling corporate actions that silently break a price series, reconciling symbol changes, deduplicating overlapping feeds.</p><p style="margin-bottom:1.4rem;">None of that work is visible in a demo. All of it determines whether anything built on top of it is trustworthy. A beautifully designed signal running on a price series with an unhandled stock split will produce a confident, wrong result, and it will look identical to a correct one until someone checks.</p><p style="margin-bottom:1.4rem;">I think this ratio &#8212; ten percent interesting model work, ninety percent unglamorous data infrastructure &#8212; generalizes to most serious applied AI systems, and it is systematically underrepresented in how these projects get discussed publicly, because infrastructure work does not make for a compelling demo screenshot.</p><p style="margin-bottom:1.4rem;">The systems that actually hold up in production are usually the ones where someone was willing to spend most of their time on the part nobody will ever see.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 65 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 25, 2026</p>
