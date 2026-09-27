@@ -2203,6 +2203,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 67 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 27, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What I Stopped Letting Agents Write Directly</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">Early versions of OpsFlow let the agent write directly to the systems of record it was managing &#8212; update the record, send the notification, close the ticket, all in one action. It worked until it did not: a misinterpreted instruction propagated into a real write before anything caught it, and undoing it took longer than the task the agent was supposed to save time on.</p><p style="margin-bottom:1.4rem;">The fix was a structural one, not a prompting one: separate every agent action into a proposed write and a committed write, with the commit step requiring either a human approval or a narrow, independently verified precondition check that does not rely on the same reasoning that produced the proposal in the first place. This adds latency to every action. That is the cost, and it is worth paying.</p><p style="margin-bottom:1.4rem;">What made this hard to accept initially is that it feels like it defeats the purpose of automation &#8212; if a human has to approve every write, how much time is actually being saved. The honest answer is that the time savings come from the proposal step, which is genuinely faster than a human doing the analysis from scratch, even if the commit step stays human-gated for anything irreversible.</p><p style="margin-bottom:1.4rem;">I now treat &#8220;can this action be cheaply undone&#8221; as the single most important variable in deciding how much autonomy an agent gets over it, more important than how good the underlying model is.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 66 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 26, 2026</p>

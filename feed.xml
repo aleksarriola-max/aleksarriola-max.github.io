@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 26 Sep 2026 13:28:57 +0000</lastBuildDate>
+<lastBuildDate>Sun, 27 Sep 2026 14:24:32 +0000</lastBuildDate>
+<item>
+<title>What I Stopped Letting Agents Write Directly</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-67</guid>
+<category>AI Systems</category>
+<pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
+<description>Early versions of OpsFlow let the agent write directly to the systems of record it was managing — update the record, send the notification, close the ticket, all in one action. It worked until it did not: a misinterpreted instruction propagated into a real write before anything caught it, and undoin</description>
+</item>
 <item>
 <title>DeepBook Market OS: The Boring Ninety Percent</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
