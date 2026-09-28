@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 27 Sep 2026 14:24:32 +0000</lastBuildDate>
+<lastBuildDate>Mon, 28 Sep 2026 17:11:06 +0000</lastBuildDate>
+<item>
+<title>Planning and Execution Need Different Agents</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-68</guid>
+<category>AI Systems</category>
+<pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+<description>The first version of the deal swarm used a single agent to both decide what analysis to run next and to actually run it. This coupling made the system hard to debug, because a bad outcome could come from a bad plan, a bad execution of a good plan, or both, and the transcript did not cleanly separate</description>
+</item>
 <item>
 <title>What I Stopped Letting Agents Write Directly</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

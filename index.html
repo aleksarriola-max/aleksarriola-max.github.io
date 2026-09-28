@@ -2203,6 +2203,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 68 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 28, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Planning and Execution Need Different Agents</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">The first version of the deal swarm used a single agent to both decide what analysis to run next and to actually run it. This coupling made the system hard to debug, because a bad outcome could come from a bad plan, a bad execution of a good plan, or both, and the transcript did not cleanly separate the two.</p><p style="margin-bottom:1.4rem;">Splitting planning from execution into distinct agents with a narrow interface between them &#8212; the planner emits a structured task list, the executor consumes it without seeing the planner&#8217;s reasoning &#8212; made failures much easier to attribute. If the executor does exactly what the plan says and the result is still wrong, the plan was wrong. If the executor deviates from the plan, that is its own separate, checkable failure.</p><p style="margin-bottom:1.4rem;">This mirrors a distinction that shows up in well-run human teams too: the person deciding strategy and the person executing it benefit from some separation, because conflating the two roles in one person, or one agent, makes it harder to tell whether a bad outcome was a judgment failure or an implementation failure.</p><p style="margin-bottom:1.4rem;">Debuggability is undervalued as a design goal for agentic systems. An architecture that makes failures easy to attribute is worth more than one that is marginally more capable but produces opaque, unattributable mistakes.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 67 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 27, 2026</p>
