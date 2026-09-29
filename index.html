@@ -2203,6 +2203,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 69 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 29, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Schema Validation Fixed More Bugs Than Any Model Upgrade</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">Across PitMind, MatchMind, and the deal swarm, the single change that fixed the most production bugs was not switching to a better model. It was adding strict schema validation on every structured output an agent produced, with automatic rejection and retry when the output did not conform.</p><p style="margin-bottom:1.4rem;">Language models are fluent enough that a malformed or subtly wrong structured output often looks fine on a quick read &#8212; a field with the wrong type, a required key silently omitted, a number formatted as a string that breaks downstream arithmetic. These are the bugs that survive casual testing and surface later, in production, on an input nobody thought to test.</p><p style="margin-bottom:1.4rem;">Schema validation converts a large class of these silent failures into loud, immediate ones: the output either conforms or it does not, and a nonconforming output triggers a retry rather than propagating downstream. This is unglamorous engineering, not a model capability improvement, and it fixed more real bugs than any of the model upgrades I tried over the same period.</p><p style="margin-bottom:1.4rem;">The lesson is not that better models do not matter. It is that a meaningful share of agent reliability problems are conventional software engineering problems wearing an AI costume, and they respond to conventional software engineering fixes.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 68 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 28, 2026</p>

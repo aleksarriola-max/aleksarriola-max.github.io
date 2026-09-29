@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 28 Sep 2026 17:11:06 +0000</lastBuildDate>
+<lastBuildDate>Tue, 29 Sep 2026 15:14:25 +0000</lastBuildDate>
+<item>
+<title>Schema Validation Fixed More Bugs Than Any Model Upgrade</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-69</guid>
+<category>AI Systems</category>
+<pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
+<description>Across PitMind, MatchMind, and the deal swarm, the single change that fixed the most production bugs was not switching to a better model. It was adding strict schema validation on every structured output an agent produced, with automatic rejection and retry when the output did not conform. Language </description>
+</item>
 <item>
 <title>Planning and Execution Need Different Agents</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
