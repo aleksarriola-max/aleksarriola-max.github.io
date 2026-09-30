@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 29 Sep 2026 15:14:25 +0000</lastBuildDate>
+<lastBuildDate>Wed, 30 Sep 2026 15:28:25 +0000</lastBuildDate>
+<item>
+<title>Why I Measure Latency Before I Measure Accuracy</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-70</guid>
+<category>AI Systems</category>
+<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+<description>When I started building multi-step agent workflows, I optimized almost entirely for correctness and treated latency as something to worry about later. That ordering was backwards. A workflow that takes forty seconds because it makes six sequential model calls will get abandoned or worked around by i</description>
+</item>
 <item>
 <title>Schema Validation Fixed More Bugs Than Any Model Upgrade</title>
 <link>https://aleksarriola-max.github.io/#writing</link>

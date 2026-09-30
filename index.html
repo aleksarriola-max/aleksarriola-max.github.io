@@ -2203,6 +2203,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 70 -->
+    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 30, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Measure Latency Before I Measure Accuracy</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">When I started building multi-step agent workflows, I optimized almost entirely for correctness and treated latency as something to worry about later. That ordering was backwards. A workflow that takes forty seconds because it makes six sequential model calls will get abandoned or worked around by its users long before anyone notices whether the sixth call actually improved accuracy.</p><p style="margin-bottom:1.4rem;">Once I started measuring latency first, the architecture changed in ways that also happened to improve reliability: fewer sequential dependencies between agent steps, more steps that could run in parallel because they did not actually need each other&#8217;s output, and a willingness to use a smaller, faster model for subtasks where the accuracy gain from a larger model was not worth the added seconds.</p><p style="margin-bottom:1.4rem;">The connection between latency and correctness is not just about user patience. A slow system is one where more state has to be held across a longer span of time, and every additional second of held state is another opportunity for something upstream to change and invalidate an assumption the system is still operating on.</p><p style="margin-bottom:1.4rem;">Treating latency as a first-class design constraint, not an afterthought, produced a better system on both dimensions. Treating it as an afterthought produced a system that was neither fast nor, in practice, reliably correct.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 69 -->
     <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 29, 2026</p>
