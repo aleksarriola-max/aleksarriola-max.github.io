@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 30 Sep 2026 15:28:25 +0000</lastBuildDate>
+<lastBuildDate>Thu, 01 Oct 2026 15:51:16 +0000</lastBuildDate>
+<item>
+<title>What Three Years of Client Work Taught Me About Scope</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-71</guid>
+<category>Perspective</category>
+<pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
+<description>Between Western Union’s digital marketing work, a client specialist role at SeOnline, and a string of marketing case studies for companies like Jet Rose and Far Out Ice Cream, the pattern I noticed had nothing to do with the industries and everything to do with scope. Every project that went well st</description>
+</item>
 <item>
 <title>Why I Measure Latency Before I Measure Accuracy</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
