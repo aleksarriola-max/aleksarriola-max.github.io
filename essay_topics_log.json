@@ -500,6 +500,216 @@
       "source": "queue",
       "id": 80,
       "theme": "Coachella TikTok hype cycle analysis"
+    },
+    {
+      "title": "Altman Z-Score Works Until Management Knows It Exists",
+      "category": "Finance",
+      "source": "queue",
+      "id": 81,
+      "theme": "Scanner Altman Z-Score gaming"
+    },
+    {
+      "title": "A Composite Health Score Needs a Fraud Veto",
+      "category": "Finance",
+      "source": "queue",
+      "id": 82,
+      "theme": "Scanner composite score gating"
+    },
+    {
+      "title": "Piotroski F-Score Rewards Boring Improvement",
+      "category": "Finance",
+      "source": "queue",
+      "id": 83,
+      "theme": "Scanner Piotroski F-Score direction"
+    },
+    {
+      "title": "Credit Underwriting Starts With the Downside Case",
+      "category": "Finance",
+      "source": "queue",
+      "id": 84,
+      "theme": "Credit Analyst and Wells Fargo commercial simulations"
+    },
+    {
+      "title": "Treasury and Trade Solutions Is a Working Capital Story",
+      "category": "Finance",
+      "source": "queue",
+      "id": 85,
+      "theme": "Citi Treasury & Trade Solutions simulation"
+    },
+    {
+      "title": "Reading XBRL Taught Me That Tags Are Judgments",
+      "category": "Finance",
+      "source": "queue",
+      "id": 86,
+      "theme": "SEC EDGAR XBRL pipeline definitions"
+    },
+    {
+      "title": "Value at Risk Is a Statement About the Quiet Days",
+      "category": "Finance",
+      "source": "queue",
+      "id": 87,
+      "theme": "Goldman Sachs Risk simulation VaR"
+    },
+    {
+      "title": "Quant Research Starts With the Data Cleaning Log",
+      "category": "Finance",
+      "source": "queue",
+      "id": 88,
+      "theme": "J.P. Morgan Quantitative Research simulation"
+    },
+    {
+      "title": "Insurance Reserves Are Estimates You Can Audit",
+      "category": "Finance",
+      "source": "queue",
+      "id": 89,
+      "theme": "AIG Actuarial Analyst simulation reserves"
+    },
+    {
+      "title": "Intro Financial Accounting Still Explains Most Red Flags",
+      "category": "Finance",
+      "source": "queue",
+      "id": 90,
+      "theme": "Penn Financial Accounting course and Koch Accounting"
+    },
+    {
+      "title": "Explainability Is an Interface, Not a Model Property",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 91,
+      "theme": "MissionMind explainable AI"
+    },
+    {
+      "title": "Autonomy Needs a Plan-Versus-Actual Ledger",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 92,
+      "theme": "MissionMind plan vs actual tracking"
+    },
+    {
+      "title": "Shipping Outsette Taught Me the Pipeline Is the Product",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 93,
+      "theme": "Outsette daily briefings pipeline"
+    },
+    {
+      "title": "An AI Career Advisor Is Only as Good as Its Constraints",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 94,
+      "theme": "Outsette AI career advisor"
+    },
+    {
+      "title": "Two-Layer Hallucination Firewalls and What They Miss",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 95,
+      "theme": "MatchMind hallucination firewall"
+    },
+    {
+      "title": "Persona-Based Explanations Are a Prompt Contract",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 96,
+      "theme": "MatchMind five personas"
+    },
+    {
+      "title": "Free-Tier Cold Starts Taught Me to Design for Waking Up",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 97,
+      "theme": "Streamlit free-tier demos cold start"
+    },
+    {
+      "title": "Revocable Authority Is the Right Primitive for Agents",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 98,
+      "theme": "OpsFlow revocable authority on Sui"
+    },
+    {
+      "title": "Vendor Trust Scoring Is a Prior, Not a Verdict",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 99,
+      "theme": "OpsFlow vendor trust scoring and fraud detection"
+    },
+    {
+      "title": "Why Race Telemetry Made Me Distrust Smooth Forecasts",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 100,
+      "theme": "PitMind Race Forecast and live telemetry"
+    },
+    {
+      "title": "What My Internship at The 1525 Taught Me About Working Without Supervision",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 101,
+      "theme": "The 1525 internship and recommendation"
+    },
+    {
+      "title": "Redesigning Onboarding Beat Writing Another Sales Script",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 102,
+      "theme": "SeOnline onboarding redesign 35 percent"
+    },
+    {
+      "title": "What Studying at Hult Taught Me About Learning Across Disciplines",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 103,
+      "theme": "Hult Finance and Accounting student identity"
+    },
+    {
+      "title": "Forty-Two Simulations Taught Me How to Learn Fast, Not Deeply",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 104,
+      "theme": "Forage virtual job simulations"
+    },
+    {
+      "title": "Why I Take Courses Outside Finance",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 105,
+      "theme": "MoMA, Creative Thinking and Emotional Intelligence courses"
+    },
+    {
+      "title": "Thinking in Two Languages Changed How I Write Specs",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 106,
+      "theme": "Bilingual EN/ES builder"
+    },
+    {
+      "title": "What a Recommendation Can and Cannot Prove",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 107,
+      "theme": "Recommendation from The 1525 on portfolio"
+    },
+    {
+      "title": "Being Open to Opportunities Without Sounding Desperate",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 108,
+      "theme": "Open to finance and AI opportunities job search"
+    },
+    {
+      "title": "The Hidden Cost of Maintaining Eight Live Apps",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 109,
+      "theme": "Maintaining eight live apps portfolio"
+    },
+    {
+      "title": "What the Bloomberg Client Engagement Course Taught Me About Service",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 110,
+      "theme": "Bloomberg Client Engagement and Client Service simulations"
     }
   ]
 }
