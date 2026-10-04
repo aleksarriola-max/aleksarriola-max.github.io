@@ -758,6 +758,8 @@ body.nav-open{ overflow:hidden; }
 <style>
   .achv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1200px; margin:0 auto; }
   @media (max-width:980px){ .achv-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:820px){ .lifeline-gallery{ grid-template-columns:repeat(3,1fr) !important; } }
+  @media (max-width:600px){ .lifeline-gallery{ grid-template-columns:repeat(2,1fr) !important; } }
   .achv-card{ background:var(--white); border:1px solid rgba(13,27,42,0.08); border-radius:10px; padding:1.5rem 1.6rem; display:flex; gap:1.1rem; align-items:flex-start; }
   .achv-icon{ font-size:1.7rem; flex:none; width:48px; height:48px; border-radius:50%; background:rgba(201,168,76,0.14); display:flex; align-items:center; justify-content:center; }
   .achv-title{ font-weight:700; font-size:0.98rem; color:var(--navy); margin-bottom:0.3rem; }
@@ -1142,22 +1144,52 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <!-- Lifeline -->
-    <div class="card">
+    <!-- Lifeline — Featured -->
+    <div class="card" style="grid-column: 1 / -1;">
       <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
-      <a href="https://youtu.be/dO4nQzA0oh4" target="_blank" style="display:block; overflow:hidden; max-height:200px; border-bottom:1px solid rgba(0,0,0,0.07); position:relative;">
-        <img src="images/lifeline-1st-place.jpg" alt="Lifeline team accepting 1st place at the Dell x NVIDIA Local AI Hackathon" style="width:100%; display:block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-        <div style="position:absolute; top:0.6rem; left:0.6rem; background:var(--gold); color:var(--navy); font-size:0.72rem; font-weight:700; padding:0.3rem 0.65rem; border-radius:20px;">🥇 1st Place</div>
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.15);">
-          <div style="width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.4rem;">▶</div>
+      <div class="card-body">
+        <p class="card-type" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <span style="background:var(--gold); color:var(--navy); font-weight:700; padding:0.2rem 0.6rem; border-radius:20px; font-size:0.72rem;">🥇 1st Place</span>
+          <span>Local AI Hackathon — Dell &amp; NVIDIA · Team Project</span>
+        </p>
+        <h3 class="card-title" style="font-size:1.6rem;">Lifeline — from orbit to heartbeat</h3>
+        <p class="card-desc" style="max-width:780px;">
+          Took 1st place out of 40 teams at BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — one of 150 builders selected, one day, on a Dell Pro Max with GB10. Built as a team, Lifeline is an always-on disaster-response agent that lives in Telegram: it reads Copernicus EMS earthquake damage grading and Maxar before/after satellite imagery to rank collapsed buildings by survivor likelihood, reads life-sign sensors and re-ranks after every scan, and proposes rescue dispatches — routed across rescue teams with Google OR-Tools vehicle routing — for a human commander to approve. Every inference runs locally via Ollama, with no cloud calls or API keys, and the agent is built to say so plainly when a reading is simulated or a ranking is a decision aid rather than a verdict — no signal never means nobody.
+        </p>
+        <div class="card-tags" style="margin-bottom:1.3rem;">
+          <span class="tag">🥇 1st Place</span>
+          <span class="tag">On-Device AI</span>
+          <span class="tag">OR-Tools Routing</span>
+          <span class="tag">Satellite Imagery</span>
+          <span class="tag">Team Project</span>
         </div>
-      </a>
-      <div class="card-body" style="padding-top:1.2rem;">
-        <p class="card-type">🥇 1st Place · Local AI Hackathon — Dell &amp; NVIDIA</p>
-        <h3 class="card-title">Lifeline</h3>
-        <p class="card-desc">Took 1st place out of 40 teams at BuilderBase's Local AI Hackathon. Team-built an always-on disaster-response agent that ranks collapsed buildings by survivor likelihood and proposes rescue dispatches for human approval — running fully on-device on a Dell Pro Max with GB10, no cloud. Combines Copernicus EMS earthquake damage grading, Maxar before/after satellite imagery, and OR-Tools vehicle routing for rescue teams, with a Telegram interface for commanders.</p>
-        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">🥇 1st Place</span><span class="tag">On-Device AI</span><span class="tag">OR-Tools Routing</span><span class="tag">Team Project</span></div>
-        <a href="https://youtu.be/dO4nQzA0oh4" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">▶ Watch Demo</a>
+
+        <div style="position:relative; padding-top:56.25%; border-radius:8px; overflow:hidden; margin-bottom:1.5rem; background:#000;">
+          <iframe src="https://www.youtube.com/embed/dO4nQzA0oh4" title="Lifeline demo video" style="position:absolute; inset:0; width:100%; height:100%; border:0;" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <p style="font-size:0.78rem; color:var(--gray); font-weight:600; letter-spacing:0.05em; margin-bottom:0.6rem;">FROM THE HACKATHON</p>
+        <div class="lifeline-gallery" style="display:grid; grid-template-columns:repeat(5,1fr); gap:0.6rem;">
+          <a href="images/lifeline-team-full-group.jpg" target="_blank" style="display:block; border-radius:6px; overflow:hidden; aspect-ratio:4/3;">
+            <img src="images/lifeline-team-full-group.jpg" alt="Arriving at the Dell x NVIDIA Local AI Hackathon in Boston" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+          </a>
+          <a href="images/lifeline-1st-place.jpg" target="_blank" style="display:block; border-radius:6px; overflow:hidden; aspect-ratio:4/3;">
+            <img src="images/lifeline-1st-place.jpg" alt="Lifeline team's 1st place win announced on screen" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+          </a>
+          <a href="images/lifeline-team-1.jpg" target="_blank" style="display:block; border-radius:6px; overflow:hidden; aspect-ratio:4/3;">
+            <img src="images/lifeline-team-1.jpg" alt="Team at the Dell x NVIDIA Local AI Hackathon opening" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+          </a>
+          <a href="images/lifeline-team-2.jpg" target="_blank" style="display:block; border-radius:6px; overflow:hidden; aspect-ratio:4/3;">
+            <img src="images/lifeline-team-2.jpg" alt="Lifeline teammates celebrating" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+          </a>
+          <a href="images/lifeline-team-3.jpg" target="_blank" style="display:block; border-radius:6px; overflow:hidden; aspect-ratio:4/3;">
+            <img src="images/lifeline-team-3.jpg" alt="Lifeline team portrait" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+          </a>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+          <a href="https://github.com/SGGmilagro/lifeline" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.6rem 1.3rem;border-radius:4px;font-size:0.85rem;font-weight:600;text-decoration:none;">↗ View Team Repo</a>
+        </div>
       </div>
     </div>
 
@@ -3683,15 +3715,17 @@ function showCase(id){
     "TL;DR: An ensemble of 11 academic fraud and solvency models, cross-checked across 600+ companies' live SEC filings, so no single ratio decides the verdict.":"TL;DR: Un conjunto de 11 modelos académicos de fraude y solvencia, verificados contra las presentaciones en vivo de la SEC de más de 600 empresas, de modo que ningún ratio decide el veredicto por sí solo.",
     "TL;DR: An AI agent that can propose but never execute — deterministic policy and on-chain smart contracts enforce every payment, so a hallucination gets blocked, not acted on.":"TL;DR: Un agente de IA que puede proponer pero nunca ejecutar — una política determinista y contratos inteligentes on-chain hacen cumplir cada pago, de modo que una alucinación se bloquea en lugar de ejecutarse.",
     "TL;DR: One YAML config generates a full DCF + comps + LBO valuation stack with 7 bias-correction modules — the output is a range, not a false-precision number.":"TL;DR: Una sola configuración YAML genera un paquete completo de valoración DCF + comparables + LBO con 7 módulos de corrección de sesgos — el resultado es un rango, no un número de falsa precisión.",
-    // LIFELINE PROJECT CARD
+    // LIFELINE PROJECT CARD (FEATURED)
     "🥇 1st Place":"🥇 1er lugar",
-    "🥇 1st Place · Local AI Hackathon — Dell & NVIDIA":"🥇 1er lugar · Hackathon de IA Local — Dell y NVIDIA",
-    "Took 1st place out of 40 teams at BuilderBase's Local AI Hackathon. Team-built an always-on disaster-response agent that ranks collapsed buildings by survivor likelihood and proposes rescue dispatches for human approval — running fully on-device on a Dell Pro Max with GB10, no cloud. Combines Copernicus EMS earthquake damage grading, Maxar before/after satellite imagery, and OR-Tools vehicle routing for rescue teams, with a Telegram interface for commanders.":"Ganamos el 1er lugar entre 40 equipos en el Local AI Hackathon de BuilderBase. Construimos en equipo un agente de respuesta a desastres siempre activo que clasifica edificios colapsados según la probabilidad de supervivientes y propone despachos de rescate para aprobación humana — funcionando totalmente en el dispositivo en una Dell Pro Max con GB10, sin nube. Combina la clasificación de daños por sismo de Copernicus EMS, imágenes satelitales antes/después de Maxar, y enrutamiento vehicular con OR-Tools para los equipos de rescate, con una interfaz de Telegram para los comandantes.",
+    "Local AI Hackathon — Dell & NVIDIA · Team Project":"Hackathon de IA Local — Dell y NVIDIA · Proyecto en equipo",
+    "Lifeline — from orbit to heartbeat":"Lifeline — de la órbita al latido",
+    "Took 1st place out of 40 teams at BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — one of 150 builders selected, one day, on a Dell Pro Max with GB10. Built as a team, Lifeline is an always-on disaster-response agent that lives in Telegram: it reads Copernicus EMS earthquake damage grading and Maxar before/after satellite imagery to rank collapsed buildings by survivor likelihood, reads life-sign sensors and re-ranks after every scan, and proposes rescue dispatches — routed across rescue teams with Google OR-Tools vehicle routing — for a human commander to approve. Every inference runs locally via Ollama, with no cloud calls or API keys, and the agent is built to say so plainly when a reading is simulated or a ranking is a decision aid rather than a verdict — no signal never means nobody.":"Ganamos el 1er lugar entre 40 equipos en el Local AI Hackathon de BuilderBase con Dell Technologies y NVIDIA — uno de 150 constructores seleccionados, un día, con una Dell Pro Max con GB10. Construido en equipo, Lifeline es un agente de respuesta a desastres siempre activo que vive en Telegram: lee la clasificación de daños por sismo de Copernicus EMS e imágenes satelitales antes/después de Maxar para clasificar edificios colapsados según la probabilidad de supervivientes, lee sensores de signos vitales y vuelve a clasificar después de cada escaneo, y propone despachos de rescate — enrutados entre los equipos de rescate con el enrutamiento vehicular de Google OR-Tools — para que un comandante humano los apruebe. Cada inferencia se ejecuta localmente vía Ollama, sin llamadas a la nube ni claves de API, y el agente está construido para decirlo claramente cuando una lectura es simulada o una clasificación es una ayuda para decidir y no un veredicto — ninguna señal nunca significa nadie.",
     "On-Device AI":"IA en el dispositivo",
     "OR-Tools Routing":"Enrutamiento OR-Tools",
     "Satellite Imagery":"Imágenes satelitales",
     "Team Project":"Proyecto en equipo",
-    "▶ Watch Demo":"▶ Ver demo",
+    "FROM THE HACKATHON":"DEL HACKATHON",
+    "↗ View Team Repo":"↗ Ver repositorio del equipo",
     // FOOTER
     "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
   };
