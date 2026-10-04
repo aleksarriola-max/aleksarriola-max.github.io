@@ -105,6 +105,16 @@
       background-size: 60px 60px;
     }
 
+    /* Ambient Monte Carlo paths behind the hero copy */
+    #hero-ambient {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .hero-accent {
       position: absolute;
       top: -200px; right: -200px;
@@ -114,6 +124,7 @@
 
     .hero-content {
       position: relative;
+      z-index: 2;
       max-width: 800px;
     }
 
@@ -721,6 +732,7 @@ body.nav-open{ overflow:hidden; }
 <div id="page-home" class="page-section" style="display:none;">
 
 <section id="hero">
+  <canvas id="hero-ambient" aria-hidden="true"></canvas>
   <div class="hero-grid-bg"></div>
   <div class="hero-accent"></div>
   <div class="hero-content">
@@ -3841,6 +3853,126 @@ function showCase(id){
   }
   if(document.readyState!=='loading') init();
   else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+<!-- Hero ambient: simulated valuation paths sweep out, hold, fade, and re-run.
+     Pauses when the hero leaves the viewport; renders one static frame under
+     prefers-reduced-motion. No dependencies. -->
+<script>
+(function () {
+  var canvas = document.getElementById('hero-ambient');
+  var hero = document.getElementById('hero');
+  if (!canvas || !hero || !canvas.getContext) return;
+
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var GOLD = '201,168,76', GOLD_LIGHT = '232,201,122';
+  var INTENSITY = 0.55;
+  var W = 0, H = 0, raf = null, visible = true;
+  var paths = [], median = null, steps = 90, progress = 0, fade = 1, phase = 'draw', hold = 0;
+
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  function seed() {
+    paths = [];
+    var n = Math.max(14, Math.min(26, Math.round(W / 55)));
+    var startY = H * 0.6, vol = H * 0.018, drift = -H * 0.0018;
+    for (var i = 0; i < n; i++) {
+      var pts = [], y = startY;
+      for (var s = 0; s <= steps; s++) { pts.push(y); y += drift + rnd(-1, 1) * vol; }
+      paths.push(pts);
+    }
+    var ordered = paths.slice().sort(function (a, b) { return a[a.length - 1] - b[b.length - 1]; });
+    median = ordered[(ordered.length / 2) | 0];
+    progress = 0; fade = 1; phase = 'draw'; hold = 0;
+  }
+
+  function resize() {
+    var r = hero.getBoundingClientRect();
+    if (!r.width || !r.height) return false;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    seed();
+    return true;
+  }
+
+  function draw(dt) {
+    if (!W || !H) return;
+    ctx.clearRect(0, 0, W, H);
+
+    if (phase === 'draw') {
+      progress += dt * 0.00042;
+      if (progress >= 1) { progress = 1; phase = 'hold'; hold = 0; }
+    } else if (phase === 'hold') {
+      hold += dt;
+      if (hold > 1500) phase = 'fade';
+    } else {
+      fade -= dt * 0.0009;
+      if (fade <= 0) seed();
+    }
+
+    var upto = Math.max(1, Math.round(progress * steps));
+    var stepW = W / steps;
+
+    for (var i = 0; i < paths.length; i++) {
+      var pts = paths[i], isMedian = pts === median;
+      ctx.strokeStyle = 'rgba(' + (isMedian ? GOLD_LIGHT : GOLD) + ',' +
+        ((isMedian ? 0.6 : 0.2) * INTENSITY * fade).toFixed(3) + ')';
+      ctx.lineWidth = isMedian ? 1.5 : 0.8;
+      ctx.beginPath();
+      for (var s = 0; s <= upto; s++) {
+        var x = s * stepW;
+        if (s === 0) ctx.moveTo(x, pts[s]); else ctx.lineTo(x, pts[s]);
+      }
+      ctx.stroke();
+    }
+
+    if (phase === 'draw') {
+      var lx = upto * stepW;
+      ctx.strokeStyle = 'rgba(' + GOLD_LIGHT + ',' + (0.3 * INTENSITY).toFixed(3) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(lx, 0); ctx.lineTo(lx, H); ctx.stroke();
+    }
+  }
+
+  var last = 0;
+  function step(ts) {
+    var dt = last ? Math.min(ts - last, 50) : 16;
+    last = ts;
+    // the hero is hidden while other pages are shown, so re-measure on return
+    var r = hero.getBoundingClientRect();
+    if (r.width && Math.abs(r.width - W) > 1) resize();
+    draw(dt);
+    raf = requestAnimationFrame(step);
+  }
+
+  function start() { if (reduceMotion || raf !== null || !visible) return; last = 0; raf = requestAnimationFrame(step); }
+  function stop() { if (raf !== null) { cancelAnimationFrame(raf); raf = null; } }
+
+  function boot() {
+    if (!resize()) { setTimeout(boot, 250); return; }
+    if (reduceMotion) { progress = 1; draw(16); return; }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) start(); else stop();
+      }, { threshold: 0.01 }).observe(hero);
+    }
+    start();
+  }
+
+  window.addEventListener('resize', function () {
+    clearTimeout(window.__heroAmbRz);
+    window.__heroAmbRz = setTimeout(function () { if (resize() && reduceMotion) { progress = 1; draw(16); } }, 150);
+  });
+
+  if (document.readyState !== 'loading') boot();
+  else document.addEventListener('DOMContentLoaded', boot);
 })();
 </script>
 
