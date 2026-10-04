@@ -1154,15 +1154,34 @@ body.nav-open{ overflow:hidden; }
           <span>Local AI Hackathon — Dell &amp; NVIDIA · Team Project</span>
         </p>
         <h3 class="card-title" style="font-size:1.6rem;">Lifeline — from orbit to heartbeat</h3>
-        <p class="card-desc" style="max-width:780px;">
-          Took 1st place out of 40 teams at BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — one of 150 builders selected, one day, on a Dell Pro Max with GB10. Built as a team, Lifeline is an always-on disaster-response agent that lives in Telegram: it reads Copernicus EMS earthquake damage grading and Maxar before/after satellite imagery to rank collapsed buildings by survivor likelihood, reads life-sign sensors and re-ranks after every scan, and proposes rescue dispatches — routed across rescue teams with Google OR-Tools vehicle routing — for a human commander to approve. Every inference runs locally via Ollama, with no cloud calls or API keys, and the agent is built to say so plainly when a reading is simulated or a ranking is a decision aid rather than a verdict — no signal never means nobody.
-        </p>
-        <div class="card-tags" style="margin-bottom:1.3rem;">
-          <span class="tag">🥇 1st Place</span>
-          <span class="tag">On-Device AI</span>
-          <span class="tag">OR-Tools Routing</span>
-          <span class="tag">Satellite Imagery</span>
-          <span class="tag">Team Project</span>
+
+        <div style="display:flex; gap:2.5rem; flex-wrap:wrap; align-items:flex-start; margin-bottom:0.5rem;">
+          <div style="flex:2; min-width:320px;">
+            <p class="card-desc">
+              Lifeline is a human-in-the-loop triage and dispatch system for post-earthquake search and rescue, engineered end-to-end in a single day and placed first among 40 competing teams. It fuses Copernicus EMS structural damage grading with Maxar pre/post-event satellite imagery into a probabilistic survivor-likelihood score for every collapsed structure in the affected area, continuously re-weighted as new life-sign telemetry comes in. A constrained vehicle-routing layer built on Google OR-Tools converts that ranking into optimized multi-team dispatch plans, which a human commander reviews and authorizes over a live Telegram command channel.
+            </p>
+            <p class="card-desc">
+              The entire reasoning stack runs as local inference on a single Dell Pro Max workstation — no external API calls, no cloud dependency — and is engineered to communicate its own epistemic limits: every ranking is surfaced as a decision aid rather than a verdict, and the system is explicit about which inputs are live sensor data versus simulated for the demo.
+            </p>
+            <div class="card-tags" style="margin-bottom:0;">
+              <span class="tag">🥇 1st Place</span>
+              <span class="tag">On-Device Inference</span>
+              <span class="tag">Constraint-Based Routing</span>
+              <span class="tag">Geospatial Damage Assessment</span>
+              <span class="tag">Team Project</span>
+            </div>
+          </div>
+          <div style="flex:1; min-width:240px; background:var(--light-bg); border-radius:8px; padding:1.4rem 1.5rem; border:1px solid rgba(0,0,0,0.07);">
+            <div style="font-size:0.72rem; color:var(--gray); font-weight:700; letter-spacing:0.08em; margin-bottom:0.9rem;">MISSION SPECS</div>
+            <div style="display:flex; flex-direction:column; gap:0.85rem;">
+              <div><div style="font-size:0.72rem; color:var(--gray);">Result</div><div style="font-size:0.92rem; font-weight:600; color:var(--navy);">1st of 40 teams</div></div>
+              <div><div style="font-size:0.72rem; color:var(--gray);">Build window</div><div style="font-size:0.92rem; font-weight:600; color:var(--navy);">One day, 150 builders</div></div>
+              <div><div style="font-size:0.72rem; color:var(--gray);">Compute</div><div style="font-size:0.92rem; font-weight:600; color:var(--navy);">Dell Pro Max · GB10, fully on-device</div></div>
+              <div><div style="font-size:0.72rem; color:var(--gray);">Damage intelligence</div><div style="font-size:0.92rem; font-weight:600; color:var(--navy);">Copernicus EMS + Maxar imagery</div></div>
+              <div><div style="font-size:0.72rem; color:var(--gray);">Dispatch optimization</div><div style="font-size:0.92rem; font-weight:600; color:var(--navy);">Google OR-Tools, 3 rescue teams</div></div>
+              <div><div style="font-size:0.72rem; color:var(--gray);">Command interface</div><div style="font-size:0.92rem; font-weight:600; color:var(--navy);">Telegram, human-approved dispatch</div></div>
+            </div>
+          </div>
         </div>
 
         <div style="position:relative; padding-top:56.25%; border-radius:8px; overflow:hidden; margin-bottom:1.5rem; background:#000;">
@@ -3726,11 +3745,25 @@ function showCase(id){
     "🥇 1st Place":"🥇 1er lugar",
     "Local AI Hackathon — Dell & NVIDIA · Team Project":"Hackathon de IA Local — Dell y NVIDIA · Proyecto en equipo",
     "Lifeline — from orbit to heartbeat":"Lifeline — de la órbita al latido",
-    "Took 1st place out of 40 teams at BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — one of 150 builders selected, one day, on a Dell Pro Max with GB10. Built as a team, Lifeline is an always-on disaster-response agent that lives in Telegram: it reads Copernicus EMS earthquake damage grading and Maxar before/after satellite imagery to rank collapsed buildings by survivor likelihood, reads life-sign sensors and re-ranks after every scan, and proposes rescue dispatches — routed across rescue teams with Google OR-Tools vehicle routing — for a human commander to approve. Every inference runs locally via Ollama, with no cloud calls or API keys, and the agent is built to say so plainly when a reading is simulated or a ranking is a decision aid rather than a verdict — no signal never means nobody.":"Ganamos el 1er lugar entre 40 equipos en el Local AI Hackathon de BuilderBase con Dell Technologies y NVIDIA — uno de 150 constructores seleccionados, un día, con una Dell Pro Max con GB10. Construido en equipo, Lifeline es un agente de respuesta a desastres siempre activo que vive en Telegram: lee la clasificación de daños por sismo de Copernicus EMS e imágenes satelitales antes/después de Maxar para clasificar edificios colapsados según la probabilidad de supervivientes, lee sensores de signos vitales y vuelve a clasificar después de cada escaneo, y propone despachos de rescate — enrutados entre los equipos de rescate con el enrutamiento vehicular de Google OR-Tools — para que un comandante humano los apruebe. Cada inferencia se ejecuta localmente vía Ollama, sin llamadas a la nube ni claves de API, y el agente está construido para decirlo claramente cuando una lectura es simulada o una clasificación es una ayuda para decidir y no un veredicto — ninguna señal nunca significa nadie.",
-    "On-Device AI":"IA en el dispositivo",
-    "OR-Tools Routing":"Enrutamiento OR-Tools",
-    "Satellite Imagery":"Imágenes satelitales",
+    "Lifeline is a human-in-the-loop triage and dispatch system for post-earthquake search and rescue, engineered end-to-end in a single day and placed first among 40 competing teams. It fuses Copernicus EMS structural damage grading with Maxar pre/post-event satellite imagery into a probabilistic survivor-likelihood score for every collapsed structure in the affected area, continuously re-weighted as new life-sign telemetry comes in. A constrained vehicle-routing layer built on Google OR-Tools converts that ranking into optimized multi-team dispatch plans, which a human commander reviews and authorizes over a live Telegram command channel.":"Lifeline es un sistema de triaje y despacho con supervisión humana para operaciones de búsqueda y rescate tras un terremoto, construido de principio a fin en un solo día y ganador del 1er lugar entre 40 equipos. Combina la clasificación de daños estructurales de Copernicus EMS con imágenes satelitales antes/después del evento de Maxar en una puntuación probabilística de probabilidad de supervivencia para cada estructura colapsada en la zona afectada, reponderada continuamente a medida que llega nueva telemetría de signos vitales. Una capa de enrutamiento vehicular con restricciones, construida sobre Google OR-Tools, convierte esa clasificación en planes de despacho optimizados para múltiples equipos, que un comandante humano revisa y autoriza a través de un canal de mando en vivo en Telegram.",
+    "The entire reasoning stack runs as local inference on a single Dell Pro Max workstation — no external API calls, no cloud dependency — and is engineered to communicate its own epistemic limits: every ranking is surfaced as a decision aid rather than a verdict, and the system is explicit about which inputs are live sensor data versus simulated for the demo.":"Todo el stack de razonamiento se ejecuta como inferencia local en una sola estación de trabajo Dell Pro Max — sin llamadas a APIs externas, sin dependencia de la nube — y está diseñado para comunicar sus propios límites epistémicos: cada clasificación se presenta como una ayuda para decidir y no como un veredicto, y el sistema es explícito sobre qué entradas son datos de sensores en vivo y cuáles están simuladas para la demostración.",
+    "On-Device Inference":"Inferencia en el dispositivo",
+    "Constraint-Based Routing":"Enrutamiento con restricciones",
+    "Geospatial Damage Assessment":"Evaluación geoespacial de daños",
     "Team Project":"Proyecto en equipo",
+    "MISSION SPECS":"ESPECIFICACIONES DE LA MISIÓN",
+    "Result":"Resultado",
+    "1st of 40 teams":"1er lugar de 40 equipos",
+    "Build window":"Ventana de construcción",
+    "One day, 150 builders":"Un día, 150 constructores",
+    "Compute":"Cómputo",
+    "Dell Pro Max · GB10, fully on-device":"Dell Pro Max · GB10, totalmente en el dispositivo",
+    "Damage intelligence":"Inteligencia de daños",
+    "Copernicus EMS + Maxar imagery":"Copernicus EMS + imágenes de Maxar",
+    "Dispatch optimization":"Optimización de despacho",
+    "Google OR-Tools, 3 rescue teams":"Google OR-Tools, 3 equipos de rescate",
+    "Command interface":"Interfaz de mando",
+    "Telegram, human-approved dispatch":"Telegram, despacho aprobado por humanos",
     "FROM THE HACKATHON":"DEL HACKATHON",
     "↗ View Team Repo":"↗ Ver repositorio del equipo",
     // FOOTER
