@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 03 Oct 2026 14:04:43 +0000</lastBuildDate>
+<lastBuildDate>Sun, 04 Oct 2026 14:30:30 +0000</lastBuildDate>
+<item>
+<title>The Unglamorous Work Behind Every Portfolio Project</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-74</guid>
+<category>Perspective</category>
+<pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+<description>Every project on this site has a polished version that took a fraction of the total time and an unglamorous version — cleaning data, fixing formatting, chasing down a broken source file — that took most of it. The AeroShield KPI dashboard looks like a design exercise. Most of the actual hours went i</description>
+</item>
 <item>
 <title>What Switching Between Finance and Marketing Case Studies Taught Me About Audience</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
