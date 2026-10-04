@@ -787,7 +787,7 @@ body.nav-open{ overflow:hidden; }
       <div class="achv-icon">💻</div>
       <div>
         <div class="achv-title">Local AI Hackathon — Dell &amp; NVIDIA</div>
-        <div class="achv-desc">Selected as one of 150 builders for BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — 40 teams, one day, building fully on-device AI on a Dell Pro Max with GB10, no cloud required.</div>
+        <div class="achv-desc">Selected as one of 150 builders for BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — 40 teams, one day, on a Dell Pro Max with GB10. Team-built <strong>Lifeline</strong>, a disaster-response agent, fully on-device, no cloud.</div>
       </div>
     </div>
   </div>
@@ -1139,6 +1139,24 @@ body.nav-open{ overflow:hidden; }
         <p class="card-desc">Cryptographic provenance for AI-assisted creative work. Logs every AI and human contribution automatically, hash-chains and cryptographically signs the record, and lets anyone verify it offline in the browser — zero trust required. Built with IBM Granite.</p>
         <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">IBM Granite</span><span class="tag">Cryptographic Signing</span><span class="tag">Hash-Chain</span><span class="tag">Provenance</span></div>
         <a href="https://storyforge-client-smoky.vercel.app/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">↗ Launch Live App</a>
+      </div>
+    </div>
+
+    <!-- Lifeline -->
+    <div class="card">
+      <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
+      <a href="https://youtu.be/dO4nQzA0oh4" target="_blank" style="display:block; overflow:hidden; max-height:200px; border-bottom:1px solid rgba(0,0,0,0.07); position:relative;">
+        <img src="https://img.youtube.com/vi/dO4nQzA0oh4/hqdefault.jpg" alt="Lifeline demo preview" style="width:100%; display:block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.15);">
+          <div style="width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.4rem;">▶</div>
+        </div>
+      </a>
+      <div class="card-body" style="padding-top:1.2rem;">
+        <p class="card-type">🛰️ Disaster Response · Local AI Hackathon — Dell &amp; NVIDIA</p>
+        <h3 class="card-title">Lifeline</h3>
+        <p class="card-desc">Team-built at BuilderBase's Local AI Hackathon: an always-on disaster-response agent that ranks collapsed buildings by survivor likelihood and proposes rescue dispatches for human approval — running fully on-device on a Dell Pro Max with GB10, no cloud. Combines Copernicus EMS earthquake damage grading, Maxar before/after satellite imagery, and OR-Tools vehicle routing for rescue teams, with a Telegram interface for commanders.</p>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">On-Device AI</span><span class="tag">OR-Tools Routing</span><span class="tag">Satellite Imagery</span><span class="tag">Team Project</span></div>
+        <a href="https://youtu.be/dO4nQzA0oh4" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">▶ Watch Demo</a>
       </div>
     </div>
 
@@ -3659,11 +3677,19 @@ function showCase(id){
     "IBM SkillsBuild AI Builders Challenge":"IBM SkillsBuild AI Builders Challenge",
     "IBM Bob AI Challenge":"IBM Bob AI Challenge",
     "Local AI Hackathon — Dell & NVIDIA":"Hackathon de IA Local — Dell y NVIDIA",
-    "Selected as one of 150 builders for BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — 40 teams, one day, building fully on-device AI on a Dell Pro Max with GB10, no cloud required.":"Seleccionado como uno de 150 constructores para el Local AI Hackathon de BuilderBase con Dell Technologies y NVIDIA — 40 equipos, un día, construyendo IA completamente en el dispositivo con una Dell Pro Max con GB10, sin necesidad de nube.",
+    "Selected as one of 150 builders for BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — 40 teams, one day, on a Dell Pro Max with GB10. Team-built Lifeline, a disaster-response agent, fully on-device, no cloud.":"Seleccionado como uno de 150 constructores para el Local AI Hackathon de BuilderBase con Dell Technologies y NVIDIA — 40 equipos, un día, con una Dell Pro Max con GB10. Construimos en equipo Lifeline, un agente de respuesta a desastres, totalmente en el dispositivo, sin nube.",
     // TL;DR LINES
     "TL;DR: An ensemble of 11 academic fraud and solvency models, cross-checked across 600+ companies' live SEC filings, so no single ratio decides the verdict.":"TL;DR: Un conjunto de 11 modelos académicos de fraude y solvencia, verificados contra las presentaciones en vivo de la SEC de más de 600 empresas, de modo que ningún ratio decide el veredicto por sí solo.",
     "TL;DR: An AI agent that can propose but never execute — deterministic policy and on-chain smart contracts enforce every payment, so a hallucination gets blocked, not acted on.":"TL;DR: Un agente de IA que puede proponer pero nunca ejecutar — una política determinista y contratos inteligentes on-chain hacen cumplir cada pago, de modo que una alucinación se bloquea en lugar de ejecutarse.",
     "TL;DR: One YAML config generates a full DCF + comps + LBO valuation stack with 7 bias-correction modules — the output is a range, not a false-precision number.":"TL;DR: Una sola configuración YAML genera un paquete completo de valoración DCF + comparables + LBO con 7 módulos de corrección de sesgos — el resultado es un rango, no un número de falsa precisión.",
+    // LIFELINE PROJECT CARD
+    "🛰️ Disaster Response · Local AI Hackathon — Dell & NVIDIA":"🛰️ Respuesta a desastres · Hackathon de IA Local — Dell y NVIDIA",
+    "Team-built at BuilderBase's Local AI Hackathon: an always-on disaster-response agent that ranks collapsed buildings by survivor likelihood and proposes rescue dispatches for human approval — running fully on-device on a Dell Pro Max with GB10, no cloud. Combines Copernicus EMS earthquake damage grading, Maxar before/after satellite imagery, and OR-Tools vehicle routing for rescue teams, with a Telegram interface for commanders.":"Construido en equipo en el Local AI Hackathon de BuilderBase: un agente de respuesta a desastres siempre activo que clasifica edificios colapsados según la probabilidad de supervivientes y propone despachos de rescate para aprobación humana — funcionando totalmente en el dispositivo en una Dell Pro Max con GB10, sin nube. Combina la clasificación de daños por sismo de Copernicus EMS, imágenes satelitales antes/después de Maxar, y enrutamiento vehicular con OR-Tools para los equipos de rescate, con una interfaz de Telegram para los comandantes.",
+    "On-Device AI":"IA en el dispositivo",
+    "OR-Tools Routing":"Enrutamiento OR-Tools",
+    "Satellite Imagery":"Imágenes satelitales",
+    "Team Project":"Proyecto en equipo",
+    "▶ Watch Demo":"▶ Ver demo",
     // FOOTER
     "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
   };
