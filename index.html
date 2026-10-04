@@ -68,6 +68,7 @@
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 1.9rem;
       list-style: none;
     }
@@ -672,6 +673,9 @@
 .nav-overlay{ position:fixed; inset:0; background:rgba(10,18,30,0.45); opacity:0; visibility:hidden; transition:opacity .25s; z-index:120; }
 .nav-overlay.open{ opacity:1; visibility:visible; }
 body.nav-open{ overflow:hidden; }
+.nav-resume-btn{ display:inline-flex; align-items:center; border:1px solid var(--gold); border-radius:20px; padding:0.4rem 1rem; color:var(--gold); font-size:0.82rem; font-weight:600; text-decoration:none; white-space:nowrap; transition:background .2s,color .2s; }
+.nav-resume-btn:hover{ background:var(--gold); color:var(--navy); }
+@media (max-width:480px){ .nav-resume-btn{ padding:0.38rem 0.75rem; font-size:0.74rem; } .nav-resume-btn span.rb-label{ display:none; } }
 </style>
 <style>.hero-title span{font-family:'Parisienne',cursive;font-weight:400;font-size:1.12em;}</style>
 <style>
@@ -706,10 +710,13 @@ body.nav-open{ overflow:hidden; }
     <li><a href="#" onclick="showPage('writing'); return false;" data-nav="writing">Writing</a></li>
     <li><a href="#" onclick="showPage('certs'); return false;" data-nav="certs">Certifications</a></li><li><a href="#" onclick="showPage('recommendations'); return false;" data-nav="recommendations">Recommendations</a></li>
   </ul></div>
-  <button class="lang-switch" id="lang-switch" aria-label="Switch language" onclick="toggleLang()"><span class="ls-en">EN</span><span class="ls-sep">|</span><span class="ls-es">ES</span></button>
-  <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex; align-items:center; gap:0.9rem;">
+    <a href="Aleks_Arriola_Resume_IB.pdf" download="Aleks_Arriola_Resume_IB.pdf" class="nav-resume-btn" aria-label="Download resume">📄 Resume</a>
+    <button class="lang-switch" id="lang-switch" aria-label="Switch language" onclick="toggleLang()"><span class="ls-en">EN</span><span class="ls-sep">|</span><span class="ls-es">ES</span></button>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 <div id="page-home" class="page-section" style="display:none;">
 
@@ -744,6 +751,37 @@ body.nav-open{ overflow:hidden; }
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;">11</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Financial Models</div></div>
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;">8</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Client Projects</div></div>
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;">50</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Certifications</div></div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<style>
+  .achv-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; max-width:980px; margin:0 auto; }
+  .achv-card{ background:var(--white); border:1px solid rgba(13,27,42,0.08); border-radius:10px; padding:1.5rem 1.6rem; display:flex; gap:1.1rem; align-items:flex-start; }
+  .achv-icon{ font-size:1.7rem; flex:none; width:48px; height:48px; border-radius:50%; background:rgba(201,168,76,0.14); display:flex; align-items:center; justify-content:center; }
+  .achv-title{ font-weight:700; font-size:0.98rem; color:var(--navy); margin-bottom:0.3rem; }
+  .achv-desc{ font-size:0.86rem; line-height:1.55; color:var(--gray); }
+  @media (max-width:700px){ .achv-grid{ grid-template-columns:1fr; } }
+</style>
+<section class="section" style="padding:3.5rem 5vw;">
+  <p class="section-label" style="text-align:center;">Recognition</p>
+  <h2 class="section-title" style="text-align:center;">Challenges &amp; Achievements</h2>
+  <div class="section-divider" style="margin:0 auto 2rem;"></div>
+  <div class="achv-grid">
+    <div class="achv-card">
+      <div class="achv-icon">🏆</div>
+      <div>
+        <div class="achv-title">IBM SkillsBuild AI Builders Challenge</div>
+        <div class="achv-desc">Built <strong>MatchMind</strong> (explainable AI for football decisions with a hallucination firewall) and <strong>StoryForge</strong> (cryptographic provenance for AI-assisted creative work) for this IBM-sponsored program.</div>
+      </div>
+    </div>
+    <div class="achv-card">
+      <div class="achv-icon">🛰️</div>
+      <div>
+        <div class="achv-title">IBM Bob AI Challenge</div>
+        <div class="achv-desc">Built <strong>MissionMind</strong>, an explainable-AI mission control console for space operations that makes autonomous decisions auditable for the humans in the loop.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -788,6 +826,7 @@ body.nav-open{ overflow:hidden; }
       <p>I'm a Finance &amp; Accounting student at Hult who builds AI agents and automation systems for real financial and operational workflows &#8212; working at the intersection of generative AI, quantitative finance, and complex data pipelines.</p>
       <p>I've shipped systems that are more than demos. <strong>PitMind</strong> is an AI Formula 1 strategy platform built on IBM Granite and live race telemetry; <strong>OpsFlow</strong> is a policy-bound AI operations agent on the Sui blockchain that turns natural language into secure, auditable workflows. Each one taught me how to design multi-step agents, enforce guardrails, and ship reliably.</p>
       <p>On the finance side, a finance internship plus tools built on SEC data and market analysis gave me a working foundation in valuation, risk, and capital markets. I'm most interested in roles that combine <strong>agentic AI, robust financial modeling, and systems thinking</strong> &#8212; in AI engineering, fintech, or finance teams that want to use modern AI well.</p>
+      <p style="font-size:0.92rem; color:var(--gray);">🛂 F-1 visa holder &#8212; OPT-eligible with the 24-month STEM extension, giving up to 3 years of U.S. work authorization.</p>
     </div>
     <aside class="about-now">
       <p class="about-now-label">Currently building</p>
@@ -2098,6 +2137,7 @@ body.nav-open{ overflow:hidden; }
   .case-kicker { font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem; }
   .case-title { font-family:'Cormorant Garamond', 'Inter', sans-serif; font-size:1.7rem; color:var(--navy); margin-bottom:0.9rem; line-height:1.25; }
   .case-decision { font-size:1.02rem; line-height:1.7; color:#2a2f3a; background:var(--light-bg); border-left:3px solid var(--gold); padding:1rem 1.25rem; margin-bottom:1.5rem; }
+  .case-tldr { font-size:0.98rem; line-height:1.6; color:var(--navy); background:rgba(201,168,76,0.14); border-radius:6px; padding:0.8rem 1.1rem; margin-bottom:1rem; }
   .case-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem 2rem; margin-bottom:1.5rem; }
   .case-block h4, .case-translate h4, .case-distrust h4 { font-size:0.9rem; font-weight:700; color:var(--navy); margin-bottom:0.4rem; }
   .case-block p { font-size:0.92rem; line-height:1.65; color:#444; }
@@ -2121,6 +2161,7 @@ body.nav-open{ overflow:hidden; }
     <article class="case" id="case-scanner">
       <p class="case-kicker">Case Study · Quant / Model Risk</p>
       <h3 class="case-title">Company Health Red-Flag Scanner</h3>
+      <p class="case-tldr"><strong>TL;DR:</strong> An ensemble of 11 academic fraud and solvency models, cross-checked across 600+ companies' live SEC filings, so no single ratio decides the verdict.</p>
       <p class="case-decision"><strong>Risk decision it informs:</strong> Before trusting a company's reported health, where is the accounting most likely stretched — and is a distress signal real, or a sector artifact?</p>
       <div class="case-grid">
         <div class="case-block"><h4>The uncertainty</h4><p>Reported earnings diverge from the cash a business actually generates (accruals). Any single model is a noisy read, XBRL fields aren't tagged uniformly across filers, and base rates differ by sector.</p></div>
@@ -2146,6 +2187,7 @@ body.nav-open{ overflow:hidden; }
     <article class="case" id="case-opsflow">
       <p class="case-kicker">Case Study · Governance / Controls</p>
       <h3 class="case-title">OpsFlow — Policy-Bound AI Operations Agent</h3>
+      <p class="case-tldr"><strong>TL;DR:</strong> An AI agent that can propose but never execute — deterministic policy and on-chain smart contracts enforce every payment, so a hallucination gets blocked, not acted on.</p>
       <p class="case-decision"><strong>Risk decision it informs:</strong> Should an AI agent be allowed to move money and route approvals on its own — and what has to be true before it can?</p>
       <div class="case-grid">
         <div class="case-block"><h4>The uncertainty</h4><p>LLM plans are strong but occasionally wrong. A single hallucination, misread context, or ambiguous instruction can send a payment to the wrong party or skip a required review — and by the time a human notices, the action is already done.</p></div>
@@ -2171,6 +2213,7 @@ body.nav-open{ overflow:hidden; }
     <article class="case" id="case-orcen">
       <p class="case-kicker">Case Study · Model Risk / Valuation</p>
       <h3 class="case-title">Orcen Capital — Auto Valuation Kit</h3>
+      <p class="case-tldr"><strong>TL;DR:</strong> One YAML config generates a full DCF + comps + LBO valuation stack with 7 bias-correction modules — the output is a range, not a false-precision number.</p>
       <p class="case-decision"><strong>Risk decision it informs:</strong> How much of this valuation is analysis, and how much is an assumption dressed up as a number — and where does the answer actually live?</p>
       <div class="case-grid">
         <div class="case-block"><h4>The uncertainty</h4><p>In most DCFs, terminal value is 60–80% of enterprise value, and a one-point change in the terminal growth rate can move the output by ~30%. Analysts also anchor on narratives and on their own prior targets.</p></div>
@@ -3558,6 +3601,19 @@ function showCase(id){
     "Mission Control":"Control de misión",
     "Explainable AI":"IA explicable",
     "8 live apps deployed":"8 apps en vivo desplegadas",
+    // NAV RESUME BUTTON
+    "📄 Resume":"📄 CV",
+    // VISA STATUS
+    "🛂 F-1 visa holder — OPT-eligible with the 24-month STEM extension, giving up to 3 years of U.S. work authorization.":"🛂 Titular de visa F-1 — elegible para OPT con la extensión STEM de 24 meses, lo que otorga hasta 3 años de autorización de trabajo en EE. UU.",
+    // ACHIEVEMENTS
+    "Recognition":"Reconocimiento",
+    "Challenges & Achievements":"Desafíos y logros",
+    "IBM SkillsBuild AI Builders Challenge":"IBM SkillsBuild AI Builders Challenge",
+    "IBM Bob AI Challenge":"IBM Bob AI Challenge",
+    // TL;DR LINES
+    "TL;DR: An ensemble of 11 academic fraud and solvency models, cross-checked across 600+ companies' live SEC filings, so no single ratio decides the verdict.":"TL;DR: Un conjunto de 11 modelos académicos de fraude y solvencia, verificados contra las presentaciones en vivo de la SEC de más de 600 empresas, de modo que ningún ratio decide el veredicto por sí solo.",
+    "TL;DR: An AI agent that can propose but never execute — deterministic policy and on-chain smart contracts enforce every payment, so a hallucination gets blocked, not acted on.":"TL;DR: Un agente de IA que puede proponer pero nunca ejecutar — una política determinista y contratos inteligentes on-chain hacen cumplir cada pago, de modo que una alucinación se bloquea en lugar de ejecutarse.",
+    "TL;DR: One YAML config generates a full DCF + comps + LBO valuation stack with 7 bias-correction modules — the output is a range, not a false-precision number.":"TL;DR: Una sola configuración YAML genera un paquete completo de valoración DCF + comparables + LBO con 7 módulos de corrección de sesgos — el resultado es un rango, no un número de falsa precisión.",
     // FOOTER
     "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
   };
