@@ -835,6 +835,7 @@ body.nav-open{ overflow:hidden; }
       <p>I've shipped systems that are more than demos. <strong>PitMind</strong> is an AI Formula 1 strategy platform built on IBM Granite and live race telemetry; <strong>OpsFlow</strong> is a policy-bound AI operations agent on the Sui blockchain that turns natural language into secure, auditable workflows. Each one taught me how to design multi-step agents, enforce guardrails, and ship reliably.</p>
       <p>On the finance side, a finance internship plus tools built on SEC data and market analysis gave me a working foundation in valuation, risk, and capital markets. I'm most interested in roles that combine <strong>agentic AI, robust financial modeling, and systems thinking</strong> &#8212; in AI engineering, fintech, or finance teams that want to use modern AI well.</p>
       <p style="font-size:0.92rem; color:var(--gray);">🛂 F-1 visa holder &#8212; OPT-eligible with the 24-month STEM extension, giving up to 3 years of U.S. work authorization.</p>
+      <p style="font-size:0.92rem; color:var(--gray);">&#9917; Played competitive soccer growing up &#8212; finance became the sport I switched to.</p>
     </div>
     <aside class="about-now">
       <p class="about-now-label">Currently building</p>
@@ -847,7 +848,8 @@ body.nav-open{ overflow:hidden; }
 
 <!-- HOW I WORK -->
 <style>
-  .howiwork-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:980px; margin:0 auto; }
+  .howiwork-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1200px; margin:0 auto; }
+  @media (max-width:980px){ .howiwork-grid{ grid-template-columns:1fr 1fr; } }
   .howiwork-card{ background:var(--white); border:1px solid rgba(13,27,42,0.08); border-left:3px solid var(--gold); border-radius:8px; padding:1.5rem 1.7rem; }
   .howiwork-card h4{ font-size:0.95rem; font-weight:700; color:var(--navy); margin-bottom:0.5rem; }
   .howiwork-card p{ font-size:0.92rem; line-height:1.7; color:#3a3f4a; }
@@ -865,6 +867,10 @@ body.nav-open{ overflow:hidden; }
     <div class="howiwork-card">
       <h4>📊 Rejections are data, not verdicts</h4>
       <p>I track internship applications like a pipeline — sent, screened, interviewed, offered — and treat every rejection as a prompt to rewrite the weak line, the same night it lands, while the reason it didn't work is still fresh.</p>
+    </div>
+    <div class="howiwork-card">
+      <h4>⚽ Treat it like drills, not reading</h4>
+      <p>Soccer taught me the drill: fail in public, immediately, then run it again. I build finance the same way — I've rebuilt the same DCF logic four times this month. If I can't reproduce a number without notes, I don't actually know it yet, no matter how well I explained it back five minutes ago.</p>
     </div>
   </div>
 </section>
@@ -3644,6 +3650,9 @@ function showCase(id){
     "I protect a block on my calendar before the week starts, like a meeting I can't move — not whatever's left over after classes and outreach. Deep, absorbed work only shows up on purpose when the slot was already decided in advance.":"Protejo un bloque en mi calendario antes de que empiece la semana, como una reunión que no puedo mover, no lo que sobra después de clases y gestiones. El trabajo profundo y absorbido solo aparece a propósito cuando el horario ya estaba decidido de antemano.",
     "📊 Rejections are data, not verdicts":"📊 Los rechazos son datos, no veredictos",
     "I track internship applications like a pipeline — sent, screened, interviewed, offered — and treat every rejection as a prompt to rewrite the weak line, the same night it lands, while the reason it didn't work is still fresh.":"Llevo el seguimiento de mis postulaciones a pasantías como un embudo — enviadas, filtradas, entrevistadas, con oferta — y trato cada rechazo como una señal para reescribir la línea débil, esa misma noche, mientras la razón por la que no funcionó sigue fresca.",
+    "⚽ Treat it like drills, not reading":"⚽ Tratarlo como entrenamientos, no como lectura",
+    "Soccer taught me the drill: fail in public, immediately, then run it again. I build finance the same way — I've rebuilt the same DCF logic four times this month. If I can't reproduce a number without notes, I don't actually know it yet, no matter how well I explained it back five minutes ago.":"El fútbol me enseñó la rutina: fallar en público, de inmediato, y volver a intentarlo. Construyo finanzas de la misma manera — he reconstruido la misma lógica de DCF cuatro veces este mes. Si no puedo reproducir un número sin notas, en realidad todavía no lo sé, sin importar qué tan bien lo haya explicado cinco minutos antes.",
+    "⚽ Played competitive soccer growing up — finance became the sport I switched to.":"⚽ Jugué fútbol competitivo de niño — las finanzas se convirtieron en el deporte al que cambié.",
     // ACHIEVEMENTS
     "Recognition":"Reconocimiento",
     "Challenges & Achievements":"Desafíos y logros",
