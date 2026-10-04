@@ -756,7 +756,8 @@ body.nav-open{ overflow:hidden; }
 
 <!-- ACHIEVEMENTS -->
 <style>
-  .achv-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; max-width:980px; margin:0 auto; }
+  .achv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1200px; margin:0 auto; }
+  @media (max-width:980px){ .achv-grid{ grid-template-columns:1fr 1fr; } }
   .achv-card{ background:var(--white); border:1px solid rgba(13,27,42,0.08); border-radius:10px; padding:1.5rem 1.6rem; display:flex; gap:1.1rem; align-items:flex-start; }
   .achv-icon{ font-size:1.7rem; flex:none; width:48px; height:48px; border-radius:50%; background:rgba(201,168,76,0.14); display:flex; align-items:center; justify-content:center; }
   .achv-title{ font-weight:700; font-size:0.98rem; color:var(--navy); margin-bottom:0.3rem; }
@@ -780,6 +781,13 @@ body.nav-open{ overflow:hidden; }
       <div>
         <div class="achv-title">IBM Bob AI Challenge</div>
         <div class="achv-desc">Built <strong>MissionMind</strong>, an explainable-AI mission control console for space operations that makes autonomous decisions auditable for the humans in the loop.</div>
+      </div>
+    </div>
+    <div class="achv-card">
+      <div class="achv-icon">💻</div>
+      <div>
+        <div class="achv-title">Local AI Hackathon — Dell &amp; NVIDIA</div>
+        <div class="achv-desc">Selected as one of 150 builders for BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — 40 teams, one day, building fully on-device AI on a Dell Pro Max with GB10, no cloud required.</div>
       </div>
     </div>
   </div>
@@ -834,6 +842,30 @@ body.nav-open{ overflow:hidden; }
       <p>An autonomous agent system that replicates key parts of an investment-banking deal team: LLM agents handle structured data extraction while deterministic Python engines (NumPy / SciPy) run the corporate-finance math &#8212; feeding multi-tab Excel models and long-form memos.</p>
       <p class="about-now-tags">LangGraph &#183; LLM Agents &#183; NumPy / SciPy &#183; Excel Automation</p>
     </aside>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<style>
+  .howiwork-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:980px; margin:0 auto; }
+  .howiwork-card{ background:var(--white); border:1px solid rgba(13,27,42,0.08); border-left:3px solid var(--gold); border-radius:8px; padding:1.5rem 1.7rem; }
+  .howiwork-card h4{ font-size:0.95rem; font-weight:700; color:var(--navy); margin-bottom:0.5rem; }
+  .howiwork-card p{ font-size:0.92rem; line-height:1.7; color:#3a3f4a; }
+  @media (max-width:700px){ .howiwork-grid{ grid-template-columns:1fr; } }
+</style>
+<section class="section" style="padding:3.5rem 5vw;">
+  <p class="section-label" style="text-align:center;">How I Work</p>
+  <h2 class="section-title" style="text-align:center;">Two habits behind the output</h2>
+  <div class="section-divider" style="margin:0 auto 2rem;"></div>
+  <div class="howiwork-grid">
+    <div class="howiwork-card">
+      <h4>🗓️ Deep work is scheduled, not scavenged</h4>
+      <p>I protect a block on my calendar before the week starts, like a meeting I can't move — not whatever's left over after classes and outreach. Deep, absorbed work only shows up on purpose when the slot was already decided in advance.</p>
+    </div>
+    <div class="howiwork-card">
+      <h4>📊 Rejections are data, not verdicts</h4>
+      <p>I track internship applications like a pipeline — sent, screened, interviewed, offered — and treat every rejection as a prompt to rewrite the weak line, the same night it lands, while the reason it didn't work is still fresh.</p>
+    </div>
   </div>
 </section>
     <section style="background:var(--navy); padding:4rem 2rem; border-top:1px solid rgba(255,255,255,0.07);">
@@ -3605,11 +3637,20 @@ function showCase(id){
     "📄 Resume":"📄 CV",
     // VISA STATUS
     "🛂 F-1 visa holder — OPT-eligible with the 24-month STEM extension, giving up to 3 years of U.S. work authorization.":"🛂 Titular de visa F-1 — elegible para OPT con la extensión STEM de 24 meses, lo que otorga hasta 3 años de autorización de trabajo en EE. UU.",
+    // HOW I WORK
+    "How I Work":"Cómo trabajo",
+    "Two habits behind the output":"Dos hábitos detrás del resultado",
+    "🗓️ Deep work is scheduled, not scavenged":"🗓️ El trabajo profundo se agenda, no se improvisa",
+    "I protect a block on my calendar before the week starts, like a meeting I can't move — not whatever's left over after classes and outreach. Deep, absorbed work only shows up on purpose when the slot was already decided in advance.":"Protejo un bloque en mi calendario antes de que empiece la semana, como una reunión que no puedo mover, no lo que sobra después de clases y gestiones. El trabajo profundo y absorbido solo aparece a propósito cuando el horario ya estaba decidido de antemano.",
+    "📊 Rejections are data, not verdicts":"📊 Los rechazos son datos, no veredictos",
+    "I track internship applications like a pipeline — sent, screened, interviewed, offered — and treat every rejection as a prompt to rewrite the weak line, the same night it lands, while the reason it didn't work is still fresh.":"Llevo el seguimiento de mis postulaciones a pasantías como un embudo — enviadas, filtradas, entrevistadas, con oferta — y trato cada rechazo como una señal para reescribir la línea débil, esa misma noche, mientras la razón por la que no funcionó sigue fresca.",
     // ACHIEVEMENTS
     "Recognition":"Reconocimiento",
     "Challenges & Achievements":"Desafíos y logros",
     "IBM SkillsBuild AI Builders Challenge":"IBM SkillsBuild AI Builders Challenge",
     "IBM Bob AI Challenge":"IBM Bob AI Challenge",
+    "Local AI Hackathon — Dell & NVIDIA":"Hackathon de IA Local — Dell y NVIDIA",
+    "Selected as one of 150 builders for BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — 40 teams, one day, building fully on-device AI on a Dell Pro Max with GB10, no cloud required.":"Seleccionado como uno de 150 constructores para el Local AI Hackathon de BuilderBase con Dell Technologies y NVIDIA — 40 equipos, un día, construyendo IA completamente en el dispositivo con una Dell Pro Max con GB10, sin necesidad de nube.",
     // TL;DR LINES
     "TL;DR: An ensemble of 11 academic fraud and solvency models, cross-checked across 600+ companies' live SEC filings, so no single ratio decides the verdict.":"TL;DR: Un conjunto de 11 modelos académicos de fraude y solvencia, verificados contra las presentaciones en vivo de la SEC de más de 600 empresas, de modo que ningún ratio decide el veredicto por sí solo.",
     "TL;DR: An AI agent that can propose but never execute — deterministic policy and on-chain smart contracts enforce every payment, so a hallucination gets blocked, not acted on.":"TL;DR: Un agente de IA que puede proponer pero nunca ejecutar — una política determinista y contratos inteligentes on-chain hacen cumplir cada pago, de modo que una alucinación se bloquea en lugar de ejecutarse.",
