@@ -2308,6 +2308,33 @@ body.nav-open{ overflow:hidden; }
   .case-distrust h4 { color:#8a6d1f; }
   .case-distrust p { font-size:0.94rem; line-height:1.7; color:#3a3f4a; }
   @media (max-width:700px){ .case-grid, .case-translate ul { grid-template-columns:1fr; } }
+
+  /* Rail that tracks which case study you're reading */
+  .cs-layout { display:grid; grid-template-columns:185px 1fr; gap:2.6rem; align-items:start; }
+  .cs-body { min-width:0; }
+  .cs-rail { position:sticky; top:110px; font-size:0.86rem; }
+  .cs-rail-label { display:block; font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:#8a8f9d; font-weight:700; margin-bottom:0.6rem; }
+  .cs-rail a {
+    display:block; padding:0.5rem 0 0.5rem 0.85rem; line-height:1.35;
+    border-left:2px solid rgba(13,27,42,0.12); border-bottom:none !important;
+    color:#5d6775; text-decoration:none; transition:color .15s, border-color .15s;
+  }
+  .cs-rail a:hover { color:var(--navy); }
+  .cs-rail a.on { color:var(--navy); font-weight:600; border-left-color:var(--gold); }
+  @media (max-width:900px){
+    .cs-layout { grid-template-columns:1fr; gap:1.1rem; }
+    .cs-rail {
+      top:68px; z-index:20; display:flex; gap:0.3rem; overflow-x:auto;
+      background:var(--white); padding:0.5rem 0; margin:0 -0.3rem;
+      border-bottom:1px solid rgba(13,27,42,0.08);
+    }
+    .cs-rail-label { display:none; }
+    .cs-rail a {
+      border-left:none; border-bottom:2px solid transparent;
+      white-space:nowrap; padding:0.35rem 0.65rem; flex:none;
+    }
+    .cs-rail a.on { border-bottom-color:var(--gold); }
+  }
 </style>
 <div id="page-casestudies" class="page-section" style="display:none;">
 <section class="section section-alt">
@@ -2317,6 +2344,15 @@ body.nav-open{ overflow:hidden; }
   <p class="cs-lead">The strongest signal isn't the number of tools you know — it's whether a technical system connects to an actual risk decision. Each project below is framed that way.</p>
   <p class="cs-frame">For every one: the uncertainty it faced, the control I designed to bound it, the trade-offs that introduced, how I tried to break it — and when I'd distrust it, plus the safeguard I'd add next.</p>
 
+    <div class="cs-layout">
+    <nav class="cs-rail" id="cs-rail" aria-label="Case studies">
+      <span class="cs-rail-label">On this page</span>
+      <a href="#case-scanner" data-case="case-scanner">Red-Flag Scanner</a>
+      <a href="#case-opsflow" data-case="case-opsflow">OpsFlow</a>
+      <a href="#case-orcen" data-case="case-orcen">Orcen Capital</a>
+      <a href="#case-lifeline" data-case="case-lifeline">Lifeline</a>
+    </nav>
+    <div class="cs-body">
     <article class="case" id="case-scanner">
       <p class="case-kicker">Case Study · Quant / Model Risk</p>
       <h3 class="case-title">Company Health Red-Flag Scanner</h3>
@@ -2446,6 +2482,9 @@ body.nav-open{ overflow:hidden; }
         <p>I would not trust this ranking in a situation unlike the one it was tested against: a different structure type, a flood rather than a seismic event, or a live sensor feed in place of the simulated one. The safeguard is the one rule the system refuses to break &#8212; a site with no signal is never dropped from the queue, because the ranking is a statement about where to look first, not about where anyone is.</p>
       </div>
     </article>
+    </div>
+  </div>
+
 </section>
 </div>
 <div id="page-writing" class="page-section" style="display:none;">
@@ -3912,6 +3951,10 @@ function showCase(id){
     "base case":"caso base",
     "Across the full range of both inputs":"En todo el rango de ambos supuestos",
     "Same company, same cash flows. Two assumptions moved.":"La misma empresa, los mismos flujos de caja. Se movieron dos supuestos.",
+    // CASE STUDY RAIL
+    "On this page":"En esta página",
+    "Red-Flag Scanner":"Escáner de señales de alerta",
+    "Orcen Capital":"Orcen Capital",
     // FOOTER
     "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
   };
@@ -3986,6 +4029,57 @@ function showCase(id){
   }
   if(document.readyState!=='loading') init();
   else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+<!-- Case studies rail: highlights whichever case study is in view, and
+     scrolls to one on click without leaving a hash in the URL. -->
+<script>
+(function () {
+  var rail = document.getElementById('cs-rail');
+  if (!rail) return;
+  var links = Array.prototype.slice.call(rail.querySelectorAll('a[data-case]'));
+  var cases = links.map(function (a) { return document.getElementById(a.dataset.case); }).filter(Boolean);
+  if (!cases.length) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NAV = 96;   // fixed nav height, so a heading doesn't land underneath it
+
+  function mark(id) {
+    links.forEach(function (a) { a.classList.toggle('on', a.dataset.case === id); });
+  }
+
+  rail.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-case]');
+    if (!a) return;
+    e.preventDefault();
+    var el = document.getElementById(a.dataset.case);
+    if (!el) return;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - NAV;
+    window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    mark(a.dataset.case);
+  });
+
+  function current() {
+    var best = cases[0].id, bestTop = -Infinity;
+    cases.forEach(function (el) {
+      var top = el.getBoundingClientRect().top - NAV - 8;
+      if (top <= 0 && top > bestTop) { bestTop = top; best = el.id; }
+    });
+    return best;
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      if (rail.offsetParent !== null) mark(current());
+      ticking = false;
+    });
+  }, { passive: true });
+
+  mark(cases[0].id);
 })();
 </script>
 
