@@ -2274,6 +2274,29 @@ body.nav-open{ overflow:hidden; }
   .case-title { font-family:'Cormorant Garamond', 'Inter', sans-serif; font-size:1.7rem; color:var(--navy); margin-bottom:0.9rem; line-height:1.25; }
   .case-decision { font-size:1.02rem; line-height:1.7; color:#2a2f3a; background:var(--light-bg); border-left:3px solid var(--gold); padding:1rem 1.25rem; margin-bottom:1.5rem; }
   .case-tldr { font-size:0.98rem; line-height:1.6; color:var(--navy); background:rgba(201,168,76,0.14); border-radius:6px; padding:0.8rem 1.1rem; margin-bottom:1rem; }
+
+  /* Live sensitivity model inside a case study */
+  .sens { margin:0 0 2rem; background:var(--navy); border-radius:10px; overflow:hidden; color:#fff; }
+  .sens-cap { font-size:0.74rem; line-height:1.55; color:rgba(255,255,255,0.5); padding:0.75rem 1.3rem; border-bottom:1px solid rgba(255,255,255,0.09); background:rgba(255,255,255,0.03); }
+  .sens-grid { display:grid; grid-template-columns:1fr 250px; gap:2rem; padding:1.4rem 1.3rem; align-items:start; }
+  @media (max-width:720px){ .sens-grid{ grid-template-columns:1fr; gap:1.3rem; } }
+  .sens-controls { min-width:0; }
+  .sens label { display:flex; justify-content:space-between; gap:1rem; font-size:0.82rem; color:rgba(255,255,255,0.78); margin-bottom:0.4rem; }
+  .sens label b { color:var(--gold-light); font-variant-numeric:tabular-nums; font-weight:600; }
+  .sens input[type=range] { width:100%; accent-color:var(--gold); margin-bottom:1.15rem; }
+  .sens input[type=range]:focus-visible { outline:2px solid var(--gold-light); outline-offset:3px; }
+  .sens-lbl { font-size:0.67rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.35rem; }
+  .sens-meter { height:7px; border-radius:4px; background:rgba(255,255,255,0.12); overflow:hidden; }
+  .sens-meter span { display:block; height:100%; width:75%; background:linear-gradient(90deg,var(--gold),var(--gold-light)); transition:width .18s; }
+  .sens-line { font-size:0.82rem; color:rgba(255,255,255,0.72); margin-top:0.45rem; line-height:1.5; }
+  .sens-line b { color:var(--gold-light); font-variant-numeric:tabular-nums; }
+  .sens-sep { margin-top:0.85rem; padding-top:0.85rem; border-top:1px solid rgba(255,255,255,0.1); }
+  .sens-readout { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:1rem 1.1rem; min-width:0; }
+  .sens-big { font-family:'Cormorant Garamond','Inter',sans-serif; font-size:2.1rem; font-weight:700; color:var(--gold); font-variant-numeric:tabular-nums; line-height:1.1; }
+  .sens-delta { font-size:0.82rem; font-weight:600; margin-top:0.3rem; font-variant-numeric:tabular-nums; color:rgba(255,255,255,0.55); }
+  .sens-hr { border-top:1px solid rgba(255,255,255,0.1); margin:0.85rem 0; }
+  .sens-range { font-size:0.86rem; color:rgba(255,255,255,0.8); font-variant-numeric:tabular-nums; }
+  .sens-foot { font-size:0.72rem; color:rgba(255,255,255,0.45); line-height:1.5; margin-top:0.45rem; }
   .case-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem 2rem; margin-bottom:1.5rem; }
   .case-block h4, .case-translate h4, .case-distrust h4 { font-size:0.9rem; font-weight:700; color:var(--navy); margin-bottom:0.4rem; }
   .case-block p { font-size:0.92rem; line-height:1.65; color:#444; }
@@ -2352,13 +2375,37 @@ body.nav-open{ overflow:hidden; }
       <p class="case-tldr"><strong>TL;DR:</strong> One YAML config generates a full DCF + comps + LBO valuation stack with 7 bias-correction modules — the output is a range, not a false-precision number.</p>
       <p class="case-decision"><strong>Risk decision it informs:</strong> How much of this valuation is analysis, and how much is an assumption dressed up as a number — and where does the answer actually live?</p>
       <div class="case-grid">
-        <div class="case-block"><h4>The uncertainty</h4><p>In most DCFs, terminal value is 60–80% of enterprise value, and a one-point change in the terminal growth rate can move the output by ~30%. Analysts also anchor on narratives and on their own prior targets.</p></div>
+        <div class="case-block"><h4>The uncertainty</h4><p>In most DCFs, terminal value is 60–80% of enterprise value, so what a single point of terminal growth is worth depends on how close the discount rate already sits to it — from +14% at a 6.5-point spread to +45% at 3 points. Analysts also anchor on narratives and on their own prior targets.</p></div>
         <div class="case-block"><h4>How I got here</h4>
         <p>The first version was one DCF. Building it, I watched terminal value swamp 60&#8211;80% of the answer &#8212; the &#8220;number&#8221; was really an assumption in disguise. Instead of polishing one method, I added comps, LBO, and precedent transactions as independent cross-checks and layered in bias-correction modules, so the output shows a spread and where the value actually lives rather than false-precision. That reframe &#8212; from &#8220;compute the value&#8221; to &#8220;show how much is analysis vs assumption&#8221; &#8212; is why the kit looks the way it does.</p>
         <h4>Control &amp; monitoring I designed</h4><p>A blended fair value cross-checks the Gordon Growth terminal against an exit-multiple and a reinvestment-adjusted growth estimate — when the three diverge, the divergence is flagged rather than averaged away. Seven cognitive bias-correction modules target anchoring, optimism bias, and narrative contamination. Verified end-to-end on real Apple FY2024 data, producing a live HOLD.</p></div>
         <div class="case-block"><h4>Trade-offs it introduced</h4><p>Surfacing disagreement instead of resolving it to a single tidy number is less clean to present — but it shows where the uncertainty is instead of hiding it. The bias modules also add real complexity to the pipeline (~39,000 lines of Python).</p></div>
         <div class="case-block"><h4>How I tested failure modes</h4><p>Ran explicit terminal-value sensitivity so the output is a range with a clear statement of how far it moves as assumptions change, and cross-checked the DCF against comparable transactions and an LBO return to catch a single method drifting.</p></div>
       </div>
+      <figure class="sens" id="sens-orcen">
+        <figcaption class="sens-cap">Fig. 1 &#8212; Move the assumptions yourself. Illustrative five-year model on an Apple-scale free cash flow base (~$109B), the dataset the kit was verified against; Gordon growth terminal value.</figcaption>
+        <div class="sens-grid">
+          <div class="sens-controls">
+            <label for="sens-wacc">Discount rate (WACC) <b id="sens-v-wacc">9.0%</b></label>
+            <input type="range" id="sens-wacc" min="70" max="130" step="1" value="90">
+            <label for="sens-growth">Terminal growth rate <b id="sens-v-growth">2.5%</b></label>
+            <input type="range" id="sens-growth" min="0" max="45" step="1" value="25">
+            <div class="sens-lbl">Terminal value as a share of enterprise value</div>
+            <div class="sens-meter"><span id="sens-bar"></span></div>
+            <div class="sens-line"><b id="sens-share">75%</b> of the answer comes from after year five</div>
+            <div class="sens-line sens-sep">One more point of terminal growth, from here: <b id="sens-ppt">+14%</b></div>
+          </div>
+          <div class="sens-readout">
+            <div class="sens-lbl">Enterprise value</div>
+            <div class="sens-big" id="sens-ev">$1.91T</div>
+            <div class="sens-delta" id="sens-delta">base case</div>
+            <div class="sens-hr"></div>
+            <div class="sens-lbl">Across the full range of both inputs</div>
+            <div class="sens-range" id="sens-range">$1.02T &#8212; $4.65T</div>
+            <div class="sens-foot">Same company, same cash flows. Two assumptions moved.</div>
+          </div>
+        </div>
+      </figure>
       <div class="case-translate">
         <h4>In finance terms</h4>
         <ul><li><strong>Model risk</strong> — terminal-value sensitivity is made explicit, not buried</li><li><strong>Limits</strong> — a valuation range, not a false-precision point target</li><li><strong>Explainability</strong> — every output reconciles to its inputs and its method</li><li><strong>Decision link</strong> — the blended output and HOLD verdict tie to a buy / hold / sell call</li></ul>
@@ -3854,6 +3901,17 @@ function showCase(id){
     "The whole stack runs on one machine from public data — Copernicus EMS damage grading and Maxar Open Data imagery — so a reviewer can re-run the scenario end to end without credentials or a cloud account, and see which inputs produced a given ordering.":"Todo el stack se ejecuta en una sola máquina a partir de datos públicos —la clasificación de daños de Copernicus EMS y las imágenes de Maxar Open Data—, de modo que un revisor puede volver a ejecutar el escenario de principio a fin sin credenciales ni cuenta en la nube, y ver qué entradas produjeron un orden determinado.",
     "When I'd distrust it — and the safeguard we built":"Cuándo desconfiaría — y la salvaguarda que construimos",
     "I would not trust this ranking in a situation unlike the one it was tested against: a different structure type, a flood rather than a seismic event, or a live sensor feed in place of the simulated one. The safeguard is the one rule the system refuses to break — a site with no signal is never dropped from the queue, because the ranking is a statement about where to look first, not about where anyone is.":"No confiaría en esta clasificación en una situación distinta de aquella contra la que se probó: otro tipo de estructura, una inundación en lugar de un evento sísmico, o un flujo de sensores en vivo en lugar del simulado. La salvaguarda es la única regla que el sistema se niega a romper: un sitio sin señal nunca se elimina de la cola, porque la clasificación es una afirmación sobre dónde mirar primero, no sobre dónde está alguien.",
+    // SENSITIVITY MODEL
+    "In most DCFs, terminal value is 60–80% of enterprise value, so what a single point of terminal growth is worth depends on how close the discount rate already sits to it — from +14% at a 6.5-point spread to +45% at 3 points. Analysts also anchor on narratives and on their own prior targets.":"En la mayoría de los DCF, el valor terminal es entre el 60 y el 80% del valor de empresa, así que cuánto vale un punto adicional de crecimiento terminal depende de qué tan cerca esté ya la tasa de descuento de él: desde +14% con una brecha de 6,5 puntos hasta +45% con 3 puntos. Los analistas además se anclan en narrativas y en sus propios objetivos previos.",
+    "Fig. 1 — Move the assumptions yourself. Illustrative five-year model on an Apple-scale free cash flow base (~$109B), the dataset the kit was verified against; Gordon growth terminal value.":"Fig. 1 — Mueve los supuestos tú mismo. Modelo ilustrativo a cinco años sobre una base de flujo de caja libre a escala de Apple (~$109 mil millones), el conjunto de datos con el que se verificó el kit; valor terminal por crecimiento de Gordon.",
+    "Discount rate (WACC)":"Tasa de descuento (WACC)",
+    "Terminal growth rate":"Tasa de crecimiento terminal",
+    "TERMINAL VALUE AS A SHARE OF ENTERPRISE VALUE":"VALOR TERMINAL COMO PROPORCIÓN DEL VALOR DE EMPRESA",
+    "Terminal value as a share of enterprise value":"Valor terminal como proporción del valor de empresa",
+    "Enterprise value":"Valor de empresa",
+    "base case":"caso base",
+    "Across the full range of both inputs":"En todo el rango de ambos supuestos",
+    "Same company, same cash flows. Two assumptions moved.":"La misma empresa, los mismos flujos de caja. Se movieron dos supuestos.",
     // FOOTER
     "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
   };
@@ -3928,6 +3986,77 @@ function showCase(id){
   }
   if(document.readyState!=='loading') init();
   else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+<!-- Orcen case study: a live five-year DCF so the reader can move the two
+     assumptions that dominate the answer instead of taking them on faith. -->
+<script>
+(function () {
+  var wacc = document.getElementById('sens-wacc');
+  var growth = document.getElementById('sens-growth');
+  if (!wacc || !growth) return;
+
+  var FCF0 = 108.8, GROW = 0.05, YEARS = 5, MIN_SPREAD = 0.005;
+
+  function dcf(w, g) {
+    if (w - g < MIN_SPREAD) g = w - MIN_SPREAD;   // keep the Gordon denominator positive
+    var pv = 0, fcf = FCF0;
+    for (var t = 1; t <= YEARS; t++) {
+      fcf = FCF0 * Math.pow(1 + GROW, t);
+      pv += fcf / Math.pow(1 + w, t);
+    }
+    var pvtv = (fcf * (1 + g) / (w - g)) / Math.pow(1 + w, YEARS);
+    return { ev: pv + pvtv, share: pvtv / (pv + pvtv) };
+  }
+
+  var BASE = dcf(0.09, 0.025);
+
+  function money(bn) {
+    return bn >= 1000 ? '$' + (bn / 1000).toFixed(2) + 'T' : '$' + Math.round(bn) + 'B';
+  }
+
+  function render() {
+    var w = +wacc.value / 1000, g = +growth.value / 1000;
+    var r = dcf(w, g);
+
+    document.getElementById('sens-v-wacc').textContent = (w * 100).toFixed(1) + '%';
+    document.getElementById('sens-v-growth').textContent = (g * 100).toFixed(1) + '%';
+    document.getElementById('sens-ev').textContent = money(r.ev);
+
+    var share = Math.round(r.share * 100);
+    document.getElementById('sens-share').textContent = share + '%';
+    document.getElementById('sens-bar').style.width = share + '%';
+
+    var ppt = (dcf(w, g + 0.01).ev / r.ev - 1) * 100;
+    document.getElementById('sens-ppt').textContent = '+' + ppt.toFixed(0) + '%';
+
+    var d = (r.ev / BASE.ev - 1) * 100, el = document.getElementById('sens-delta');
+    if (Math.abs(d) < 0.5) {
+      el.textContent = 'base case';
+      el.style.color = 'rgba(255,255,255,0.55)';
+    } else {
+      el.textContent = (d > 0 ? '+' : '') + d.toFixed(0) + '% vs base case';
+      el.style.color = d > 0 ? '#7fcf9b' : '#e59b86';
+    }
+  }
+
+  // the honest headline spread: sweep both inputs rather than quoting the ends
+  (function () {
+    var lo = Infinity, hi = -Infinity;
+    for (var wv = 70; wv <= 130; wv++) {
+      for (var gv = 0; gv <= 45; gv += 5) {
+        var ev = dcf(wv / 1000, gv / 1000).ev;
+        if (ev < lo) lo = ev;
+        if (ev > hi) hi = ev;
+      }
+    }
+    document.getElementById('sens-range').textContent = money(lo) + ' — ' + money(hi);
+  })();
+
+  wacc.addEventListener('input', render);
+  growth.addEventListener('input', render);
+  render();
 })();
 </script>
 
