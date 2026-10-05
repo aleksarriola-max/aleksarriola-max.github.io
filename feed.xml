@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 04 Oct 2026 14:30:30 +0000</lastBuildDate>
+<lastBuildDate>Mon, 05 Oct 2026 17:35:50 +0000</lastBuildDate>
+<item>
+<title>Why I Chase Certifications That Don’t Show Up in Interviews</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-75</guid>
+<category>Perspective</category>
+<pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+<description>Nobody has ever asked me about the Bloomberg Terminal certification, or the risk and audit coursework, or the sales and trading material, in an actual interview. By the usual signaling logic, that should make them a poor use of time. I keep doing them anyway, because the value was never really the c</description>
+</item>
 <item>
 <title>The Unglamorous Work Behind Every Portfolio Project</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
