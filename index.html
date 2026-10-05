@@ -1431,60 +1431,19 @@ body.nav-open{ overflow:hidden; }
   <h2 class="section-title">Client Work & Presentations</h2>
   <div class="section-divider"></div>
 
+  <p style="font-size:0.9rem; color:var(--gray); margin:-1.75rem 0 1.75rem; max-width:65ch;">
+    Consulting and analysis engagements delivered for real businesses. For internships and employment history, see <a href="#" onclick="showPage('marketing'); return false;" style="color:var(--navy); font-weight:600; text-decoration:underline;">Experience</a>.
+  </p>
+
   <div class="cards-grid">
 
-    <div class="card">
-      <div class="card-top" style="background: #1b2d42;"></div>
-      <div class="card-body">
-        <p class="card-type">Marketing Internship · Summer 2024</p>
-        <h3 class="card-title">Western Union — Digital Marketing</h3>
-        <p class="card-desc">
-          Worked directly under the Digital Marketing Director at Western Union's central agency in Guatemala. Supported planning, execution, and tracking of multi-channel marketing strategies — including billboard placements, print collateral, and local brand awareness campaigns.
-        </p>
-        <div class="card-tags">
-          <span class="tag">Digital Marketing</span>
-          <span class="tag">Campaign Strategy</span>
-          <span class="tag">Brand Awareness</span>
-          <span class="tag">Print & OOH</span>
-        </div>
-      </div>
-    </div>
+    
 
-    <div class="card">
-      <div class="card-top" style="background: #1b2d42;"></div>
-      <div class="card-body">
-        <p class="card-type">Client Relations · May – Aug 2025</p>
-        <h3 class="card-title">SeOnline — Client Specialist</h3>
-        <p class="card-desc">
-          Managed the full sales lifecycle from initial outreach and contract negotiation via chat and video to strategic closing. Redesigned the client-onboarding system — organizing client information and streamlining how sales calls were handled — <strong>boosting process efficiency by 35%</strong>.
-        </p>
-        <div class="card-tags">
-          <span class="tag">Client Negotiation</span>
-          <span class="tag">Sales Strategy</span>
-          <span class="tag">Contract Closing</span>
-          <span class="tag">Process Optimization</span>
-        </div>
-      </div>
-    </div>
+    
 
-    <div class="card">
-      <div class="card-top" style="background: #1b2d42;"></div>
-      <div class="card-body">
-        <p class="card-type">Operations · Summer 2023</p>
-        <h3 class="card-title">Western Union Sub-Agency — Cashier & Remittance</h3>
-        <p class="card-desc">
-          Managed daily cash operations of up to Q15,000, overseeing accurate processing of remittances and financial transactions. Served as primary point of contact for customers, handling an average of <strong>50 daily transactions</strong> while improving service speed by 10% through efficient cash reconciliation.
-        </p>
-        <div class="card-tags">
-          <span class="tag">Cash Management</span>
-          <span class="tag">Remittances</span>
-          <span class="tag">Financial Operations</span>
-          <span class="tag">Customer Service</span>
-        </div>
-      </div>
-    </div>
+    
 
-    <div class="card">
+    <div class="card" data-cat="analytics">
       <div class="card-top" style="background: #1a3a5c;"></div>
       <div class="card-body">
         <p class="card-type">Live Client · Operations & Analytics<span class="work-badge group">👥 Group</span></p>
@@ -1503,7 +1462,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="strategy">
       <div class="card-top" style="background: #1a3a5c;"></div>
       <div class="card-body">
         <p class="card-type">Live Client · Strategy & Market Entry<span class="work-badge group">👥 Group</span></p>
@@ -1532,7 +1491,7 @@ body.nav-open{ overflow:hidden; }
 
   <div class="cards-grid">
 
-    <div class="card">
+    <div class="card" data-cat="analytics marketing">
       <div class="card-top" style="background: #2d1a5c;"></div>
       <div class="card-body">
         <p class="card-type">Marketing Analytics · Research Project<span class="work-badge group">👥 Group</span></p>
@@ -1550,7 +1509,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="strategy marketing">
       <div class="card-top" style="background: #1a4a2a;"></div>
       <div class="card-body">
         <p class="card-type">Live Client · Brand & Growth Strategy<span class="work-badge group">👥 Group</span></p>
@@ -1568,7 +1527,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="strategy">
       <div class="card-top" style="background: #2a3a1a;"></div>
       <div class="card-body">
         <p class="card-type">Live Client · Hospitality & Guest Experience Strategy<span class="work-badge group">👥 Group</span></p>
@@ -1586,7 +1545,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="strategy">
       <div class="card-top" style="background: #1a3a5c;"></div>
       <div class="card-body">
         <p class="card-type">Live Client · Growth & Market Entry · May 2025<span class="work-badge group">👥 Group</span></p>
@@ -1604,7 +1563,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="marketing analytics">
       <div class="card-top" style="background: #1a4a2a;"></div>
       <div class="card-body">
         <p class="card-type">Marketing Research · Individual Project<span class="work-badge solo">⚡ Solo</span></p>
@@ -3820,6 +3779,10 @@ function showCase(id){
     "FROM THE HACKATHON":"DEL HACKATHON",
     "↗ View Team Repo":"↗ Ver repositorio del equipo",
     "</> View Code":"</> Ver código",
+    "Consulting and analysis engagements delivered for real businesses. For internships and employment history, see Experience.":"Proyectos de consultoría y análisis entregados para empresas reales. Para pasantías e historial laboral, ver Experiencia.",
+    "Strategy":"Estrategia",
+    "Analytics":"Analítica",
+    "Marketing":"Marketing",
     // PROJECT FILTERS
     "All":"Todos",
     "AI & Agents":"IA y agentes",
@@ -3909,9 +3872,10 @@ function showCase(id){
 <script>
 (function () {
   function wire(bar) {
-    var grid = bar.parentNode.querySelector('.cards-grid');
-    if (!grid) return;
-    var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    // a section may hold more than one grid, so filter every card inside it
+    var scope = bar.closest('section') || bar.parentNode;
+    var cards = Array.prototype.slice.call(scope.querySelectorAll('.cards-grid .card'));
+    if (!cards.length) return;
     var pills = Array.prototype.slice.call(bar.querySelectorAll('.filter-pill'));
 
     function apply(filter) {
