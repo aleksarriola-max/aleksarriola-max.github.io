@@ -257,6 +257,37 @@
       margin-bottom: 3rem;
     }
 
+    /* Category filters above a cards grid */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: -1.5rem 0 2rem;
+    }
+    .filter-pill {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gray);
+      background: transparent;
+      border: 1px solid rgba(13,27,42,0.18);
+      border-radius: 100px;
+      padding: 0.42rem 1rem;
+      cursor: pointer;
+      transition: color .18s, border-color .18s, background .18s;
+    }
+    .filter-pill:hover { color: var(--navy); border-color: rgba(201,168,76,0.7); }
+    .filter-pill[aria-pressed="true"] {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--gold);
+    }
+    .filter-pill:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .section-dark .filter-pill { color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.22); }
+    .section-dark .filter-pill:hover { color: var(--white); border-color: var(--gold); }
+    .section-dark .filter-pill[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+    .card[hidden] { display: none !important; }
+
     /* ── ABOUT ── */
     #about .about-grid {
       display: grid;
@@ -1103,10 +1134,19 @@ body.nav-open{ overflow:hidden; }
   <h2 class="section-title">Coding Projects</h2>
   <div class="section-divider"></div>
 
+  <div class="filter-bar" id="project-filters" role="group" aria-label="Filter projects">
+    <button type="button" class="filter-pill" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" class="filter-pill" data-filter="ai">AI &amp; Agents</button>
+    <button type="button" class="filter-pill" data-filter="finance">Finance</button>
+    <button type="button" class="filter-pill" data-filter="chain">Blockchain</button>
+    <button type="button" class="filter-pill" data-filter="live">Live Apps</button>
+    <button type="button" class="filter-pill" data-filter="award">Award Winners</button>
+  </div>
+
   <div class="cards-grid">
 
     <!-- Outsette (live product, flagship) -->
-    <div class="card" style="grid-column: 1 / -1;">
+    <div class="card" data-cat="ai live" style="grid-column: 1 / -1;">
       <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
       <a href="https://www.outsette.com/" target="_blank" style="display:block; overflow:hidden; max-height:220px; border-bottom:1px solid rgba(0,0,0,0.07);">
         <img src="https://image.thum.io/get/width/1000/https://www.outsette.com/" alt="Outsette preview" style="width:100%; display:block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
@@ -1128,7 +1168,7 @@ body.nav-open{ overflow:hidden; }
     </div>
 
     <!-- MissionMind -->
-    <div class="card">
+    <div class="card" data-cat="ai live">
       <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
       <a href="https://aleksarriola-max.github.io/missionmind/" target="_blank" style="display:block; overflow:hidden; max-height:200px; border-bottom:1px solid rgba(0,0,0,0.07);">
         <img src="https://image.thum.io/get/width/800/https://aleksarriola-max.github.io/missionmind/" alt="MissionMind preview" style="width:100%; display:block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
@@ -1143,7 +1183,7 @@ body.nav-open{ overflow:hidden; }
     </div>
 
     <!-- StoryForge -->
-    <div class="card">
+    <div class="card" data-cat="ai live">
       <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
       <a href="https://storyforge-client-smoky.vercel.app/" target="_blank" style="display:block; overflow:hidden; max-height:200px; border-bottom:1px solid rgba(0,0,0,0.07);">
         <img src="https://image.thum.io/get/width/800/https://storyforge-client-smoky.vercel.app/" alt="StoryForge preview" style="width:100%; display:block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
@@ -1158,7 +1198,7 @@ body.nav-open{ overflow:hidden; }
     </div>
 
     <!-- Lifeline — Featured -->
-    <div class="card" style="grid-column: 1 / -1;">
+    <div class="card" data-cat="ai award" style="grid-column: 1 / -1;">
       <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
       <div class="card-body">
         <p class="card-type" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
@@ -1226,7 +1266,7 @@ body.nav-open{ overflow:hidden; }
     </div>
 
     <!-- FEATURED: Live Streamlit App -->
-    <div class="card" style="grid-column: 1 / -1; max-width: 620px;">
+    <div class="card" data-cat="ai live award" style="grid-column: 1 / -1; max-width: 620px;">
       <div class="card-top" style="height: 5px; background: linear-gradient(90deg, var(--gold), #e8c97a);"></div>
       <a href="https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/" target="_blank" style="display:block; overflow:hidden; max-height:200px; border-bottom:1px solid rgba(0,0,0,0.07); position:relative;">
         <img src="https://image.thum.io/get/width/800/https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/" alt="PitMind preview" style="width:100%; display:block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
@@ -1259,7 +1299,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="ai live">
       <div class="card-top" style="background: linear-gradient(90deg, #1a3a5c, #2a5c8a);"></div>
       <div class="iframe-preview" id="preview-matchmind" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#0d1f3c,#1a3a6e);cursor:pointer;" onclick="loadIframe('matchmind','https://mainpy-hpdupmoyakddvxo348e4yn.streamlit.app/')">
         <div id="overlay-matchmind" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
@@ -1284,7 +1324,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="chain live">
       <div class="card-top" style="background: linear-gradient(90deg, #2a1a5c, #5c2a8a);"></div>
       <div class="iframe-preview" id="preview-adaptive" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#1a0a3c,#3a1a7a);cursor:pointer;" onclick="loadIframe('adaptive','https://adaptive-funding-deepsurge.vercel.app/')">
         <div id="overlay-adaptive" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
@@ -1309,7 +1349,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="chain finance live">
       <div class="card-top" style="background: linear-gradient(90deg, #1a4a3a, #2a8a5c);"></div>
       <div class="iframe-preview" id="preview-deepbook" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#0a1f12,#0f3d1f);cursor:pointer;" onclick="loadIframe('deepbook','https://aleksarriola-max.github.io/deepbook-market-os/')">
         <div id="overlay-deepbook" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
@@ -1334,7 +1374,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="ai chain live">
       <div class="card-top" style="background: linear-gradient(90deg, #4a1a1a, #8a2a2a);"></div>
       <div class="iframe-preview" id="preview-opsflow" style="position:relative;height:200px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,0.1);background:linear-gradient(135deg,#2a0a0a,#5a1a1a);cursor:pointer;" onclick="loadIframe('opsflow','https://opsflow-hso3.onrender.com/')">
         <div id="overlay-opsflow" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;gap:0.6rem;">
@@ -1360,7 +1400,7 @@ body.nav-open{ overflow:hidden; }
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="finance">
       <div class="card-top" style="background: linear-gradient(90deg, #0a2a1a, #1a5c3a);"></div>
       <div class="card-body">
         <p class="card-type">📊 Equity Research Automation · Finance × Code</p>
@@ -3780,6 +3820,13 @@ function showCase(id){
     "FROM THE HACKATHON":"DEL HACKATHON",
     "↗ View Team Repo":"↗ Ver repositorio del equipo",
     "</> View Code":"</> Ver código",
+    // PROJECT FILTERS
+    "All":"Todos",
+    "AI & Agents":"IA y agentes",
+    "Finance":"Finanzas",
+    "Blockchain":"Blockchain",
+    "Live Apps":"Apps en vivo",
+    "Award Winners":"Premiados",
     // FOOTER
     "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
   };
@@ -3853,6 +3900,46 @@ function showCase(id){
     if(saved==='es') applyLang('es'); else document.documentElement.setAttribute('lang','en');
   }
   if(document.readyState!=='loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+<!-- Category filters: narrow a cards grid to one category. Cards carry
+     data-cat; a bar with .filter-pill buttons controls the grid after it. -->
+<script>
+(function () {
+  function wire(bar) {
+    var grid = bar.parentNode.querySelector('.cards-grid');
+    if (!grid) return;
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    var pills = Array.prototype.slice.call(bar.querySelectorAll('.filter-pill'));
+
+    function apply(filter) {
+      cards.forEach(function (card) {
+        var cats = (card.getAttribute('data-cat') || '').split(/\s+/);
+        card.hidden = !(filter === 'all' || cats.indexOf(filter) !== -1);
+      });
+      pills.forEach(function (p) {
+        p.setAttribute('aria-pressed', p.dataset.filter === filter ? 'true' : 'false');
+      });
+    }
+
+    bar.addEventListener('click', function (e) {
+      var pill = e.target.closest('.filter-pill');
+      if (pill) apply(pill.dataset.filter);
+    });
+
+    // drop any filter that matches nothing, so no pill leads to an empty grid
+    pills.forEach(function (p) {
+      if (p.dataset.filter === 'all') return;
+      var any = cards.some(function (c) {
+        return (c.getAttribute('data-cat') || '').split(/\s+/).indexOf(p.dataset.filter) !== -1;
+      });
+      if (!any) p.remove();
+    });
+  }
+  function init() { Array.prototype.forEach.call(document.querySelectorAll('.filter-bar'), wire); }
+  if (document.readyState !== 'loading') init();
   else document.addEventListener('DOMContentLoaded', init);
 })();
 </script>
