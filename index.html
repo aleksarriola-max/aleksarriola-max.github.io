@@ -434,6 +434,32 @@
       gap: 1.5rem;
     }
 
+    /* Marquee credentials, grouped by issuer, above the full wall */
+    .mq-head {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gray); font-weight: 700; margin-bottom: 0.85rem;
+    }
+    .mq-head-all { margin-top: 2.4rem; }
+    .mq-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 0.8rem;
+    }
+    .mq-card {
+      border: 1px solid rgba(201,168,76,0.45);
+      background: rgba(201,168,76,0.08);
+      border-radius: 9px;
+      padding: 0.9rem 1rem;
+      min-width: 0;
+      transition: background .18s, border-color .18s;
+    }
+    .mq-card:hover { background: rgba(201,168,76,0.14); border-color: rgba(201,168,76,0.75); }
+    .mq-issuer {
+      font-family: 'Cormorant Garamond', 'Inter', sans-serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--navy); line-height: 1.2;
+    }
+    .mq-progs { font-size: 0.75rem; color: #7a6526; line-height: 1.5; margin-top: 0.25rem; }
+
     .cert-card {
       display: flex;
       align-items: flex-start;
@@ -1750,6 +1776,36 @@ body.nav-open{ overflow:hidden; }
   <p style="color:#666; font-size:0.95rem; margin-bottom:2rem;">
     <strong style="color:var(--navy)">42 Forage virtual job simulations</strong>, <strong style="color:var(--navy)">6 Coursera courses</strong>, and <strong style="color:var(--navy)">2 IBM SkillsBuild credentials</strong> completed across banking, finance, consulting, technology, and business.
   </p>
+
+  <p class="mq-head">Selected credentials</p>
+  <div class="mq-row">
+    <div class="mq-card">
+      <div class="mq-issuer">Goldman Sachs</div>
+      <div class="mq-progs">Operations · Internal Audit · Risk · Controllers</div>
+    </div>
+    <div class="mq-card">
+      <div class="mq-issuer">J.P. Morgan</div>
+      <div class="mq-progs">Quantitative Research</div>
+    </div>
+    <div class="mq-card">
+      <div class="mq-issuer">Bank of America</div>
+      <div class="mq-progs">Investment Banking · Sales &amp; Trading · Private Bank</div>
+    </div>
+    <div class="mq-card">
+      <div class="mq-issuer">Bloomberg</div>
+      <div class="mq-progs">Essentials · Client Service · Client Engagement</div>
+    </div>
+    <div class="mq-card">
+      <div class="mq-issuer">Citi</div>
+      <div class="mq-progs">Markets Sales &amp; Trading · Treasury &amp; Trade Solutions</div>
+    </div>
+    <div class="mq-card">
+      <div class="mq-issuer">Wells Fargo</div>
+      <div class="mq-progs">Commercial Banking · Personal Banker · Consumer &amp; Small Business</div>
+    </div>
+  </div>
+
+  <p class="mq-head mq-head-all">All 50 credentials</p>
 
   <!-- Filter Buttons -->
   <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.5rem;" id="cert-filters">
@@ -3955,6 +4011,15 @@ function showCase(id){
     "On this page":"En esta página",
     "Red-Flag Scanner":"Escáner de señales de alerta",
     "Orcen Capital":"Orcen Capital",
+    // MARQUEE CREDENTIALS
+    "Selected credentials":"Credenciales destacadas",
+    "All 50 credentials":"Las 50 credenciales",
+    "Operations · Internal Audit · Risk · Controllers":"Operaciones · Auditoría interna · Riesgo · Controllers",
+    "Quantitative Research":"Investigación cuantitativa",
+    "Investment Banking · Sales & Trading · Private Bank":"Banca de inversión · Sales & Trading · Banca privada",
+    "Essentials · Client Service · Client Engagement":"Essentials · Servicio al cliente · Relación con clientes",
+    "Markets Sales & Trading · Treasury & Trade Solutions":"Markets Sales & Trading · Tesorería y soluciones comerciales",
+    "Commercial Banking · Personal Banker · Consumer & Small Business":"Banca comercial · Banca personal · Consumo y pequeñas empresas",
     // FOOTER
     "© 2026 Aleks Arriola - Built with purpose.":"© 2026 Aleks Arriola - Hecho con propósito."
   };
