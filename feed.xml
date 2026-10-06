@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 05 Oct 2026 17:35:50 +0000</lastBuildDate>
+<lastBuildDate>Tue, 06 Oct 2026 15:33:29 +0000</lastBuildDate>
+<item>
+<title>What a KPI Dashboard Taught Me About What Executives Actually Want</title>
+<link>https://aleksarriola-max.github.io/#writing</link>
+<guid isPermaLink="false">essay-76</guid>
+<category>Perspective</category>
+<pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+<description>Building the AeroShield KPI dashboard, my first draft included every metric I could reasonably justify tracking. It was thorough and it was useless, because the executive using it did not want thoroughness. She wanted to know, in the time it takes to glance at a screen between meetings, whether anyt</description>
+</item>
 <item>
 <title>Why I Chase Certifications That Don’t Show Up in Interviews</title>
 <link>https://aleksarriola-max.github.io/#writing</link>
