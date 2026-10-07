@@ -367,6 +367,13 @@
     .cards-grid > .card > .card-body:not([style*="display:flex"]) > .card-tags {
       margin-top: auto;
     }
+    /* a column flex container stretches its children, which would blow the
+       action buttons out to the full card width */
+    .cards-grid > .card > .card-body:not([style*="display:flex"]) > a {
+      align-self: flex-start;
+    }
+
+    .section-cta { margin-top: 2.2rem; }
 
     .card-top {
       height: 8px;
@@ -1042,11 +1049,12 @@ body.nav-open{ overflow:hidden; }
         <p class="card-desc">Policy-bound AI operations agent built on Sui that turns natural-language requests into secure, stateful on-chain workflows. Features revocable authority, vendor trust scoring, fraud detection, and full audit trails.</p>
         <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Sui Blockchain</span><span class="tag">AI Agent</span><span class="tag">Move</span></div>
         <a href="https://opsflow-hso3.onrender.com/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;margin-right:0.6rem;">↗ Launch Live App</a><div style="font-size:0.7rem;color:var(--gray);opacity:0.85;margin-top:0.4rem;">Free demo &#183; allow ~30s to wake</div>
-        <a href="#" onclick="showPage('coding'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--navy);color:var(--navy);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All →</a>
       </div>
     </div>
 
   </div>
+
+  <div class="section-cta"><a href="#" onclick="showPage('coding'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--navy);color:var(--navy);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All →</a></div>
 </section>
 
 <!-- FEATURED FINANCE -->
@@ -1063,7 +1071,6 @@ body.nav-open{ overflow:hidden; }
         <h3 class="card-title">Company Health Red-Flag Scanner</h3>
         <p class="card-desc">Screens 600+ US-listed companies using live SEC EDGAR XBRL data. Runs 11 academic models (Altman Z-Score, Beneish M-Score, Piotroski F-Score + more) producing a composite Health Score and auto-generated fraud risk card. Fully automated — 80 financial ratios, 45 variables, zero manual updates.</p>
         <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Python</span><span class="tag">SEC EDGAR API</span><span class="tag">Altman Z-Score</span><span class="tag">Beneish M-Score</span></div>
-        <a href="#" onclick="showPage('finance'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See Finance Portfolio →</a>
       </div>
     </div>
 
@@ -1088,11 +1095,14 @@ body.nav-open{ overflow:hidden; }
           </div>
         </div>
         <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">DCF · LBO · Comps</span><span class="tag">SEC EDGAR</span><span class="tag">Python</span></div>
-        <a href="#" onclick="showPage('finance'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See Finance Portfolio →</a>
       </div>
     </div>
 
   </div>
+
+  <div class="section-cta"><a href="#" onclick="showPage('finance'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See Finance Portfolio →</a></div>
+
+  <div class="section-cta"><a href="#" onclick="showPage('finance'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See Finance Portfolio →</a></div>
 </section>
 
 <!-- FEATURED CLIENT -->
@@ -1109,8 +1119,6 @@ body.nav-open{ overflow:hidden; }
         <h3 class="card-title">AeroShield — KPI Dashboard</h3>
         <p class="card-desc">19-sheet KPI dashboard for a deeptech manufacturer scaling 6→300 units/week. Identified the #1 production bottleneck, modeled financial scenarios, and projected $40–80K in annual savings with a ~12-month payback. Delivered as a fully functional Excel workbook.</p>
         <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Excel</span><span class="tag">KPI Modeling</span><span class="tag">Operations</span><span class="tag">Financial Analysis</span></div>
-        
-        <a href="#" onclick="showPage('client'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--navy);color:var(--navy);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All →</a>
       </div>
     </div>
 
@@ -1121,11 +1129,14 @@ body.nav-open{ overflow:hidden; }
         <h3 class="card-title">Jet Rose — US Market Expansion</h3>
         <p class="card-desc">Full go-to-market strategy for a European bespoke private aviation broker entering the Americas. Delivered a self-funded growth model, competitive analysis against Jettly & Amalfi Jets, a $99/month membership framework, and brand differentiation positioning Jet Rose as the European expert in the US market.</p>
         <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Market Entry Strategy</span><span class="tag">Competitive Analysis</span><span class="tag">Pricing Strategy</span><span class="tag">Private Aviation</span></div>
-        <a href="#" onclick="showPage('client'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All Client Work →</a>
       </div>
     </div>
 
   </div>
+
+  <div class="section-cta"><a href="#" onclick="showPage('client'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--gold);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All Client Work →</a></div>
+
+  <div class="section-cta"><a href="#" onclick="showPage('client'); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--navy);color:var(--navy);padding:0.5rem 1.1rem;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;">See All →</a></div>
 </section>
 
 <!-- EXPLORE GRID -->
@@ -2401,13 +2412,13 @@ body.nav-open{ overflow:hidden; }
   <p class="cs-frame">For every one: the uncertainty it faced, the control I designed to bound it, the trade-offs that introduced, how I tried to break it — and when I'd distrust it, plus the safeguard I'd add next.</p>
 
     <div class="cs-layout">
-    <nav class="cs-rail" id="cs-rail" aria-label="Case studies">
+    <div class="cs-rail" id="cs-rail" role="navigation" aria-label="Case studies">
       <span class="cs-rail-label">On this page</span>
       <a href="#case-scanner" data-case="case-scanner">Red-Flag Scanner</a>
       <a href="#case-opsflow" data-case="case-opsflow">OpsFlow</a>
       <a href="#case-orcen" data-case="case-orcen">Orcen Capital</a>
       <a href="#case-lifeline" data-case="case-lifeline">Lifeline</a>
-    </nav>
+    </div>
     <div class="cs-body">
     <article class="case" id="case-scanner">
       <p class="case-kicker">Case Study · Quant / Model Risk</p>
