@@ -5,7 +5,7 @@
 > Contact: aleksarriola@gmail.com | LinkedIn: https://www.linkedin.com/in/aleks-arriola/
 
 ## About
-Aleks Arriola is a Finance & Marketing student at Hult International Business School with expertise spanning investment banking, AI & blockchain development, marketing strategy, and financial modeling. He builds production-grade tools and has completed 42 Forage industry simulations across Goldman Sachs, JP Morgan, Bank of America, Citi, McKinsey, BCG, and more.
+Aleks Arriola is a Finance & Marketing student at Hult International Business School with expertise spanning investment banking, AI & blockchain development, marketing strategy, and financial modeling. He builds production-grade tools and has completed 42 Forage job simulations across Goldman Sachs, J.P. Morgan, Bank of America, Citi, Wells Fargo, PNC, BCG, Bloomberg and more, plus 3 Forage short courses.
 
 ## Coding Projects
 
@@ -50,7 +50,7 @@ Aleks Arriola is a Finance & Marketing student at Hult International Business Sc
 - See Coding Projects section above for full description.
 
 ### Forage Investment Banking Simulations
-- 42 Forage simulations completed across: Goldman Sachs, JP Morgan, Bank of America, Citi, Fidelity International, Wells Fargo, McKinsey, BCG, Deloitte, KPMG, PwC, AIG, Standard Chartered, Bloomberg, and more.
+- 42 Forage job simulations completed across: Goldman Sachs, J.P. Morgan, Bank of America, Citi, Wells Fargo, PNC, Fidelity International, BCG, Mastercard, Vista Equity Partners, AIG, Standard Chartered, Bloomberg, Lloyds Banking Group, ACCA, and more.
 
 ## Client Work
 
@@ -95,10 +95,10 @@ Aleks Arriola is a Finance & Marketing student at Hult International Business Sc
 - "The Student Who Built a Bloomberg Terminal" — Personal essay on building institutional-grade financial tools as a student without Wall Street access, and what that process revealed about information asymmetry.
 
 ## Certifications
-- 44 total credentials
-- 42 Forage virtual simulations
-- Goldman Sachs (3 simulations), JP Morgan (3), Bank of America (2), Citi (2), McKinsey, BCG, Deloitte, KPMG, PwC, Morgan Stanley, Wells Fargo, Fidelity, AIG, Standard Chartered, Bloomberg, and more
-- Bloomberg Market Concepts certified
+- 53 total credentials
+- 42 Forage virtual job simulations + 3 Forage short courses, 6 Coursera courses, 2 IBM SkillsBuild credentials
+- Goldman Sachs (4 simulations), Wells Fargo (4), PNC (4), Bank of America (3), Citi (3), Bloomberg (2), AIG (2), Mastercard (2), Vista Equity Partners (2), Lloyds Banking Group (2), J.P. Morgan, BCG, Fidelity International, Standard Chartered, ACCA, and more
+- Bloomberg Essentials (Forage short course)
 
 ## Skills & Stack
 - Languages: Python, R, JavaScript, Move (Sui)
