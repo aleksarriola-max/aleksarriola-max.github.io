@@ -32,7 +32,7 @@ def build_article(essay):
     body = essay["body"]
     return f'''
     <!-- ARTICLE {essay["id"]} -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-{essay["id"]}" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">{category} · {date_label}</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">{title}</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">

@@ -1,7 +1,7 @@
 # Aleks Arriola — Portfolio
 
 > Finance & Marketing student at Hult International Business School.
-> Building institutional-grade financial tools, live AI apps, and real-world client strategies.
+> Building financial analysis tools, live AI apps, and real-world client strategies.
 > Contact: aleksarriola@gmail.com | LinkedIn: https://www.linkedin.com/in/aleks-arriola/
 
 ## About
@@ -42,8 +42,8 @@ Aleks Arriola is a Finance & Marketing student at Hult International Business Sc
 ## Finance Portfolio
 
 ### Company Health Red-Flag Scanner (Flagship)
-- Stack: Python, SEC EDGAR XBRL API, Excel, 11 academic models
-- Institutional-grade screening tool that evaluates 600+ US-listed companies. Runs Altman Z-Score, Beneish M-Score, Piotroski F-Score, Dechow F-Score, Montier C-Score, and 6 more models producing a composite Health Score (0–100) and fraud risk rating. 80 financial ratios, 45 variables, fully automated — zero manual updates.
+- Stack: Python, SEC EDGAR XBRL API, Excel, 6 academic distress and quality scores
+- Screening tool that evaluates 600+ US-listed companies. Runs Altman Z-Score (1968, Z', Z''), Springate S-Score, Zmijewski X-Score and Piotroski F-Score, plus Beneish manipulation indices and an accruals check, producing a composite Health Score (0–100) and fraud risk rating. 80 financial ratios, 45 input variables; each run rebuilds every ratio from the latest SEC filings.
 
 ### Auto Company Valuation Kit — Orcen Capital (Flagship)
 - 84 Excel sheets per company, 7 bias-correction modules, ~39,000 lines of Python

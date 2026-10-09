@@ -39,7 +39,7 @@ rss=['<?xml version="1.0" encoding="UTF-8"?>',
      f'<lastBuildDate>{format_datetime(datetime.now(timezone.utc))}</lastBuildDate>']
 for num,title,cat,desc,dt in items:
     rss+=['<item>',f'<title>{esc(title)}</title>',
-          f'<link>{SITE}/#writing</link>',
+          f'<link>{SITE}/#essay-{num}</link>',
           f'<guid isPermaLink="false">essay-{num}</guid>',
           f'<category>{esc(cat)}</category>',
           f'<pubDate>{format_datetime(dt)}</pubDate>',
@@ -48,7 +48,9 @@ rss+=['</channel>','</rss>']
 open('feed.xml','w',encoding='utf-8').write('\n'.join(rss))
 
 # sitemap of the real pages
-pages=sorted(glob.glob('*.html'))
+# Skip redirect stubs (old standalone pages that forward to a section of index.html)
+pages=sorted(p for p in glob.glob('*.html')
+             if 'http-equiv="refresh"' not in open(p,encoding='utf-8').read())
 today=datetime.now(timezone.utc).date().isoformat()
 sm=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for p in pages:

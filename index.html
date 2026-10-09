@@ -838,7 +838,7 @@ body.nav-open{ overflow:hidden; }
   <div id="stats-band" style="display:flex; flex-wrap:wrap; justify-content:center; gap:3rem;">
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;" class="stat-count" data-to="8">8</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Live Apps</div></div>
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;" class="stat-count" data-to="600" data-suffix="+">600+</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Companies Screened</div></div>
-    <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;" class="stat-count" data-to="11">11</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Financial Models</div></div>
+    <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;" class="stat-count" data-to="6">6</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Risk Models</div></div>
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;" class="stat-count" data-to="8">8</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Client Projects</div></div>
     <div style="text-align:center;"><div style="font-size:2.2rem;font-weight:800;color:var(--gold);font-family:'Cormorant Garamond', 'Inter', sans-serif;" class="stat-count" data-to="50">50</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;">Certifications</div></div>
   </div>
@@ -1067,10 +1067,10 @@ body.nav-open{ overflow:hidden; }
     <div class="card">
       <div class="card-top" style="background:linear-gradient(90deg,var(--navy),#1b4f8a);height:6px;"></div>
       <div class="card-body">
-        <p class="card-type">📊 Institutional-Grade · Python · SEC EDGAR API</p>
+        <p class="card-type">📊 Python · SEC EDGAR API · Excel</p>
         <h3 class="card-title">Company Health Red-Flag Scanner</h3>
-        <p class="card-desc">Screens 600+ US-listed companies using live SEC EDGAR XBRL data. Runs 11 academic models (Altman Z-Score, Beneish M-Score, Piotroski F-Score + more) producing a composite Health Score and auto-generated fraud risk card. Fully automated — 80 financial ratios, 45 variables, zero manual updates.</p>
-        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Python</span><span class="tag">SEC EDGAR API</span><span class="tag">Altman Z-Score</span><span class="tag">Beneish M-Score</span></div>
+        <p class="card-desc">Screens 600+ US-listed companies using SEC EDGAR XBRL data. Runs 6 distress and quality scores (Altman Z in three variants, Springate, Zmijewski, Piotroski F) plus Beneish manipulation indices, producing a composite Health Score and an auto-generated risk card. 80 financial ratios, 45 input variables, rebuilt from fresh filings on every run.</p>
+        <div class="card-tags" style="margin-bottom:1rem;"><span class="tag">Python</span><span class="tag">SEC EDGAR API</span><span class="tag">Altman Z-Score</span><span class="tag">Piotroski F-Score</span></div>
       </div>
     </div>
 
@@ -1649,15 +1649,15 @@ body.nav-open{ overflow:hidden; }
       <p style="font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">🏆 Flagship Project</p>
       <h3 style="font-family:'Cormorant Garamond', 'Inter', sans-serif; font-size:1.6rem; color:var(--white); margin-bottom:0.75rem; line-height:1.2;">Company Health Red-Flag Scanner</h3>
       <p style="font-size:0.92rem; color:rgba(255,255,255,0.65); line-height:1.75; margin-bottom:1.25rem;">
-        An institutional-grade screening tool that quantitatively evaluates <strong style="color:rgba(255,255,255,0.85)">600+ US-listed companies</strong> using SEC EDGAR XBRL data. Runs 11 academic fraud and solvency models across 5 dimensions — producing a composite Health Score (0–100), a fraud risk rating, and an auto-generated analysis card per company. Built in Excel + Python with a fully automated pipeline that recalculates every ratio the moment a new 10-K is filed. No manual updates. Ever.
+        A screening tool that quantitatively evaluates <strong style="color:rgba(255,255,255,0.85)">600+ US-listed companies</strong> using SEC EDGAR XBRL data. Runs 6 distress and earnings-quality scores — Altman Z (three variants), Springate, Zmijewski and Piotroski F — plus Beneish manipulation indices and an accruals check, producing a composite Health Score (0–100), a fraud risk rating, and an auto-generated analysis card per company. Built in Excel + Python; one run pulls the latest filings and recalculates every ratio.
       </p>
       <a href="#" onclick="showCase('case-scanner'); return false;" style="display:inline-flex; align-items:center; gap:0.45rem; background:var(--gold); color:var(--navy); padding:0.55rem 1.2rem; border-radius:4px; font-size:0.82rem; font-weight:700; text-decoration:none; margin-bottom:1.4rem;">Read the full case study &#8594;</a><a href="Company_Health_Scanner.xlsx" download style="display:inline-flex;align-items:center;gap:0.5rem;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:0.55rem 1.2rem;border-radius:4px;font-size:0.82rem;font-weight:700;text-decoration:none;margin-left:0.6rem;">&#8595; Download the Excel (sample)</a>
       <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;">
         <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Altman Z-Score</span>
-        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Beneish M-Score</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Beneish indices</span>
         <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Piotroski F-Score</span>
-        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Dechow F-Score</span>
-        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Montier C-Score</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Springate S-Score</span>
+        <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Zmijewski X-Score</span>
         <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Python · SEC EDGAR API</span>
         <span style="padding:0.3rem 0.8rem; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.72rem; color:var(--gold-light); font-weight:600;">Excel · 80 Financial Ratios</span>
       </div>
@@ -1668,7 +1668,7 @@ body.nav-open{ overflow:hidden; }
         <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:0.2rem;">Companies screened</div>
       </div>
       <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem 1.5rem; text-align:center;">
-        <div style="font-family:'Cormorant Garamond', 'Inter', sans-serif; font-size:2.2rem; font-weight:900; color:var(--gold);">11</div>
+        <div style="font-family:'Cormorant Garamond', 'Inter', sans-serif; font-size:2.2rem; font-weight:900; color:var(--gold);">6</div>
         <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:0.2rem;">Academic models</div>
       </div>
       <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.25rem 1.5rem; text-align:center;">
@@ -1684,7 +1684,7 @@ body.nav-open{ overflow:hidden; }
       <p style="font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">🏆 Flagship Project</p>
       <h3 style="font-family:'Cormorant Garamond', 'Inter', sans-serif; font-size:1.6rem; color:var(--white); margin-bottom:0.75rem; line-height:1.2;">Auto Company Valuation Kit — Orcen Capital</h3>
       <p style="font-size:0.92rem; color:rgba(255,255,255,0.65); line-height:1.75; margin-bottom:1.25rem;">
-        A single-analyst equity research automation system that turns one YAML config into a full institutional-grade research package — <strong style="color:rgba(255,255,255,0.85);">84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck</strong> — in one command. The pipeline runs DCF, comparable companies, precedent transactions, LBO returns, and blended fair-value output, layered with seven cognitive bias-correction modules targeting anchoring, optimism bias, and narrative contamination. Verified end-to-end with real Apple FY2024 data, producing a live HOLD verdict. ~39,000 lines of Python.
+        A single-analyst equity research automation system that turns one YAML config into a full research package — <strong style="color:rgba(255,255,255,0.85);">84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck</strong> — in one command. The pipeline runs DCF, comparable companies, precedent transactions, LBO returns, and blended fair-value output, layered with seven cognitive bias-correction modules targeting anchoring, optimism bias, and narrative contamination. Verified end-to-end with real Apple FY2024 data, producing a live HOLD verdict. ~39,000 lines of Python.
       </p>
       <a href="#" onclick="showCase('case-orcen'); return false;" style="display:inline-flex; align-items:center; gap:0.45rem; background:var(--gold); color:var(--navy); padding:0.55rem 1.2rem; border-radius:4px; font-size:0.82rem; font-weight:700; text-decoration:none; margin-bottom:1.4rem;">Read the full case study &#8594;</a>
       <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;">
@@ -2431,13 +2431,13 @@ body.nav-open{ overflow:hidden; }
     <article class="case" id="case-scanner">
       <p class="case-kicker">Case Study · Quant / Model Risk</p>
       <h3 class="case-title">Company Health Red-Flag Scanner</h3>
-      <p class="case-tldr"><strong>TL;DR:</strong> An ensemble of 11 academic fraud and solvency models, cross-checked across 600+ companies' live SEC filings, so no single ratio decides the verdict.</p>
+      <p class="case-tldr"><strong>TL;DR:</strong> An ensemble of 6 academic distress and quality scores plus Beneish manipulation indices, cross-checked across 600+ companies' SEC filings, so no single ratio decides the verdict.</p>
       <p class="case-decision"><strong>Risk decision it informs:</strong> Before trusting a company's reported health, where is the accounting most likely stretched — and is a distress signal real, or a sector artifact?</p>
       <div class="case-grid">
         <div class="case-block"><h4>The uncertainty</h4><p>Reported earnings diverge from the cash a business actually generates (accruals). Any single model is a noisy read, XBRL fields aren't tagged uniformly across filers, and base rates differ by sector.</p></div>
         <div class="case-block"><h4>How I got here</h4>
         <p>I started with a single model &#8212; Altman&#8217;s Z-score. It broke fast: any one model is a noisy read, and a single mis-tagged XBRL field can flip the verdict. So I stopped trusting any single number and built an ensemble across bankruptcy and earnings-quality models, then added sector benchmarking so a low score in a capital-heavy sector wasn&#8217;t misread as distress. The composite health score is that correction &#8212; not the first idea.</p>
-        <h4>Control &amp; monitoring I designed</h4><p>Eleven independent academic models across five dimensions collapse into one composite Health Score. A flag requires <em>convergence</em> across independent models — Altman (solvency), Beneish (manipulation), Piotroski (quality), Dechow (accruals) — not any single trigger. The pipeline recalculates every ratio the moment a new 10-K is filed, so the signal never goes stale.</p></div>
+        <h4>Control &amp; monitoring I designed</h4><p>Six academic scores — Altman Z in three variants, Springate, Zmijewski and Piotroski — plus Beneish manipulation indices and an accruals ratio collapse into one composite Health Score. A flag requires <em>convergence</em> across independent signals — solvency (Altman), quality (Piotroski), manipulation (Beneish indices), accruals — not any single trigger. Every run pulls the latest filings and recalculates every ratio, so the signal is only as fresh as the last run.</p></div>
         <div class="case-block"><h4>Trade-offs it introduced</h4><p>Convergence suppresses false alarms but adds lag — the Z-Score often flags only after the accruals gap has widened for years. The model is deliberately conservative, so it structurally over-flags capital-intensive industrials (asset turnover) and pre-revenue biotech (profitability). Automation also removes human judgment at the ingestion step.</p></div>
         <div class="case-block"><h4>How I tested failure modes</h4><p>Stress-tested the XBRL parser against non-standard tag formats — a real defect where certain filers tagged fields differently produced anomalous scores, caught by reconciling raw → cleaned → model-input data rather than re-checking the formulas. Ran the screen cross-sectionally across 600+ names so outliers invisible in isolation become obvious.</p></div>
       </div>
@@ -2448,7 +2448,7 @@ body.nav-open{ overflow:hidden; }
       <h4>Key assumptions</h4>
         <p>Scores assume SEC EDGAR XBRL fields are tagged consistently across filers (they aren&#8217;t always), that academic model thresholds calibrated on historical samples still hold today, and that sector medians are a fair benchmark. The tool flags where a signal may be a sector artifact rather than real distress.</p>
         <h4>Reproducible &amp; reviewable</h4>
-        <p>The pipeline recomputes every ratio the moment a new 10-K is filed &#8212; same inputs, same output, no manual edits, versioned in git. A reviewer can trace any company&#8217;s health score back through the ratios to the exact source XBRL field.</p>
+        <p>Every run recomputes every ratio from the source filings &#8212; same inputs, same output, no manual edits, versioned in git. A reviewer can trace any company&#8217;s health score back through the ratios to the exact source XBRL field; the downloadable sample shows that full chain, from raw inputs to ratios to scores.</p>
         <div class="case-distrust">
         <h4>When I'd distrust it — and the safeguard I'd add</h4>
         <p>I distrust a single high score in a capital-intensive or pre-revenue name, and re-anchor to sector base rates before acting on it. The next safeguard I'd add: a sector-adjusted overlay plus a data-quality confidence flag that down-weights companies with sparse or non-standard XBRL tags.</p>
@@ -2571,7 +2571,7 @@ body.nav-open{ overflow:hidden; }
 
         <!-- ESSAYS-TOP -->
     <!-- ARTICLE 78 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-78" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 8, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Best Career Advice I Got Wasn&#8217;t About Skills</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2580,7 +2580,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 77 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-77" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 7, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Stopped Using Templates for Market Expansion Work</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2589,7 +2589,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 76 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-76" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 6, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What a KPI Dashboard Taught Me About What Executives Actually Want</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2598,7 +2598,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 75 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-75" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 5, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Chase Certifications That Don&#8217;t Show Up in Interviews</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2607,7 +2607,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 74 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-74" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 4, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Unglamorous Work Behind Every Portfolio Project</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2616,7 +2616,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 73 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-73" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 3, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What Switching Between Finance and Marketing Case Studies Taught Me About Audience</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2625,7 +2625,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 72 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-72" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 2, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Took the Cashier Job Before I Touched a Model</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2634,7 +2634,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 71 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-71" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · October 1, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What Three Years of Client Work Taught Me About Scope</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2643,7 +2643,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 70 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-70" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 30, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Measure Latency Before I Measure Accuracy</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2652,7 +2652,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 69 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-69" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 29, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Schema Validation Fixed More Bugs Than Any Model Upgrade</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2661,7 +2661,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 68 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-68" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 28, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Planning and Execution Need Different Agents</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2670,7 +2670,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 67 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-67" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 27, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What I Stopped Letting Agents Write Directly</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2679,7 +2679,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 66 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-66" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 26, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">DeepBook Market OS: The Boring Ninety Percent</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2688,7 +2688,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 65 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-65" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 25, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Adaptive Funding Engine&#8217;s Feedback Loop Is the Whole Point</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2697,7 +2697,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 64 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-64" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 24, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">MatchMind and the Limits of Letting a Model Search</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2706,7 +2706,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 63 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-63" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 23, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why PitMind Extracts Instead of Generates</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2715,7 +2715,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 62 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-62" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 22, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">OpsFlow and the Case for Narrow Agents</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2724,7 +2724,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 61 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-61" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · September 21, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What a Multi-Agent Deal Swarm Taught Me About Coordination Cost</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2733,7 +2733,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 60 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-60" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 20, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Auto Valuation Kit&#8217;s Real Job Is Catching My Own Mistakes</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2742,7 +2742,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 59 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-59" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 19, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Rebuild Every Model From the Filing, Not the Summary</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2751,7 +2751,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 58 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-58" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 18, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Attention Is a Leading Indicator, Not a Proxy for Revenue</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2760,7 +2760,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 57 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-57" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 17, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What a Repricing Narrative Does to a Sector</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2769,7 +2769,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 56 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-56" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 16, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What Risk and Audit Work Reveals About Control Failures</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2778,7 +2778,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 55 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-55" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 15, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What Sales and Trading Teaches About Spreads as Information</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2787,7 +2787,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 54 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-54" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 14, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Tax Structure Is Where Deal Value Actually Moves</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2796,7 +2796,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 53 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-53" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 13, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What the Bloomberg Terminal Certification Doesn&#8217;t Teach You</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2805,7 +2805,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 52 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-52" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 12, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Valuation Kit Taught Me Valuation Is a Pipeline Problem</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2814,7 +2814,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 51 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-51" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · September 11, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What the Red-Flag Scanner Actually Looks For</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2823,7 +2823,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 50 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-50" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 10, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Optionality Is a Career Strategy, Not Just a Greek</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2832,7 +2832,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 49 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-49" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 9, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What Cold Emails Taught Me About Signal</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2841,7 +2841,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 48 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-48" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 8, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Underrated Value of Finishing Small Things</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2850,7 +2850,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 47 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-47" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 7, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Study the Boundary Between Two Fields</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2859,7 +2859,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 46 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-46" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 6, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Being International Made Me a Better Builder</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2868,7 +2868,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 45 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-45" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 5, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Skill That Doesn&#8217;t Show Up on a Transcript</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2877,7 +2877,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 44 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-44" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 4, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Learning in Public Is a Forcing Function</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2886,7 +2886,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 43 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-43" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 3, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Write These Essays</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2895,7 +2895,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 42 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-42" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 2, 2026</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Portfolio Is the Resume Now</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2904,7 +2904,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 41 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-41" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · September 1, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Depth Compounds Faster Than Breadth</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2913,7 +2913,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 40 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-40" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 31, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Latency Is a Correctness Problem for Agents</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2922,7 +2922,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 39 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-39" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 30, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Most Agent Failures Are Data Problems in Disguise</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2931,7 +2931,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 38 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-38" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 29, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Human-in-the-Loop Is a Design Decision, Not a Fallback</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2940,7 +2940,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 37 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-37" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 28, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Context Window Is a Budget, Spend It Deliberately</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2949,7 +2949,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 36 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-36" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 27, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Guardrails Belong in the Environment, Not the Prompt</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2958,7 +2958,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 35 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-35" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 26, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Determinism Is a Feature You Have to Engineer</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2967,7 +2967,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 34 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-34" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 25, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Evaluation Is the Product, Not the Afterthought</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2976,7 +2976,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 33 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-33" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 24, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Hidden Cost of Every Extra Agent Step</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2985,7 +2985,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 32 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-32" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 23, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Tool Design Matters More Than Model Choice</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -2994,7 +2994,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 31 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-31" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 22, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Retrieval Is Not Memory</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3003,7 +3003,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 30 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-30" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 21, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Margin of Safety Survives Every Market Regime</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3012,7 +3012,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 29 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-29" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 20, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Quiet Power of the Cash Conversion Cycle</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3021,7 +3021,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 28 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-28" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 19, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Segment Reporting Is Where the Real Business Lives</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3030,7 +3030,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 27 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-27" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 18, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Goodwill Is a Bet You Can Read on the Balance Sheet</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3039,7 +3039,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 26 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-26" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 17, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Sensitivity Tables Are the Most Honest Part of a Model</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3048,7 +3048,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 25 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-25" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 16, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What a Debt Schedule Reveals That an Income Statement Hides</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3057,7 +3057,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 24 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-24" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 15, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Precedent Transactions Lie About Control Premiums</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3066,7 +3066,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 23 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-23" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 14, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Free Cash Flow Beats Earnings, Until It Doesn&#8217;t</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3075,7 +3075,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 22 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-22" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 13, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Cost of Capital Is a Judgment Call Dressed as Math</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3084,7 +3084,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 21 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-21" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 12, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Working Capital Is Where Value Quietly Leaks</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3093,7 +3093,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 20 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-20" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 11, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Comparable Companies Analysis Is Storytelling With Numbers</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3102,7 +3102,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 19 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-19" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 10, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Case for Boring AI Architecture</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3111,7 +3111,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 18 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-18" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · August 9, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why I Build Things I Can&#8217;t Fully Use</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3120,7 +3120,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 17 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-17" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 8, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What Quality of Earnings Analysis Actually Catches</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3129,7 +3129,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
     <!-- ARTICLE 16 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-16" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · August 7, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Information Edge Is Narrowing. The Interpretation Edge Is Not.</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3138,7 +3138,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 15 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-15" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 6, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">When the Agent Should Stop and Ask</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3147,7 +3147,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 14 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-14" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 5, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">LBO Models Are a Stress Test, Not a Price Target</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3156,7 +3156,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 13 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-13" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · August 4, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Recruiter Test No One Tells You About</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3165,7 +3165,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 12 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-12" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · August 3, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">State Is the Hard Part of Agentic AI</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3174,7 +3174,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 11 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-11" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · August 2, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Management Guidance Is Priced Wrong</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3183,7 +3183,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 5 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-5" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · July 12, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Difference Between an AI Tool and an AI System</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3198,7 +3198,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 6 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-6" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · July 11, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What DCF Models Get Wrong About Terminal Value</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3213,7 +3213,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 7 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-7" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · July 10, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Building Alone Is a Feature, Not a Bug</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3227,7 +3227,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 8 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-8" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · July 9, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">How the Options Market Prices What Equity Analysts Miss</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3242,7 +3242,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 9 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-9" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · July 8, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What Finance Taught Me About Debugging Code</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3257,7 +3257,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 10 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-10" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · July 7, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Prompt Engineering Is the Wrong Mental Model</h2>
       <div style="font-size:1rem;line-height:1.85;color:#333;">
@@ -3271,7 +3271,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 4 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:2rem;">
+    <article id="essay-4" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:2rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · July 4, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Accruals Anomaly: The Signal Quants Have Known About for 30 Years</h2>
 
@@ -3287,7 +3287,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 1 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-1" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">AI Systems · July 1, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">The Only Architecture That Makes Agentic AI Safe</h2>
 
@@ -3307,7 +3307,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 2 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+    <article id="essay-2" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · June 16, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">What 600 Company Balance Sheets Look Like Before They Break</h2>
 
@@ -3324,7 +3324,7 @@ body.nav-open{ overflow:hidden; }
     </article>
 
 <!-- ARTICLE 3 -->
-    <article style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:2rem;">
+    <article id="essay-3" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:2rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Perspective · May 19, 2026</p>
       <h2 style="font-family:'Cormorant Garamond', 'Inter', sans-serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Why Finance Students Build Better AI</h2>
 
@@ -3650,17 +3650,49 @@ document.querySelectorAll('.cert-card').forEach(card => {
 
 <!-- ── FOOTER ── -->
 <script>
-function showPage(id) {
+// ── Linkable URLs ──
+// Every page and every element inside a page can be linked directly:
+//   /#finance  /#writing  /#case-scanner  /#essay-42  /#contact
+// Friendly aliases map to the internal page ids.
+var PAGE_ALIASES = {
+  'experience':'marketing', 'client-work':'client', 'certifications':'certs',
+  'case-studies':'casestudies', 'recommendation':'recommendations'
+};
+function setHash(hash){
+  var url = hash ? '#' + hash : location.pathname + location.search;
+  if (('#' + hash) !== location.hash && !(hash === '' && location.hash === '')) {
+    history.pushState(null, '', url);
+  }
+}
+function showPage(id, fromRouter) {
+  var page = document.getElementById('page-' + id);
+  if (!page) { id = 'home'; page = document.getElementById('page-home'); }
   document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
-  document.getElementById('page-' + id).style.display = 'block';
+  page.style.display = 'block';
   document.querySelectorAll('[data-nav]').forEach(a => a.classList.remove('nav-active'));
   const activeLink = document.querySelector('[data-nav="' + id + '"]');
   if (activeLink) activeLink.classList.add('nav-active');
   window.scrollTo(0, 0);
   if(typeof closeMenu==='function') closeMenu();
+  if (!fromRouter) setHash(id === 'home' ? '' : id);
 }
-// Show home on load
-document.addEventListener('DOMContentLoaded', () => showPage('home'));
+// Open whatever the URL points at: a page id, an alias, or any element id.
+function routeFromHash() {
+  var hash = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+  if (!hash) { showPage('home', true); return; }
+  var pageId = PAGE_ALIASES[hash] || hash;
+  if (document.getElementById('page-' + pageId)) { showPage(pageId, true); return; }
+  var el = document.getElementById(hash);
+  var section = el && el.closest('.page-section');
+  if (section) {
+    showPage(section.id.replace(/^page-/, ''), true);
+    requestAnimationFrame(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); });
+    return;
+  }
+  showPage('home', true);
+}
+document.addEventListener('DOMContentLoaded', routeFromHash);
+window.addEventListener('popstate', routeFromHash);
 </script>
 
 
@@ -3708,7 +3740,8 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 <script>
 function showCase(id){
-  showPage('casestudies');
+  showPage('casestudies', true);
+  setHash(id);
   requestAnimationFrame(function(){
     var el=document.getElementById(id);
     if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
@@ -3750,6 +3783,7 @@ function showCase(id){
     "Live Apps":"Apps en vivo",
     "Companies Screened":"Empresas analizadas",
     "Financial Models":"Modelos financieros",
+    "Risk Models":"Modelos de riesgo",
     "Client Projects":"Proyectos con clientes",
     // TOOLKIT
     "Toolkit - what I build with":"Herramientas - con lo que construyo",
@@ -3793,7 +3827,7 @@ function showCase(id){
     "🏅 Most Innovative · AI · Formula 1 Strategy":"🏅 Más innovador · IA · Estrategia de Fórmula 1",
     "Free demo · allow ~30s to wake":"Demo gratuita · espera ~30s a que despierte",
     "Policy-bound AI operations agent built on Sui that turns natural-language requests into secure, stateful on-chain workflows. Features revocable authority, vendor trust scoring, fraud detection, and full audit trails.":"Agente de operaciones con IA limitado por políticas construido sobre Sui que convierte solicitudes en lenguaje natural en flujos de trabajo on-chain seguros y con estado. Incluye autoridad revocable, puntuación de confianza de proveedores, detección de fraude y registros de auditoría completos.",
-    "Screens 600+ US-listed companies using live SEC EDGAR XBRL data. Runs 11 academic models (Altman Z-Score, Beneish M-Score, Piotroski F-Score + more) producing a composite Health Score and auto-generated fraud risk card. Fully automated - 80 financial ratios, 45 variables, zero manual updates.":"Analiza más de 600 empresas cotizadas en EE. UU. usando datos XBRL de SEC EDGAR en vivo. Ejecuta 11 modelos académicos (Altman Z-Score, Beneish M-Score, Piotroski F-Score y más) produciendo una puntuación de salud compuesta y una tarjeta de riesgo de fraude autogenerada. Totalmente automatizado - 80 ratios financieros, 45 variables, cero actualizaciones manuales.",
+    "Screens 600+ US-listed companies using SEC EDGAR XBRL data. Runs 6 distress and quality scores (Altman Z in three variants, Springate, Zmijewski, Piotroski F) plus Beneish manipulation indices, producing a composite Health Score and an auto-generated risk card. 80 financial ratios, 45 input variables, rebuilt from fresh filings on every run.":"Analiza más de 600 empresas cotizadas en EE. UU. usando datos XBRL de SEC EDGAR. Calcula 6 puntuaciones de insolvencia y calidad (Altman Z en tres variantes, Springate, Zmijewski, Piotroski F) más los índices de manipulación de Beneish, produciendo una puntuación de salud compuesta y una tarjeta de riesgo autogenerada. 80 ratios financieros, 45 variables de entrada, reconstruido con presentaciones recientes en cada ejecución.",
     "See Finance Portfolio →":"Ver portafolio de finanzas →",
     "One YAML config → 84-sheet Excel model + Word report + PPTX deck. Full valuation stack (DCF, comps, LBO, precedent transactions) layered with 7 cognitive bias-correction modules. Verified end-to-end with real Apple FY2024 data. ~39,000 lines of Python.":"Una configuración YAML → modelo de Excel de 84 hojas + informe en Word + presentación PPTX. Stack de valoración completo (DCF, comparables, LBO, transacciones precedentes) con 7 módulos de corrección de sesgos cognitivos. Verificado de extremo a extremo con datos reales de Apple del año fiscal 2024. ~39,000 líneas de Python.",
     "Excel sheets":"Hojas de Excel",
@@ -3842,12 +3876,12 @@ function showCase(id){
     "Financial Work":"Trabajo financiero",
     "Finance Portfolio":"Portafolio de finanzas",
     "🏆 Flagship Project":"🏆 Proyecto insignia",
-    "An institutional-grade screening tool that quantitatively evaluates 600+ US-listed companies using SEC EDGAR XBRL data. Runs 11 academic fraud and solvency models across 5 dimensions - producing a composite Health Score (0-100), a fraud risk rating, and an auto-generated analysis card per company. Built in Excel + Python with a fully automated pipeline that recalculates every ratio the moment a new 10-K is filed. No manual updates. Ever.":"Una herramienta de análisis de grado institucional que evalúa cuantitativamente más de 600 empresas cotizadas en EE. UU. usando datos XBRL de SEC EDGAR. Ejecuta 11 modelos académicos de fraude y solvencia en 5 dimensiones, produciendo una puntuación de salud compuesta (0-100), una calificación de riesgo de fraude y una tarjeta de análisis autogenerada por empresa. Construida en Excel + Python con un pipeline totalmente automatizado que recalcula cada ratio en el momento en que se presenta un nuevo 10-K. Sin actualizaciones manuales. Nunca.",
+    "A screening tool that quantitatively evaluates 600+ US-listed companies using SEC EDGAR XBRL data. Runs 6 distress and earnings-quality scores - Altman Z (three variants), Springate, Zmijewski and Piotroski F - plus Beneish manipulation indices and an accruals check, producing a composite Health Score (0-100), a fraud risk rating, and an auto-generated analysis card per company. Built in Excel + Python; one run pulls the latest filings and recalculates every ratio.":"Una herramienta de análisis que evalúa cuantitativamente más de 600 empresas cotizadas en EE. UU. usando datos XBRL de SEC EDGAR. Calcula 6 puntuaciones de insolvencia y calidad de beneficios - Altman Z (tres variantes), Springate, Zmijewski y Piotroski F - más los índices de manipulación de Beneish y un control de devengos, produciendo una puntuación de salud compuesta (0-100), una calificación de riesgo de fraude y una tarjeta de análisis autogenerada por empresa. Construida en Excel + Python; cada ejecución obtiene las presentaciones más recientes y recalcula cada ratio.",
     "↓ Download the Excel (sample)":"↓ Descargar el Excel (muestra)",
     "Companies screened":"Empresas analizadas",
     "Academic models":"Modelos académicos",
     "Financial ratios":"Ratios financieros",
-    "A single-analyst equity research automation system that turns one YAML config into a full institutional-grade research package - 84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck - in one command. The pipeline runs DCF, comparable companies, precedent transactions, LBO returns, and blended fair-value output, layered with seven cognitive bias-correction modules targeting anchoring, optimism bias, and narrative contamination. Verified end-to-end with real Apple FY2024 data, producing a live HOLD verdict. ~39,000 lines of Python.":"Un sistema de automatización de análisis de acciones para un solo analista que convierte una configuración YAML en un paquete de investigación de grado institucional completo - modelo de Excel de 84 hojas, informe en Word estilo CFA y presentación PPTX de 16 diapositivas - en un solo comando. El pipeline ejecuta DCF, empresas comparables, transacciones precedentes, retornos de LBO y una salida de valor razonable combinado, con siete módulos de corrección de sesgos cognitivos que abordan el anclaje, el sesgo de optimismo y la contaminación narrativa. Verificado de extremo a extremo con datos reales de Apple del año fiscal 2024, produciendo un veredicto HOLD en vivo. ~39,000 líneas de Python.",
+    "A single-analyst equity research automation system that turns one YAML config into a full research package - 84-sheet Excel model, CFA-style Word report, and 16-slide PPTX deck - in one command. The pipeline runs DCF, comparable companies, precedent transactions, LBO returns, and blended fair-value output, layered with seven cognitive bias-correction modules targeting anchoring, optimism bias, and narrative contamination. Verified end-to-end with real Apple FY2024 data, producing a live HOLD verdict. ~39,000 lines of Python.":"Un sistema de automatización de análisis de acciones para un solo analista que convierte una configuración YAML en un paquete de investigación completo - modelo de Excel de 84 hojas, informe en Word estilo CFA y presentación PPTX de 16 diapositivas - en un solo comando. El pipeline ejecuta DCF, empresas comparables, transacciones precedentes, retornos de LBO y una salida de valor razonable combinado, con siete módulos de corrección de sesgos cognitivos que abordan el anclaje, el sesgo de optimismo y la contaminación narrativa. Verificado de extremo a extremo con datos reales de Apple del año fiscal 2024, produciendo un veredicto HOLD en vivo. ~39,000 líneas de Python.",
     "Excel sheets / company":"Hojas de Excel / empresa",
     "Bias-correction modules":"Módulos de corrección de sesgos",
     "Lines of Python":"Líneas de Python",
@@ -3909,7 +3943,7 @@ function showCase(id){
     "Risk decision it informs: Before trusting a company's reported health, where is the accounting most likely stretched - and is a distress signal real, or a sector artifact?":"Decisión de riesgo que informa: antes de confiar en la salud reportada de una empresa, ¿dónde es más probable que la contabilidad esté forzada, y una señal de estrés es real o un artefacto del sector?",
     "Reported earnings diverge from the cash a business actually generates (accruals). Any single model is a noisy read, XBRL fields aren't tagged uniformly across filers, and base rates differ by sector.":"Las ganancias reportadas divergen del efectivo que un negocio realmente genera (devengos). Cualquier modelo por sí solo es una lectura ruidosa, los campos XBRL no se etiquetan de forma uniforme entre las empresas y las tasas base difieren por sector.",
     "I started with a single model - Altman's Z-score. It broke fast: any one model is a noisy read, and a single mis-tagged XBRL field can flip the verdict. So I stopped trusting any single number and built an ensemble across bankruptcy and earnings-quality models, then added sector benchmarking so a low score in a capital-heavy sector wasn't misread as distress. The composite health score is that correction - not the first idea.":"Empecé con un solo modelo - el Z-score de Altman. Falló rápido: cualquier modelo por sí solo es una lectura ruidosa, y un solo campo XBRL mal etiquetado puede invertir el veredicto. Así que dejé de confiar en un solo número y construí un ensamble entre modelos de quiebra y de calidad de ganancias, y luego agregué comparación por sector para que una puntuación baja en un sector intensivo en capital no se interpretara como estrés. La puntuación de salud compuesta es esa corrección, no la primera idea.",
-    "Eleven independent academic models across five dimensions collapse into one composite Health Score. A flag requires convergence across independent models - Altman (solvency), Beneish (manipulation), Piotroski (quality), Dechow (accruals) - not any single trigger. The pipeline recalculates every ratio the moment a new 10-K is filed, so the signal never goes stale.":"Once modelos académicos independientes en cinco dimensiones se resumen en una única puntuación de salud compuesta. Una alerta requiere convergencia entre modelos independientes - Altman (solvencia), Beneish (manipulación), Piotroski (calidad), Dechow (devengos) - no un solo disparador. El pipeline recalcula cada ratio en el momento en que se presenta un nuevo 10-K, por lo que la señal nunca queda desactualizada.",
+    "Six academic scores - Altman Z in three variants, Springate, Zmijewski and Piotroski - plus Beneish manipulation indices and an accruals ratio collapse into one composite Health Score. A flag requires convergence across independent signals - solvency (Altman), quality (Piotroski), manipulation (Beneish indices), accruals - not any single trigger. Every run pulls the latest filings and recalculates every ratio, so the signal is only as fresh as the last run.":"Seis puntuaciones académicas - Altman Z en tres variantes, Springate, Zmijewski y Piotroski - más los índices de manipulación de Beneish y un ratio de devengos se resumen en una única puntuación de salud compuesta. Una alerta requiere convergencia entre señales independientes - solvencia (Altman), calidad (Piotroski), manipulación (índices de Beneish), devengos - no un solo disparador. Cada ejecución obtiene las presentaciones más recientes y recalcula cada ratio, así que la señal es tan reciente como la última ejecución.",
     "Convergence suppresses false alarms but adds lag - the Z-Score often flags only after the accruals gap has widened for years. The model is deliberately conservative, so it structurally over-flags capital-intensive industrials (asset turnover) and pre-revenue biotech (profitability). Automation also removes human judgment at the ingestion step.":"La convergencia suprime falsas alarmas pero añade retraso - el Z-Score a menudo alerta solo después de que la brecha de devengos se ha ampliado durante años. El modelo es deliberadamente conservador, por lo que estructuralmente sobre-alerta a las industriales intensivas en capital (rotación de activos) y a la biotecnología sin ingresos (rentabilidad). La automatización también elimina el juicio humano en el paso de ingesta.",
     "Stress-tested the XBRL parser against non-standard tag formats - a real defect where certain filers tagged fields differently produced anomalous scores, caught by reconciling raw → cleaned → model-input data rather than re-checking the formulas. Ran the screen cross-sectionally across 600+ names so outliers invisible in isolation become obvious.":"Sometí a prueba de estrés el analizador de XBRL frente a formatos de etiqueta no estándar - un defecto real en el que ciertas empresas etiquetaban campos de forma distinta produjo puntuaciones anómalas, detectado al reconciliar los datos crudos → limpios → de entrada al modelo en lugar de revisar de nuevo las fórmulas. Ejecuté el análisis de forma transversal sobre más de 600 nombres para que los valores atípicos, invisibles de manera aislada, se vuelvan evidentes.",
     "Model risk - each score's reliability is documented by sector":"Riesgo de modelo - la fiabilidad de cada puntuación está documentada por sector",
@@ -3918,7 +3952,7 @@ function showCase(id){
     "Explainability - every score reconciles to its inputs, with no gaps":"Explicabilidad - cada puntuación se reconcilia con sus entradas, sin brechas",
     "Early warning - the accruals gap moves before solvency models react":"Alerta temprana - la brecha de devengos se mueve antes de que reaccionen los modelos de solvencia",
     "Scores assume SEC EDGAR XBRL fields are tagged consistently across filers (they aren't always), that academic model thresholds calibrated on historical samples still hold today, and that sector medians are a fair benchmark. The tool flags where a signal may be a sector artifact rather than real distress.":"Las puntuaciones asumen que los campos XBRL de SEC EDGAR se etiquetan de forma coherente entre empresas (no siempre es así), que los umbrales de los modelos académicos calibrados sobre muestras históricas siguen siendo válidos hoy, y que las medianas del sector son un punto de referencia justo. La herramienta señala dónde una señal puede ser un artefacto del sector en lugar de estrés real.",
-    "The pipeline recomputes every ratio the moment a new 10-K is filed - same inputs, same output, no manual edits, versioned in git. A reviewer can trace any company's health score back through the ratios to the exact source XBRL field.":"El pipeline recalcula cada ratio en el momento en que se presenta un nuevo 10-K - mismas entradas, misma salida, sin ediciones manuales, versionado en git. Un revisor puede rastrear la puntuación de salud de cualquier empresa a través de los ratios hasta el campo XBRL de origen exacto.",
+    "Every run recomputes every ratio from the source filings - same inputs, same output, no manual edits, versioned in git. A reviewer can trace any company's health score back through the ratios to the exact source XBRL field; the downloadable sample shows that full chain, from raw inputs to ratios to scores.":"Cada ejecución recalcula cada ratio a partir de las presentaciones de origen - mismas entradas, misma salida, sin ediciones manuales, versionado en git. Un revisor puede rastrear la puntuación de salud de cualquier empresa a través de los ratios hasta el campo XBRL de origen exacto; la muestra descargable muestra esa cadena completa, de las entradas a los ratios y a las puntuaciones.",
     "I distrust a single high score in a capital-intensive or pre-revenue name, and re-anchor to sector base rates before acting on it. The next safeguard I'd add: a sector-adjusted overlay plus a data-quality confidence flag that down-weights companies with sparse or non-standard XBRL tags.":"Desconfío de una única puntuación alta en un nombre intensivo en capital o sin ingresos, y me reancla a las tasas base del sector antes de actuar. La siguiente salvaguarda que agregaría: una capa ajustada por sector más un indicador de confianza en la calidad de los datos que reste peso a las empresas con etiquetas XBRL escasas o no estándar.",
     "Risk decision it informs: Should an AI agent be allowed to move money and route approvals on its own - and what has to be true before it can?":"Decisión de riesgo que informa: ¿debería permitirse que un agente de IA mueva dinero y encamine aprobaciones por su cuenta, y qué debe ser cierto antes de que pueda hacerlo?",
     "LLM plans are strong but occasionally wrong. A single hallucination, misread context, or ambiguous instruction can send a payment to the wrong party or skip a required review - and by the time a human notices, the action is already done.":"Los planes del LLM son sólidos pero a veces equivocados. Una sola alucinación, un contexto mal leído o una instrucción ambigua pueden enviar un pago a la parte equivocada u omitir una revisión requerida - y para cuando un humano lo nota, la acción ya está hecha.",
@@ -3988,7 +4022,7 @@ function showCase(id){
     "1st Place — Local AI Hackathon, Dell & NVIDIA":"1er lugar — Hackathon de IA Local, Dell y NVIDIA",
     "Took 1st place among 40 teams at BuilderBase's Local AI Hackathon with Dell Technologies and NVIDIA — one of 150 builders selected for a single-day build on a Dell Pro Max with GB10. Co-engineered Lifeline, a geospatial disaster-triage agent running entirely on-device, with zero cloud dependency.":"Ganamos el 1er lugar entre 40 equipos en el Local AI Hackathon de BuilderBase con Dell Technologies y NVIDIA — uno de 150 constructores seleccionados para una construcción de un solo día en una Dell Pro Max con GB10. Co-diseñé Lifeline, un agente geoespacial de triaje ante desastres que se ejecuta totalmente en el dispositivo, sin dependencia de la nube.",
     // TL;DR LINES
-    "TL;DR: An ensemble of 11 academic fraud and solvency models, cross-checked across 600+ companies' live SEC filings, so no single ratio decides the verdict.":"TL;DR: Un conjunto de 11 modelos académicos de fraude y solvencia, verificados contra las presentaciones en vivo de la SEC de más de 600 empresas, de modo que ningún ratio decide el veredicto por sí solo.",
+    "TL;DR: An ensemble of 6 academic distress and quality scores plus Beneish manipulation indices, cross-checked across 600+ companies' SEC filings, so no single ratio decides the verdict.":"TL;DR: Un conjunto de 6 puntuaciones académicas de insolvencia y calidad más los índices de manipulación de Beneish, verificados contra las presentaciones de la SEC de más de 600 empresas, de modo que ningún ratio decide el veredicto por sí solo.",
     "TL;DR: An AI agent that can propose but never execute — deterministic policy and on-chain smart contracts enforce every payment, so a hallucination gets blocked, not acted on.":"TL;DR: Un agente de IA que puede proponer pero nunca ejecutar — una política determinista y contratos inteligentes on-chain hacen cumplir cada pago, de modo que una alucinación se bloquea en lugar de ejecutarse.",
     "TL;DR: One YAML config generates a full DCF + comps + LBO valuation stack with 7 bias-correction modules — the output is a range, not a false-precision number.":"TL;DR: Una sola configuración YAML genera un paquete completo de valoración DCF + comparables + LBO con 7 módulos de corrección de sesgos — el resultado es un rango, no un número de falsa precisión.",
     // LIFELINE PROJECT CARD (FEATURED)
