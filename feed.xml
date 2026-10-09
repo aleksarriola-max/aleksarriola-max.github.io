@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 09 Oct 2026 00:51:11 +0000</lastBuildDate>
+<lastBuildDate>Fri, 09 Oct 2026 15:40:02 +0000</lastBuildDate>
+<item>
+<title>Why the Finance Page and the Coding Page Live on the Same Site</title>
+<link>https://aleksarriola-max.github.io/#essay-79</link>
+<guid isPermaLink="false">essay-79</guid>
+<category>Perspective</category>
+<pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate>
+<description>I get asked, more often than I expected, why the site does not just pick a lane — finance or AI engineering, but not both. The honest answer is that keeping them together is the point, not an oversight. The valuation work is better because I write code to check it. The agent work is better because I</description>
+</item>
 <item>
 <title>The Best Career Advice I Got Wasn’t About Skills</title>
 <link>https://aleksarriola-max.github.io/#essay-78</link>
