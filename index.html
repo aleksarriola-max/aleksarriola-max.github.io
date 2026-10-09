@@ -1817,6 +1817,7 @@ body.nav-open{ overflow:hidden; }
   </div>
 
   <p class="mq-head mq-head-all">All 53 credentials</p>
+  <p style="color:#666; font-size:0.85rem; margin:-0.4rem 0 1.2rem;">Click any credential to see what it covered. Forage credentials link to the verified certificate.</p>
 
   <!-- Filter Buttons -->
   <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.5rem;" id="cert-filters">
@@ -3408,12 +3409,14 @@ body.nav-open{ overflow:hidden; }
     <p id="modal-company" style="font-size:0.85rem; color:var(--gray); margin-bottom:1.5rem; font-weight:500;"></p>
     <p id="modal-desc" style="font-size:0.95rem; line-height:1.75; color:#444;"></p>
     <div id="modal-skills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem;"></div>
+    <a id="modal-cert" href="#" target="_blank" rel="noopener" style="display:none; margin-top:1.6rem; align-items:center; gap:0.45rem; background:var(--navy); color:var(--white); padding:0.6rem 1.2rem; border-radius:4px; font-size:0.82rem; font-weight:700; text-decoration:none;">View verified certificate &#8599;</a>
   </div>
 </div>
 
 <style>
   #cert-modal.open { display:flex; }
-  .cert-card { cursor:pointer; }
+  .cert-card { cursor:pointer; position:relative; }
+  .cert-card.has-cert::after { content:'\2713  Verified'; position:absolute; top:0.55rem; right:0.7rem; font-size:0.62rem; font-weight:700; letter-spacing:0.06em; color:var(--gold); }
   .cert-card:hover { border-color:var(--gold); box-shadow:0 4px 20px rgba(0,0,0,0.08); }
 </style>
 
@@ -3450,66 +3453,79 @@ const certData = {
     skills:["Creative Thinking","Problem Solving","Ideation","Innovation","Design Thinking"]
   },
   "Markets Sales & Trading": {
+    cert:"https://www.theforage.com/completion-certificates/8eNRcRqBZM9HLvwGw/gJjSg64PLtchbxKgj_8eNRcRqBZM9HLvwGw_QpfYdzXEDmNXLhqhA_1780207374200_completion_certificate.pdf",
     company:"Citi", icon:"🏦", cat:"Banking",
     desc:"Simulated working on Citi's Markets desk — analyzing market conditions, building trade ideas, and understanding how sales and trading teams communicate with institutional clients. Covered equity derivatives, bond markets, and client pitching.",
     skills:["Derivatives","Market Analysis","Client Pitching","Fixed Income"]
   },
   "Banking at PNC: Building Career Skills": {
+    cert:"https://www.theforage.com/completion-certificates/3W4C6QjJzfhEmi4Ay/nuPcwecBkeF9iyRJX_3W4C6QjJzfhEmi4Ay_QpfYdzXEDmNXLhqhA_1778997516266_completion_certificate.pdf",
     company:"PNC", icon:"🏦", cat:"Banking",
     desc:"Explored core career skills needed in a banking environment at PNC — including financial counseling, customer relationship management, and understanding retail banking products. Focused on real-world client scenarios.",
     skills:["Retail Banking","Customer Relations","Financial Counseling"]
   },
   "Business & Commercial Banking Introduction": {
+    cert:"https://www.theforage.com/completion-certificates/Zbnc2o4ok6kD2NEXx/fPrHvjDcgMMh6drzh_Zbnc2o4ok6kD2NEXx_QpfYdzXEDmNXLhqhA_1777414554400_completion_certificate.pdf",
     company:"Lloyds Banking Group", icon:"🏦", cat:"Banking",
     desc:"Gained exposure to commercial lending, business credit assessment, and how banks support SME clients. Worked through loan structuring scenarios and assessed business risk for corporate clients.",
     skills:["Commercial Lending","Credit Analysis","Business Banking","Risk Assessment"]
   },
   "Commercial Banking": {
+    cert:"https://www.theforage.com/completion-certificates/nkmk7gJitYs4TBvoA/AQKJ8jdotFCzz5WmM_nkmk7gJitYs4TBvoA_QpfYdzXEDmNXLhqhA_1775090881321_completion_certificate.pdf",
     company:"Wells Fargo", icon:"🏦", cat:"Banking",
     desc:"Simulated the role of a commercial banker at Wells Fargo — evaluating business loan applications, analyzing company financials, and structuring credit facilities for middle-market clients.",
     skills:["Credit Underwriting","Financial Analysis","Loan Structuring"]
   },
   "Personal Banker": {
+    cert:"https://www.theforage.com/completion-certificates/nkmk7gJitYs4TBvoA/owmbvXSPLTqePC5gQ_nkmk7gJitYs4TBvoA_QpfYdzXEDmNXLhqhA_1775072139437_completion_certificate.pdf",
     company:"Wells Fargo", icon:"🏦", cat:"Banking",
     desc:"Took on the role of a personal banker helping clients with deposit accounts, lending products, and financial planning. Practiced consultative selling and needs-based product recommendations.",
     skills:["Retail Banking","Consultative Sales","Financial Planning"]
   },
   "Consumer & Small Business Banking": {
+    cert:"https://www.theforage.com/completion-certificates/nkmk7gJitYs4TBvoA/hSxoHCmRFdekdAEem_nkmk7gJitYs4TBvoA_QpfYdzXEDmNXLhqhA_1773361466202_completion_certificate.pdf",
     company:"Wells Fargo", icon:"🏦", cat:"Banking",
     desc:"Explored Wells Fargo's consumer and small business banking division — from deposit products and cash management to small business credit solutions and digital banking tools.",
     skills:["Small Business Banking","Cash Management","Consumer Finance"]
   },
   "Bank Teller": {
+    cert:"https://www.theforage.com/completion-certificates/nkmk7gJitYs4TBvoA/BsDjEuPJhapP4QGyj_nkmk7gJitYs4TBvoA_QpfYdzXEDmNXLhqhA_1771291196605_completion_certificate.pdf",
     company:"Wells Fargo", icon:"🏦", cat:"Banking",
     desc:"Shadowed the frontline banking experience — processing transactions, identifying fraud indicators, and delivering excellent customer service in a branch environment.",
     skills:["Transaction Processing","Fraud Detection","Customer Service"]
   },
   "U.S. Consumer Cards": {
+    cert:"https://www.theforage.com/completion-certificates/8eNRcRqBZM9HLvwGw/uXC3LSjpH4J7Z9x2M_8eNRcRqBZM9HLvwGw_QpfYdzXEDmNXLhqhA_1771632992461_completion_certificate.pdf",
     company:"Citi", icon:"🏦", cat:"Banking",
     desc:"Explored Citi's consumer banking operations — understanding personal loan products, credit card services, and how relationship managers engage retail clients across different life stages.",
     skills:["Consumer Products","Client Relationships","Credit Cards"]
   },
   "Treasury & Trade Solutions": {
+    cert:"https://www.theforage.com/completion-certificates/8eNRcRqBZM9HLvwGw/tJ3ENBW8jgwYzTRmv_8eNRcRqBZM9HLvwGw_QpfYdzXEDmNXLhqhA_1770504747216_completion_certificate.pdf",
     company:"Citi", icon:"🏦", cat:"Banking",
     desc:"Dived into Citi's TTS division — how the bank manages global cash flow, trade finance, and cross-border payment solutions for multinational corporate clients.",
     skills:["Trade Finance","Cash Management","FX","Global Payments"]
   },
   "Private Bank": {
+    cert:"https://www.theforage.com/completion-certificates/fMCqmt8qR4G85Puue/Lu5h6FDrPES9mKn3h_fMCqmt8qR4G85Puue_QpfYdzXEDmNXLhqhA_1770495954498_completion_certificate.pdf",
     company:"Bank of America", icon:"🏦", cat:"Banking",
     desc:"Simulated working with ultra-high-net-worth clients in BofA's private banking division — providing bespoke wealth management solutions, trust services, and portfolio advisory.",
     skills:["Wealth Management","UHNW Clients","Trust & Estate","Portfolio Advisory"]
   },
   "Investment Management": {
+    cert:"https://www.theforage.com/completion-certificates/jWDZPYPGpsMrk2vJq/hgCWHF8riBbyFjPfd_jWDZPYPGpsMrk2vJq_QpfYdzXEDmNXLhqhA_1779525087842_completion_certificate.pdf",
     company:"Fidelity International", icon:"📊", cat:"Finance",
     desc:"Practiced the investment process at a global asset manager — conducting equity research, building financial models, and presenting investment recommendations within a portfolio context.",
     skills:["Equity Research","Financial Modeling","Portfolio Management","DCF"]
   },
   "Operations": {
+    cert:"https://www.theforage.com/completion-certificates/MBA4MnZTNFEoJZGnk/wNge9cjzNTXD2acrv_MBA4MnZTNFEoJZGnk_QpfYdzXEDmNXLhqhA_1777234405347_completion_certificate.pdf",
     company:"Goldman Sachs", icon:"📊", cat:"Finance",
     desc:"Explored the operations function at Goldman Sachs — managing post-trade processes, settlement, reconciliation, and ensuring accurate books and records across business divisions.",
     skills:["Trade Settlement","Reconciliation","Risk Controls","Operations"]
   },
   "Internal Audit": {
+    cert:"https://www.theforage.com/completion-certificates/MBA4MnZTNFEoJZGnk/dC4ChhAkhpgB7QvGd_MBA4MnZTNFEoJZGnk_QpfYdzXEDmNXLhqhA_1776038518248_completion_certificate.pdf",
     company:"Goldman Sachs", icon:"📊", cat:"Finance",
     desc:"Simulated conducting an internal audit at Goldman Sachs — identifying control gaps, assessing operational risk, and writing audit findings for senior management review.",
     skills:["Audit Planning","Risk Assessment","Control Testing","Reporting"]
@@ -3520,56 +3536,67 @@ const certData = {
     skills:["Bloomberg Terminal","Equity Data","Fixed Income","Market Data"]
   },
   "Client Service": {
+    cert:"https://www.theforage.com/completion-certificates/pNeDZ9MsW9WShojQm/sqYY2sxG2zNqXfHjJ_pNeDZ9MsW9WShojQm_QpfYdzXEDmNXLhqhA_1772226277812_completion_certificate.pdf",
     company:"Bloomberg", icon:"📊", cat:"Finance",
     desc:"Practiced resolving client issues in Bloomberg's customer-facing support environment — troubleshooting terminal questions, communicating complex financial data clearly, and maintaining client satisfaction.",
     skills:["Client Support","Bloomberg Terminal","Communication","Problem Solving"]
   },
   "Risk": {
+    cert:"https://www.theforage.com/completion-certificates/MBA4MnZTNFEoJZGnk/ETGMhLB5eCrYjcH8o_MBA4MnZTNFEoJZGnk_QpfYdzXEDmNXLhqhA_1773013487666_completion_certificate.pdf",
     company:"Goldman Sachs", icon:"📊", cat:"Finance",
     desc:"Analyzed market and credit risk scenarios at Goldman Sachs — using quantitative tools to assess portfolio exposure, stress test positions, and communicate risk to trading desks.",
     skills:["Market Risk","Credit Risk","VaR","Stress Testing"]
   },
   "Controllers": {
+    cert:"https://www.theforage.com/completion-certificates/MBA4MnZTNFEoJZGnk/vjFao7z4tXKe2EwvK_MBA4MnZTNFEoJZGnk_QpfYdzXEDmNXLhqhA_1771290611068_completion_certificate.pdf",
     company:"Goldman Sachs", icon:"📊", cat:"Finance",
     desc:"Explored the Controllers division at Goldman Sachs — financial reporting, P&L attribution, and ensuring the accuracy of the firm's balance sheet across business lines.",
     skills:["Financial Reporting","P&L Attribution","Accounting","Controls"]
   },
   "Sales & Trading Analyst": {
+    cert:"https://www.theforage.com/completion-certificates/fMCqmt8qR4G85Puue/rKCBL7y5yKgzDGZmR_fMCqmt8qR4G85Puue_QpfYdzXEDmNXLhqhA_1771018296018_completion_certificate.pdf",
     company:"Bank of America", icon:"📊", cat:"Finance",
     desc:"Simulated the analyst experience on BofA's sales and trading floor — executing equity and fixed income trades, preparing market commentary, and supporting senior traders with research.",
     skills:["Equity Trading","Fixed Income","Market Commentary","Analytics"]
   },
   "Investment Banking": {
+    cert:"https://www.theforage.com/completion-certificates/fMCqmt8qR4G85Puue/Hi8MJQE5T3MeTRWQR_fMCqmt8qR4G85Puue_QpfYdzXEDmNXLhqhA_1733875943975_completion_certificate.pdf",
     company:"Bank of America · Forage", icon:"📊", cat:"Finance",
     desc:"Identified an ideal acquisition target through SWOT analysis and strategic alignment assessment. Constructed a DCF model to determine the target's equity and share value, then applied sensitivity analysis to illustrate how valuation fluctuates based on variable shifts — presenting findings to simulate a real IB deal process.",
     skills:["DCF Modeling","SWOT Analysis","M&A","Sensitivity Analysis","Equity Valuation"]
   },
   "Financial Analyst": {
+    cert:"https://www.theforage.com/completion-certificates/9nvkLZzZEKAdrhjrX/TtC5eCKD3FFzH5xcz_9nvkLZzZEKAdrhjrX_QpfYdzXEDmNXLhqhA_1759096409694_completion_certificate.pdf",
     company:"New York Jobs CEO Council · Forage", icon:"📊", cat:"Finance",
     desc:"Executed an investment banking simulation analyzing the feasibility of a strategic partnership with a major technology firm. Synthesized data-driven findings and presented recommendations to senior bankers to guide high-stakes decision-making.",
     skills:["Investment Banking","Strategic Analysis","Financial Modeling","Presentation","Due Diligence"]
   },
   "Accounting": {
+    cert:"https://www.theforage.com/completion-certificates/Koch%20Industries/ZHCtj63xFHrfEC7G6_Koch%20Industries_QpfYdzXEDmNXLhqhA_1711937130252_completion_certificate.pdf",
     company:"Koch", icon:"📊", cat:"Finance",
     desc:"Worked through core accounting concepts in a Koch Industries context — journal entries, financial statement preparation, and understanding how accounting supports business decision-making.",
     skills:["Accounting","Financial Statements","Journal Entries","GAAP"]
   },
   "Run Your Own Business": {
+    cert:"https://www.theforage.com/completion-certificates/RYe4hNnCZtPZEuJDx/uE2goa9xW2R28g5sK_RYe4hNnCZtPZEuJDx_QpfYdzXEDmNXLhqhA_1763252223383_completion_certificate.pdf",
     company:"Chartered Accountants ANZ · Forage", icon:"📊", cat:"Finance",
     desc:"Completed a financial analysis simulation assessing business performance through P&L statements and break-even analysis. Developed data-driven pricing strategy recommendations designed to enhance revenue potential for a small business client.",
     skills:["P&L Analysis","Break-Even Analysis","Pricing Strategy","Financial Planning","Small Business"]
   },
   "Transaction Tax Consulting": {
+    cert:"https://www.theforage.com/completion-certificates/Meh5Ym4DNuXyBMJxP/M5kGv9fSSu455Kbkz_Meh5Ym4DNuXyBMJxP_QpfYdzXEDmNXLhqhA_1778194624497_completion_certificate.pdf",
     company:"Ryan, LLC", icon:"💼", cat:"Finance",
     desc:"Simulated transaction tax consulting at Ryan — identifying tax savings opportunities in M&A deals, reviewing tax due diligence materials, and advising clients on transaction structuring.",
     skills:["Tax Consulting","M&A Tax","Due Diligence","Transaction Structuring"]
   },
   "Intro to Strategy Consulting": {
+    cert:"https://www.theforage.com/completion-certificates/SKZxezskWgmFjRvj9/4Rfzeut8gXmNwfxXv_SKZxezskWgmFjRvj9_QpfYdzXEDmNXLhqhA_1774131538164_completion_certificate.pdf",
     company:"BCG", icon:"💼", cat:"Consulting",
     desc:"Learned how BCG approaches complex business problems — structuring issues using MECE frameworks, conducting market sizing, synthesizing data, and presenting recommendations to client leadership.",
     skills:["Problem Structuring","MECE","Market Sizing","Slide Decks","Consulting"]
   },
   "Advisors & Consulting Services": {
+    cert:"https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/DZxgGgvMB6cEtEyJg_mfxGwGDp6WkQmtmTf_QpfYdzXEDmNXLhqhA_1774383140337_completion_certificate.pdf",
     company:"Mastercard", icon:"💼", cat:"Consulting",
     desc:"Simulated working on Mastercard's consulting arm — analyzing client data, building data-driven recommendations, and helping financial institutions optimize loyalty and payments strategy.",
     skills:["Data Analytics","Client Strategy","Loyalty Programs","Payments"]
@@ -3580,66 +3607,79 @@ const certData = {
     skills:["Tax Advisory","Property Tax","Incentives","Client Consulting"]
   },
   "UX Design Introduction": {
+    cert:"https://www.theforage.com/completion-certificates/Zbnc2o4ok6kD2NEXx/N65hfzBKXRiATv6yd_Zbnc2o4ok6kD2NEXx_QpfYdzXEDmNXLhqhA_1777410408824_completion_certificate.pdf",
     company:"Lloyds Banking Group", icon:"💼", cat:"Consulting",
     desc:"Applied human-centered design principles within a banking context at Lloyds — conducting user research, sketching wireframes, and iterating on digital product designs for banking customers.",
     skills:["UX Research","Wireframing","User Testing","Design Thinking"]
   },
   "Branding & Design": {
+    cert:"https://www.theforage.com/completion-certificates/kW3rjhp6NodzrSZKK/MpLhQxNfziD3bq8Y8_kW3rjhp6NodzrSZKK_QpfYdzXEDmNXLhqhA_1745619737371_completion_certificate.pdf",
     company:"Sydney Romantics", icon:"💼", cat:"Consulting",
     desc:"Created a branding strategy and visual design assets for a creative business — developing brand identity, color systems, and marketing materials aligned to a target audience.",
     skills:["Brand Strategy","Visual Design","Marketing","Creative Direction"]
   },
   "Cybersecurity": {
+    cert:"https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_QpfYdzXEDmNXLhqhA_1775335930094_completion_certificate.pdf",
     company:"Mastercard", icon:"🌐", cat:"Tech & Data",
     desc:"Simulated working on Mastercard's cybersecurity team — identifying phishing threats, analyzing security vulnerabilities in business processes, and recommending controls to protect payment infrastructure.",
     skills:["Phishing Analysis","Threat Detection","Security Controls","Risk Mitigation"]
   },
   "AI in Action": {
+    cert:"https://www.theforage.com/completion-certificates/BotenCEjm3LFxtq9A/EregFenDKXDDeTGR2_BotenCEjm3LFxtq9A_QpfYdzXEDmNXLhqhA_1774130194937_completion_certificate.pdf",
     company:"Vista Equity Partners", icon:"🌐", cat:"Tech & Data",
     desc:"Explored how AI is being applied in private equity and enterprise software — from automating due diligence workflows to using machine learning for portfolio company performance analysis.",
     skills:["AI/ML","Private Equity","Due Diligence","Automation","Data Analysis"]
   },
   "Resume Writing with AI Support": {
+    cert:"https://www.theforage.com/completion-certificates/rm6of58ywoJoNuiBt/ohm6nvufSdZc2aQAA_rm6of58ywoJoNuiBt_QpfYdzXEDmNXLhqhA_1774823703709_completion_certificate.pdf",
     company:"Forage Learning", icon:"🌐", cat:"Tech & Data",
     desc:"Practiced crafting compelling, ATS-optimized resumes with AI assistance — learning how to tailor experience bullets to job descriptions, highlight transferable skills, and present a professional brand.",
     skills:["Resume Writing","ATS Optimization","Personal Branding","Career Development"]
   },
   "London Market Claims Adjuster": {
+    cert:"https://www.theforage.com/completion-certificates/neftF7ys5jPJaBTGK/4DhLgypweHC58wkZ8_neftF7ys5jPJaBTGK_QpfYdzXEDmNXLhqhA_1777418625060_completion_certificate.pdf",
     company:"London Insurance Life", icon:"🛡️", cat:"Insurance",
     desc:"Simulated the claims adjuster role in the London insurance market — evaluating claim validity, reviewing policy coverage, and negotiating settlements for complex commercial insurance claims.",
     skills:["Claims Assessment","Policy Review","Negotiation","Commercial Insurance"]
   },
   "London Market Claims Operations": {
+    cert:"https://www.theforage.com/completion-certificates/neftF7ys5jPJaBTGK/3ZsiCQpTkTLaMRKM7_neftF7ys5jPJaBTGK_QpfYdzXEDmNXLhqhA_1777236539506_completion_certificate.pdf",
     company:"London Insurance Life", icon:"🛡️", cat:"Insurance",
     desc:"Explored the operations side of Lloyd's of London-style claims processing — managing documentation, coordinating between underwriters and brokers, and ensuring accurate claims records.",
     skills:["Claims Operations","Lloyd's Market","Broking","Documentation"]
   },
   "Underwriting": {
+    cert:"https://www.theforage.com/completion-certificates/4nAmAbTbHbnGMNSyo/6miFEe83Y7PdzWJD6_4nAmAbTbHbnGMNSyo_QpfYdzXEDmNXLhqhA_1773011663418_completion_certificate.pdf",
     company:"AIG", icon:"🛡️", cat:"Insurance",
     desc:"Practiced underwriting decisions at AIG — assessing risk profiles for commercial insurance applications, pricing policies, and determining coverage terms based on client risk data.",
     skills:["Risk Assessment","Policy Pricing","Commercial Insurance","Underwriting"]
   },
   "Credit Analyst": {
+    cert:"https://www.theforage.com/completion-certificates/ZsgybEFo5RxyHxwXL/TwxTEuyPugfgMGm8H_ZsgybEFo5RxyHxwXL_QpfYdzXEDmNXLhqhA_1783209664841_completion_certificate.pdf",
     company:"Standard Chartered", icon:"🏦", cat:"Banking",
     desc:"Simulated the role of a credit analyst at Standard Chartered — assessing creditworthiness of corporate borrowers, analyzing financial statements, calculating key credit ratios, and preparing credit approval memos for lending decisions.",
     skills:["Credit Analysis","Financial Statement Analysis","Credit Risk","Loan Structuring","Corporate Banking"]
   },
   "Client Engagement": {
+    cert:"https://www.theforage.com/completion-certificates/pNeDZ9MsW9WShojQm/cezQYMNq3M3y8pDHw_pNeDZ9MsW9WShojQm_QpfYdzXEDmNXLhqhA_1783209180087_completion_certificate.pdf",
     company:"Bloomberg", icon:"📊", cat:"Finance",
     desc:"Explored how Bloomberg's client-facing teams deliver data solutions to institutional clients — understanding terminal workflows, communicating complex financial data products, and building relationships with traders, analysts, and portfolio managers.",
     skills:["Client Engagement","Financial Data","Bloomberg Terminal","Institutional Sales","Communication"]
   },
   "Quantitative Research": {
+    cert:"https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/bWqaecPDbYAwSDqJy_Sj7temL583QAYpHXD_QpfYdzXEDmNXLhqhA_1780785408175_completion_certificate.pdf",
     company:"J.P. Morgan", icon:"📊", cat:"Finance",
     desc:"Applied quantitative methods to financial research in a J.P. Morgan context — building models, working with large datasets, backtesting strategies, and producing quantitative insights for trading and investment decisions.",
     skills:["Quantitative Research","Python","Statistical Modeling","Backtesting","Financial Modeling"]
   },
   "Sustainability in Banking": {
+    cert:"https://www.theforage.com/completion-certificates/MuLqSKBp5sav83L6j/uY9Mkm9Emf8frDPeb_MuLqSKBp5sav83L6j_QpfYdzXEDmNXLhqhA_1789700631536_completion_certificate.pdf",
     company:"ACCA & CIMB Group", icon:"🏦", cat:"Banking",
     desc:"Worked on a banking team focused on sustainability — wrote a sustainability due diligence report on a prospective palm-oil-sector client, selected the KPIs and sustainability performance targets for a sustainability-linked loan, and scoped an internal audit of the bank's GHG emissions reporting process.",
     skills:["ESG Analysis","Sustainable Finance","Sustainability Metrics","Risk Analysis","Auditing"]
   },
   "Understanding the Deal Lifecycle": {
+    cert:"https://www.theforage.com/completion-certificates/BotenCEjm3LFxtq9A/LsT7QKBzRpRZ7XNSv_BotenCEjm3LFxtq9A_QpfYdzXEDmNXLhqhA_1788761175473_completion_certificate.pdf",
     company:"Vista Equity Partners", icon:"📊", cat:"Finance",
     desc:"Followed a private equity deal from sourcing through diligence, purchase and value creation at Vista Equity Partners — applying public comps, transaction comps and DCF valuation, and mapping how deal, finance, tax & legal and operating teams divide the work.",
     skills:["Valuation Techniques","Deal Management","Financial Literacy","Cross-Functional Teamwork","Strategic Thinking"]
@@ -3650,26 +3690,31 @@ const certData = {
     skills:["Financial Services","Banking Industry Knowledge","Career Planning"]
   },
   "Tech Explorer": {
+    cert:"https://www.theforage.com/completion-certificates/2sNmYuurxgpFYawco/GYcpProEZQFCiSmT6_2sNmYuurxgpFYawco_QpfYdzXEDmNXLhqhA_1788308893684_completion_certificate.pdf",
     company:"Commonwealth Bank", icon:"🌐", cat:"Tech & Data",
     desc:"Rotated through Commonwealth Bank's technology teams — software engineering, tech analysis, cybersecurity and data science — gathering stakeholder requirements, deciding which user groups should get access to which tools, and analyzing customer demographics to target the launch of a new banking app.",
     skills:["Requirements Gathering","Data Analysis","Problem Solving","Design Thinking","Communication"]
   },
   "Overview of Financial Services and Banking": {
+    cert:"https://www.theforage.com/completion-certificates/3W4C6QjJzfhEmi4Ay/KfhEd8StnWdjsTGsw_3W4C6QjJzfhEmi4Ay_QpfYdzXEDmNXLhqhA_1788307736282_completion_certificate.pdf",
     company:"PNC", icon:"🏦", cat:"Banking",
     desc:"Built a working picture of how financial institutions serve customers, businesses and communities, how the different financial-services sectors fit together, and why trust and responsible decision-making matter.",
     skills:["Customer Focus","Decision Making","Ethical Reasoning","Risk Management","Analytical Thinking"]
   },
   "Professionalism & Power Skills": {
+    cert:"https://www.theforage.com/completion-certificates/3W4C6QjJzfhEmi4Ay/WknMT9xuFHr8MaB8T_3W4C6QjJzfhEmi4Ay_QpfYdzXEDmNXLhqhA_1788306386431_completion_certificate.pdf",
     company:"PNC", icon:"💼", cat:"Consulting",
     desc:"Practiced professional communication and teamwork in PNC workplace scenarios — writing clear emails, handling deadlines and disagreements, and taking accountability for mistakes and feedback.",
     skills:["Professional Writing","Active Listening","Conflict Management","Accountability","Teamwork"]
   },
   "Key Roles and Business Segments": {
+    cert:"https://www.theforage.com/completion-certificates/3W4C6QjJzfhEmi4Ay/uhmcdWhe4D2aaYpWN_3W4C6QjJzfhEmi4Ay_QpfYdzXEDmNXLhqhA_1787626943098_completion_certificate.pdf",
     company:"PNC", icon:"🏦", cat:"Banking",
     desc:"Explored how PNC's business segments work together to serve clients and run operations, and mapped career paths across client-facing, analytical, technology and operations roles.",
     skills:["Business Acumen","Client Services","Product Expertise","Team Collaboration","Career Planning"]
   },
   "Actuarial Analyst": {
+    cert:"https://www.theforage.com/completion-certificates/4nAmAbTbHbnGMNSyo/b7MfbG9W4iCNGnd23_4nAmAbTbHbnGMNSyo_QpfYdzXEDmNXLhqhA_1780785305259_completion_certificate.pdf",
     company:"AIG", icon:"🛡️", cat:"Insurance",
     desc:"Practiced actuarial analysis at AIG — using statistical models to assess insurance risk, pricing products, projecting loss reserves, and communicating quantitative findings to underwriting and finance teams.",
     skills:["Actuarial Science","Risk Modeling","Statistical Analysis","Loss Reserving","Insurance Pricing"]
@@ -3686,6 +3731,9 @@ function openCertModal(title) {
   document.getElementById('modal-desc').textContent = d.desc;
   const skillsEl = document.getElementById('modal-skills');
   skillsEl.innerHTML = d.skills.map(s => `<span style="padding:0.25rem 0.7rem;background:var(--light-bg);border-radius:100px;font-size:0.72rem;font-weight:600;color:var(--navy);">${s}</span>`).join('');
+  const certLink = document.getElementById('modal-cert');
+  if (d.cert) { certLink.href = d.cert; certLink.style.display = 'inline-flex'; }
+  else { certLink.removeAttribute('href'); certLink.style.display = 'none'; }
   const modal = document.getElementById('cert-modal');
   modal.classList.add('open');
   modal.style.display = 'flex';
@@ -3708,6 +3756,7 @@ document.addEventListener('keydown', function(e) {
 // Wire up all cert cards
 document.querySelectorAll('.cert-card').forEach(card => {
   const title = card.querySelector('h4').textContent;
+  if (certData[title] && certData[title].cert) card.classList.add('has-cert');
   card.addEventListener('click', () => openCertModal(title));
 });
 </script>
@@ -4168,6 +4217,8 @@ function showCase(id){
     // MARQUEE CREDENTIALS
     "Selected credentials":"Credenciales destacadas",
     "All 53 credentials":"Las 53 credenciales",
+    "Click any credential to see what it covered. Forage credentials link to the verified certificate.":"Haz clic en cualquier credencial para ver lo que cubrió. Las credenciales de Forage enlazan al certificado verificado.",
+    "View verified certificate ↗":"Ver certificado verificado ↗",
     "Operations · Internal Audit · Risk · Controllers":"Operaciones · Auditoría interna · Riesgo · Controllers",
     "Quantitative Research":"Investigación cuantitativa",
     "Investment Banking · Sales & Trading · Private Bank":"Banca de inversión · Sales & Trading · Banca privada",
