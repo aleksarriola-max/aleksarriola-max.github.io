@@ -5,7 +5,7 @@
 > Contact: aleksarriola@gmail.com | LinkedIn: https://www.linkedin.com/in/aleks-arriola/
 
 ## About
-Aleks Arriola is a Finance & Marketing student at Hult International Business School with expertise spanning investment banking, AI & blockchain development, marketing strategy, and financial modeling. He builds production-grade tools and has completed 38 Forage industry simulations across Goldman Sachs, JP Morgan, Bank of America, Citi, McKinsey, BCG, and more.
+Aleks Arriola is a Finance & Marketing student at Hult International Business School with expertise spanning investment banking, AI & blockchain development, marketing strategy, and financial modeling. He builds production-grade tools and has completed 42 Forage industry simulations across Goldman Sachs, JP Morgan, Bank of America, Citi, McKinsey, BCG, and more.
 
 ## Coding Projects
 
@@ -50,7 +50,7 @@ Aleks Arriola is a Finance & Marketing student at Hult International Business Sc
 - See Coding Projects section above for full description.
 
 ### Forage Investment Banking Simulations
-- 38 Forage simulations completed across: Goldman Sachs, JP Morgan, Bank of America, Citi, Fidelity International, Wells Fargo, McKinsey, BCG, Deloitte, KPMG, PwC, AIG, Standard Chartered, Bloomberg, and more.
+- 42 Forage simulations completed across: Goldman Sachs, JP Morgan, Bank of America, Citi, Fidelity International, Wells Fargo, McKinsey, BCG, Deloitte, KPMG, PwC, AIG, Standard Chartered, Bloomberg, and more.
 
 ## Client Work
 
@@ -96,7 +96,7 @@ Aleks Arriola is a Finance & Marketing student at Hult International Business Sc
 
 ## Certifications
 - 44 total credentials
-- 38 Forage virtual simulations
+- 42 Forage virtual simulations
 - Goldman Sachs (3 simulations), JP Morgan (3), Bank of America (2), Citi (2), McKinsey, BCG, Deloitte, KPMG, PwC, Morgan Stanley, Wells Fargo, Fidelity, AIG, Standard Chartered, Bloomberg, and more
 - Bloomberg Market Concepts certified
 
