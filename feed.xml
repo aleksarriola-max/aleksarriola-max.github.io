@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 09 Oct 2026 15:40:02 +0000</lastBuildDate>
+<lastBuildDate>Sat, 10 Oct 2026 14:55:03 +0000</lastBuildDate>
+<item>
+<title>What Doing Predictive Attention Analysis Taught Me About Hype Cycles</title>
+<link>https://aleksarriola-max.github.io/#essay-80</link>
+<guid isPermaLink="false">essay-80</guid>
+<category>Perspective</category>
+<pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+<description>Building the Coachella TikTok analysis put me inside a hype cycle while it was happening, rather than reading about one after the fact, and the experience was different from what the retrospective version of a hype cycle usually implies. In the moment, it did not feel obviously irrational. Every ind</description>
+</item>
 <item>
 <title>Why the Finance Page and the Coding Page Live on the Same Site</title>
 <link>https://aleksarriola-max.github.io/#essay-79</link>
