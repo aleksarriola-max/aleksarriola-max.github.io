@@ -1817,7 +1817,7 @@ body.nav-open{ overflow:hidden; }
   </div>
 
   <p class="mq-head mq-head-all">All 53 credentials</p>
-  <p style="color:#666; font-size:0.85rem; margin:-0.4rem 0 1.2rem;">Click any credential to see what it covered. Forage credentials link to the verified certificate.</p>
+  <p style="color:#666; font-size:0.85rem; margin:-0.4rem 0 1.2rem;">Click any credential to see what it covered. Those marked ✓ link to their certificate.</p>
 
   <!-- Filter Buttons -->
   <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.5rem;" id="cert-filters">
@@ -3425,6 +3425,7 @@ body.nav-open{ overflow:hidden; }
 <style>
   #cert-modal.open { display:flex; }
   .cert-card { cursor:pointer; position:relative; }
+  .cert-card.has-cert-pdf::after { content:'\2713  Certificate'; position:absolute; top:0.55rem; right:0.7rem; font-size:0.62rem; font-weight:700; letter-spacing:0.06em; color:var(--gold); }
   .cert-card.has-cert::after { content:'\2713  Verified'; position:absolute; top:0.55rem; right:0.7rem; font-size:0.62rem; font-weight:700; letter-spacing:0.06em; color:var(--gold); }
   .cert-card:hover { border-color:var(--gold); box-shadow:0 4px 20px rgba(0,0,0,0.08); }
 </style>
@@ -3722,6 +3723,18 @@ const certData = {
     desc:"Explored how PNC's business segments work together to serve clients and run operations, and mapped career paths across client-facing, analytical, technology and operations roles.",
     skills:["Business Acumen","Client Services","Product Expertise","Team Collaboration","Career Planning"]
   },
+  "Web Development Fundamentals": {
+    cert:"https://www.credly.com/badges/cf792b1c-e443-4dc6-af78-871b64d225ce",
+    company:"IBM SkillsBuild", icon:"🌐", cat:"Tech & Data", kind:"Credly Digital Badge",
+    desc:"IBM SkillsBuild credential covering the building blocks of the web: structuring pages with HTML, styling them with CSS and adding interactivity with JavaScript. Issued August 25, 2026.",
+    skills:["HTML","CSS","JavaScript","Web Development"]
+  },
+  "Lab: Troubleshoot Your Code Using IBM Bob": {
+    cert:"certificates/IBM_SkillsBuild_Troubleshoot_Code_IBM_Bob.pdf", certPdf:true,
+    company:"IBM SkillsBuild", icon:"🌐", cat:"Tech & Data", kind:"Completion Certificate",
+    desc:"Hands-on IBM SkillsBuild lab on finding and fixing bugs in code with IBM Bob, IBM's AI-assisted development tool. Completed July 16, 2026 (30 learning minutes).",
+    skills:["Debugging","AI-Assisted Development","Troubleshooting"]
+  },
   "Actuarial Analyst": {
     cert:"https://www.theforage.com/completion-certificates/4nAmAbTbHbnGMNSyo/b7MfbG9W4iCNGnd23_4nAmAbTbHbnGMNSyo_QpfYdzXEDmNXLhqhA_1780785305259_completion_certificate.pdf",
     company:"AIG", icon:"🛡️", cat:"Insurance",
@@ -3741,6 +3754,9 @@ function openCertModal(title) {
   const skillsEl = document.getElementById('modal-skills');
   skillsEl.innerHTML = d.skills.map(s => `<span style="padding:0.25rem 0.7rem;background:var(--light-bg);border-radius:100px;font-size:0.72rem;font-weight:600;color:var(--navy);">${s}</span>`).join('');
   const certLink = document.getElementById('modal-cert');
+  const es = document.documentElement.getAttribute('lang') === 'es';
+  certLink.textContent = d.certPdf ? (es ? 'Ver certificado (PDF) \u2197' : 'View certificate (PDF) \u2197')
+                                   : (es ? 'Ver certificado verificado \u2197' : 'View verified certificate \u2197');
   if (d.cert) { certLink.href = d.cert; certLink.style.display = 'inline-flex'; }
   else { certLink.removeAttribute('href'); certLink.style.display = 'none'; }
   const modal = document.getElementById('cert-modal');
@@ -3765,7 +3781,7 @@ document.addEventListener('keydown', function(e) {
 // Wire up all cert cards
 document.querySelectorAll('.cert-card').forEach(card => {
   const title = card.querySelector('h4').textContent;
-  if (certData[title] && certData[title].cert) card.classList.add('has-cert');
+  if (certData[title] && certData[title].cert) card.classList.add(certData[title].certPdf ? 'has-cert-pdf' : 'has-cert');
   card.addEventListener('click', () => openCertModal(title));
 });
 </script>
@@ -4226,7 +4242,7 @@ function showCase(id){
     // MARQUEE CREDENTIALS
     "Selected credentials":"Credenciales destacadas",
     "All 53 credentials":"Las 53 credenciales",
-    "Click any credential to see what it covered. Forage credentials link to the verified certificate.":"Haz clic en cualquier credencial para ver lo que cubrió. Las credenciales de Forage enlazan al certificado verificado.",
+    "Click any credential to see what it covered. Those marked ✓ link to their certificate.":"Haz clic en cualquier credencial para ver lo que cubrió. Las marcadas con ✓ enlazan a su certificado.",
     "View verified certificate ↗":"Ver certificado verificado ↗",
     "Operations · Internal Audit · Risk · Controllers":"Operaciones · Auditoría interna · Riesgo · Controllers",
     "Quantitative Research":"Investigación cuantitativa",
