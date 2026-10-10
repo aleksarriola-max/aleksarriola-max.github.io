@@ -42,8 +42,8 @@ Aleks Arriola is a Finance & Marketing student at Hult International Business Sc
 ## Finance Portfolio
 
 ### Company Health Red-Flag Scanner (Flagship)
-- Stack: Python, SEC EDGAR XBRL API, Excel, 11 bankruptcy and fraud-detection models
-- Screening tool that evaluates 600+ US-listed companies. Runs 5 bankruptcy models (Altman Z-Score 1968, Z', Z''; Springate S-Score; Zmijewski X-Score) and 6 fraud and earnings-quality models (Beneish M-Score, Dechow F-Score, Montier C-Score, Sloan accruals, Lev–Thiagarajan signals, Revenue Quality Index), plus Piotroski F-Score, producing a composite Health Score (0–100) and fraud risk rating. 80 financial ratios, 45 input variables; each run rebuilds every ratio from the latest SEC filings.
+- Stack: Python, SEC EDGAR XBRL API, Excel, 11 bankruptcy and earnings-quality models
+- Screening tool that evaluates 600+ US-listed companies. Runs 5 bankruptcy models (Altman Z-Score 1968, Z', Z''; Springate S-Score; Zmijewski X-Score) and 6 earnings-quality and accounting red-flag models (Beneish M-Score, Dechow F-Score, Montier C-Score, Sloan accruals, Lev–Thiagarajan signals, Revenue Quality Index), plus Piotroski F-Score, producing a composite Health Score (0–100) and earnings-quality risk rating. 80 financial ratios, 45 input variables; each run rebuilds every ratio from the latest SEC filings.
 
 ### Auto Company Valuation Kit — Orcen Capital (Flagship)
 - 84 Excel sheets per company, 7 bias-correction modules, ~39,000 lines of Python
