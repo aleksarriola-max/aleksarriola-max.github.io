@@ -3418,6 +3418,7 @@ body.nav-open{ overflow:hidden; }
     <p id="modal-company" style="font-size:0.85rem; color:var(--gray); margin-bottom:1.5rem; font-weight:500;"></p>
     <p id="modal-desc" style="font-size:0.95rem; line-height:1.75; color:#444;"></p>
     <div id="modal-skills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem;"></div>
+    <p id="modal-note" style="display:none; margin-top:1.4rem; font-size:0.85rem; line-height:1.6; color:var(--gray); border-left:3px solid var(--gold); padding-left:0.8rem;"></p>
     <a id="modal-cert" href="#" target="_blank" rel="noopener" style="display:none; margin-top:1.6rem; align-items:center; gap:0.45rem; background:var(--navy); color:var(--white); padding:0.6rem 1.2rem; border-radius:4px; font-size:0.82rem; font-weight:700; text-decoration:none;">View verified certificate &#8599;</a>
   </div>
 </div>
@@ -3547,6 +3548,7 @@ const certData = {
     skills:["Audit Planning","Risk Assessment","Control Testing","Reporting"]
   },
   "Bloomberg Essentials": {
+    noCert:true, completed:"April 4, 2026", completedEs:"4 de abril de 2026",
     company:"Bloomberg", icon:"📊", cat:"Finance", kind:"Forage Short Course",
     desc:"Completed Bloomberg's foundational training on the Bloomberg Terminal — navigating equity, fixed income, and derivatives data, using core functions (DES, GP, YAS), and building market awareness.",
     skills:["Bloomberg Terminal","Equity Data","Fixed Income","Market Data"]
@@ -3618,6 +3620,7 @@ const certData = {
     skills:["Data Analytics","Client Strategy","Loyalty Programs","Payments"]
   },
   "Ryan Company Pathway": {
+    noCert:true, completed:"February 27, 2026", completedEs:"27 de febrero de 2026",
     company:"Ryan", icon:"💼", cat:"Consulting", kind:"Forage Short Course",
     desc:"Explored Ryan's tax consulting practice areas — from property tax and sales tax to credits and incentives — learning how a global tax firm delivers value to clients.",
     skills:["Tax Advisory","Property Tax","Incentives","Client Consulting"]
@@ -3701,6 +3704,7 @@ const certData = {
     skills:["Valuation Techniques","Deal Management","Financial Literacy","Cross-Functional Teamwork","Strategic Thinking"]
   },
   "Company Essentials: Citi": {
+    noCert:true, completed:"September 7, 2026", completedEs:"7 de septiembre de 2026",
     company:"Citi", icon:"🏦", cat:"Banking", kind:"Forage Short Course",
     desc:"Short course on how Citi's businesses serve their clients, how the firm is organized, and what early-career paths at Citi look like.",
     skills:["Financial Services","Banking Industry Knowledge","Career Planning"]
@@ -3765,6 +3769,13 @@ function openCertModal(title) {
                                    : (es ? 'Ver certificado verificado \u2197' : 'View verified certificate \u2197');
   if (d.cert) { certLink.href = d.cert; certLink.style.display = 'inline-flex'; }
   else { certLink.removeAttribute('href'); certLink.style.display = 'none'; }
+  const note = document.getElementById('modal-note');
+  if (d.noCert) {
+    note.textContent = es
+      ? 'Completado en Forage el ' + (d.completedEs || d.completed) + '. Forage no emite certificados para sus cursos cortos, así que no hay un certificado que mostrar.'
+      : 'Completed on Forage on ' + d.completed + '. Forage doesn\'t issue certificates for its short courses, so there is no certificate to show.';
+    note.style.display = 'block';
+  } else { note.style.display = 'none'; }
   const modal = document.getElementById('cert-modal');
   modal.classList.add('open');
   modal.style.display = 'flex';
@@ -3787,7 +3798,7 @@ document.addEventListener('keydown', function(e) {
 // Wire up all cert cards
 document.querySelectorAll('.cert-card').forEach(card => {
   const title = card.querySelector('h4').textContent;
-  if (certData[title] && certData[title].cert) card.classList.add(certData[title].certPdf ? 'has-cert-pdf' : 'has-cert');
+  if (certData[title] && (certData[title].cert || certData[title].noCert)) card.classList.add(certData[title].certPdf ? 'has-cert-pdf' : 'has-cert');
   card.addEventListener('click', () => openCertModal(title));
 });
 </script>
