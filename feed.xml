@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 11 Oct 2026 15:11:58 +0000</lastBuildDate>
+<lastBuildDate>Mon, 12 Oct 2026 18:22:22 +0000</lastBuildDate>
+<item>
+<title>A Composite Health Score Needs a Veto</title>
+<link>https://aleksarriola-max.github.io/#essay-82</link>
+<guid isPermaLink="false">essay-82</guid>
+<category>Finance</category>
+<pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate>
+<description>The scanner produces a Health Score from 0 to 100 by combining five dimensions: profitability, liquidity, leverage, efficiency and earnings quality. Averaging is the obvious way to build it, and averaging is exactly the mistake I made in the first version. A company with outstanding margins and a te</description>
+</item>
 <item>
 <title>Altman Z-Score Works Until Management Knows It Exists</title>
 <link>https://aleksarriola-max.github.io/#essay-81</link>
