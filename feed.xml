@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 12 Oct 2026 18:22:22 +0000</lastBuildDate>
+<lastBuildDate>Tue, 13 Oct 2026 16:35:25 +0000</lastBuildDate>
+<item>
+<title>Piotroski F-Score Rewards Boring Improvement</title>
+<link>https://aleksarriola-max.github.io/#essay-83</link>
+<guid isPermaLink="false">essay-83</guid>
+<category>Finance</category>
+<pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
+<description>The Piotroski F-Score is nine yes-or-no questions: is return on assets positive, did it improve, is cash flow positive, did leverage fall, did margins widen, and so on. It looks almost too simple to be useful. Yet when I screen hundreds of companies, the high scorers are rarely exciting. They are bu</description>
+</item>
 <item>
 <title>A Composite Health Score Needs a Veto</title>
 <link>https://aleksarriola-max.github.io/#essay-82</link>
