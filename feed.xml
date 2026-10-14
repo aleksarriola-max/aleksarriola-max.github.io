@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 13 Oct 2026 16:35:25 +0000</lastBuildDate>
+<lastBuildDate>Wed, 14 Oct 2026 14:12:32 +0000</lastBuildDate>
+<item>
+<title>Credit Underwriting Starts With the Downside Case</title>
+<link>https://aleksarriola-max.github.io/#essay-84</link>
+<guid isPermaLink="false">essay-84</guid>
+<category>Finance</category>
+<pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+<description>Equity analysis asks how much a company could be worth. Credit analysis asks whether it can pay you back. Working through the Standard Chartered credit analyst simulation and the Wells Fargo commercial banking material changed how I read a financial statement, because the question flipped from upsid</description>
+</item>
 <item>
 <title>Piotroski F-Score Rewards Boring Improvement</title>
 <link>https://aleksarriola-max.github.io/#essay-83</link>
