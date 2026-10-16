@@ -2594,6 +2594,15 @@ body.nav-open{ overflow:hidden; }
     <p style="color:var(--gray);font-size:1rem;margin-bottom:3.5rem;">Ideas from building — AI systems, financial analysis, and what happens when you combine the two.</p>
 
         <!-- ESSAYS-TOP -->
+    <!-- ARTICLE 86 -->
+    <article id="essay-86" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · October 16, 2026</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">Reading XBRL Taught Me That Tags Are Judgments</h2>
+      <div style="font-size:1rem;line-height:1.85;color:#333;">
+        <p style="margin-bottom:1.4rem;">The scanner pulls its numbers from SEC EDGAR XBRL data, and I assumed that meant the data would be clean. XBRL is structured, tagged and machine readable, so I expected revenue to be revenue. What I actually found is that every tag is a decision someone made, and different companies make it differently.</p><p style="margin-bottom:1.4rem;">One company reports revenue under one tag, another uses a custom extension, a third switches tags between years after changing its accounting. Total debt might include leases for one filer and exclude them for another. When I built the pipeline to compute eighty ratios across six hundred companies, most of the engineering effort went into mapping messy tags onto consistent concepts. The math was the easy part. The definitions were the work.</p><p style="margin-bottom:1.4rem;">This reshaped how I treat any screening result. A ratio is only comparable across companies if the inputs were defined the same way, and the data format alone does not guarantee that. I now log every mapping assumption, because a surprising output is usually a mapping problem before it is an insight. It is a small version of a bigger truth about financial data: structure gives you speed, but meaning still has to be earned by reading the footnotes. Automation made me faster at the parts of analysis that were never the hard part.</p>
+      </div>
+    </article>
+
     <!-- ARTICLE 85 -->
     <article id="essay-85" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Finance · October 15, 2026</p>
