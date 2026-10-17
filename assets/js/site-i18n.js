@@ -709,7 +709,9 @@ window.SITE_I18N = (function () {
  "Challenge build": "Proyecto del reto",
  "Recommendations →": "Recomendaciones →",
  "Writing →": "Escritos →",
- "Letter from The 1525": "Carta de The 1525"
+ "Letter from The 1525": "Carta de The 1525",
+ "The degree is a double major, so I study both sides of how a company creates value: the numbers behind it — valuation, financial statements, markets — and the customers and strategy that drive them. I graduate in May 2027.": "Es una doble especialización, así que estudio los dos lados de cómo una empresa crea valor: los números detrás — valoración, estados financieros, mercados — y los clientes y la estrategia que los impulsan. Me gradúo en mayo de 2027.",
+ "Building at the intersection means taking real finance work — reading SEC filings, screening companies, building valuation models — and designing AI agents that do the repetitive parts, while tested code runs the math and a person approves every decision that matters.": "Construir en esa intersección significa tomar trabajo financiero real — leer reportes ante la SEC, filtrar empresas, construir modelos de valoración — y diseñar agentes de IA que hagan las partes repetitivas, mientras código probado hace los cálculos y una persona aprueba cada decisión importante."
 };
 
   function norm(s) {
