@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 87,
+  "tag": "Finance",
+  "date": "October 17, 2026",
+  "title": "Value at Risk Is a Statement About the Quiet Days",
+  "body": [
+   "In the Goldman Sachs risk simulation, I computed Value at Risk and stress tests side by side, and the contrast taught me more than either number alone. VaR says that on a given horizon, losses will not exceed some figure with ninety-five or ninety-nine percent confidence. It sounds like a ceiling. It is actually a floor under the bad days, because it tells you nothing about how bad the remaining one percent can be.",
+   "That is the uncomfortable design of the metric. It describes behavior in ordinary conditions, estimated from history that mostly contains ordinary conditions. When markets break, correlations jump, liquidity vanishes and the historical window stops being representative. The days VaR cannot describe are exactly the days that matter. Stress testing exists to fill that gap by asking what happens under specific severe scenarios, regardless of how likely history says they are.",
+   "My takeaway is to treat the two as answering different questions. VaR is a routine monitoring tool, useful for sizing day-to-day exposure and spotting drift. Stress tests are a survival tool, useful for deciding whether the firm lives through something nobody has seen. Confusing them leads to false comfort, because a small VaR can coexist with a catastrophic stress loss. When someone quotes me a single risk number, I now ask which kind of day it is describing, and what happens on the other kind."
+  ]
+ },
+ {
   "id": 86,
   "tag": "Finance",
   "date": "October 16, 2026",

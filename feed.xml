@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 17 Oct 2026 03:33:30 +0000</lastBuildDate>
+<lastBuildDate>Sat, 17 Oct 2026 12:35:15 +0000</lastBuildDate>
+<item>
+<title>Value at Risk Is a Statement About the Quiet Days</title>
+<link>https://aleksarriola-max.github.io/#essay-87</link>
+<guid isPermaLink="false">essay-87</guid>
+<category>Finance</category>
+<pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
+<description>In the Goldman Sachs risk simulation, I computed Value at Risk and stress tests side by side, and the contrast taught me more than either number alone. VaR says that on a given horizon, losses will not exceed some figure with ninety-five or ninety-nine percent confidence. It sounds like a ceiling. I</description>
+</item>
 <item>
 <title>Reading XBRL Taught Me That Tags Are Judgments</title>
 <link>https://aleksarriola-max.github.io/#essay-86</link>
