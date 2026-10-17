@@ -262,7 +262,7 @@ window.SITE_I18N = (function () {
  "Team Project": "Proyecto en equipo",
  "MISSION SPECS": "ESPECIFICACIONES DE LA MISIÓN",
  "Result": "Resultado",
- "1st of 40 teams": "1er lugar de 40 equipos",
+ "1st of 40 teams": "1.º de 40 equipos",
  "Build window": "Ventana de construcción",
  "One day, 150 builders": "Un día, 150 constructores",
  "Compute": "Cómputo",
@@ -701,7 +701,15 @@ window.SITE_I18N = (function () {
  "Escalate": "Escalar",
  "Blocked": "Bloqueado",
  "The full letter": "La carta completa",
- "Download PDF ↓": "Descargar PDF ↓"
+ "Download PDF ↓": "Descargar PDF ↓",
+ "Right now": "Ahora mismo",
+ "Studying for a BBA in Finance & Marketing at Hult in Boston, and building at the intersection of finance and agentic AI.": "Estudio un BBA en Finanzas y Marketing en Hult, en Boston, y construyo en la intersección de las finanzas y la IA agéntica.",
+ "At The 1525 I turned a two-hour-per-company review into a Python screen that covers 2,000+ companies. On my own time I build AI agents that keep a human in charge of every decision — Lifeline took 1st of 40 teams at the Dell & NVIDIA hackathon, and PitMind won Most Innovative at IBM SkillsBuild.": "En The 1525 convertí una revisión de dos horas por empresa en un filtro en Python que cubre más de 2.000 empresas. En mi tiempo libre construyo agentes de IA que dejan a una persona a cargo de cada decisión — Lifeline quedó 1.º de 40 equipos en el hackathon de Dell y NVIDIA, y PitMind ganó Más Innovador en IBM SkillsBuild.",
+ "Open to finance & AI internships and full-time roles · English / Spanish": "Abierto a pasantías y puestos de tiempo completo en finanzas e IA · Inglés / Español",
+ "Challenge build": "Proyecto del reto",
+ "Recommendations →": "Recomendaciones →",
+ "Writing →": "Escritos →",
+ "Letter from The 1525": "Carta de The 1525"
 };
 
   function norm(s) {
