@@ -7,6 +7,10 @@
    site's dictionary plus strings added with the redesign. */
 window.SITE_I18N = (function () {
   var DICT = {
+ "The full version with the AI agents runs on my own computer, so it is only open at times. Leave your email and I'll send you the link when it's on.": "La versión completa con los agentes de IA funciona en mi propio ordenador, así que solo está abierta a ratos. Deja tu correo y te enviaré el enlace cuando esté encendida.",
+ "Notify me": "Avísame",
+ "Try the free demo ↗": "Probar la demo gratis ↗",
+ "Only used to send you that link. The free demo below works any time; if it's asleep, press the wake-up button and wait about 30 seconds.": "Solo se usa para enviarte ese enlace. La demo gratuita funciona en cualquier momento; si está dormida, pulsa el botón para despertarla y espera unos 30 segundos.",
  "Agentic AI × audit · Open source": "IA agéntica × auditoría · Código abierto",
  "Open-source audit console for accounts payable. Fixed rules and local AI agents propose findings (payments made twice under re-keyed invoice numbers, split orders, unverified bank changes, big payments to brand-new vendors), every quoted line is checked against the source file, a Skeptic agent tries to disprove each one, and a person makes every decision. Reads QuickBooks, Xero, Sage and bank exports as they come; a payment gate holds or releases each line of a run before money leaves.": "Consola de auditoría de código abierto para cuentas por pagar. Reglas fijas y agentes de IA locales proponen hallazgos (pagos duplicados con números de factura reescritos, pedidos fraccionados, cambios bancarios sin verificar, pagos grandes a proveedores recién creados), cada línea citada se comprueba contra el archivo original, un agente Escéptico intenta refutar cada hallazgo y una persona toma todas las decisiones. Lee exportaciones de QuickBooks, Xero, Sage y del banco tal como vienen; una compuerta de pagos retiene o libera cada línea de una remesa antes de que salga el dinero.",
  "Local AI (Ollama)": "IA local (Ollama)",

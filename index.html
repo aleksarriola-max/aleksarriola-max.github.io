@@ -970,6 +970,18 @@ input[type=range]{accent-color:var(--coral);width:100%}
             <h3 style="font-size:30px;margin:0;line-height:0.95;text-transform:uppercase">{{ p.title }}</h3>
             <p style="margin:0;font-size:14px;text-wrap:pretty">{{ p.t }}</p>
             <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3"><span class="tag tag-accent">{{ t }}</span></sc-for></div>
+            <sc-if value="{{ p.notify }}" hint-placeholder-val="{{ false }}">
+              <form action="https://formsubmit.co/aleksarriola@gmail.com" method="POST" target="_blank" style="display:flex;flex-direction:column;gap:6px;padding:10px 12px;border:1px dashed var(--ink);background:var(--paper)">
+                <label for="notify-tallyhound" style="font-size:13px;text-wrap:pretty">The full version with the AI agents runs on my own computer, so it is only open at times. Leave your email and I'll send you the link when it's on.</label>
+                <div style="display:flex;gap:6px;flex-wrap:wrap"><input id="notify-tallyhound" class="input" type="email" name="email" required="required" placeholder="you@example.com" autocomplete="email" style="flex:1 1 180px;min-width:0"><button class="btn btn-secondary" type="submit">Notify me</button></div>
+                <input type="hidden" name="_subject" value="Tallyhound: notify me when the AI version is on">
+                <input type="hidden" name="project" value="Tallyhound AI version">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://aleksarriola-max.github.io/index.html#coding">
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+                <span style="font-size:11px;opacity:0.8">Only used to send you that link. The free demo below works any time; if it's asleep, press the wake-up button and wait about 30 seconds.</span>
+              </form>
+            </sc-if>
             <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:auto;border-top:1px solid var(--color-divider);padding-top:10px"><sc-for list="{{ p.links }}" as="l" hint-placeholder-count="2"><a class="btn btn-ghost" href="{{ l.href }}" target="_blank" style="text-decoration:none">{{ l.label }}</a></sc-for></div>
           </article>
         </sc-for>
