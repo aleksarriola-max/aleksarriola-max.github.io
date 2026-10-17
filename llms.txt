@@ -9,6 +9,12 @@ Aleks Arriola is a Finance & Marketing student at Hult International Business Sc
 
 ## Coding Projects
 
+### Tallyhound — Open-Source Audit Console
+- URL: https://tallyhound-kfzkutbxmxdsrynlmppoll.streamlit.app/
+- Code: https://github.com/aleksarriola-max/Tallyhound
+- Stack: Python, Streamlit, local AI agents via Ollama, SQLite
+- Audit console for accounts payable: fixed rules and local AI agents propose findings, every quoted line is checked against the source file, a Skeptic agent tries to disprove each finding, and a person makes every decision. Reads QuickBooks, Xero, Sage and bank exports as they come; a payment gate holds or releases each line of a payment run; every decision goes into a tamper-evident audit trail. All demo data is fictional.
+
 ### PitMind — Live AI App
 - URL: https://pitmind-bvihgej8qmkzrergphk4xb.streamlit.app/
 - Stack: Python, Streamlit, IBM Granite AI, Live Telemetry
