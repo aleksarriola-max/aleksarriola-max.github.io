@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate feed.xml (RSS 2.0) and sitemap.xml from the essays in index.html.
+"""Generate feed.xml (RSS 2.0) and sitemap.xml from assets/js/essays.js.
 Runs after the daily essay is published so the feed always reflects the site."""
 import re, html, glob, os
 from datetime import datetime, timezone
@@ -7,26 +7,16 @@ from email.utils import format_datetime
 
 SITE="https://aleksarriola-max.github.io"
 AUTHOR="Aleks Arriola"
-c=open('index.html',encoding='utf-8').read()
-seg=c[c.index('ESSAYS-TOP'):c.index('CERT MODAL')]
-blocks=[b for b in re.split(r'(?=<!-- ARTICLE \d+ -->)', seg) if '<!-- ARTICLE' in b]
-
-def strip(s): return re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',s)).strip()
+import json
+src=open('assets/js/essays.js',encoding='utf-8').read()
+essays=json.loads(re.search(r'window\.ESSAYS\s*=\s*(\[.*\]);?\s*$', src, re.S).group(1))
 
 items=[]
-for b in blocks:
-    num=re.search(r'ARTICLE (\d+)',b).group(1)
-    mp=re.search(r'text-transform:uppercase[^>]*>(.*?)</p>', b, re.S)
-    meta=html.unescape(mp.group(1)) if mp else ''
-    cat,date_label=(meta.split('·')+[''])[:2]
-    cat=cat.strip(); date_label=date_label.strip()
-    h2=re.search(r'<h2[^>]*>(.*?)</h2>', b, re.S)
-    title=html.unescape(strip(h2.group(1))) if h2 else f"Essay {num}"
-    body=re.search(r'</h2>(.*)</article>', b, re.S)
-    desc=strip(html.unescape(body.group(1)))[:300] if body else ''
-    try: dt=datetime.strptime(date_label,"%B %d, %Y").replace(tzinfo=timezone.utc)
+for e in essays:
+    desc=' '.join(e.get('body') or [])[:300]
+    try: dt=datetime.strptime(e['date'],"%B %d, %Y").replace(tzinfo=timezone.utc)
     except Exception: dt=datetime(2026,1,1,tzinfo=timezone.utc)
-    items.append((int(num),title,cat,desc,dt))
+    items.append((int(e['id']),e['title'],e['tag'],desc,dt))
 
 def esc(s): return html.escape(s,quote=True)
 rss=['<?xml version="1.0" encoding="UTF-8"?>',

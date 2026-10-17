@@ -1,15 +1,18 @@
 """
 Daily Essay Publisher for aleksarriola-max.github.io
-Picks the next essay from essay_queue.json and inserts it into index.html.
+Picks the next essay from essay_queue.json and adds it to the top of
+assets/js/essays.js (window.ESSAYS, newest first), which the Writing page reads.
 Run by GitHub Actions every day at 9am UTC.
 """
 
-import json, re, sys, os
+import json, re, sys, os, html
 from datetime import date
 
 QUEUE_FILE = "essay_queue.json"
-INDEX_FILE = "index.html"
+ESSAYS_FILE = "assets/js/essays.js"
 STATE_FILE = "essay_state.json"
+HEADER = "/* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */\n"
+
 
 def load_state():
     if os.path.exists(STATE_FILE):
@@ -17,29 +20,43 @@ def load_state():
             return json.load(f)
     return {"next_index": 0}
 
+
 def save_state(state):
     with open(STATE_FILE, "w") as f:
         json.dump(state, f, indent=2)
+
 
 def today_label():
     # Stamp the real publish date so essays never show stale queued dates.
     return date.today().strftime("%B %d, %Y").replace(" 0", " ")
 
-def build_article(essay):
-    category = essay["category"]
-    date_label = today_label()
-    title = essay["title"]
-    body = essay["body"]
-    return f'''
-    <!-- ARTICLE {essay["id"]} -->
-    <article id="essay-{essay["id"]}" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:2.5rem;margin-bottom:3.5rem;">
-      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">{category} · {date_label}</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1.2rem;line-height:1.3;">{title}</h2>
-      <div style="font-size:1rem;line-height:1.85;color:#333;">
-        {body}
-      </div>
-    </article>
-'''
+
+def load_essays():
+    with open(ESSAYS_FILE, encoding="utf-8") as f:
+        src = f.read()
+    m = re.search(r"window\.ESSAYS\s*=\s*(\[.*\]);?\s*$", src, re.S)
+    if not m:
+        print(f"ERROR: could not parse {ESSAYS_FILE}")
+        sys.exit(1)
+    return json.loads(m.group(1))
+
+
+def save_essays(essays):
+    with open(ESSAYS_FILE, "w", encoding="utf-8") as f:
+        f.write(HEADER)
+        f.write("window.ESSAYS = " + json.dumps(essays, ensure_ascii=False, indent=1) + ";\n")
+
+
+def body_paragraphs(body_html):
+    """Queue bodies are HTML (<p>…</p>); the page renders plain-text paragraphs."""
+    parts = re.findall(r"<p[^>]*>(.*?)</p>", body_html, re.S) or [body_html]
+    out = []
+    for p in parts:
+        text = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", p))).strip()
+        if text:
+            out.append(text)
+    return out
+
 
 def main():
     with open(QUEUE_FILE) as f:
@@ -55,25 +72,23 @@ def main():
     essay = queue[idx]
     print(f"Publishing essay {essay['id']}: {essay['title']}")
 
-    article_html = build_article(essay)
-
-    with open(INDEX_FILE, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    # Insert at the TOP of the essay list (newest first)
-    anchor = "<!-- ESSAYS-TOP -->"
-    if anchor not in content:
-        print("ERROR: Could not find insertion anchor in index.html")
-        sys.exit(1)
-
-    content = content.replace(anchor, anchor + article_html, 1)
-
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        f.write(content)
+    essays = load_essays()
+    if any(e["id"] == essay["id"] for e in essays):
+        print(f"Essay {essay['id']} is already published; skipping it.")
+    else:
+        essays.insert(0, {
+            "id": essay["id"],
+            "tag": essay["category"],
+            "date": today_label(),
+            "title": essay["title"],
+            "body": body_paragraphs(essay["body"]),
+        })
+        save_essays(essays)
 
     state["next_index"] = idx + 1
     save_state(state)
     print(f"Done. Next essay index: {state['next_index']}")
+
 
 if __name__ == "__main__":
     main()

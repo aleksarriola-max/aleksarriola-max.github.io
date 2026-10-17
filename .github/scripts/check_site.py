@@ -11,7 +11,7 @@ for f in html:
     # 1) local file references must exist
     for m in re.finditer(r'(?:href|src)="([^"]+)"', c):
         u=m.group(1)
-        if u.startswith(('http://','https://','//','#','mailto:','tel:','javascript:','data:')) or u.strip()=='':
+        if u.startswith(('http://','https://','//','#','mailto:','tel:','javascript:','data:')) or u.strip()=='' or '{{' in u:
             continue
         path=u.split('#')[0].split('?')[0]
         if path and not os.path.exists(path):
@@ -20,6 +20,15 @@ for f in html:
     for pat in ['YOUR-HANDLE','yourusername','your-handle','REPLACE_ME','REPLACEME','lorem ipsum','TODO:','FIXME','your-email@','placeholder.com','example-user']:
         if pat.lower() in c.lower():
             errors.append(f"{f}: placeholder text present -> {pat!r}")
+
+# 3) local files referenced from the page's data file (resume, models, images)
+data='assets/js/portfolio-data.js'
+if os.path.exists(data):
+    d=open(data,encoding='utf-8').read()
+    for m in re.finditer(r"['\"]([\w./-]+\.(?:pdf|docx|xlsx|jpg|jpeg|png|webp|svg|gif))['\"]", d):
+        u=m.group(1)
+        if not u.startswith(('http','//')) and not os.path.exists(u):
+            errors.append(f"{data}: broken link -> {u}  (file not found)")
 
 if errors:
     print("BROKEN LINK / PLACEHOLDER CHECK FAILED:")
