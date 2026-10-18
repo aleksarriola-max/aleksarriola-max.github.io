@@ -1033,7 +1033,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
               <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:auto"><button class="btn btn-secondary" sc-camel-on-click="{{ goCases }}">Read the full case study →</button><sc-for list="{{ f.links }}" as="l" hint-placeholder-count="1"><a class="btn btn-ghost" href="{{ l.href }}" target="_blank" style="text-decoration:none">{{ l.label }}</a></sc-for></div>
             </div>
             <div style="display:grid;grid-template-rows:repeat(3,1fr);border-left:1px solid var(--color-divider)">
-              <sc-for list="{{ f.stats }}" as="s" hint-placeholder-count="3"><div style="padding:18px 24px;border-bottom:1px solid var(--color-divider);display:flex;align-items:baseline;gap:14px"><span style="font-family:var(--font-heading);font-weight:400;font-size:52px;line-height:1;color:var(--coral);font-variant-numeric:tabular-nums"><span data-count="{{ s.num }}">{{ s.num }}</span>{{ s.suf }}</span><span style="font-size:14px">{{ s.k }}</span></div></sc-for>
+              <sc-for list="{{ f.stats }}" as="s" hint-placeholder-count="3"><div style="flex:1 1 0;min-height:120px;padding:18px 24px;border-bottom:1px solid var(--color-divider);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px"><span style="font-family:var(--font-heading);font-weight:400;font-size:52px;line-height:1;color:var(--coral);font-variant-numeric:tabular-nums"><span data-count="{{ s.num }}">{{ s.num }}</span>{{ s.suf }}</span><span style="font-size:14px">{{ s.k }}</span></div></sc-for>
             </div>
           </article>
         </sc-for>
