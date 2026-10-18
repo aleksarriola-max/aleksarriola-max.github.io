@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 17 Oct 2026 12:35:15 +0000</lastBuildDate>
+<lastBuildDate>Sun, 18 Oct 2026 12:52:35 +0000</lastBuildDate>
+<item>
+<title>Quant Research Starts With the Data Cleaning Log</title>
+<link>https://aleksarriola-max.github.io/#essay-88</link>
+<guid isPermaLink="false">essay-88</guid>
+<category>Finance</category>
+<pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+<description>The J.P. Morgan quantitative research simulation put me in front of a modeling problem where the temptation was to jump straight to the clever part. Fit a curve, pick a model, report a result. What actually mattered was the less glamorous step before it: understanding what the data was and what had </description>
+</item>
 <item>
 <title>Value at Risk Is a Statement About the Quiet Days</title>
 <link>https://aleksarriola-max.github.io/#essay-87</link>

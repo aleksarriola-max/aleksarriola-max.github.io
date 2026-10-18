@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 88,
+  "tag": "Finance",
+  "date": "October 18, 2026",
+  "title": "Quant Research Starts With the Data Cleaning Log",
+  "body": [
+   "The J.P. Morgan quantitative research simulation put me in front of a modeling problem where the temptation was to jump straight to the clever part. Fit a curve, pick a model, report a result. What actually mattered was the less glamorous step before it: understanding what the data was and what had been done to it.",
+   "Missing values, outliers and inconsistent units all change a model’s answer, and each cleaning choice is a quiet assumption. Dropping an outlier changes the estimate. Filling a gap with an average smooths over exactly the volatility you might be trying to measure. If those decisions are not written down, the final model cannot be audited, and a result you cannot audit is just a number you happen to like.",
+   "So I started keeping a cleaning log for every analysis: what I removed, what I filled, and why. It slowed me down at first and then sped me up, because I stopped re-deriving old decisions. It also made my own mistakes visible. Several times, a surprising result traced back to a cleaning step I had forgotten making. The same discipline carries into my scanner pipeline. Rigor in quantitative work is less about sophisticated methods and more about being able to explain every transformation between the raw data and the answer."
+  ]
+ },
+ {
   "id": 87,
   "tag": "Finance",
   "date": "October 17, 2026",
