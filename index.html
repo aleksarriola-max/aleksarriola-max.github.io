@@ -1558,7 +1558,7 @@ class Component extends DCLogic {
         let a = 15 + k.s, c = 0, done = false;
         if (k.blocked && a >= 500) { c = a - 500; a = 500; if (!k.hit) { k.hit = true; counts.x++; flash = 1; log(k, 'Escalated · outside policy', false); } if (c > escMax) done = true; }
         else if (a > 985) { done = true; counts.e++; log(k, 'Executed', true); }
-        if (!k.p && a >= 290) { k.p = true; counts.p++; }
+        if (!k.p && a >= 290) { k.p = true; counts.p++; if (counts.p > 100) { counts.p = 1; counts.e = 0; counts.x = 0; } }
         if (done) { spawn(k, false); k.el.setAttribute('opacity', '0'); return; }
         const [x, y] = map(a, c);
         k.el.setAttribute('cx', x); k.el.setAttribute('cy', y);
