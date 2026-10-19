@@ -1343,7 +1343,7 @@ class Component extends DCLogic {
       const caret = '<span data-caret="1" style="display:inline-block;width:0.08em;height:0.9em;margin-left:2px;vertical-align:-0.08em;background:color-mix(in oklab, var(--coral) 72%, var(--ink))"></span>';
       this.typeT = setInterval(() => {
         n += 2; q.innerHTML = full.slice(0, n).replace(/&/g, '&amp;') + caret;
-        if (n >= full.length) { clearInterval(this.typeT); const c = q.querySelector('[data-caret]'); c && c.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, iterations: Infinity, direction: 'alternate' }); }
+        if (n >= full.length) { clearInterval(this.typeT); const c = q.querySelector('[data-caret]'); if (c) { const a = c.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, iterations: 4, direction: 'alternate' }); a.onfinish = () => c.remove(); } }
       }, 24 / s);
     }
     root.querySelectorAll('[data-approve-trigger]').forEach(tr => {
