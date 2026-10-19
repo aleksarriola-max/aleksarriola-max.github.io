@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 89,
+  "tag": "Finance",
+  "date": "October 19, 2026",
+  "title": "Insurance Reserves Are Estimates You Can Audit",
+  "body": [
+   "The AIG actuarial simulation introduced me to a part of a balance sheet I had mostly ignored: loss reserves. An insurer collects premiums today and pays claims years later, so its largest liability is an estimate of money it has not yet paid. That estimate rests on assumptions about claim frequency, severity and how long claims take to settle.",
+   "What fascinated me is that this estimate is both essential and manipulable. Reserve too little and profits look strong now while a hole grows quietly. Reserve too much and the company builds a cushion it can release later to smooth earnings. Reserve development tables, which show how earlier estimates changed over time, are the audit trail. If a company keeps revising prior years upward, its past optimism is on public display.",
+   "I find this a clean example of a broader principle in accounting: the more a number depends on judgment, the more the disclosure around it matters. A cash balance can be counted. A reserve can only be defended. When I read financial statements now, I look for the lines that rest on estimates and then for the disclosures showing how past estimates held up. Track record on estimates is, to me, one of the most underrated indicators of how honestly a management team runs its business."
+  ]
+ },
+ {
   "id": 88,
   "tag": "Finance",
   "date": "October 18, 2026",

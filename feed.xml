@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 18 Oct 2026 12:52:35 +0000</lastBuildDate>
+<lastBuildDate>Mon, 19 Oct 2026 16:01:34 +0000</lastBuildDate>
+<item>
+<title>Insurance Reserves Are Estimates You Can Audit</title>
+<link>https://aleksarriola-max.github.io/#essay-89</link>
+<guid isPermaLink="false">essay-89</guid>
+<category>Finance</category>
+<pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+<description>The AIG actuarial simulation introduced me to a part of a balance sheet I had mostly ignored: loss reserves. An insurer collects premiums today and pays claims years later, so its largest liability is an estimate of money it has not yet paid. That estimate rests on assumptions about claim frequency,</description>
+</item>
 <item>
 <title>Quant Research Starts With the Data Cleaning Log</title>
 <link>https://aleksarriola-max.github.io/#essay-88</link>
