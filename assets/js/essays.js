@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 90,
+  "tag": "Finance",
+  "date": "October 20, 2026",
+  "title": "Intro Financial Accounting Still Explains Most Red Flags",
+  "body": [
+   "I took the University of Pennsylvania introduction to financial accounting and completed the Koch accounting simulation before I built anything sophisticated, and I am glad I did. Almost every earnings-quality model in my scanner is, underneath, a test of the accounting equation behaving the way it should. Beneish, Dechow and Montier all ask whether the relationship between earnings, accruals and cash looks natural.",
+   "The basics explain why. Revenue recognized without cash collected shows up as receivables growing faster than sales. Costs deferred onto the balance sheet show up as assets growing faster than operations justify. Earnings that run ahead of operating cash flow for years are accruals doing the work cash should be doing. None of that requires advanced mathematics. It requires knowing how an entry on one side of the ledger must be mirrored somewhere else.",
+   "This is why I resist the idea that finance students should rush to machine learning. The models I build are only as good as my understanding of what the inputs represent. When a ratio looks strange, the explanation is almost always a basic accounting treatment: a lease classification, an acquisition, a change in policy. The advanced tooling gives me speed and scale, but the foundation gives me judgment. I would rather understand double-entry deeply than know ten algorithms superficially."
+  ]
+ },
+ {
   "id": 89,
   "tag": "Finance",
   "date": "October 19, 2026",

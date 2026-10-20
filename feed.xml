@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 19 Oct 2026 16:01:34 +0000</lastBuildDate>
+<lastBuildDate>Tue, 20 Oct 2026 13:58:27 +0000</lastBuildDate>
+<item>
+<title>Intro Financial Accounting Still Explains Most Red Flags</title>
+<link>https://aleksarriola-max.github.io/#essay-90</link>
+<guid isPermaLink="false">essay-90</guid>
+<category>Finance</category>
+<pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+<description>I took the University of Pennsylvania introduction to financial accounting and completed the Koch accounting simulation before I built anything sophisticated, and I am glad I did. Almost every earnings-quality model in my scanner is, underneath, a test of the accounting equation behaving the way it </description>
+</item>
 <item>
 <title>Insurance Reserves Are Estimates You Can Audit</title>
 <link>https://aleksarriola-max.github.io/#essay-89</link>
