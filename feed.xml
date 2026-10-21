@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 20 Oct 2026 13:58:27 +0000</lastBuildDate>
+<lastBuildDate>Wed, 21 Oct 2026 14:14:25 +0000</lastBuildDate>
+<item>
+<title>Explainability Is an Interface, Not a Model Property</title>
+<link>https://aleksarriola-max.github.io/#essay-91</link>
+<guid isPermaLink="false">essay-91</guid>
+<category>AI Systems</category>
+<pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+<description>When I built MissionMind for the IBM Bob AI Challenge, I started with the assumption that explainability was something a model either had or lacked. Pick an interpretable approach, attach some feature importances, and call it explained. By the time I had a working mission console, I had changed my m</description>
+</item>
 <item>
 <title>Intro Financial Accounting Still Explains Most Red Flags</title>
 <link>https://aleksarriola-max.github.io/#essay-90</link>

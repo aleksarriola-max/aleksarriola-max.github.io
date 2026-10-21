@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 91,
+  "tag": "AI Systems",
+  "date": "October 21, 2026",
+  "title": "Explainability Is an Interface, Not a Model Property",
+  "body": [
+   "When I built MissionMind for the IBM Bob AI Challenge, I started with the assumption that explainability was something a model either had or lacked. Pick an interpretable approach, attach some feature importances, and call it explained. By the time I had a working mission console, I had changed my mind. Explanation turned out to be a property of what the human sees, not of the model underneath.",
+   "A mission operator watching a spacecraft does not want a list of weights. They want to know what the system noticed, what it decided, what it expects to happen next, and what would change its mind. So the anomaly investigation view shows the evidence trail behind each flag, and the autonomy explainer states in plain language why an action was chosen over the alternatives. The same model, presented badly, would have been opaque. Presented well, it became auditable.",
+   "The practical lesson is that explainability should be designed with the same care as any other feature, starting from the question a specific person needs answered at a specific moment. That reframing made my decisions easier. Instead of asking whether the model was interpretable in the abstract, I asked whether an operator could challenge a decision in under a minute. If they could not, the system was not explainable no matter how transparent the algorithm was, and the fix lived in the interface rather than the math."
+  ]
+ },
+ {
   "id": 90,
   "tag": "Finance",
   "date": "October 20, 2026",
