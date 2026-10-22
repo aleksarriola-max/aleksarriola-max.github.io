@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 21 Oct 2026 14:14:25 +0000</lastBuildDate>
+<lastBuildDate>Thu, 22 Oct 2026 14:13:56 +0000</lastBuildDate>
+<item>
+<title>Autonomy Needs a Plan-Versus-Actual Ledger</title>
+<link>https://aleksarriola-max.github.io/#essay-92</link>
+<guid isPermaLink="false">essay-92</guid>
+<category>AI Systems</category>
+<pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+<description>One feature of MissionMind I almost left out was plan-versus-actual tracking. The console already showed the mission dashboard and flagged anomalies, and it felt like enough. But I kept noticing that I could not tell whether the autonomous system was doing well. I could see what it did. I could not </description>
+</item>
 <item>
 <title>Explainability Is an Interface, Not a Model Property</title>
 <link>https://aleksarriola-max.github.io/#essay-91</link>

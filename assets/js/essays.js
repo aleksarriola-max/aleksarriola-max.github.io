@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 92,
+  "tag": "AI Systems",
+  "date": "October 22, 2026",
+  "title": "Autonomy Needs a Plan-Versus-Actual Ledger",
+  "body": [
+   "One feature of MissionMind I almost left out was plan-versus-actual tracking. The console already showed the mission dashboard and flagged anomalies, and it felt like enough. But I kept noticing that I could not tell whether the autonomous system was doing well. I could see what it did. I could not see how far reality had drifted from what it intended.",
+   "Plan-versus-actual is the oldest control mechanism in operations, and it transfers cleanly to agents. The system states what it expects to happen, then the log records what did happen, and the gap becomes the signal. Small, steady gaps suggest the system understands its environment. A widening gap suggests its model of the world is wrong, often long before any single failure appears. Humans supervising an autonomous system rarely need every decision. They need to know when the system has stopped being right about its own predictions.",
+   "I have since applied the idea to my other agent work. Whenever an agent takes a multi-step action, I want it to record a prediction before acting and compare it afterward. It costs little and produces a measurement of the thing that matters most, which is calibration. An agent that is often wrong but knows when, is far safer to supervise than one that is usually right but never signals the exceptions. Autonomy without that ledger is just unsupervised guessing with good manners."
+  ]
+ },
+ {
   "id": 91,
   "tag": "AI Systems",
   "date": "October 21, 2026",
