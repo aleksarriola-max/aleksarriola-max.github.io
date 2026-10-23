@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 22 Oct 2026 14:13:56 +0000</lastBuildDate>
+<lastBuildDate>Fri, 23 Oct 2026 13:56:52 +0000</lastBuildDate>
+<item>
+<title>Shipping Outsette Taught Me the Pipeline Is the Product</title>
+<link>https://aleksarriola-max.github.io/#essay-93</link>
+<guid isPermaLink="false">essay-93</guid>
+<category>AI Systems</category>
+<pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+<description>Outsette is the project where I stopped thinking of AI as a feature and started thinking of it as a supply chain. The platform delivers daily briefings, an internship tracker, an AI career advisor and club events, all behind real accounts on its own domain. The visible part is a clean page. The real</description>
+</item>
 <item>
 <title>Autonomy Needs a Plan-Versus-Actual Ledger</title>
 <link>https://aleksarriola-max.github.io/#essay-92</link>

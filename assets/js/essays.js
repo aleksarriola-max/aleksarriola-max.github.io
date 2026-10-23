@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 93,
+  "tag": "AI Systems",
+  "date": "October 23, 2026",
+  "title": "Shipping Outsette Taught Me the Pipeline Is the Product",
+  "body": [
+   "Outsette is the project where I stopped thinking of AI as a feature and started thinking of it as a supply chain. The platform delivers daily briefings, an internship tracker, an AI career advisor and club events, all behind real accounts on its own domain. The visible part is a clean page. The real product is everything that runs before a student opens it.",
+   "A daily AI briefing sounds simple until you ask what has to happen each morning: collect sources, filter them, deduplicate, summarize, check the output, store it, and publish on time. Any step can fail silently. A summary can be fluent and wrong. A source can disappear. A job can run twice. Users never see the model, but they see every one of those failures as a bad briefing or a missing one. Reliability, I realized, is what they were actually buying.",
+   "So most of my effort went into the unglamorous layer: scheduling, retries, validation and monitoring. The model call became one small step in a longer chain, and often not the riskiest one. This changed how I judge AI projects, including my own. When I see a demo, I no longer ask how impressive the output is. I ask what happens at 6 a.m. when nobody is watching and one dependency has changed. The answer to that question tells you whether you are looking at a product or a prototype."
+  ]
+ },
+ {
   "id": 92,
   "tag": "AI Systems",
   "date": "October 22, 2026",
