@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 94,
+  "tag": "AI Systems",
+  "date": "October 24, 2026",
+  "title": "An AI Career Advisor Is Only as Good as Its Constraints",
+  "body": [
+   "Building the AI advisor inside Outsette forced me to confront a problem every advice product faces: the model is happy to sound confident about things it cannot know. Ask it whether a student should take a particular internship and it will produce a polished, plausible answer. That fluency is exactly the danger, because the student may act on it.",
+   "What made the advisor useful was not a better model but tighter boundaries. It works from the student’s actual tracker, their stated goals and the real listings in the system, rather than from general knowledge. Where the data runs out, it says so. I treated the advisor less like an oracle and more like a well-briefed assistant who knows which questions it is qualified to answer. Grounding narrowed what it could say and, in doing so, raised how much of it could be trusted.",
+   "I believe this generalizes. Advice systems fail when they optimize for sounding helpful instead of being accountable to evidence. The design question I now ask is what the system is allowed to claim and where those claims come from. A constrained advisor that occasionally answers I do not have enough information is more valuable than a fluent one that never does. Students can recover from an advisor that admits a limit. They cannot easily recover from one that confidently invents a path."
+  ]
+ },
+ {
   "id": 93,
   "tag": "AI Systems",
   "date": "October 23, 2026",

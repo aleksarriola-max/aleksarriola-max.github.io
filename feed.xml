@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 23 Oct 2026 13:56:52 +0000</lastBuildDate>
+<lastBuildDate>Sat, 24 Oct 2026 13:00:10 +0000</lastBuildDate>
+<item>
+<title>An AI Career Advisor Is Only as Good as Its Constraints</title>
+<link>https://aleksarriola-max.github.io/#essay-94</link>
+<guid isPermaLink="false">essay-94</guid>
+<category>AI Systems</category>
+<pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
+<description>Building the AI advisor inside Outsette forced me to confront a problem every advice product faces: the model is happy to sound confident about things it cannot know. Ask it whether a student should take a particular internship and it will produce a polished, plausible answer. That fluency is exactl</description>
+</item>
 <item>
 <title>Shipping Outsette Taught Me the Pipeline Is the Product</title>
 <link>https://aleksarriola-max.github.io/#essay-93</link>
