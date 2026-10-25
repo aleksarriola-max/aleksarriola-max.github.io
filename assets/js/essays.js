@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 95,
+  "tag": "AI Systems",
+  "date": "October 25, 2026",
+  "title": "Two-Layer Hallucination Firewalls and What They Miss",
+  "body": [
+   "MatchMind explains football decisions using live and historical World Cup data, and every explanation passes through a two-layer firewall. The first layer is a lexical evidence check: does each claim in the explanation trace back to a metric or fact actually in the data? The second is a validation pass by a separate IBM Granite call that reviews the explanation against the evidence. Outputs are then labeled Verified or Unverified.",
+   "The design works because the two layers fail differently. A lexical check is rigid and cheap. It catches invented numbers and unsupported names but misses a claim that reuses real words in a misleading way. A model validator understands context and catches that kind of distortion, but it can be fooled by fluent text and is itself capable of error. Stacking them means a hallucination has to slip past both mechanisms, which is a much harder target than either alone.",
+   "Building it also taught me what the firewall cannot do. It verifies faithfulness to the evidence, not the quality of the evidence or the wisdom of the interpretation. An explanation can be fully Verified and still be shallow. So I treat the label as a statement about grounding, not about truth. The honest framing, which I put in the interface, is that Verified means every claim has support, and Unverified means something does not. Being precise about what a safeguard guarantees matters more than adding another one."
+  ]
+ },
+ {
   "id": 94,
   "tag": "AI Systems",
   "date": "October 24, 2026",

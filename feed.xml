@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 24 Oct 2026 13:00:10 +0000</lastBuildDate>
+<lastBuildDate>Sun, 25 Oct 2026 13:27:24 +0000</lastBuildDate>
+<item>
+<title>Two-Layer Hallucination Firewalls and What They Miss</title>
+<link>https://aleksarriola-max.github.io/#essay-95</link>
+<guid isPermaLink="false">essay-95</guid>
+<category>AI Systems</category>
+<pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate>
+<description>MatchMind explains football decisions using live and historical World Cup data, and every explanation passes through a two-layer firewall. The first layer is a lexical evidence check: does each claim in the explanation trace back to a metric or fact actually in the data? The second is a validation p</description>
+</item>
 <item>
 <title>An AI Career Advisor Is Only as Good as Its Constraints</title>
 <link>https://aleksarriola-max.github.io/#essay-94</link>
