@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 25 Oct 2026 13:27:24 +0000</lastBuildDate>
+<lastBuildDate>Mon, 26 Oct 2026 15:38:18 +0000</lastBuildDate>
+<item>
+<title>Persona-Based Explanations Are a Prompt Contract</title>
+<link>https://aleksarriola-max.github.io/#essay-96</link>
+<guid isPermaLink="false">essay-96</guid>
+<category>AI Systems</category>
+<pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+<description>MatchMind offers five persona-based explanation styles, from a casual fan to a more technical analyst. When I started, I thought of personas as tone settings, a way to make the same text sound friendlier or more formal. That framing produced exactly the failure you would expect: the content drifted </description>
+</item>
 <item>
 <title>Two-Layer Hallucination Firewalls and What They Miss</title>
 <link>https://aleksarriola-max.github.io/#essay-95</link>

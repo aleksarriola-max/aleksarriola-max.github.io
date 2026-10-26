@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 96,
+  "tag": "AI Systems",
+  "date": "October 26, 2026",
+  "title": "Persona-Based Explanations Are a Prompt Contract",
+  "body": [
+   "MatchMind offers five persona-based explanation styles, from a casual fan to a more technical analyst. When I started, I thought of personas as tone settings, a way to make the same text sound friendlier or more formal. That framing produced exactly the failure you would expect: the content drifted between personas, and the technical version sometimes contradicted the casual one.",
+   "The fix was to separate what is said from how it is said. The facts and metrics come from one fixed evidence set, computed from real formulas, and the persona only controls selection, ordering and vocabulary. Each persona became a contract specifying what to include, what to leave out and how much jargon is allowed, while the underlying claims stay identical. If two personas disagree on a fact, that is a bug, not a style difference.",
+   "This turned out to be a useful pattern beyond sports. Whenever one system must serve several audiences, the risk is that each audience quietly gets a different truth. Anchoring everything to a shared evidence layer and varying only the presentation keeps them consistent and makes testing straightforward, since I can check the facts once and the style separately. A persona should change how a model speaks, never what it is willing to claim. Treating it as a presentation contract rather than a creative flourish made the whole system more trustworthy."
+  ]
+ },
+ {
   "id": 95,
   "tag": "AI Systems",
   "date": "October 25, 2026",
