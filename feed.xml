@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 26 Oct 2026 15:38:18 +0000</lastBuildDate>
+<lastBuildDate>Tue, 27 Oct 2026 15:01:43 +0000</lastBuildDate>
+<item>
+<title>Free-Tier Cold Starts Taught Me to Design for Waking Up</title>
+<link>https://aleksarriola-max.github.io/#essay-97</link>
+<guid isPermaLink="false">essay-97</guid>
+<category>AI Systems</category>
+<pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
+<description>Several of my live apps run on free tiers, and each one has the same quirk: after a period of inactivity the server goes to sleep, and the first visitor waits around thirty seconds for it to wake. I label those demos accordingly. At first I treated the delay as an embarrassing limitation to hide. Ev</description>
+</item>
 <item>
 <title>Persona-Based Explanations Are a Prompt Contract</title>
 <link>https://aleksarriola-max.github.io/#essay-96</link>

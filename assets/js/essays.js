@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 97,
+  "tag": "AI Systems",
+  "date": "October 27, 2026",
+  "title": "Free-Tier Cold Starts Taught Me to Design for Waking Up",
+  "body": [
+   "Several of my live apps run on free tiers, and each one has the same quirk: after a period of inactivity the server goes to sleep, and the first visitor waits around thirty seconds for it to wake. I label those demos accordingly. At first I treated the delay as an embarrassing limitation to hide. Eventually I treated it as a design constraint worth solving properly.",
+   "The first visitor is often the most important one, usually a recruiter or a reviewer deciding in seconds whether to stay. A blank page for thirty seconds reads as broken. So I added honest messaging about the wake-up, preview cards that show the app before launching it, and a lightweight interface that loads progressively. The delay did not disappear, but it became an expected and explained part of the experience rather than a failure.",
+   "It also changed how I think about reliability. Production systems have cold paths too: the first request after a deploy, the first query after a cache expires. Most teams test the warm path because it is the common one, then are surprised by the cold one. Building on free infrastructure forced me to design for the worst first impression, and that discipline carries over. I now ask of any system what a visitor experiences when nothing is warm, because that moment is often the only one they judge you by."
+  ]
+ },
+ {
   "id": 96,
   "tag": "AI Systems",
   "date": "October 26, 2026",
