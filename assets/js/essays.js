@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 98,
+  "tag": "AI Systems",
+  "date": "October 28, 2026",
+  "title": "Revocable Authority Is the Right Primitive for Agents",
+  "body": [
+   "OpsFlow is policy-bound, which means the agent never holds open-ended power. On Sui, the authority it exercises is explicitly granted, scoped and revocable. A person delegates a defined capability, and can take it back at any moment. I came to think this is the right primitive for any agent that touches real resources, and that most agent frameworks get it backwards.",
+   "The common pattern is to give an agent broad credentials and then rely on instructions to keep it in bounds. That is trust by hope. Revocable authority inverts the arrangement: the agent can only do what it has been explicitly allowed, and the allowance itself carries limits on amount, counterparty and duration. If something looks wrong, revoking the grant stops the behavior immediately, without needing to understand the cause first. Safety no longer depends on the model behaving.",
+   "What I like is how it shifts the design conversation. Instead of asking whether the agent can be trusted, I ask what the smallest authority is that lets it do its job, and how quickly a person can withdraw it. Those questions have concrete answers I can implement and test. Natural-language convenience is wonderful for the request side, but the permission side should be as boring and rigid as a bank mandate. An agent that is easy to instruct and easy to stop is more deployable than one that is merely smart."
+  ]
+ },
+ {
   "id": 97,
   "tag": "AI Systems",
   "date": "October 27, 2026",

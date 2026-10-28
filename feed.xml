@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 27 Oct 2026 15:01:43 +0000</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 15:37:29 +0000</lastBuildDate>
+<item>
+<title>Revocable Authority Is the Right Primitive for Agents</title>
+<link>https://aleksarriola-max.github.io/#essay-98</link>
+<guid isPermaLink="false">essay-98</guid>
+<category>AI Systems</category>
+<pubDate>Wed, 28 Oct 2026 00:00:00 +0000</pubDate>
+<description>OpsFlow is policy-bound, which means the agent never holds open-ended power. On Sui, the authority it exercises is explicitly granted, scoped and revocable. A person delegates a defined capability, and can take it back at any moment. I came to think this is the right primitive for any agent that tou</description>
+</item>
 <item>
 <title>Free-Tier Cold Starts Taught Me to Design for Waking Up</title>
 <link>https://aleksarriola-max.github.io/#essay-97</link>
