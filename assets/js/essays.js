@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 99,
+  "tag": "AI Systems",
+  "date": "October 29, 2026",
+  "title": "Vendor Trust Scoring Is a Prior, Not a Verdict",
+  "body": [
+   "OpsFlow assigns vendors a trust score and runs fraud detection before the agent acts on a payment request. My early instinct was to treat the score as a gate: above a threshold, proceed, below it, block. That worked until I looked at the edge cases, where a brand-new legitimate vendor looks identical to a suspicious one because both have no history.",
+   "A trust score is better understood as a prior, a starting belief that new evidence should update. A vendor with a long clean record deserves a light touch. A new one deserves scrutiny proportional to the amount involved, not an automatic rejection. So the system now uses the score to set how much verification is required, and the size of the request to set how much that matters. A small payment to an unknown vendor and a large one should not trigger the same response.",
+   "This is a general lesson about risk scoring. A single threshold forces a binary choice from information that is really continuous, and it hides the cost of each kind of error. False positives annoy honest users, and false negatives lose money, and those costs differ by situation. Using the score to shape a graduated response, with human review for the ambiguous middle, matched reality better than any hard cutoff. The number is evidence about trust. The decision still has to be made with the stakes in view."
+  ]
+ },
+ {
   "id": 98,
   "tag": "AI Systems",
   "date": "October 28, 2026",

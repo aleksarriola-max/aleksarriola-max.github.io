@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 28 Oct 2026 15:37:29 +0000</lastBuildDate>
+<lastBuildDate>Thu, 29 Oct 2026 15:43:40 +0000</lastBuildDate>
+<item>
+<title>Vendor Trust Scoring Is a Prior, Not a Verdict</title>
+<link>https://aleksarriola-max.github.io/#essay-99</link>
+<guid isPermaLink="false">essay-99</guid>
+<category>AI Systems</category>
+<pubDate>Thu, 29 Oct 2026 00:00:00 +0000</pubDate>
+<description>OpsFlow assigns vendors a trust score and runs fraud detection before the agent acts on a payment request. My early instinct was to treat the score as a gate: above a threshold, proceed, below it, block. That worked until I looked at the edge cases, where a brand-new legitimate vendor looks identica</description>
+</item>
 <item>
 <title>Revocable Authority Is the Right Primitive for Agents</title>
 <link>https://aleksarriola-max.github.io/#essay-98</link>
