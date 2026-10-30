@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Aleks Arriola — Portfolio</title>
+<meta name="description" content="Aleks Arriola — Finance & Accounting student at Hult building AI agents and automation for real financial workflows. Multi-agent LLM systems, quantitative finance, and financial modeling."/>
+<meta name="author" content="Aleks Arriola"/>
+<meta name="keywords" content="Aleks Arriola, finance, investment banking, AI, agentic AI, blockchain, Sui, Python, financial modeling, DCF, LBO, equity research, Hult, portfolio"/>
+<meta name="theme-color" content="#0D1210"/>
+<link rel="canonical" href="https://aleksarriola-max.github.io/"/>
+<meta property="og:title" content="Aleks Arriola — Agentic AI, built for finance"/>
+<meta property="og:description" content="Finance & Accounting student building multi-agent LLM systems and automation for real financial workflows — where agentic AI meets quantitative finance."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://aleksarriola-max.github.io/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://aleksarriola-max.github.io/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Aleks Arriola — AI & Finance Builder"/>
+<meta name="twitter:description" content="Multi-agent LLM systems, quantitative finance, and the tools built at their intersection."/>
+<meta name="twitter:image" content="https://aleksarriola-max.github.io/og-image.png"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230D1210'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='50' fill='%2392AC9B'%3EAA%3C/text%3E%3C/svg%3E"/>
+<link rel="alternate" type="text/plain" title="AI-readable site index" href="llms.txt"/>
+<link rel="alternate" type="application/rss+xml" title="Aleks Arriola — Writing" href="feed.xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+ :root{--navy:#0D1210;--bg-rgb:13,18,16;--bg2:#0f1f18;--panel:#17211C;--panel-rgb:23,33,28;--ink:#E5EAE4;--muted:#8fa39a;--gold:#92AC9B;--gold2:#c9dace;--acc-rgb:146,172,155;--accent-deep:#214B3A;}
+ *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+ body{background:var(--navy);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:hidden;}
+ canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;}
+ #depth{display:none;}
+ .veilDepth{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(var(--bg-rgb),.55),rgba(var(--bg-rgb),.85));opacity:0;transition:opacity .4s;}
+ .veilDepth.on{opacity:1;}
+ nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;background:linear-gradient(180deg,rgba(var(--bg-rgb),.82),transparent);}
+ .logo{font-family:Georgia,serif;font-style:italic;color:var(--gold);font-size:18px;cursor:pointer;white-space:nowrap;}
+ .logo b{font-style:normal;font-family:'Inter',sans-serif;color:var(--ink);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-left:9px;font-weight:600;}
+ .navlinks{display:flex;gap:18px;flex-wrap:wrap;}
+ .navlinks a{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;position:relative;transition:color .15s;white-space:nowrap;}
+ .navlinks a.active,.navlinks a:hover{color:var(--gold);}
+ .navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--gold);}
+ .navtoggle{display:none;background:none;border:1px solid rgba(255,255,255,.2);color:var(--gold);border-radius:6px;padding:6px 11px;cursor:pointer;font-size:16px;}
+ @media(max-width:860px){
+   .navtoggle{display:block;}
+   .navlinks{position:fixed;top:56px;right:5vw;flex-direction:column;gap:0;background:var(--panel);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px;display:none;min-width:200px;box-shadow:0 20px 50px rgba(0,0,0,.5);}
+   .navlinks.open{display:flex;}
+   .navlinks a{padding:11px 14px;}
+ }
+ .page{display:none;position:relative;z-index:3;}.page.show{display:block;}
+ .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 7vw;pointer-events:none;max-width:620px;}
+ .hero *{pointer-events:auto;}
+ .eyebrow{font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+ h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(3rem,7.5vw,5.8rem);line-height:.97;text-shadow:0 2px 40px rgba(var(--bg-rgb),.9);}
+ h1 .sh{color:var(--gold);font-style:italic;}
+ .tag{font-size:clamp(1.02rem,1.5vw,1.25rem);color:var(--gold2);max-width:34ch;margin-top:20px;line-height:1.6;text-shadow:0 2px 20px rgba(var(--bg-rgb),.9);}
+ .herobtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;}
+ .cta{display:inline-flex;gap:.6rem;background:var(--gold);color:var(--navy);padding:13px 24px;border-radius:4px;font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s;}
+ .cta:hover{background:var(--gold2);transform:translateY(-2px);}
+ .cta.ghost{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--ink);}
+ .cta.ghost:hover{border-color:var(--gold);color:var(--gold);}
+ .inner{min-height:100vh;padding:15vh 7vw 12vh;max-width:1080px;margin:0 auto;}
+ .kick{font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+ .inner h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.08;margin-bottom:14px;}
+ .inner .lead{font-size:1.05rem;color:var(--gold2);max-width:62ch;line-height:1.8;margin-bottom:34px;}
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+ .card{background:rgba(var(--panel-rgb),.6);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px;backdrop-filter:blur(6px);transition:border-color .2s,transform .2s,background .2s;}
+ .card:hover{border-color:var(--gold);transform:translateY(-4px);background:rgba(var(--acc-rgb),.08);}
+ .card .ct{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+ .card h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;margin-bottom:8px;line-height:1.2;}
+ .card p{font-size:.9rem;color:var(--muted);line-height:1.6;}
+ .card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+ .card .tags span{font-size:10.5px;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:3px 9px;}
+ .card .lnks{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;}
+ .plink{font-size:12px;letter-spacing:.03em;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
+ .plink:hover{border-color:var(--gold);}
+ /* case studies */
+ .case{border-top:1px solid rgba(255,255,255,.12);padding:34px 0;}
+ .case .risk{font-size:1rem;color:var(--ink);background:rgba(var(--acc-rgb),.08);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;line-height:1.6;}
+ .case .tldr{font-size:.95rem;color:var(--gold2);font-style:italic;margin-bottom:10px;}
+ .case .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-top:14px;}
+ @media(max-width:700px){.case .sgrid{grid-template-columns:1fr;}}
+ .case .sgrid h4{font-size:.9rem;color:var(--gold);margin-bottom:4px;}
+ .case .sgrid p{font-size:.9rem;color:var(--muted);line-height:1.6;}
+ .case .terms{background:rgba(var(--panel-rgb),.5);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px 18px;margin-top:16px;}
+ .case .terms li{list-style:none;font-size:.88rem;color:var(--gold2);margin:4px 0;}
+ .case .terms li b{color:var(--ink);}
+ /* finance flagship */
+ .flag{background:rgba(var(--panel-rgb),.6);border:1px solid rgba(var(--acc-rgb),.3);border-radius:12px;padding:26px;margin-bottom:20px;}
+ .flag h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;margin-bottom:10px;}
+ .flag p{font-size:.95rem;color:var(--muted);line-height:1.7;}
+ .flag .stats{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0;}
+ .flag .stats div{background:rgba(var(--acc-rgb),.08);border:1px solid rgba(var(--acc-rgb),.2);border-radius:8px;padding:10px 16px;text-align:center;}
+ .flag .stats .v{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);}
+ .flag .stats .k{font-size:.7rem;color:var(--muted);}
+ /* experience */
+ .exp{border-top:1px solid rgba(255,255,255,.1);padding:24px 0;}
+ .exp .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+ .exp h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;}
+ .exp .org{color:var(--gold2);font-size:.9rem;}.exp .date{color:var(--muted);font-size:.82rem;}
+ .exp ul{margin:10px 0 0 0;padding:0;list-style:none;}
+ .exp li{font-size:.92rem;color:var(--muted);line-height:1.6;padding-left:16px;position:relative;margin-bottom:6px;}
+ .exp li::before{content:"▸";position:absolute;left:0;color:var(--gold);}
+ /* writing */
+ .essay{border-top:1px solid rgba(255,255,255,.1);padding:30px 0;max-width:720px;}
+ .essay .meta{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+ .essay h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:12px;line-height:1.25;}
+ .essay p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:14px;}
+ /* certs/contact */
+ .credrow{display:grid;grid-template-columns:200px 1fr;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding:14px 0;}
+ @media(max-width:600px){.credrow{grid-template-columns:1fr;gap:2px;}}
+ .credrow .o{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ink);}
+ .credrow .d{font-size:.9rem;color:var(--muted);}
+ .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+ .chips span{font-size:.8rem;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:5px 12px;}
+ .tooltip{position:fixed;z-index:30;pointer-events:none;background:rgba(var(--panel-rgb),.96);border:1px solid rgba(var(--acc-rgb),.5);border-radius:10px;padding:11px 14px;max-width:250px;opacity:0;transition:opacity .15s;backdrop-filter:blur(8px);}
+ .tooltip .nm{font-family:Georgia,serif;font-size:15px;color:var(--gold2);margin-bottom:3px;}
+ .tooltip .ds{font-size:11.5px;color:var(--muted);line-height:1.45;}
+ .cue{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:4;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;}
+ .staging{position:fixed;left:14px;bottom:14px;z-index:30;font-size:10.5px;color:var(--gold2);background:rgba(var(--panel-rgb),.9);border:1px solid rgba(var(--acc-rgb),.3);border-radius:8px;padding:6px 10px;}
+ @media(prefers-reduced-motion: reduce){.cta,.card{transition:none;}}
+</style>
+</head>
+<body>
+<canvas id="star" class="bg"></canvas>
+<canvas id="depth" class="bg"></canvas>
+<div class="veilDepth" id="veilDepth"></div>
+
+<nav>
+  <div class="logo" onclick="go('home')">AA<b>Aleks Arriola</b></div>
+  <button class="navtoggle" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
+  <div class="navlinks" id="nl">
+    <a onclick="go('home')" data-p="home">Home</a>
+    <a onclick="go('work')" data-p="work">Work</a>
+    <a onclick="go('cases')" data-p="cases">Case Studies</a>
+    <a onclick="go('finance')" data-p="finance">Finance</a>
+    <a onclick="go('experience')" data-p="experience">Experience</a>
+    <a onclick="go('writing')" data-p="writing">Writing</a>
+    <a onclick="go('certs')" data-p="certs">Certifications</a>
+    <a onclick="go('contact')" data-p="contact">Contact</a>
+  </div>
+</nav>
+
+<div class="page show" id="page-home">
+  <div class="hero">
+    <div class="eyebrow">Finance × AI</div>
+    <h1>Aleks<br>Arriola<span class="sh">.</span></h1>
+    <div class="tag">A constellation of systems where finance meets AI. Hover a star to read it — or step inside.</div>
+    <div class="herobtns"><a class="cta" onclick="go('work')">Enter the work ↗</a><a class="cta ghost" onclick="go('cases')">Case studies</a></div>
+  </div>
+  <div class="cue" id="homeCue">Hover the stars · use the nav to step inside</div>
+</div>
+
+<div class="page" id="page-work"><div class="inner"><div class="kick">Selected systems</div><h2>Work</h2>
+  <p class="lead">Live systems at the intersection of agentic AI and quantitative finance. Every one is something you can open and inspect — the depth field behind these pages is the same constellation from the home.</p>
+  <div class="grid" id="workGrid"></div></div></div>
+
+<div class="page" id="page-cases"><div class="inner"><div class="kick">Systems → risk decisions</div><h2>Case Studies</h2>
+  <p class="lead">Each system framed by the risk decision it informs, the control I designed to bound it, the trade-offs that introduced, and when I'd distrust it.</p>
+  <div id="caseList"></div></div></div>
+
+<div class="page" id="page-finance"><div class="inner"><div class="kick">Financial work</div><h2>Finance</h2>
+  <p class="lead">Tools and models built on real SEC and market data — screening, valuation, and the controls around them.</p>
+  <div id="financeFlags"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin:30px 0 16px;">Areas of practice</h3>
+  <div class="grid" id="financeAreas"></div></div></div>
+
+<div class="page" id="page-experience"><div class="inner"><div class="kick">Professional experience</div><h2>Experience</h2>
+  <p class="lead">Finance-focused roles across analytical, client-facing, and operational work — the groundwork behind the systems I build today.</p>
+  <div id="expList"></div></div></div>
+
+<div class="page" id="page-writing"><div class="inner"><div class="kick">Essays</div><h2>Writing</h2>
+  <p class="lead">Short essays from building — AI systems, markets, and what happens at their intersection. A new one publishes most days.</p>
+  <div id="essayList"></div></div></div>
+
+<div class="page" id="page-certs"><div class="inner"><div class="kick">Credentials</div><h2>Certifications</h2>
+  <p class="lead">Virtual experience programs and courses across banking, finance, risk, and technology.</p>
+  <div id="credList"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin:30px 0 10px;">Toolkit</h3>
+  <div class="chips" id="toolkitChips"></div></div></div>
+
+<div class="page" id="page-contact"><div class="inner"><div class="kick">Contact</div><h2>Let's connect.</h2>
+  <p class="lead">Open to finance + AI opportunities. Interning at The 1525 while studying and building.</p>
+  <div class="herobtns">
+    <a class="cta" href="mailto:aleksarriola@gmail.com">Email</a>
+    <a class="cta ghost" href="https://www.linkedin.com/in/aleks-arriola/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="cta ghost" href="https://github.com/aleksarriola-max" target="_blank" rel="noopener">GitHub</a>
+    <a class="cta ghost" href="Aleks_Arriola_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+  </div></div></div>
+
+<div class="tooltip" id="tooltip"><div class="nm"></div><div class="ds"></div></div>
+<div class="staging">Preview build · Forest · A home + C pages</div>
+
+<script src="assets/js/portfolio-data.js"></script>
+<script src="assets/js/essays.js"></script>
+<script src="assets/js/v2.js"></script>
+</body></html>
