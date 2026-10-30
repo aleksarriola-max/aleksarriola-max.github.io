@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 29 Oct 2026 15:43:40 +0000</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 15:26:12 +0000</lastBuildDate>
+<item>
+<title>Why Race Telemetry Made Me Distrust Smooth Forecasts</title>
+<link>https://aleksarriola-max.github.io/#essay-100</link>
+<guid isPermaLink="false">essay-100</guid>
+<category>AI Systems</category>
+<pubDate>Fri, 30 Oct 2026 00:00:00 +0000</pubDate>
+<description>PitMind runs three custom models, Driver Soul, Momentum and Race Forecast, on live 2025 Formula 1 telemetry. Working with real race data cured me of an instinct I did not know I had: trusting a forecast because it looks smooth. A clean projected line feels authoritative. In a race, it is almost alwa</description>
+</item>
 <item>
 <title>Vendor Trust Scoring Is a Prior, Not a Verdict</title>
 <link>https://aleksarriola-max.github.io/#essay-99</link>

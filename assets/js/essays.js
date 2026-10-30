@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 100,
+  "tag": "AI Systems",
+  "date": "October 30, 2026",
+  "title": "Why Race Telemetry Made Me Distrust Smooth Forecasts",
+  "body": [
+   "PitMind runs three custom models, Driver Soul, Momentum and Race Forecast, on live 2025 Formula 1 telemetry. Working with real race data cured me of an instinct I did not know I had: trusting a forecast because it looks smooth. A clean projected line feels authoritative. In a race, it is almost always wrong in the ways that matter.",
+   "Races are punctuated by discrete events: safety cars, pit stops, tire failures, rain. A model that interpolates smoothly between laps hides exactly the uncertainty a strategist needs to see. The useful output is not a single predicted finishing order but a spread of outcomes and the conditions under which the picture changes. So I redesigned Race Forecast to expose scenarios rather than one line, and to say clearly which assumptions each scenario rests on.",
+   "The broader point applies far beyond motorsport, including to the financial models I build. Smoothness is a presentation choice, not evidence of accuracy. When a forecast is presented as a confident curve, I ask what events it has quietly assumed away. Real decision-makers rarely need a point estimate. They need to know which developments would change the call and how prepared they should be. Models that communicate their own fragility are more useful than those that project calm, and building PitMind taught me to value the first kind."
+  ]
+ },
+ {
   "id": 99,
   "tag": "AI Systems",
   "date": "October 29, 2026",
