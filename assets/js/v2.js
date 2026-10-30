@@ -1,28 +1,67 @@
-
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const PAL={bg:'#0D1210',bg2:'#0f1f18',acc:'#92AC9B',acc2:'#c9dace',glow:'179,199,186',star:'224,230,224',accrgb:'146,172,155'};
 const esc=s=>String(s==null?'':s);
-function linksHTML(links){return (links||[]).map(l=>`<a class="plink" href="${l.href}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('');}
+const linksHTML=links=>(links||[]).map(l=>`<a class="plink" href="${l.href}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('');
+const tagChips=(tags,cls)=>(tags||[]).map(t=>`<span>${esc(t)}</span>`).join('');
+
+const TICKER=[
+ ['LIFELINE','▲ 1st / 40 teams'],['PITMIND','▲ Most Innovative'],['SCANNER','▲ 600+ companies'],
+ ['ORCEN','▲ 84 sheets · 39K lines'],['OUTSETTE','● Live'],['LIVE APPS','▲ 9'],
+ ['THE 1525','▲ 400× throughput'],['CREDENTIALS','▲ 53'],['ESSAYS','▲ 100'],
+ ['OPSFLOW','● Policy-bound'],['TALLYHOUND','● Open source'],
+];
+const STATS=[
+ {v:'9',k:'Live Apps',link:'work',lbl:'Work →'},
+ {v:'600+',k:'Companies Screened',link:'finance',lbl:'Scanner →'},
+ {v:'11',k:'Risk Models',link:'cases',lbl:'Case study →'},
+ {v:'8',k:'Client Projects',link:'work',lbl:'Work →'},
+ {v:'53',k:'Certifications',link:'certs',lbl:'Credentials →'},
+];
+const ABOUT=[
+ "I'm a Finance & Accounting student at Hult who builds AI agents and automation systems for real financial and operational workflows — working at the intersection of generative AI, quantitative finance, and complex data pipelines.",
+ "I've shipped systems that are more than demos. PitMind is an AI Formula 1 strategy platform on IBM Granite and live telemetry; OpsFlow is a policy-bound AI operations agent on Sui that turns natural language into secure, auditable workflows. Each one taught me how to design multi-step agents, enforce guardrails, and ship reliably.",
+ "I'm most interested in roles that combine agentic AI, robust financial modeling, and systems thinking — in AI engineering, fintech, or finance teams that want to use modern AI well.",
+];
+function badgeFor(a){
+ const k=(a.kicker||'').toLowerCase();
+ if(k.includes('1st'))return '1st of 40 teams';
+ if(k.includes('most innovative'))return 'Most Innovative';
+ if(k.includes('bob'))return 'Challenge build';
+ return 'Recognition';
+}
 
 function renderAll(){
  const P=window.PORTFOLIO||{};
+ // ticker (duplicate for seamless loop)
+ const tHTML=TICKER.map(t=>`<span class="it"><span class="lab">${t[0]}</span><span class="val">${t[1]}</span></span>`).join('');
+ document.getElementById('tickerTrack').innerHTML=tHTML+tHTML;
+ // stat band
+ document.getElementById('statBand').innerHTML=STATS.map(s=>
+  `<div class="stat"><div class="v">${s.v}</div><div class="k">${s.k}</div><a onclick="go('${s.link}')">${s.lbl}</a></div>`).join('');
+ // recognition
+ document.getElementById('recogGrid').innerHTML=(P.achievements||[]).map(a=>
+  `<div class="rcard"><div class="rn">${esc(a.n)}</div><div class="rk">${esc(a.kicker)}</div>
+   <h4>${esc(a.title)}</h4><p>${esc(a.t)}</p><div class="badge">${badgeFor(a)}</div></div>`).join('');
+ // toolkit marquee (duplicate)
+ const tk=(P.toolkit||[]).map(t=>`<span>${esc(t)}</span>`).join('');
+ document.getElementById('tkTrack').innerHTML=tk+tk;
+ // about
+ document.getElementById('aboutProse').innerHTML=ABOUT.map(p=>`<p>${esc(p)}</p>`).join('');
  // WORK
  document.getElementById('workGrid').innerHTML=(P.coding||[]).map(c=>
   `<div class="card"><div class="ct">${esc(c.kicker)}</div><h3>${esc(c.title)}</h3><p>${esc(c.t)}</p>
-   <div class="tags">${(c.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div>
-   <div class="lnks">${linksHTML(c.links)}</div></div>`).join('');
+   <div class="tags">${tagChips(c.tags)}</div><div class="lnks">${linksHTML(c.links)}</div></div>`).join('');
  // CASES
  document.getElementById('caseList').innerHTML=(P.cases||[]).map(c=>
-  `<div class="case"><div class="ct kick" style="margin-bottom:6px;">${esc(c.n)} · ${esc(c.kicker)}</div>
-   <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:6px;">${esc(c.title)}</h3>
-   <div class="tldr">${esc(c.tldr)}</div>
+  `<div class="case"><div class="cn">${esc(c.n)} · ${esc(c.kicker)}</div>
+   <h3>${esc(c.title)}</h3><div class="tldr">${esc(c.tldr)}</div>
    <div class="risk"><b>Risk decision it informs:</b> ${esc(c.risk)}</div>
    <div class="sgrid">${(c.s||[]).map(s=>`<div><h4>${esc(s.h)}</h4><p>${esc(s.t)}</p></div>`).join('')}</div>
-   <ul class="terms"><div class="ct" style="margin-bottom:6px;">In finance terms</div>${(c.terms||[]).map(t=>`<li><b>${esc(t.k)}</b> — ${esc(t.v)}</li>`).join('')}</ul></div>`).join('');
+   <ul class="terms"><div class="ct" style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">In finance terms</div>${(c.terms||[]).map(t=>`<li><b>${esc(t.k)}</b> — ${esc(t.v)}</li>`).join('')}</ul></div>`).join('');
  // FINANCE
  document.getElementById('financeFlags').innerHTML=(P.financeFlagships||[]).map(f=>
   `<div class="flag"><h3>${esc(f.title)}</h3><p>${esc(f.t)}</p>
-   <div class="stats">${(f.stats||[]).map(s=>`<div><div class="v">${esc(s.v)}</div><div class="k">${esc(s.k)}</div></div>`).join('')}</div>
+   <div class="stats2">${(f.stats||[]).map(s=>`<div><div class="v">${esc(s.v)}</div><div class="k">${esc(s.k)}</div></div>`).join('')}</div>
    <div class="lnks">${linksHTML(f.links)}</div></div>`).join('');
  document.getElementById('financeAreas').innerHTML=(P.areas||[]).map(a=>
   `<div class="card"><h3>${esc(a.h)}</h3><p>${esc(a.t)}</p></div>`).join('');
@@ -30,7 +69,7 @@ function renderAll(){
  document.getElementById('expList').innerHTML=(P.roles||[]).map(r=>
   `<div class="exp"><div class="top"><div><h3>${esc(r.title)}</h3><div class="org">${esc(r.org)} · ${esc(r.place)}</div></div><div class="date">${esc(r.dates)}</div></div>
    <ul>${(r.b||[]).map(b=>`<li>${esc(b)}</li>`).join('')}</ul>
-   <div class="tags" style="margin-top:10px;">${(r.tags||[]).map(t=>`<span style="font-size:10.5px;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:3px 9px;">${esc(t)}</span>`).join('')}</div></div>`).join('');
+   <div class="tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">${(r.tags||[]).map(t=>`<span style="font-size:10px;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:3px 9px;">${esc(t)}</span>`).join('')}</div></div>`).join('');
  // WRITING
  const essays=(window.ESSAYS&&window.ESSAYS.length)?window.ESSAYS:(P.essays||[]);
  document.getElementById('essayList').innerHTML=essays.map(e=>
@@ -40,7 +79,6 @@ function renderAll(){
  document.getElementById('credList').innerHTML=(P.selectedCreds||[]).map(c=>
   `<div class="credrow"><div class="o">${esc(c.org)}</div><div class="d">${esc(c.t)}</div></div>`).join('');
  document.getElementById('toolkitChips').innerHTML=(P.toolkit||[]).map(t=>`<span>${esc(t)}</span>`).join('');
- // star nodes tooltip lookup
  buildStarNodes(P);
 }
 
@@ -50,29 +88,91 @@ const tip=document.getElementById('tooltip');
 addEventListener('mousemove',e=>{msx=e.clientX;msy=e.clientY;mcx=e.clientX;mcy=e.clientY;});
 function go(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
- const el=document.getElementById('page-'+id); if(el)el.classList.add('show');
+ const el=document.getElementById('page-'+id);if(el)el.classList.add('show');
  document.querySelectorAll('.navlinks a').forEach(a=>a.classList.toggle('active',a.dataset.p===id));
  document.getElementById('nl').classList.remove('open');
  mode=(id==='home')?'home':'depth';
  document.getElementById('star').style.display=mode==='home'?'block':'none';
  document.getElementById('depth').style.display=mode==='home'?'none':'block';
  document.getElementById('veilDepth').classList.toggle('on',mode!=='home');
- document.getElementById('homeCue').style.display=mode==='home'?'block':'none';
- if(mode!=='home')tip.style.opacity=0;
+ if(mode!=='home'){tip.style.opacity=0;document.getElementById('veilHome').style.opacity=0;}
  window.scrollTo(0,0);
 }
 window.go=go;
+// home scroll veil (dim star field as you leave hero)
+addEventListener('scroll',()=>{if(mode!=='home')return;
+ const v=Math.min(0.9,Math.max(0,(scrollY/innerHeight-0.3)));
+ document.getElementById('veilHome').style.opacity=v;},{passive:true});
+
+/* ---------- FIG diagram ---------- */
+function initFig(){
+ const svg=document.getElementById('figSvg'); if(!svg)return;
+ const main=document.getElementById('fMain'),branch=document.getElementById('fBranch'),
+  marker=document.getElementById('fMarker'),gate=document.getElementById('gateBox'),
+  out=document.getElementById('outBox'),blocked=document.getElementById('blockedTag');
+ const Lmain=main.getTotalLength();
+ // counters count up once
+ const targets={cProposed:38,cExecuted:28,cEscalated:6};
+ let counted=false;
+ function countUp(){counted=true;const dur=2200,t0=performance.now();
+  (function tick(now){const p=Math.min(1,(now-t0)/dur);
+   for(const id in targets){document.getElementById(id).textContent=Math.round(targets[id]*(p<1?1-Math.pow(1-p,3):1));}
+   if(p<1)requestAnimationFrame(tick);})(performance.now());}
+ if(reduce){main.style.strokeDashoffset=0;branch.style.strokeDashoffset=0;out.classList.add('on');gate.classList.add('on');
+  document.getElementById('cProposed').textContent=38;document.getElementById('cExecuted').textContent=28;document.getElementById('cEscalated').textContent=6;return;}
+ // marker loop
+ const GATE=(370-70)/(700-70); let started=false;
+ function runLoop(){
+  main.style.strokeDashoffset=0;
+  let loop=0;
+  function cycle(){
+   loop++; const willBlock=(loop%4===0);
+   gate.classList.remove('on');out.classList.remove('on');blocked.style.opacity=0;branch.style.strokeDashoffset=50;
+   marker.setAttribute('opacity',1);
+   const t0=performance.now();
+   // leg 1: input->gate (900ms)
+   function leg1(now){const p=Math.min(1,(now-t0)/900);const pt=main.getPointAtLength(Lmain*GATE*ease(p));
+     marker.setAttribute('cx',pt.x);marker.setAttribute('cy',pt.y);
+     if(p<1)return requestAnimationFrame(leg1);
+     gate.classList.add('on');
+     // pause at gate
+     const g0=performance.now();
+     function pause(n2){const pp=Math.min(1,(n2-g0)/600);
+       if(willBlock){branch.style.strokeDashoffset=50*(1-ease(pp));blocked.style.opacity=pp;}
+       if(pp<1)return requestAnimationFrame(pause);
+       if(willBlock){ // escalate: marker goes down branch then restart
+         const b0=performance.now();
+         function down(n3){const dp=Math.min(1,(n3-b0)/500);const by=100+(150-100)*ease(dp);
+           marker.setAttribute('cx',370);marker.setAttribute('cy',by);
+           if(dp<1)return requestAnimationFrame(down);
+           marker.setAttribute('opacity',0);setTimeout(cycle,500);}
+         requestAnimationFrame(down);
+       } else { // proceed gate->output
+         const o0=performance.now();
+         function leg2(n4){const p2=Math.min(1,(n4-o0)/900);const pt2=main.getPointAtLength(Lmain*(GATE+(1-GATE)*ease(p2)));
+           marker.setAttribute('cx',pt2.x);marker.setAttribute('cy',pt2.y);
+           if(p2<1)return requestAnimationFrame(leg2);
+           out.classList.add('on');marker.setAttribute('opacity',0);setTimeout(cycle,700);}
+         requestAnimationFrame(leg2);
+       }
+     }
+     requestAnimationFrame(pause);
+   }
+   requestAnimationFrame(leg1);
+  }
+  cycle();
+ }
+ function ease(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;}
+ const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){if(!counted)countUp();if(!started){started=true;runLoop();}io.unobserve(e.target);}});},{threshold:.3});
+ io.observe(svg);
+}
 
 /* ---------- STAR MAP ---------- */
 const NODE_DEFS=[
- {label:'Outsette',match:'Outsette',hx:.58,hy:.30},
- {label:'StoryForge',match:'StoryForge',hx:.66,hy:.42},
- {label:'MissionMind',match:'MissionMind',hx:.72,hy:.30},
- {label:'PitMind',match:'PitMind',hx:.79,hy:.44},
- {label:'Tallyhound',match:'Tallyhound',hx:.62,hy:.56},
- {label:'OpsFlow',match:'OpsFlow',hx:.85,hy:.32},
- {label:'DeepBook OS',match:'DeepBook',hx:.90,hy:.46},
- {label:'Orcen Kit',match:'Orcen',hx:.80,hy:.58},
+ {label:'Outsette',match:'Outsette',hx:.58,hy:.30},{label:'StoryForge',match:'StoryForge',hx:.66,hy:.42},
+ {label:'MissionMind',match:'MissionMind',hx:.72,hy:.30},{label:'PitMind',match:'PitMind',hx:.79,hy:.44},
+ {label:'Tallyhound',match:'Tallyhound',hx:.62,hy:.56},{label:'OpsFlow',match:'OpsFlow',hx:.85,hy:.32},
+ {label:'DeepBook OS',match:'DeepBook',hx:.90,hy:.46},{label:'Orcen Kit',match:'Orcen',hx:.80,hy:.58},
 ];
 const sc=document.getElementById('star'),sx=sc.getContext('2d');
 let SW,SH,SD,sstars=[],snodes=[],st0=performance.now(),shit=null;
@@ -83,7 +183,7 @@ function sbuild(){sstars=[];const N=Math.floor(innerWidth*innerHeight/11000)+50;
 function posNodes(){snodes.forEach((n,i)=>{n.x=n.hx*SW;n.y=n.hy*SH;n.r=(4+(i%3))*SD;});}
 function buildStarNodes(P){const coding=P.coding||[];
  snodes=NODE_DEFS.map((d,i)=>{const hit=coding.find(c=>c.title&&c.title.indexOf(d.match)>=0)||{};
-   return {label:d.label,hx:d.hx,hy:d.hy,desc:(hit.kicker?hit.kicker+' — ':'')+(hit.t?hit.t.slice(0,90)+'…':''),delay:600+i*200,x:0,y:0,r:5};});
+  return {label:d.label,hx:d.hx,hy:d.hy,desc:(hit.kicker?hit.kicker+' — ':'')+(hit.t?hit.t.slice(0,90)+'…':''),delay:600+i*200,x:0,y:0,r:5};});
  if(SW)posNodes();}
 function sEase(x){return 1-Math.pow(1-Math.max(0,Math.min(1,x)),3);}
 function sAppear(n,el){return reduce?1:Math.min(1,Math.max(0,(el-n.delay)/700));}
@@ -139,10 +239,8 @@ function renderDepth(now){
 function loop(now){if(mode==='home')renderStar(now);else renderDepth(now);requestAnimationFrame(loop);}
 function sizeAll(){ssize();dsize();}
 addEventListener('resize',sizeAll);
-
-/* wait for data */
 function boot(){
  if(!window.PORTFOLIO){return setTimeout(boot,60);}
- renderAll();sizeAll();go('home');requestAnimationFrame(loop);
+ renderAll();sizeAll();go('home');initFig();requestAnimationFrame(loop);
 }
 boot();

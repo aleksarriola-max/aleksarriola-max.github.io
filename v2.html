@@ -22,162 +22,270 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230D1210'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='50' fill='%2392AC9B'%3EAA%3C/text%3E%3C/svg%3E"/>
 <link rel="alternate" type="text/plain" title="AI-readable site index" href="llms.txt"/>
 <link rel="alternate" type="application/rss+xml" title="Aleks Arriola — Writing" href="feed.xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
- :root{--navy:#0D1210;--bg-rgb:13,18,16;--bg2:#0f1f18;--panel:#17211C;--panel-rgb:23,33,28;--ink:#E5EAE4;--muted:#8fa39a;--gold:#92AC9B;--gold2:#c9dace;--acc-rgb:146,172,155;--accent-deep:#214B3A;}
+ :root{--navy:#0D1210;--bg-rgb:13,18,16;--bg2:#0f1f18;--panel:#17211C;--panel-rgb:23,33,28;--ink:#E5EAE4;--muted:#8fa39a;--gold:#92AC9B;--gold2:#c9dace;--acc-rgb:146,172,155;--deep:#214B3A;--line:rgba(146,172,155,.16);}
  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
- body{background:var(--navy);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:hidden;}
+ body{background:var(--navy);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+ .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;}
  canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;}
  #depth{display:none;}
- .veilDepth{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(var(--bg-rgb),.55),rgba(var(--bg-rgb),.85));opacity:0;transition:opacity .4s;}
+ .veilHome{position:fixed;inset:0;z-index:1;pointer-events:none;background:var(--navy);opacity:0;transition:opacity .3s;}
+ .veilDepth{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(var(--bg-rgb),.6),rgba(var(--bg-rgb),.88));opacity:0;transition:opacity .4s;}
  .veilDepth.on{opacity:1;}
- nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;background:linear-gradient(180deg,rgba(var(--bg-rgb),.82),transparent);}
- .logo{font-family:Georgia,serif;font-style:italic;color:var(--gold);font-size:18px;cursor:pointer;white-space:nowrap;}
- .logo b{font-style:normal;font-family:'Inter',sans-serif;color:var(--ink);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-left:9px;font-weight:600;}
- .navlinks{display:flex;gap:18px;flex-wrap:wrap;}
- .navlinks a{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;position:relative;transition:color .15s;white-space:nowrap;}
+ .ticker{position:fixed;top:0;left:0;right:0;z-index:25;height:34px;display:flex;align-items:center;overflow:hidden;background:var(--panel);border-bottom:1px solid var(--line);}
+ .ticker .track{display:inline-flex;white-space:nowrap;animation:scrollx 46s linear infinite;}
+ .ticker:hover .track{animation-play-state:paused;}
+ @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+ .ticker .it{display:inline-flex;align-items:center;gap:8px;padding:0 26px;font-size:11px;letter-spacing:.08em;}
+ .ticker .lab{font-weight:700;color:var(--ink);text-transform:uppercase;}
+ .ticker .val{color:var(--gold);text-transform:uppercase;}
+ nav{position:fixed;top:34px;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:linear-gradient(180deg,rgba(var(--bg-rgb),.9),transparent);}
+ .logo{cursor:pointer;line-height:1;}
+ .logo .pf{font-family:ui-monospace,monospace;font-size:9px;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;}
+ .logo .nm{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:22px;color:var(--gold);margin-top:2px;}
+ .navlinks{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+ .navlinks a{font-size:11px;letter-spacing:.06em;color:var(--muted);text-decoration:none;cursor:pointer;position:relative;transition:color .15s;white-space:nowrap;display:inline-flex;gap:5px;align-items:baseline;}
+ .navlinks a .no{font-family:ui-monospace,monospace;font-size:9px;color:var(--gold);opacity:.6;}
  .navlinks a.active,.navlinks a:hover{color:var(--gold);}
- .navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--gold);}
- .navtoggle{display:none;background:none;border:1px solid rgba(255,255,255,.2);color:var(--gold);border-radius:6px;padding:6px 11px;cursor:pointer;font-size:16px;}
- @media(max-width:860px){
+ .navlinks a.active .no{opacity:1;}
+ .navtoggle{display:none;background:none;border:1px solid var(--line);color:var(--gold);border-radius:6px;padding:6px 11px;cursor:pointer;font-size:16px;}
+ @media(max-width:980px){
    .navtoggle{display:block;}
-   .navlinks{position:fixed;top:56px;right:5vw;flex-direction:column;gap:0;background:var(--panel);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px;display:none;min-width:200px;box-shadow:0 20px 50px rgba(0,0,0,.5);}
-   .navlinks.open{display:flex;}
-   .navlinks a{padding:11px 14px;}
+   .navlinks{position:fixed;top:92px;right:5vw;flex-direction:column;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px;display:none;min-width:210px;box-shadow:0 20px 50px rgba(0,0,0,.55);}
+   .navlinks.open{display:flex;}.navlinks a{padding:11px 14px;width:100%;}
  }
  .page{display:none;position:relative;z-index:3;}.page.show{display:block;}
- .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 7vw;pointer-events:none;max-width:620px;}
+ .seclabel{display:flex;align-items:center;gap:12px;font-family:ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+ .seclabel::before{content:"";width:28px;height:1px;background:var(--gold);opacity:.6;}
+ .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 7vw;pointer-events:none;max-width:680px;position:relative;}
  .hero *{pointer-events:auto;}
- .eyebrow{font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
- h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(3rem,7.5vw,5.8rem);line-height:.97;text-shadow:0 2px 40px rgba(var(--bg-rgb),.9);}
- h1 .sh{color:var(--gold);font-style:italic;}
- .tag{font-size:clamp(1.02rem,1.5vw,1.25rem);color:var(--gold2);max-width:34ch;margin-top:20px;line-height:1.6;text-shadow:0 2px 20px rgba(var(--bg-rgb),.9);}
- .herobtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;}
- .cta{display:inline-flex;gap:.6rem;background:var(--gold);color:var(--navy);padding:13px 24px;border-radius:4px;font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s;}
+ .hero .eye{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:20px;}
+ h1.big{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(3rem,8vw,6rem);line-height:.95;text-shadow:0 2px 40px rgba(var(--bg-rgb),.9);}
+ h1.big .sh{color:var(--gold);font-style:italic;}
+ .hero .sub{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--gold2);max-width:36ch;margin-top:22px;line-height:1.65;text-shadow:0 2px 20px rgba(var(--bg-rgb),.9);}
+ .hero .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;}
+ .hero .pills span{font-size:11px;color:var(--gold2);border:1px solid var(--line);border-radius:100px;padding:5px 13px;letter-spacing:.04em;}
+ .herobtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;}
+ .cta{display:inline-flex;gap:.5rem;align-items:center;background:var(--gold);color:var(--navy);padding:12px 22px;border-radius:4px;font-weight:600;font-size:.88rem;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s;}
  .cta:hover{background:var(--gold2);transform:translateY(-2px);}
- .cta.ghost{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--ink);}
+ .cta.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);}
  .cta.ghost:hover{border-color:var(--gold);color:var(--gold);}
- .inner{min-height:100vh;padding:15vh 7vw 12vh;max-width:1080px;margin:0 auto;}
- .kick{font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+ .scrollcue{position:absolute;bottom:4vh;left:0;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+ .hsec{position:relative;z-index:3;max-width:1100px;margin:0 auto;padding:11vh 7vw;}
+ .hsec.band{background:rgba(var(--panel-rgb),.8);backdrop-filter:blur(3px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:none;}
+ .hsec.band .wrap{max-width:1100px;margin:0 auto;}
+ .statement{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;color:var(--ink);max-width:32ch;}
+ .statement .dim{color:var(--muted);}
+ .prose{font-size:1.05rem;line-height:1.9;color:var(--gold2);max-width:64ch;}
+ .prose p+p{margin-top:1rem;}
+ .figwrap{background:rgba(var(--panel-rgb),.92);border:1px solid var(--line);border-radius:12px;padding:20px 22px 12px;backdrop-filter:blur(4px);}
+ .fighead{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+ .fighead .t{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+ .fighead .ct{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+ .fighead .ct b{color:var(--gold);font-weight:700;}
+ svg.fig{width:100%;height:auto;display:block;}
+ .fig .nlabel{font-family:ui-monospace,monospace;font-size:8.5px;letter-spacing:.08em;fill:var(--muted);}
+ .fig .ntitle{font-family:'Cormorant Garamond',serif;font-size:13px;fill:var(--ink);}
+ .fig .ann{font-family:ui-monospace,monospace;font-size:8px;letter-spacing:.06em;fill:var(--gold);opacity:.8;}
+ .fig .nbox{fill:rgba(var(--acc-rgb),.05);stroke:var(--line);}
+ .fig .nbox.gate{stroke:rgba(var(--acc-rgb),.45);}
+ .fig .nbox.on{fill:rgba(var(--acc-rgb),.14);stroke:var(--gold);}
+ .figcap{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:.06em;color:var(--muted);margin-top:8px;text-transform:uppercase;}
+ .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+ @media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr);}}
+ .stat{background:var(--navy);padding:26px 20px;}
+ .stat .v{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);line-height:1;}
+ .stat .k{font-size:.82rem;color:var(--ink);margin-top:6px;}
+ .stat a{display:inline-block;margin-top:8px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;}
+ .stat a:hover{color:var(--gold);}
+ .recog{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
+ @media(max-width:820px){.recog{grid-template-columns:1fr;}}
+ .rcard{background:rgba(var(--panel-rgb),.6);border:1px solid var(--line);border-radius:12px;padding:22px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+ .rcard:hover{border-color:var(--gold);transform:translateY(-4px);}
+ .rcard .rn{position:absolute;top:8px;right:16px;font-family:'Cormorant Garamond',serif;font-size:3.4rem;color:rgba(var(--acc-rgb),.14);line-height:1;}
+ .rcard .rk{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;max-width:82%;line-height:1.4;}
+ .rcard h4{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:8px;}
+ .rcard p{font-size:.86rem;color:var(--muted);line-height:1.6;}
+ .rcard .badge{display:inline-block;margin-top:12px;font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold2);border:1px solid var(--line);border-radius:100px;padding:4px 11px;}
+ .tkmarq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;}
+ .tkmarq .track{display:inline-flex;white-space:nowrap;animation:scrollx 40s linear infinite;}
+ .tkmarq:hover .track{animation-play-state:paused;}
+ .tkmarq .track span{padding:0 22px;font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);}
+ .tkmarq .track span::after{content:"◆";margin-left:44px;color:rgba(var(--acc-rgb),.35);}
+ .inner{min-height:100vh;padding:16vh 7vw 12vh;max-width:1080px;margin:0 auto;}
  .inner h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.08;margin-bottom:14px;}
  .inner .lead{font-size:1.05rem;color:var(--gold2);max-width:62ch;line-height:1.8;margin-bottom:34px;}
  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
- .card{background:rgba(var(--panel-rgb),.6);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px;backdrop-filter:blur(6px);transition:border-color .2s,transform .2s,background .2s;}
- .card:hover{border-color:var(--gold);transform:translateY(-4px);background:rgba(var(--acc-rgb),.08);}
- .card .ct{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+ .card{background:rgba(var(--panel-rgb),.62);border:1px solid var(--line);border-radius:12px;padding:22px;backdrop-filter:blur(6px);transition:border-color .2s,transform .2s;}
+ .card:hover{border-color:var(--gold);transform:translateY(-4px);}
+ .card .ct{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
  .card h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;margin-bottom:8px;line-height:1.2;}
  .card p{font-size:.9rem;color:var(--muted);line-height:1.6;}
  .card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
- .card .tags span{font-size:10.5px;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:3px 9px;}
+ .card .tags span{font-size:10px;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:3px 9px;}
  .card .lnks{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;}
- .plink{font-size:12px;letter-spacing:.03em;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
+ .plink{font-size:12px;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
  .plink:hover{border-color:var(--gold);}
- /* case studies */
- .case{border-top:1px solid rgba(255,255,255,.12);padding:34px 0;}
- .case .risk{font-size:1rem;color:var(--ink);background:rgba(var(--acc-rgb),.08);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;line-height:1.6;}
+ .case{border-top:1px solid var(--line);padding:34px 0;}
+ .case .cn{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+ .case h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:6px;}
  .case .tldr{font-size:.95rem;color:var(--gold2);font-style:italic;margin-bottom:10px;}
+ .case .risk{font-size:1rem;color:var(--ink);background:rgba(var(--acc-rgb),.08);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;line-height:1.6;}
  .case .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-top:14px;}
  @media(max-width:700px){.case .sgrid{grid-template-columns:1fr;}}
  .case .sgrid h4{font-size:.9rem;color:var(--gold);margin-bottom:4px;}
  .case .sgrid p{font-size:.9rem;color:var(--muted);line-height:1.6;}
- .case .terms{background:rgba(var(--panel-rgb),.5);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px 18px;margin-top:16px;}
- .case .terms li{list-style:none;font-size:.88rem;color:var(--gold2);margin:4px 0;}
- .case .terms li b{color:var(--ink);}
- /* finance flagship */
- .flag{background:rgba(var(--panel-rgb),.6);border:1px solid rgba(var(--acc-rgb),.3);border-radius:12px;padding:26px;margin-bottom:20px;}
- .flag h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;margin-bottom:10px;}
+ .case .terms{background:rgba(var(--panel-rgb),.5);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:16px;}
+ .case .terms li{list-style:none;font-size:.88rem;color:var(--gold2);margin:4px 0;}.case .terms li b{color:var(--ink);}
+ .flag{background:rgba(var(--panel-rgb),.62);border:1px solid rgba(var(--acc-rgb),.3);border-radius:12px;padding:26px;margin-bottom:20px;}
+ .flag h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin-bottom:10px;}
  .flag p{font-size:.95rem;color:var(--muted);line-height:1.7;}
- .flag .stats{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0;}
- .flag .stats div{background:rgba(var(--acc-rgb),.08);border:1px solid rgba(var(--acc-rgb),.2);border-radius:8px;padding:10px 16px;text-align:center;}
- .flag .stats .v{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);}
- .flag .stats .k{font-size:.7rem;color:var(--muted);}
- /* experience */
- .exp{border-top:1px solid rgba(255,255,255,.1);padding:24px 0;}
+ .flag .stats2{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0;}
+ .flag .stats2 div{background:rgba(var(--acc-rgb),.08);border:1px solid rgba(var(--acc-rgb),.2);border-radius:8px;padding:10px 16px;text-align:center;}
+ .flag .stats2 .v{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);}
+ .flag .stats2 .k{font-size:.7rem;color:var(--muted);}
+ .exp{border-top:1px solid var(--line);padding:24px 0;}
  .exp .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
  .exp h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;}
- .exp .org{color:var(--gold2);font-size:.9rem;}.exp .date{color:var(--muted);font-size:.82rem;}
+ .exp .org{color:var(--gold2);font-size:.9rem;}.exp .date{color:var(--muted);font-size:.82rem;font-family:ui-monospace,monospace;}
  .exp ul{margin:10px 0 0 0;padding:0;list-style:none;}
  .exp li{font-size:.92rem;color:var(--muted);line-height:1.6;padding-left:16px;position:relative;margin-bottom:6px;}
  .exp li::before{content:"▸";position:absolute;left:0;color:var(--gold);}
- /* writing */
- .essay{border-top:1px solid rgba(255,255,255,.1);padding:30px 0;max-width:720px;}
- .essay .meta{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+ .essay{border-top:1px solid var(--line);padding:30px 0;max-width:720px;}
+ .essay .meta{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
  .essay h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:12px;line-height:1.25;}
  .essay p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:14px;}
- /* certs/contact */
- .credrow{display:grid;grid-template-columns:200px 1fr;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding:14px 0;}
+ .credrow{display:grid;grid-template-columns:200px 1fr;gap:14px;border-top:1px solid var(--line);padding:14px 0;}
  @media(max-width:600px){.credrow{grid-template-columns:1fr;gap:2px;}}
  .credrow .o{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ink);}
  .credrow .d{font-size:.9rem;color:var(--muted);}
  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
- .chips span{font-size:.8rem;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:5px 12px;}
- .tooltip{position:fixed;z-index:30;pointer-events:none;background:rgba(var(--panel-rgb),.96);border:1px solid rgba(var(--acc-rgb),.5);border-radius:10px;padding:11px 14px;max-width:250px;opacity:0;transition:opacity .15s;backdrop-filter:blur(8px);}
+ .chips span{font-family:ui-monospace,monospace;font-size:.78rem;color:var(--gold2);background:rgba(var(--acc-rgb),.1);border:1px solid rgba(var(--acc-rgb),.25);border-radius:100px;padding:5px 12px;text-transform:uppercase;letter-spacing:.04em;}
+ .tooltip{position:fixed;z-index:30;pointer-events:none;background:rgba(var(--panel-rgb),.97);border:1px solid rgba(var(--acc-rgb),.5);border-radius:10px;padding:11px 14px;max-width:250px;opacity:0;transition:opacity .15s;backdrop-filter:blur(8px);}
  .tooltip .nm{font-family:Georgia,serif;font-size:15px;color:var(--gold2);margin-bottom:3px;}
  .tooltip .ds{font-size:11.5px;color:var(--muted);line-height:1.45;}
- .cue{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:4;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;}
- .staging{position:fixed;left:14px;bottom:14px;z-index:30;font-size:10.5px;color:var(--gold2);background:rgba(var(--panel-rgb),.9);border:1px solid rgba(var(--acc-rgb),.3);border-radius:8px;padding:6px 10px;}
- @media(prefers-reduced-motion: reduce){.cta,.card{transition:none;}}
+ .staging{position:fixed;left:14px;bottom:14px;z-index:30;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--gold2);background:rgba(var(--panel-rgb),.9);border:1px solid rgba(var(--acc-rgb),.3);border-radius:8px;padding:6px 10px;}
+ .foot{position:relative;z-index:3;text-align:center;padding:8vh 7vw 10vh;border-top:1px solid var(--line);color:var(--muted);font-size:12px;}
+ @media(prefers-reduced-motion: reduce){.ticker .track,.tkmarq .track{animation:none;}.cta,.card,.rcard{transition:none;}}
 </style>
 </head>
 <body>
 <canvas id="star" class="bg"></canvas>
 <canvas id="depth" class="bg"></canvas>
+<div class="veilHome" id="veilHome"></div>
 <div class="veilDepth" id="veilDepth"></div>
 
+<div class="ticker"><div class="track" id="tickerTrack"></div></div>
+
 <nav>
-  <div class="logo" onclick="go('home')">AA<b>Aleks Arriola</b></div>
+  <div class="logo" onclick="go('home')"><div class="pf">Portfolio · 2026</div><div class="nm">Aleks Arriola</div></div>
   <button class="navtoggle" onclick="document.getElementById('nl').classList.toggle('open')">☰</button>
   <div class="navlinks" id="nl">
-    <a onclick="go('home')" data-p="home">Home</a>
-    <a onclick="go('work')" data-p="work">Work</a>
-    <a onclick="go('cases')" data-p="cases">Case Studies</a>
-    <a onclick="go('finance')" data-p="finance">Finance</a>
-    <a onclick="go('experience')" data-p="experience">Experience</a>
-    <a onclick="go('writing')" data-p="writing">Writing</a>
-    <a onclick="go('certs')" data-p="certs">Certifications</a>
-    <a onclick="go('contact')" data-p="contact">Contact</a>
+    <a onclick="go('home')" data-p="home"><span class="no">00</span>Home</a>
+    <a onclick="go('work')" data-p="work"><span class="no">01</span>Work</a>
+    <a onclick="go('cases')" data-p="cases"><span class="no">02</span>Case Studies</a>
+    <a onclick="go('finance')" data-p="finance"><span class="no">03</span>Finance</a>
+    <a onclick="go('experience')" data-p="experience"><span class="no">04</span>Experience</a>
+    <a onclick="go('writing')" data-p="writing"><span class="no">05</span>Writing</a>
+    <a onclick="go('certs')" data-p="certs"><span class="no">06</span>Certifications</a>
+    <a onclick="go('contact')" data-p="contact"><span class="no">07</span>Contact</a>
   </div>
 </nav>
 
 <div class="page show" id="page-home">
   <div class="hero">
-    <div class="eyebrow">Finance × AI</div>
-    <h1>Aleks<br>Arriola<span class="sh">.</span></h1>
-    <div class="tag">A constellation of systems where finance meets AI. Hover a star to read it — or step inside.</div>
-    <div class="herobtns"><a class="cta" onclick="go('work')">Enter the work ↗</a><a class="cta ghost" onclick="go('cases')">Case studies</a></div>
+    <div class="eye">PORTFOLIO — ALEKS ARRIOLA</div>
+    <h1 class="big">Agentic AI,<br>built for <span class="sh">finance.</span></h1>
+    <div class="sub">Finance &amp; Accounting student at Hult, building AI agents and automation for real financial workflows — where generative AI meets quantitative finance.</div>
+    <div class="pills"><span>Agentic AI</span><span>Quantitative Finance</span><span>LLM Agents</span><span>Financial Modeling</span></div>
+    <div class="herobtns"><a class="cta" onclick="go('work')">Enter the work ↗</a><a class="cta ghost" href="#fig">See how it works ↓</a></div>
+    <div class="scrollcue" id="homeCue">↓ Scroll · or hover the constellation</div>
   </div>
-  <div class="cue" id="homeCue">Hover the stars · use the nav to step inside</div>
+
+  <div class="hsec" id="two">
+    <div class="seclabel">Two paths, my toolbox and a goal</div>
+    <div class="statement">I study the <span style="color:var(--gold)">finance that measures value</span> and the marketing that creates it — and teach myself the technical side through <span class="dim">curiosity, trial and error.</span> AI is my co-pilot; imagination decides what to build next.</div>
+  </div>
+
+  <div class="hsec" id="fig">
+    <div class="figwrap">
+      <div class="fighead">
+        <span class="t">FIG. 0 — The model proposes. Code enforces.</span>
+        <span class="ct">PROPOSED <b id="cProposed">0</b> · EXECUTED <b id="cExecuted">0</b> · ESCALATED <b id="cEscalated">0</b></span>
+      </div>
+      <svg class="fig" id="figSvg" viewBox="0 0 760 210" role="img" aria-label="Pipeline: input, LLM agent proposes, policy gate enforces, engine computes, output; escalates to human review.">
+        <path id="fMain" d="M70,78 L700,78" fill="none" stroke="rgba(146,172,155,.3)" stroke-width="1.5" stroke-dasharray="630" stroke-dashoffset="630"/>
+        <path id="fBranch" d="M370,100 L370,150" fill="none" stroke="rgba(146,172,155,.3)" stroke-width="1.3" stroke-dasharray="50" stroke-dashoffset="50"/>
+        <g><rect class="nbox" x="18" y="58" width="104" height="40" rx="5"/><text class="nlabel" x="30" y="74">01 · INPUT</text><text class="ntitle" x="30" y="90">Request</text></g>
+        <g><rect class="nbox" x="150" y="58" width="132" height="40" rx="5"/><text class="nlabel" x="162" y="74">02 · LLM AGENT</text><text class="ntitle" x="162" y="90">Proposes</text></g>
+        <g><rect class="nbox gate" id="gateBox" x="308" y="56" width="126" height="44" rx="5"/><text class="nlabel" x="320" y="73">03 · POLICY GATE</text><text class="ntitle" x="320" y="89">Enforces</text></g>
+        <g><rect class="nbox" x="464" y="58" width="120" height="40" rx="5"/><text class="nlabel" x="476" y="74">04 · ENGINE</text><text class="ntitle" x="476" y="90">Computes</text></g>
+        <g><rect class="nbox" id="outBox" x="612" y="58" width="128" height="40" rx="5"/><text class="nlabel" x="624" y="74">05 · OUTPUT</text><text class="ntitle" x="624" y="90">Model · memo</text></g>
+        <g><rect class="nbox" x="306" y="150" width="130" height="36" rx="5"/><text class="nlabel" x="318" y="165">ESCALATE</text><text class="ntitle" x="318" y="180" style="font-size:12px;">Human review</text></g>
+        <text class="ann" x="162" y="116">LangGraph · Granite</text>
+        <text class="ann" x="476" y="116">NumPy · SciPy · Move</text>
+        <text class="ann" id="blockedTag" x="371" y="46" text-anchor="middle" style="fill:#d4916e;opacity:0;">BLOCKED</text>
+        <circle id="fMarker" r="5" fill="#c9dace" cx="70" cy="78" opacity="0"/>
+      </svg>
+      <div class="figcap">The LLM only proposes — a deterministic policy gate and on-chain contracts enforce every decision, or escalate it to a human.</div>
+    </div>
+  </div>
+
+  <div class="hsec band"><div class="wrap">
+    <div class="seclabel">By the numbers</div>
+    <div class="stats" id="statBand"></div>
+  </div></div>
+
+  <div class="hsec">
+    <div class="seclabel">Recognition — challenges &amp; achievements</div>
+    <div class="recog" id="recogGrid"></div>
+  </div>
+
+  <div class="hsec band" style="padding:0;">
+    <div class="seclabel" style="max-width:1100px;margin:28px auto 14px;padding:0 7vw;">Toolkit — what I build with</div>
+    <div class="tkmarq"><div class="track" id="tkTrack"></div></div>
+    <div style="height:28px;"></div>
+  </div>
+
+  <div class="hsec">
+    <div class="seclabel">About — finance, meet agentic AI</div>
+    <div class="prose" id="aboutProse"></div>
+    <div class="herobtns" style="margin-top:26px;"><a class="cta" onclick="go('contact')">Get in touch ↗</a><a class="cta ghost" onclick="go('cases')">Read the case studies ↗</a></div>
+  </div>
+
+  <div class="foot">© 2026 Aleks Arriola — Agentic AI, built for finance.</div>
 </div>
 
-<div class="page" id="page-work"><div class="inner"><div class="kick">Selected systems</div><h2>Work</h2>
-  <p class="lead">Live systems at the intersection of agentic AI and quantitative finance. Every one is something you can open and inspect — the depth field behind these pages is the same constellation from the home.</p>
+<div class="page" id="page-work"><div class="inner"><div class="seclabel">Selected systems</div><h2>Work</h2>
+  <p class="lead">Live systems at the intersection of agentic AI and quantitative finance — each one something you can open and inspect.</p>
   <div class="grid" id="workGrid"></div></div></div>
 
-<div class="page" id="page-cases"><div class="inner"><div class="kick">Systems → risk decisions</div><h2>Case Studies</h2>
+<div class="page" id="page-cases"><div class="inner"><div class="seclabel">Systems → risk decisions</div><h2>Case Studies</h2>
   <p class="lead">Each system framed by the risk decision it informs, the control I designed to bound it, the trade-offs that introduced, and when I'd distrust it.</p>
   <div id="caseList"></div></div></div>
 
-<div class="page" id="page-finance"><div class="inner"><div class="kick">Financial work</div><h2>Finance</h2>
+<div class="page" id="page-finance"><div class="inner"><div class="seclabel">Financial work</div><h2>Finance</h2>
   <p class="lead">Tools and models built on real SEC and market data — screening, valuation, and the controls around them.</p>
   <div id="financeFlags"></div>
-  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin:30px 0 16px;">Areas of practice</h3>
+  <div class="seclabel" style="margin-top:34px;">Areas of practice</div>
   <div class="grid" id="financeAreas"></div></div></div>
 
-<div class="page" id="page-experience"><div class="inner"><div class="kick">Professional experience</div><h2>Experience</h2>
+<div class="page" id="page-experience"><div class="inner"><div class="seclabel">Professional experience</div><h2>Experience</h2>
   <p class="lead">Finance-focused roles across analytical, client-facing, and operational work — the groundwork behind the systems I build today.</p>
   <div id="expList"></div></div></div>
 
-<div class="page" id="page-writing"><div class="inner"><div class="kick">Essays</div><h2>Writing</h2>
+<div class="page" id="page-writing"><div class="inner"><div class="seclabel">Essays</div><h2>Writing</h2>
   <p class="lead">Short essays from building — AI systems, markets, and what happens at their intersection. A new one publishes most days.</p>
   <div id="essayList"></div></div></div>
 
-<div class="page" id="page-certs"><div class="inner"><div class="kick">Credentials</div><h2>Certifications</h2>
+<div class="page" id="page-certs"><div class="inner"><div class="seclabel">Credentials</div><h2>Certifications</h2>
   <p class="lead">Virtual experience programs and courses across banking, finance, risk, and technology.</p>
   <div id="credList"></div>
-  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin:30px 0 10px;">Toolkit</h3>
+  <div class="seclabel" style="margin-top:34px;">Toolkit</div>
   <div class="chips" id="toolkitChips"></div></div></div>
 
-<div class="page" id="page-contact"><div class="inner"><div class="kick">Contact</div><h2>Let's connect.</h2>
+<div class="page" id="page-contact"><div class="inner"><div class="seclabel">Contact</div><h2>Let's connect.</h2>
   <p class="lead">Open to finance + AI opportunities. Interning at The 1525 while studying and building.</p>
   <div class="herobtns">
     <a class="cta" href="mailto:aleksarriola@gmail.com">Email</a>
@@ -187,7 +295,7 @@
   </div></div></div>
 
 <div class="tooltip" id="tooltip"><div class="nm"></div><div class="ds"></div></div>
-<div class="staging">Preview build · Forest · A home + C pages</div>
+<div class="staging">Preview · Forest · craft pass</div>
 
 <script src="assets/js/portfolio-data.js"></script>
 <script src="assets/js/essays.js"></script>
