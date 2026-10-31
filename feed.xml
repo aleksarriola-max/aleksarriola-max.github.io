@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Fri, 30 Oct 2026 15:26:12 +0000</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 14:54:14 +0000</lastBuildDate>
+<item>
+<title>What My Internship at The 1525 Taught Me About Working Without Supervision</title>
+<link>https://aleksarriola-max.github.io/#essay-101</link>
+<guid isPermaLink="false">essay-101</guid>
+<category>Perspective</category>
+<pubDate>Sat, 31 Oct 2026 00:00:00 +0000</pubDate>
+<description>The recommendation from Jason Sizer at The 1525 says I could take an objective, work through ambiguity and deliver without constant supervision. Reading it, I realized that sentence describes a skill I had never consciously practiced. Nobody teaches it, and in a finance internship it turns out to be</description>
+</item>
 <item>
 <title>Why Race Telemetry Made Me Distrust Smooth Forecasts</title>
 <link>https://aleksarriola-max.github.io/#essay-100</link>

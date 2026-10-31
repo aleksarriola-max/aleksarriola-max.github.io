@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 101,
+  "tag": "Perspective",
+  "date": "October 31, 2026",
+  "title": "What My Internship at The 1525 Taught Me About Working Without Supervision",
+  "body": [
+   "The recommendation from Jason Sizer at The 1525 says I could take an objective, work through ambiguity and deliver without constant supervision. Reading it, I realized that sentence describes a skill I had never consciously practiced. Nobody teaches it, and in a finance internship it turns out to be most of the job.",
+   "Ambiguity is the normal state of real work. Tasks arrive half-defined, the person who assigned them is busy, and the right answer depends on context nobody wrote down. The temptation is to ask for clarification at every step, which feels responsible but quietly transfers the thinking back to the manager. What I learned instead was to restate the objective in my own words, make my assumptions explicit, do the work, and flag the judgment calls rather than hiding them.",
+   "That approach respects a founder’s time without hiding my uncertainty. The assumptions section does the work a question would have done, except it arrives alongside a finished draft, which can be corrected instead of merely answered. I now apply the same habit to my own projects, where there is no manager at all. Being reliable without supervision is mostly the discipline of making your reasoning visible, so that anyone reviewing the work can see where you decided and why. That visibility is what lets people trust you with the next, harder task."
+  ]
+ },
+ {
   "id": 100,
   "tag": "AI Systems",
   "date": "October 30, 2026",
