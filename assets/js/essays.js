@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 102,
+  "tag": "Perspective",
+  "date": "November 1, 2026",
+  "title": "Redesigning Onboarding Beat Writing Another Sales Script",
+  "body": [
+   "At SeOnline I managed the full sales cycle, from outreach to negotiation to closing. The obvious way to improve results was to sharpen how I talked on calls. Instead, the largest gain came from redesigning client onboarding: organizing client information and streamlining how sales calls were handled, which improved process efficiency by thirty-five percent.",
+   "The reason is that scripts optimize the moment of persuasion, while onboarding determines everything around it. Disorganized client information meant repeated questions, wasted calls and context lost between conversations. Each friction point cost time and quietly eroded confidence. Fixing the system removed a whole category of problem, whereas a better script would have improved only the part of the process that was already working.",
+   "I carry this into technical work. When a result disappoints, the instinct is to tune the visible step, the prompt or the pitch, when the real leverage often sits in how information flows into it. In a sales process, in an agent pipeline and in a financial model, the quality of the inputs and the structure around the moment of action usually beats cleverness at the moment itself. I find it reassuring that a lesson from a client-facing role maps so directly onto engineering, and it keeps me looking upstream first."
+  ]
+ },
+ {
   "id": 101,
   "tag": "Perspective",
   "date": "October 31, 2026",
