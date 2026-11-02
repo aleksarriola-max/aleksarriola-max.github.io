@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 103,
+  "tag": "Perspective",
+  "date": "November 2, 2026",
+  "title": "What Studying at Hult Taught Me About Learning Across Disciplines",
+  "body": [
+   "I study Finance and Accounting at Hult, and I spend a large share of my free time building AI agents. People often ask whether those are two separate lives. They are not, and I have come to believe the overlap is the most valuable thing I own. Each field fixes blind spots in the other.",
+   "Finance teaches me to ask what a number means and who benefits from a particular framing. That skepticism is exactly what AI systems need, because models produce confident output that nobody has audited. Engineering teaches me to turn a vague process into steps that can be tested, which is what most financial workflows desperately lack. The scanner, the valuation kits and the Deal Swarm all exist because I could see a financial problem and also see how to automate it.",
+   "I do not think the goal is to be a half-expert in two areas. The goal is to be fluent enough in both to recognize where one field’s solution fits the other’s problem. That fluency only comes from doing real work in each, not from sampling them. A classroom gives me the theory and a project gives me the failure modes, and I need both. If I have a claim to differentiation, it is not that I know more than specialists, but that I can translate between them."
+  ]
+ },
+ {
   "id": 102,
   "tag": "Perspective",
   "date": "November 1, 2026",
