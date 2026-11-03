@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 104,
+  "tag": "Perspective",
+  "date": "November 3, 2026",
+  "title": "Forty-Two Simulations Taught Me How to Learn Fast, Not Deeply",
+  "body": [
+   "I have completed forty-two Forage job simulations across banking, finance, consulting and technology. It is easy to list that number and hard to explain what it is actually worth. Having thought about it, I believe it is worth something specific, and that being honest about its limits makes the credential stronger rather than weaker.",
+   "What simulations teach is orientation. In a few hours, I learn what a credit analyst or a controller actually produces, what vocabulary they use and which problems keep them busy. That breadth helped me decide where to dig deeper, which is why risk, audit and valuation ended up shaping my projects. It is cheap exploration, and exploration is underrated in a career, where early commitment is often made with almost no information.",
+   "What simulations do not teach is depth under pressure, where real data is messy and consequences are real. I try not to confuse the two. The simulations point me to a field, and the projects and internships test whether I can do the work. I would rather say plainly that the certificates mark breadth, and let the projects carry the claim about depth. Learning quickly is a real skill, but it is a first step, and pretending otherwise would only invite the interviewer to find the gap."
+  ]
+ },
+ {
   "id": 103,
   "tag": "Perspective",
   "date": "November 2, 2026",
