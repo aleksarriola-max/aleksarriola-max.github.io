@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 105,
+  "tag": "Perspective",
+  "date": "November 4, 2026",
+  "title": "Why I Take Courses Outside Finance",
+  "body": [
+   "Among my certifications are a course on modern art from MoMA, one on creative thinking from Imperial College London and one on emotional intelligence from the University of Michigan. None of them will appear in a valuation model. I took them deliberately, and I think they affect my work more than some of the technical ones.",
+   "Finance and engineering both reward precision, which can slowly train you to distrust anything that cannot be measured. But most important problems begin with something unmeasured: an unclear customer need, a team that is not communicating, an assumption nobody questioned. Studying art taught me to look at something for a long time before judging it. Creative thinking gave me methods for generating options before narrowing them. Emotional intelligence reminded me that every spreadsheet is eventually read by a person.",
+   "Those habits show up in the work. When I design an interface for an AI system, I think about what a tired operator will feel, not only what the model can do. When I write about a model, I try to see it as its critics would. I do not think breadth is a substitute for depth, but it widens the space of ideas I draw from. The best technical work I have seen was done by people who had somewhere else to borrow from."
+  ]
+ },
+ {
   "id": 104,
   "tag": "Perspective",
   "date": "November 3, 2026",
