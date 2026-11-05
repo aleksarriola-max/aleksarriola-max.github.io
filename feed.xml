@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 04 Nov 2026 16:40:59 +0000</lastBuildDate>
+<lastBuildDate>Thu, 05 Nov 2026 16:57:09 +0000</lastBuildDate>
+<item>
+<title>Thinking in Two Languages Changed How I Write Specs</title>
+<link>https://aleksarriola-max.github.io/#essay-106</link>
+<guid isPermaLink="false">essay-106</guid>
+<category>Perspective</category>
+<pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
+<description>I work in English and Spanish, and the portfolio itself has a toggle between them. Maintaining two languages has quietly changed how I write, particularly the specifications and prompts I use when building AI systems. Translation is an unforgiving test of whether you actually meant something precise</description>
+</item>
 <item>
 <title>Why I Take Courses Outside Finance</title>
 <link>https://aleksarriola-max.github.io/#essay-105</link>

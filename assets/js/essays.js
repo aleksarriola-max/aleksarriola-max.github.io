@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 106,
+  "tag": "Perspective",
+  "date": "November 5, 2026",
+  "title": "Thinking in Two Languages Changed How I Write Specs",
+  "body": [
+   "I work in English and Spanish, and the portfolio itself has a toggle between them. Maintaining two languages has quietly changed how I write, particularly the specifications and prompts I use when building AI systems. Translation is an unforgiving test of whether you actually meant something precise.",
+   "Vague writing survives in one language because the reader fills the gaps with shared assumptions. When I translate, those gaps become visible, because a word with a flexible meaning in English may force a specific choice in Spanish. A sentence I thought was clear turns out to contain two possible meanings, and I have to decide which I intended. That discovery is uncomfortable and extremely useful.",
+   "The same applies to prompts and requirements. A model reads instructions literally and has no shared context to fall back on, so ambiguity that a colleague would resolve silently becomes a source of unpredictable behavior. Writing as if for a translator, spelling out what is implied and choosing exact terms, makes both specs and prompts more reliable. Being bilingual did not just give me access to more readers. It gave me a habit of asking whether a sentence would survive being rebuilt in another language, which is a surprisingly good test of clarity."
+  ]
+ },
+ {
   "id": 105,
   "tag": "Perspective",
   "date": "November 4, 2026",
