@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 107,
+  "tag": "Perspective",
+  "date": "November 6, 2026",
+  "title": "What a Recommendation Can and Cannot Prove",
+  "body": [
+   "My portfolio includes a recommendation from Jason Sizer, director at The 1525, and I have thought carefully about what it demonstrates. It is easy to treat a recommendation as proof of ability. It is better understood as a specific kind of evidence, with real strengths and clear limits.",
+   "What it proves well is behavior over time: reliability, judgment under ambiguity and how someone handles being trusted. Those qualities are hard to show in a project, because a project is a snapshot and an internship is a sustained observation. A founder who watched me work for weeks can say things about my consistency that no code repository can. That is why I link to the full text rather than quoting only the flattering line.",
+   "What it cannot prove is technical depth, which is why it sits beside live apps that anyone can open. The two kinds of evidence cover each other’s weaknesses. A project shows what I can build, and a recommendation shows what I am like to work with. I try to present portfolio material the same way I would treat a financial claim, by pairing every assertion with something checkable. If a reader wants to disagree with me, I want them to have the evidence in front of them."
+  ]
+ },
+ {
   "id": 106,
   "tag": "Perspective",
   "date": "November 5, 2026",

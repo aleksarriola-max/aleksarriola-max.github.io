@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 05 Nov 2026 16:57:09 +0000</lastBuildDate>
+<lastBuildDate>Fri, 06 Nov 2026 16:29:35 +0000</lastBuildDate>
+<item>
+<title>What a Recommendation Can and Cannot Prove</title>
+<link>https://aleksarriola-max.github.io/#essay-107</link>
+<guid isPermaLink="false">essay-107</guid>
+<category>Perspective</category>
+<pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate>
+<description>My portfolio includes a recommendation from Jason Sizer, director at The 1525, and I have thought carefully about what it demonstrates. It is easy to treat a recommendation as proof of ability. It is better understood as a specific kind of evidence, with real strengths and clear limits. What it prov</description>
+</item>
 <item>
 <title>Thinking in Two Languages Changed How I Write Specs</title>
 <link>https://aleksarriola-max.github.io/#essay-106</link>
