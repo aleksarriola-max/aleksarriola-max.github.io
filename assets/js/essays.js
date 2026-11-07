@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 108,
+  "tag": "Perspective",
+  "date": "November 7, 2026",
+  "title": "Being Open to Opportunities Without Sounding Desperate",
+  "body": [
+   "My homepage says I am open to finance and AI opportunities, and writing that sentence took longer than building some of my apps. There is a fine line between confident availability and visible desperation, and most early-career messaging lands on the wrong side of it.",
+   "What I have learned is that desperation shows in vagueness. Saying I will do anything signals that I have not thought about what I am good at. Saying I am interested in roles that combine agentic AI, financial modeling and systems thinking signals a direction, and a direction is attractive because it makes the next conversation easier for the reader. Specificity reads as confidence, and it also filters out roles that would not suit me.",
+   "So I let the work make the case and keep the language plain. Each project name, each live demo and each essay is a sample of how I think, which means I do not need adjectives. When I reach out, I try to say what I noticed about their problem and how my experience connects, instead of asking for a chance. Opportunity usually flows toward people who make it easy to see what they would do. The most persuasive thing I can offer is a clear picture, not an appeal."
+  ]
+ },
+ {
   "id": 107,
   "tag": "Perspective",
   "date": "November 6, 2026",
