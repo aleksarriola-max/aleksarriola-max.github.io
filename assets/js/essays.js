@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 109,
+  "tag": "Perspective",
+  "date": "November 8, 2026",
+  "title": "The Hidden Cost of Maintaining Eight Live Apps",
+  "body": [
+   "My portfolio lists eight live apps, and a visitor sees that as a count of achievements. I see it as a maintenance obligation. Each one is a promise that someone clicking a link in six months will find something that works, and I only recently understood how expensive that promise is.",
+   "Software decays even when nobody touches it. Dependencies change, APIs shift, free tiers alter their limits, and data sources disappear. An app that impressed a reviewer last spring can show an error this autumn. Shipping is a single event, but keeping something alive is a continuing cost, and the cost compounds with every addition. Eight apps means eight places for something to break quietly.",
+   "That changed my behavior in two ways. I now build with fewer moving parts, preferring simpler stacks and fewer external dependencies, because every dependency is a future failure. And I check the live links regularly, since a broken demo is worse than no demo at all. It is a useful lesson for any professional: output is easy to count, but reliability over time is what people actually remember. I would rather maintain five working apps than showcase twelve, and I am still working toward the discipline that statement implies."
+  ]
+ },
+ {
   "id": 108,
   "tag": "Perspective",
   "date": "November 7, 2026",

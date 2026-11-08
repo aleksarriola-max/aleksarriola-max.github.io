@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 07 Nov 2026 15:16:38 +0000</lastBuildDate>
+<lastBuildDate>Sun, 08 Nov 2026 15:40:08 +0000</lastBuildDate>
+<item>
+<title>The Hidden Cost of Maintaining Eight Live Apps</title>
+<link>https://aleksarriola-max.github.io/#essay-109</link>
+<guid isPermaLink="false">essay-109</guid>
+<category>Perspective</category>
+<pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate>
+<description>My portfolio lists eight live apps, and a visitor sees that as a count of achievements. I see it as a maintenance obligation. Each one is a promise that someone clicking a link in six months will find something that works, and I only recently understood how expensive that promise is. Software decays</description>
+</item>
 <item>
 <title>Being Open to Opportunities Without Sounding Desperate</title>
 <link>https://aleksarriola-max.github.io/#essay-108</link>
