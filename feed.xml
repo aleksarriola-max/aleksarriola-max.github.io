@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 08 Nov 2026 15:40:08 +0000</lastBuildDate>
+<lastBuildDate>Mon, 09 Nov 2026 19:20:51 +0000</lastBuildDate>
+<item>
+<title>What the Bloomberg Client Engagement Course Taught Me About Service</title>
+<link>https://aleksarriola-max.github.io/#essay-110</link>
+<guid isPermaLink="false">essay-110</guid>
+<category>Perspective</category>
+<pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
+<description>I completed the Bloomberg client engagement and client service simulations alongside the Bloomberg Essentials work, expecting to learn about the terminal. I learned more about service. The product is a data platform, but the job of the people around it is to make customers successful with it. A clie</description>
+</item>
 <item>
 <title>The Hidden Cost of Maintaining Eight Live Apps</title>
 <link>https://aleksarriola-max.github.io/#essay-109</link>

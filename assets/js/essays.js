@@ -1,6 +1,17 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 110,
+  "tag": "Perspective",
+  "date": "November 9, 2026",
+  "title": "What the Bloomberg Client Engagement Course Taught Me About Service",
+  "body": [
+   "I completed the Bloomberg client engagement and client service simulations alongside the Bloomberg Essentials work, expecting to learn about the terminal. I learned more about service. The product is a data platform, but the job of the people around it is to make customers successful with it.",
+   "A client rarely arrives with a clear question. They describe a symptom, such as slow reports or missing data, and the real skill is finding the underlying need while staying patient and specific. Good service means listening for what the customer is trying to accomplish, answering that, and then anticipating the next question. Technical knowledge matters, but it is useless if the client feels dismissed or confused.",
+   "That perspective changed how I think about my own projects. A tool I build is only valuable if the person using it can accomplish something, which means I should care about onboarding, error messages and what happens when someone gets stuck. I also recognized that client service is a skill many technical people undervalue and can practice. Understanding how to help someone through a problem, without condescension and without jargon, is a competitive advantage in any field where technology is sold, supported or explained to people who are not engineers."
+  ]
+ },
+ {
   "id": 109,
   "tag": "Perspective",
   "date": "November 8, 2026",
