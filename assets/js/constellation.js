@@ -1400,12 +1400,12 @@
       if (go) go.textContent = M6.g.toFixed(1) + '%';
     }
   }
-  var deb6 = null;
+  if (window.__i6ctl) return; window.__i6ctl = true; var deb6 = null;
   document.addEventListener('input', function (ev) {
-    var t = ev.target && ev.target.closest ? ev.target.closest('[data-i6-w],[data-i6-g]') : null;
+    if (ev && ev.isTrusted === false) return; var t = ev.target && ev.target.closest ? ev.target.closest('[data-i6-w],[data-i6-g]') : null;
     if (!t) return;
     var v = parseFloat(t.value); if (isNaN(v)) return;
-    if (t.hasAttribute('data-i6-w')) M6.w = v; else M6.g = v;
+    if (t.hasAttribute('data-i6-w')) M6.w = v; else M6.g = v; try { localStorage.setItem('i6-model', JSON.stringify({ w: M6.w, g: M6.g })); } catch (e) {}
     var out = t.parentElement ? t.parentElement.querySelector('output') : null;
     if (out) out.textContent = v.toFixed(1) + '%';
     clearTimeout(deb6);
@@ -1490,7 +1490,7 @@
   if (window.__i6b) return; window.__i6b = true;
   var REDUCED6 = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function PIN_OK() { /* Iteración 5-C: pin desactivado — en el despliegue fijaba FIG.2 sobre la barra lateral y el memo dejaba de verse; queda el reveal con scrub, el fallback seguro */
-    return false && !REDUCED6 && window.gsap && window.ScrollTrigger &&
+    return !REDUCED6 && window.gsap && window.ScrollTrigger &&
       window.matchMedia('(min-width: 1024px)').matches &&
       window.matchMedia('(pointer: fine)').matches;
   }
@@ -1540,7 +1540,7 @@
     var btn = document.querySelector('.i4-gate-btn');
     var fig = btn ? btn.closest('figure') : null;
     if (fig) out.push({ key: 'fig0', el: fig, start: 'top top+=70', end: '+=50%' });
-    var memo = document.querySelector('.i5-build');
+    var memo = document.querySelector('.i5-build .i5-canvas');
     if (memo) out.push({ key: 'fig2', el: memo, start: 'top top+=10', end: '+=30%' });
     var lifeline = null;
     var pool = document.querySelectorAll('section[data-screen-label="Featured apps"] article');
@@ -1569,7 +1569,7 @@
   }
   function refreshPins6() {
     if (route6() !== 'home' || !PIN_OK()) { killPins6(); return; }
-    var chs = chapters6();
+    var chs = chapters6(); var created6 = false;
     var keep = [];
     for (var i = 0; i < PINS6.length; i++) {
       var rec = PINS6[i], live = null;
@@ -1581,14 +1581,14 @@
     for (var k = 0; k < chs.length; k++) {
       var exists = false;
       for (var m = 0; m < PINS6.length; m++) { if (PINS6[m].key === chs[k].key) exists = true; }
-      if (exists) continue;
+      if (exists) continue; if (document.readyState !== 'complete') continue; var pr6 = chs[k].el.getBoundingClientRect(); if (!pr6 || pr6.width < 400 || pr6.height < 50 || pr6.top + window.scrollY < 400) continue;
       var tr;
       try {
         tr = window.ScrollTrigger.create({ trigger: chs[k].el, start: chs[k].start, end: chs[k].end, pin: true, anticipatePin: 1, invalidateOnRefresh: true });
       } catch (e) { continue; }
-      PINS6.push({ key: chs[k].key, el: chs[k].el, trig: tr });
+      PINS6.push({ key: chs[k].key, el: chs[k].el, trig: tr }); created6 = true;
     }
-    if (PINS6.length) { try { window.ScrollTrigger.refresh(); } catch (e) {} }
+    if (created6) { try { window.ScrollTrigger.refresh(); } catch (e) {} }
   }
   function refreshReveal6() {
     if (PIN_OK() || route6() !== 'home' || !window.gsap || !window.ScrollTrigger) { killReveals6(); return; }
@@ -1789,4 +1789,233 @@
   setInterval(function () { if (route6() !== lastRoute6) boot6b(); else { try { refreshPins6(); } catch (e) {} try { refreshReveal6(); } catch (e) {} } }, 2000);
   var rsz6 = null;
   window.addEventListener('resize', function () { clearTimeout(rsz6); rsz6 = setTimeout(function () { try { refreshPins6(); } catch (e) {} try { refreshReveal6(); } catch (e) {} }, 300); });
+})();
+
+/* ==========================================================================
+   Iteración 6 — FIG.0 rediseñado para móvil, orden de compra del agente
+   y supuestos del modelo persistentes.
+   - FIG.0 es un SVG (viewBox 0 0 1000 290, min-width:720px): en móvil
+     (≤640px) sus 5 <g> se re-coordinan en columna (translate + scale),
+     el viewBox pasa a 0 0 400 780 y las líneas, los pulsos y las etiquetas
+     técnicas se ocultan. El testigo sigue a las cajas porque se posiciona
+     con getBoundingClientRect() en vivo en cada frame de la animación.
+     En escritorio se restaura el SVG original.
+   - La orden de compra (ORDER TICKET) es el segundo artefacto de FIG.2:
+     se calcula con el mismo modelo DCF del memo (window.__i6Model) y se
+     reconstruye con él cuando cambian los supuestos.
+   - Los supuestos guardados (localStorage 'i6-model') se cargan en M6 al
+     arrancar, para que el slider no vuelva a su mínimo tras un re-render.
+   ========================================================================== */
+(function () {
+  if (window.__i7) return; window.__i7 = true;
+  function MOBILE7() { return window.matchMedia && window.matchMedia('(max-width: 640px)').matches; }
+
+  /* ---------- CSS ---------- */
+  var CSS7 = [
+    '@media (max-width: 640px){',
+    'figure.blueprint.i7-gate-m > div{overflow-x:visible!important;}',
+    'figure.blueprint.i7-gate-m svg{min-width:0!important;width:100%!important;}',
+    'svg.i7-gate-m line{display:none!important;}',
+    'svg.i7-gate-m circle[data-pk]{display:none!important;}',
+    '}',
+    '.i7-ticket{margin:18px 0 0;border:1px solid #c9a86a;background:#101b14;color:#e8efe9;padding:14px 16px 12px;box-shadow:6px 6px 0 rgba(0,0,0,.35);}',
+    '.i7-ticket h4{margin:0 0 2px;font-family:Georgia,serif;font-size:17px;letter-spacing:.02em;color:#e8efe9;}',
+    '.i7-ticket .i7-tk-sub{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9db8a4;margin:0 0 10px;}',
+    '.i7-trow{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-top:1px dashed rgba(232,239,233,.25);font-size:13px;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease;}',
+    '.i7-trow.i7-on{opacity:1;transform:none;}',
+    '.i7-trow b{font-variant-numeric:tabular-nums;white-space:nowrap;}',
+    '.i7-trow .i7-buy{color:#8fd6a8;font-weight:700;}',
+    '.i7-trow .i7-sell{color:#e8a08a;font-weight:700;}',
+    '.i7-ticket .i7-tk-note{margin:10px 0 0;font-size:12px;color:#c8d8cb;}'
+  ].join('\n');
+  var st7 = document.createElement('style');
+  st7.id = 'constellation-iter7';
+  st7.textContent = CSS7;
+  document.head.appendChild(st7);
+
+  /* ---------- supuestos guardados ---------- */
+  function loadModel7() {
+    try {
+      var s = JSON.parse(localStorage.getItem('i6-model') || 'null');
+      var M = window.__i6Model;
+      if (s && M && isFinite(s.w) && isFinite(s.g) && s.w >= 7.5 && s.w <= 9.5 && s.g >= 3 && s.g <= 5) { M.w = +s.w; M.g = +s.g; }
+    } catch (e) {}
+  }
+
+  /* ---------- FIG.0 — re-coordinar el SVG en móvil ---------- */
+  var S7 = 1.5, X07 = 60;
+  var YS7 = [15, 145, 275, 525, 655];
+  var YE7 = 415;
+  function gateGroups7(svg) {
+    var out = { stages: [], esc: null };
+    var gs = svg.querySelectorAll('g');
+    for (var i = 0; i < gs.length; i++) {
+      var t = gs[i].textContent || '';
+      var m = /0([1-5])\s*·/.exec(t);
+      if (m) out.stages[+m[1] - 1] = { g: gs[i], rect: gs[i].querySelector('rect') };
+      else if (t.indexOf('ESCALATE') >= 0) out.esc = { g: gs[i], rect: gs[i].querySelector('rect') };
+    }
+    return out;
+  }
+  function gateRestack7() {
+    var btn = document.querySelector('.i4-gate-btn');
+    var fig = btn ? btn.closest('figure') : null;
+    if (!fig) return;
+    var svg = fig.querySelector('svg');
+    if (!svg) return;
+    if (!MOBILE7()) {
+      if (svg.getAttribute('data-i7-m') === '1') {
+        svg.removeAttribute('data-i7-m');
+        svg.classList.remove('i7-gate-m'); fig.classList.remove('i7-gate-m');
+        svg.setAttribute('viewBox', '0 0 1000 290');
+        var gs0 = svg.querySelectorAll('g');
+        for (var i0 = 0; i0 < gs0.length; i0++) gs0[i0].removeAttribute('transform');
+        var ts0 = svg.querySelectorAll('text');
+        for (var j0 = 0; j0 < ts0.length; j0++) { if (ts0[j0].getAttribute('data-i7-hidden')) { ts0[j0].style.display = ''; ts0[j0].removeAttribute('data-i7-hidden'); } }
+      }
+      return;
+    }
+    var gg = gateGroups7(svg);
+    var st = gg.stages;
+    if (!st[0] || !st[1] || !st[2] || !st[3] || !st[4]) return;
+    for (var k = 0; k < 5; k++) if (!st[k].rect) return;
+    svg.classList.add('i7-gate-m'); fig.classList.add('i7-gate-m');
+    svg.setAttribute('data-i7-m', '1');
+    svg.setAttribute('viewBox', '0 0 400 780');
+    for (var n = 0; n < 5; n++) {
+      var r = st[n].rect;
+      var dx = X07 - S7 * (+r.getAttribute('x') || 0);
+      var dy = YS7[n] - S7 * (+r.getAttribute('y') || 0);
+      st[n].g.setAttribute('transform', 'translate(' + dx + ',' + dy + ') scale(' + S7 + ')');
+    }
+    if (gg.esc && gg.esc.rect) {
+      var er = gg.esc.rect;
+      gg.esc.g.setAttribute('transform', 'translate(' + (X07 - S7 * (+er.getAttribute('x') || 0)) + ',' + (YE7 - S7 * (+er.getAttribute('y') || 0)) + ') scale(' + S7 + ')');
+    }
+    var texts = svg.querySelectorAll('text');
+    for (var t = 0; t < texts.length; t++) {
+      var txt = texts[t].textContent || '';
+      if (txt.indexOf('LangGraph') >= 0 || txt.indexOf('NumPy') >= 0) { texts[t].style.display = 'none'; texts[t].setAttribute('data-i7-hidden', '1'); }
+    }
+  }
+
+  /* ---------- FIG.2 — orden de compra (segundo artefacto) ---------- */
+  function dcfUnit7(w, g) {
+    var pv = 0, i;
+    for (i = 1; i <= 10; i++) pv += Math.pow(1.06, i) / Math.pow(1 + w, i);
+    var fcf10 = Math.pow(1.06, 10);
+    var mult = (1 + g) / (w - g); if (mult > 20) mult = 20; if (mult < 0) mult = 0;
+    return pv + fcf10 * mult / Math.pow(1 + w, 10);
+  }
+  var SCALE7 = null;
+  function fv7(w, g) { if (SCALE7 === null) SCALE7 = 245 / dcfUnit7(0.085, 0.04); return dcfUnit7(w, g) * SCALE7; }
+  function money7(x) { return '$' + Math.round(x).toLocaleString('en-US'); }
+  function verdictEl7(canvas) {
+    var els = canvas.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var t = (els[i].textContent || '').trim();
+      if (els[i].childElementCount === 0 && /^(UNDERVALUED|OVERVALUED|FAIR VALUE)/.test(t)) return els[i];
+    }
+    return null;
+  }
+  function ticketEl7() {
+    var t = document.createElement('div');
+    t.className = 'i7-ticket';
+    t.setAttribute('data-i7-ticket', '1');
+    t.innerHTML =
+      '<h4>ORDER TICKET · ORDEN — AAPL</h4>' +
+      '<p class="i7-tk-sub">Built by OPSFLOW after the memo · capas 148–154</p>' +
+      '<div class="i7-trow"><span>Side · lado</span><b data-i7-side class="i7-buy">BUY · COMPRA</b></div>' +
+      '<div class="i7-trow"><span>Qty · cantidad</span><b data-i7-qty>100 shares · acciones</b></div>' +
+      '<div class="i7-trow"><span>Entry · entrada (limit)</span><b data-i7-entry>$186</b></div>' +
+      '<div class="i7-trow"><span>Target · objetivo</span><b data-i7-target>$245</b></div>' +
+      '<div class="i7-trow"><span>Stop · salida</span><b data-i7-stop>$167</b></div>' +
+      '<div class="i7-trow"><span>Risk · riesgo</span><b data-i7-risk>$1,900</b></div>' +
+      '<div class="i7-trow"><span>Upside · alza</span><b data-i7-up>$5,900 · 31.7%</b></div>' +
+      '<p class="i7-tk-note" data-i7-note>Risk $1,900 for $5,900 of upside · ratio 1 : 3.1 — sized off the live memo.</p>';
+    return t;
+  }
+  function fillTicket7(tk, fv, price) {
+    var qty = 100;
+    var buy = fv >= price;
+    var entry = price;
+    var target = fv;
+    var stop = buy ? Math.round(price * 0.9) : Math.round(price * 1.1);
+    var risk = qty * Math.abs(entry - stop);
+    var up = qty * Math.abs(target - entry);
+    var upPct = Math.abs(target - entry) / entry * 100;
+    var ratio = risk > 0 ? up / risk : 0;
+    var side = tk.querySelector('[data-i7-side]');
+    if (side) { side.textContent = buy ? 'BUY · COMPRA' : 'SELL · VENTA'; side.className = buy ? 'i7-buy' : 'i7-sell'; }
+    var set = function (sel, val) { var el = tk.querySelector(sel); if (el) el.textContent = val; };
+    set('[data-i7-entry]', money7(entry));
+    set('[data-i7-target]', money7(target));
+    set('[data-i7-stop]', money7(stop));
+    set('[data-i7-risk]', money7(risk));
+    set('[data-i7-up]', money7(up) + ' · ' + upPct.toFixed(1) + '%');
+    var note = tk.querySelector('[data-i7-note]');
+    if (note) note.textContent = 'Risk ' + money7(risk) + ' for ' + money7(up) + ' of upside · ratio 1 : ' + ratio.toFixed(1) + ' — sized off the live memo.';
+  }
+  function ticketState7(sec) {
+    if (!sec) return 'idle';
+    var st = sec.querySelector('.i5-status');
+    var txt = st ? (st.textContent || '') : '';
+    if (/DELIVERED|REBUILT|ENTREGADO|RECONSTRUIDO/i.test(txt)) return 'delivered';
+    if (/BUILDING|REBUILDING|Starting|RECONSTRUYENDO/i.test(txt)) return 'building';
+    var b = sec.querySelector('.i5-run');
+    if (b && /REPLAY/i.test(b.textContent || '')) return 'delivered';
+    return 'idle';
+  }
+  function ticket7() {
+    var sec = document.querySelector('.i5-build');
+    if (!sec) return;
+    var canvas = sec.querySelector('.i5-canvas');
+    if (!canvas) return;
+    var tk = canvas.querySelector('[data-i7-ticket]');
+    var state = ticketState7(sec);
+    if (state !== 'delivered') { if (tk) tk.style.display = 'none'; return; }
+    if (!tk) {
+      tk = ticketEl7();
+      var v = verdictEl7(canvas);
+      if (v) { var a = v; if (a.tagName === 'SPAN' && a.parentElement) a = a.parentElement; a.insertAdjacentElement('afterend', tk); }
+      else canvas.appendChild(tk);
+    }
+    tk.style.display = '';
+    var M = window.__i6Model || { w: 8.5, g: 4.0, price: 186 };
+    var fv = Math.round(fv7(M.w / 100, M.g / 100));
+    fillTicket7(tk, fv, M.price);
+    if (tk.getAttribute('data-i7-shown') !== '1') {
+      tk.setAttribute('data-i7-shown', '1');
+      var rows = tk.querySelectorAll('.i7-trow');
+      for (var i = 0; i < rows.length; i++) {
+        (function (r, k) { setTimeout(function () { r.classList.add('i7-on'); }, 90 * k); })(rows[i], i);
+      }
+    }
+  }
+
+  /* ---------- arranque ---------- */
+  function boot7() {
+    try { loadModel7(); } catch (e) {}
+    try { gateRestack7(); } catch (e) {}
+    try { ticket7(); } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot7); else boot7();
+  window.addEventListener('load', function () { setTimeout(boot7, 700); });
+  if (window.MutationObserver && !window.__i7Obs) {
+    window.__i7Obs = true;
+    var mo7 = new MutationObserver(function () { clearTimeout(mo7._t); mo7._t = setTimeout(boot7, 450); });
+    mo7.observe(document.documentElement, { childList: true, subtree: true });
+  }
+  setInterval(boot7, 2000);
+  if (!window.__i7Input) {
+    window.__i7Input = true;
+    var debT7 = null;
+    document.addEventListener('input', function (ev) {
+      var t = ev.target && ev.target.closest ? ev.target.closest('[data-i6-w],[data-i6-g]') : null;
+      if (!t) return;
+      clearTimeout(debT7); debT7 = setTimeout(ticket7, 500);
+    }, true);
+  }
+  window.addEventListener('resize', function () { clearTimeout(window.__i7Rz); window.__i7Rz = setTimeout(boot7, 300); });
+  boot7();
 })();
