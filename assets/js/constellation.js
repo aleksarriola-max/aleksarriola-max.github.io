@@ -1489,8 +1489,8 @@
 (function () {
   if (window.__i6b) return; window.__i6b = true;
   var REDUCED6 = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function PIN_OK() {
-    return !REDUCED6 && window.gsap && window.ScrollTrigger &&
+  function PIN_OK() { /* Iteración 5-C: pin desactivado — en el despliegue fijaba FIG.2 sobre la barra lateral y el memo dejaba de verse; queda el reveal con scrub, el fallback seguro */
+    return false && !REDUCED6 && window.gsap && window.ScrollTrigger &&
       window.matchMedia('(min-width: 1024px)').matches &&
       window.matchMedia('(pointer: fine)').matches;
   }
