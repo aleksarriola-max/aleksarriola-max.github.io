@@ -773,3 +773,178 @@
   var rzT = 0;
   window.addEventListener('resize', function () { if (rzT) clearTimeout(rzT); rzT = setTimeout(boot, 350); });
 })();
+/* Iteración 4 (fix de la puerta): la simulación de FIG.0 re-renderiza la figura con
+   frecuencia (contadores y bitácora cambian cada pocos segundos) y al reconstruir los nodos
+   se pierden los listeners directos del botón «RUN THE GATE»: los clics dejaban de llegar
+   (sin ficha, sin veredicto) aunque el botón y su texto seguían visibles. Este parche:
+   - escucha el clic en fase de captura sobre el documento, así funciona cualquier copia
+     del botón (original o clonada por la simulación), y frena el listener antiguo;
+   - resuelve las etapas y la bitácora EN VIVO en cada paso, por si la figura se reconstruye
+     a mitad de una carrera (la ficha sigue las cajas actuales, no unas ya desmontadas);
+   - no usa el atributo disabled (un clon deshabilitado quedaría muerto) y se autocura con
+     una revisión periódica; las carreras llevan un límite de tiempo por tramo. */
+(function () {
+  'use strict';
+  if (window.__i4GatePatch) return; window.__i4GatePatch = true;
+  var SCEN = [
+    {t: 'Deploy scanner v30 to production', rule: 'POLICY: a deploy needs a green test suite', risk: 'low'},
+    {t: 'Auto-send DCF memo to 600 companies', rule: 'POLICY: no auto-send without human approval', risk: 'high'},
+    {t: 'Rebalance portfolio with 2\u00D7 leverage', rule: 'POLICY: leverage needs a human sign-off', risk: 'high'},
+    {t: 'Publish daily essay #111', rule: 'POLICY: essays are pre-approved', risk: 'low'},
+    {t: 'Approve wire transfer \u00B7 $25,000', rule: 'POLICY: wires over $10k need two signatures', risk: 'high'},
+    {t: 'Pull 10-K \u00B7 AAPL FY24', rule: 'POLICY: public filings are safe to pull', risk: 'low'},
+    {t: 'Refresh market-data cache', rule: 'POLICY: cache refresh is read-only', risk: 'low'}
+  ];
+  var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var busy = false, idx = 0;
+  function all2(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function tx2(el) { return (el.textContent || '').trim(); }
+  function leaf2(t) {
+    var els = all2('*');
+    for (var i = 0; i < els.length; i++) { var el = els[i]; if (!el.children.length && tx2(el) === t) return el; }
+    return null;
+  }
+  function stages2() {
+    var spec = [['INPUT', 'Request'], ['LLM AGENT', 'Proposes'], ['POLICY GATE', 'Enforces'], ['ENGINE', 'Computes'], ['OUTPUT', 'Model \u00B7 memo']];
+    var out = [];
+    spec.forEach(function (sp) {
+      var leaf = leaf2(sp[1]); if (!leaf) return;
+      var box = leaf, p = leaf.parentElement;
+      while (p && p !== document.body) { if ((p.textContent || '').indexOf(sp[0]) >= 0) { box = p; break; } p = p.parentElement; }
+      out.push({name: sp[0], box: box});
+    });
+    var escLeaf = leaf2('Human review'), esc = null;
+    if (escLeaf) {
+      var b2 = escLeaf, p2 = escLeaf.parentElement;
+      while (p2 && p2 !== document.body) { if ((p2.textContent || '').indexOf('ESCALATE') >= 0) { b2 = p2; break; } p2 = p2.parentElement; }
+      esc = {name: 'ESCALATE', box: b2};
+    }
+    return {stages: out, esc: esc};
+  }
+  function bump2(label) {
+    var cands = [];
+    all2('*').forEach(function (el) {
+      if (!el.children.length && tx2(el).toUpperCase() === label) {
+        var p = el.parentElement; if (!p) return;
+        all2('*', p).forEach(function (k) { if (!k.children.length && /^\d+$/.test(tx2(k))) cands.push(k); });
+      }
+    });
+    for (var i = 0; i < cands.length; i++) {
+      if (cands[i].getBoundingClientRect().width > 0) { var v = parseInt(cands[i].textContent, 10); if (isFinite(v)) cands[i].textContent = String(v + 1); return; }
+    }
+    if (cands.length) { var v2 = parseInt(cands[0].textContent, 10); if (isFinite(v2)) cands[0].textContent = String(v2 + 1); }
+  }
+  function runNo2() {
+    var nums = ((document.body.textContent || '').match(/#0?(\d{3,4})/g) || []).map(function (s) { return parseInt(s.replace('#', ''), 10); }).filter(isFinite);
+    return (nums.length ? Math.max.apply(null, nums) : 400) + 1;
+  }
+  function center2(el) { var r = el.getBoundingClientRect(); return {x: r.left + r.width / 2, y: r.top + r.height / 2}; }
+  function logLine(html) {
+    var l = document.querySelector('.i4-gate-log');
+    if (!l) {
+      var b = document.querySelector('.i4-gate-btn'); if (!b) return;
+      l = document.createElement('p'); l.className = 'i4-gate-log';
+      b.insertAdjacentElement('afterend', l);
+    }
+    l.innerHTML = html;
+  }
+  function wait2(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+  function ensure2(el) {
+    var p = el.parentElement;
+    while (p && p !== document.body) {
+      var cs = null; try { cs = getComputedStyle(p); } catch (e) {}
+      if (cs && (cs.overflowX === 'auto' || cs.overflowX === 'scroll' || cs.overflowY === 'auto' || cs.overflowY === 'scroll') && (p.scrollWidth > p.clientWidth + 4 || p.scrollHeight > p.clientHeight + 4)) {
+        var r = el.getBoundingClientRect(), pr = p.getBoundingClientRect(), dx = 0, dy = 0;
+        if (r.left < pr.left) dx = r.left - pr.left - 12; else if (r.right > pr.right) dx = r.right - pr.right + 12;
+        if (r.top < pr.top) dy = r.top - pr.top - 12; else if (r.bottom > pr.bottom) dy = r.bottom - pr.bottom + 12;
+        if (dx || dy) { try { p.scrollTo({left: p.scrollLeft + dx, top: p.scrollTop + dy, behavior: REDUCED ? 'auto' : 'smooth'}); } catch (e) { p.scrollLeft += dx; p.scrollTop += dy; } }
+      }
+      p = p.parentElement;
+    }
+  }
+  function anim2(token, from, getTarget, dur, onMove) {
+    return Promise.race([new Promise(function (resolve) {
+      var t0 = performance.now();
+      function frame(now) {
+        var pr = Math.min(1, (now - t0) / dur);
+        var e = pr < 0.5 ? 2 * pr * pr : 1 - Math.pow(-2 * pr + 2, 2) / 2;
+        var tg = getTarget();
+        var x = from.x + (tg.x - from.x) * e, y = from.y + (tg.y - from.y) * e;
+        token.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+        if (onMove) onMove({x: x, y: y});
+        if (pr < 1) requestAnimationFrame(frame); else resolve();
+      }
+      requestAnimationFrame(frame);
+    }), wait2(Math.max(dur + 400, 1600))]);
+  }
+  function fmt(n) { return 'RUN #' + String(n).padStart(4, '0'); }
+  function quote(t) { return '\u201C' + t + '\u201D'; }
+  async function runGate2(btn) {
+    if (busy) return; busy = true;
+    if (btn) btn.setAttribute('aria-disabled', 'true');
+    var g = stages2();
+    if (g.stages.length < 5) { busy = false; if (btn) btn.removeAttribute('aria-disabled'); logLine('FIG.0 is not on screen right now.'); return; }
+    var scen = SCEN[idx % SCEN.length]; idx++;
+    var n = runNo2();
+    bump2('PROPOSED');
+    logLine(fmt(n) + ' \u00B7 ' + quote(scen.t) + ' \u2014 en route\u2026');
+    var stale = document.querySelector('.i4-gate-token');
+    if (stale && stale.parentNode) stale.parentNode.removeChild(stale);
+    var token = document.createElement('div'); token.className = 'i4-gate-token';
+    document.body.appendChild(token);
+    var pos = center2(g.stages[0].box);
+    token.style.transform = 'translate(' + pos.x.toFixed(1) + 'px,' + pos.y.toFixed(1) + 'px)';
+    try {
+      for (var i = 0; i < 5; i++) {
+        var gs = stages2();
+        var s = gs.stages[i]; if (!s) break;
+        ensure2(s.box);
+        if (!REDUCED) {
+          var tb = s.box;
+          await anim2(token, pos, function () { return center2(tb); }, i === 0 ? 120 : 430, function (p) { pos = p; });
+        }
+        s.box.classList.add('i4-gate-hot');
+        if (i === 2) {
+          await wait2(420);
+          logLine(fmt(n) + ' \u00B7 ' + quote(scen.t) + ' \u2014 ' + scen.rule);
+          if (scen.risk === 'high') {
+            s.box.classList.add('i4-gate-blocked');
+            var g2 = stages2();
+            if (g2.esc) {
+              ensure2(g2.esc.box);
+              if (!REDUCED) { var eb = g2.esc.box; await anim2(token, pos, function () { return center2(eb); }, 560, function (p) { pos = p; }); }
+              g2.esc.box.classList.add('i4-gate-hot');
+            }
+            bump2('ESCALATED');
+            logLine(fmt(n) + ' \u00B7 ' + quote(scen.t) + ' \u2192 <span class=\"i4-no\">BLOCKED</span> \u2014 ' + scen.rule + ' \u00B7 requiere revisi\u00F3n humana.');
+            await wait2(300);
+            break;
+          }
+          logLine(fmt(n) + ' \u00B7 ' + quote(scen.t) + ' \u2014 policy check passed / la pol\u00EDtica lo permite.');
+        }
+        await wait2(140);
+      }
+      if (scen.risk !== 'high') {
+        bump2('EXECUTED');
+        logLine(fmt(n) + ' \u00B7 ' + quote(scen.t) + ' \u2192 <span class=\"i4-ok\">APPROVED</span> \u2014 executed / ejecutado.');
+        await wait2(300);
+      }
+    } finally {
+      setTimeout(function () { all2('.i4-gate-hot, .i4-gate-blocked').forEach(function (el) { el.classList.remove('i4-gate-hot'); el.classList.remove('i4-gate-blocked'); }); }, 2600);
+      if (token.parentNode) token.parentNode.removeChild(token);
+      busy = false;
+      if (btn) btn.removeAttribute('aria-disabled');
+    }
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target && ev.target.closest ? ev.target.closest('.i4-gate-btn') : null;
+    if (!b) return;
+    ev.stopPropagation();
+    runGate2(b);
+  }, true);
+  setInterval(function () {
+    if (!busy && !document.querySelector('.i4-gate-token')) {
+      all2('.i4-gate-btn').forEach(function (b) { if (b.disabled) b.disabled = false; });
+    }
+  }, 2000);
+})();
