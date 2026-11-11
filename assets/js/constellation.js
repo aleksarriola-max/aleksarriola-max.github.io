@@ -1153,3 +1153,115 @@
     mo5.observe(document.documentElement, {childList: true, subtree: true});
   }
 })();
+/* Iteración 4 (reel) — parche FIG.2: delegación en captura + resolución en vivo.
+   El cableado directo de wire5 muere si el runtime re-renderiza la sección
+   (la misma enfermedad que la puerta de FIG.0): los nodos visibles son clones
+   sin listeners y el observador queda mirando un nodo desconectado. Este
+   parche resuelve todo en vivo, en cada paso, y re-arma el observador. */
+(function () {
+  if (window.__i5Patch) return; window.__i5Patch = true;
+  var TOTAL5 = 147;
+  var STEPS5 = [
+    { k: 'head', log: 'Pulling 10-K · AAPL FY24…' },
+    { k: 'kpi1', log: 'Valuing · DCF — fair value $245' },
+    { k: 'kpi2', log: 'Market price: $186' },
+    { k: 'kpi3', log: 'Margin of safety: 24% — green' },
+    { k: 'kpi4', log: 'WACC 8.5% · growth 4.0% — locked' },
+    { k: 'sens-h', log: 'Building sensitivity table · WACC × growth…' },
+    { k: 'sens', log: 'Sensitivity ready — 9 cells' },
+    { k: 'bars', log: 'Painting scenario bars…' },
+    { k: 'verdict', log: 'Verdict: UNDERVALUED · infravalorado' },
+    { k: 'foot', log: 'Altman Z 3.1 — safe zone · zona segura' },
+    { k: 'cta', log: 'Signing the memo — OPSFLOW · entregando…' }
+  ];
+  var REDUCED5 = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var busy5 = false, started5 = false, observedSec5 = null;
+  function live5() {
+    var sec = document.querySelector('.i5-build');
+    if (!sec) return null;
+    return {
+      sec: sec,
+      layers: Array.prototype.slice.call(sec.querySelectorAll('.i5-layer')),
+      countEl: sec.querySelector('.i5-count'),
+      pctEl: sec.querySelector('.i5-pct'),
+      barEl: sec.querySelector('.i5-bar i'),
+      logEl: sec.querySelector('.i5-log'),
+      btn: sec.querySelector('.i5-run')
+    };
+  }
+  function wait5b(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+  function status5(el, n, msg) {
+    if (!el || !el.countEl || !el.pctEl || !el.barEl || !el.logEl) return;
+    el.countEl.textContent = n + ' / ' + TOTAL5 + ' LAYERS';
+    var p = Math.round(n / TOTAL5 * 100);
+    el.pctEl.textContent = p + '%';
+    el.barEl.style.width = p + '%';
+    if (msg) el.logEl.textContent = msg;
+  }
+  function finish5(el) {
+    busy5 = false;
+    if (!el) return;
+    if (el.btn) { el.btn.disabled = false; el.btn.textContent = '↻ Replay'; }
+    if (el.countEl) el.countEl.textContent = TOTAL5 + ' / ' + TOTAL5 + ' LAYERS';
+    if (el.pctEl) el.pctEl.textContent = '100%';
+    if (el.barEl) el.barEl.style.width = '100%';
+    if (el.logEl) el.logEl.innerHTML = '<b>DELIVERED · ENTREGADO</b> — memo ready for stakeholders.';
+  }
+  async function run5() {
+    if (busy5) return; busy5 = true;
+    var el = live5();
+    if (!el) { busy5 = false; return; }
+    el.layers.forEach(function (l) { l.classList.remove('i5-on'); });
+    status5(el, 0, 'Starting · empezando…');
+    if (el.btn) { el.btn.disabled = true; el.btn.textContent = '● BUILDING…'; }
+    if (REDUCED5) {
+      var a = live5();
+      if (a) a.layers.forEach(function (l) { l.classList.add('i5-on'); });
+      status5(live5(), TOTAL5, '');
+      finish5(live5());
+      return;
+    }
+    for (var i = 0; i < STEPS5.length; i++) {
+      await wait5b(i === 0 ? 380 : 310);
+      var cur = live5();
+      if (!cur) { busy5 = false; return; }
+      (function (key) {
+        cur.layers.forEach(function (l) { if (l.getAttribute('data-i5') === key) l.classList.add('i5-on'); });
+      })(STEPS5[i].k);
+      var n = Math.round((i + 1) * TOTAL5 / STEPS5.length);
+      status5(cur, n, STEPS5[i].log);
+    }
+    finish5(live5());
+  }
+  function arm5() {
+    var el = live5();
+    if (!el || !('IntersectionObserver' in window)) return;
+    if (observedSec5 === el.sec) return;
+    try { if (window.__i5IO) window.__i5IO.disconnect(); } catch (e) {}
+    observedSec5 = el.sec;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && !started5) {
+          started5 = true;
+          io.disconnect(); observedSec5 = null;
+          setTimeout(run5, 500);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px 100px 0px' });
+    window.__i5IO = io;
+    io.observe(el.sec);
+  }
+  document.addEventListener('click', function (ev) {
+    var t = ev.target && ev.target.closest ? ev.target.closest('.i5-run') : null;
+    if (!t) return;
+    ev.stopPropagation();
+    if (!started5) started5 = true;
+    if (!busy5) run5();
+  }, true);
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(function () { clearTimeout(mo._t); mo._t = setTimeout(arm5, 300); });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+  }
+  setInterval(arm5, 1500);
+  arm5();
+})();
