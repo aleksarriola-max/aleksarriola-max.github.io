@@ -1447,10 +1447,10 @@
         }
       }
     });
-    if (boxes.length >= 4) {
+    if (boxes.length >= 4) { // Iteración 5-D: sin tope de hijos — la fila suma 5 etapas + conectores + ESCALATE
       var row = boxes[0].parentElement;
       var same = row && boxes.every(function (b) { return b.parentElement === row; });
-      if (same && row.children.length <= 9) row.classList.add('i6-stage-row');
+      if (same) row.classList.add('i6-stage-row');
     }
     var hr = null;
     leafs.forEach(function (el) {
