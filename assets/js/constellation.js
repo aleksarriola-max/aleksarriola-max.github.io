@@ -1430,7 +1430,7 @@
   function markFig06() {
     var btn = document.querySelector('.i4-gate-btn');
     var fig = btn ? btn.closest('figure') : null;
-    if (!svg) return;
+    if (!fig) return;
     var WORDS = ['Request', 'Proposes', 'Enforces', 'Computes', 'Model'];
     var NUMS = ['01', '02', '03', '04', '05'];
     var boxes = [];
@@ -1537,8 +1537,8 @@
   var REVEAL_EL6 = null;
   function chapters6() {
     var out = [];
-    var btn = document.querySelector('.i4-gate-btn');
-    var fig = btn ? btn.closest('figure') : null;
+    var svgC6 = null; var svgsC6 = document.querySelectorAll('svg'); for (var siC6 = 0; siC6 < svgsC6.length; siC6++) { var txC6 = svgsC6[siC6].textContent || ''; if (/0([1-5])\s*[·•]/.test(txC6) && txC6.indexOf('POLICY GATE') >= 0) { svgC6 = svgsC6[siC6]; break; } }
+    var fig = svgC6 ? (svgC6.closest('figure') || svgC6) : null;
     if (fig) out.push({ key: 'fig0', el: fig, start: 'top top+=70', end: '+=50%' });
     var memo = document.querySelector('.i5-build .i5-canvas');
     if (memo) out.push({ key: 'fig2', el: memo, start: 'top top+=10', end: '+=30%' });
@@ -1547,7 +1547,7 @@
     var i, h;
     for (i = 0; i < pool.length; i++) {
       h = pool[i].querySelector('h1,h2,h3');
-      if (h && (h.textContent || '').trim().toUpperCase() === 'LIFELINE') { lifeline = pool[i]; break; }
+      if (h && (h.textContent || '').trim().toUpperCase().indexOf('LIFELINE') === 0) { lifeline = pool[i]; break; }
     }
     if (!lifeline) {
       var all = document.querySelectorAll('article');
@@ -1596,7 +1596,7 @@
     var pool = document.querySelectorAll('section[data-screen-label="Featured apps"] article');
     for (var i = 0; i < pool.length; i++) {
       var h = pool[i].querySelector('h1,h2,h3');
-      if (h && (h.textContent || '').trim().toUpperCase() === 'LIFELINE') { lifeline = pool[i]; break; }
+      if (h && (h.textContent || '').trim().toUpperCase().indexOf('LIFELINE') === 0) { lifeline = pool[i]; break; }
     }
     if (!lifeline) { killReveals6(); return; }
     if (lifeline === REVEAL_EL6) return;
