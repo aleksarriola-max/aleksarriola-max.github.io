@@ -2412,7 +2412,7 @@
   var LAB_M_OUTER = { 'Lifeline': 'up', 'PitMind': 'down', 'Outsette': 'down', 'Orcen Kit': 'down', 'Tallyhound': 'down', 'OpsFlow': 'down', 'StoryForge': 'down', 'MissionMind': 'up' };
   /* Textos de la sección, bilingües en una sola línea como la pista. */
   var HINT9 = 'TRAVEL THE WEB · RECORRE LA TELARAÑA';
-  var KICK9 = 'FIG. 1 — EXPLORE THE WEB · EXPLORA LA TELARAÑA';
+  var KICK9 = 'Explore the web — Explora la telaraña';
   var TITLE9 = 'Follow the web · Sigue la telaraña.';
   var SUB9 = 'Every thread is a real page or project. Hover to see what it is, click to travel — this is the web, not decoration. / Cada hilo es una página o un proyecto real. Pasa el cursor para ver qué es y haz clic para viajar: es la telaraña, no decoración.';
   var HUB_DS = 'The origin of everything — el origen de todo';
@@ -2454,10 +2454,10 @@
       cl.remove('i9-up'); cl.remove('i9-down');
       cl.remove('i9-m-up'); cl.remove('i9-m-down'); cl.remove('i9-m-left'); cl.remove('i9-m-right');
     }
-    node.style.setProperty('--x', (d[0] / 10).toFixed(1) + '%');
-    node.style.setProperty('--y', (d[1] / 5.2).toFixed(2) + '%');
-    node.style.setProperty('--mx', (m[0] / 4).toFixed(2) + '%');
-    node.style.setProperty('--my', (m[1] / 5.6).toFixed(2) + '%');
+    node.style.setProperty('--x', (d[0] / 10).toFixed(1) + '%', 'important');
+    node.style.setProperty('--y', (d[1] / 5.2).toFixed(2) + '%', 'important');
+    node.style.setProperty('--mx', (m[0] / 4).toFixed(2) + '%', 'important');
+    node.style.setProperty('--my', (m[1] / 5.6).toFixed(2) + '%', 'important');
     if (!cl) return;
     if (d[1] < CYD) cl.add('i9-up'); else cl.add('i9-down');
     if (key === 'hub') lm = 'up';
@@ -2509,14 +2509,14 @@
     if (svg.getAttribute('data-i9-sig') !== markup) {
       svg.innerHTML = markup;
       svg.setAttribute('data-i9-sig', markup);
-      svg.removeAttribute('data-i9-drawn');
+      svg.removeAttribute('data-i9-drawn'); svg.removeAttribute('data-i4-pulses');
     }
     if (svg.getAttribute('data-i9-drawn') !== '1') drawWeb9(svg, tag);
   }  function dressText9(root) {
     if (!root || !root.querySelector) return;
     var el;
     el = root.querySelector('.cm-hint'); if (el && el.textContent !== HINT9) el.textContent = HINT9;
-    el = root.querySelector('.cm-kicker'); if (el && el.textContent !== KICK9) el.textContent = KICK9;
+    el = root.querySelector('.cm-kicker'); if (el) { var sp9 = el.querySelector('.i4-fig1'), tx9 = '', n9; for (n9 = 0; n9 < el.childNodes.length; n9++) { if (el.childNodes[n9].nodeType === 3) tx9 += el.childNodes[n9].nodeValue; } if (tx9.trim() !== KICK9) { if (sp9) { el.textContent = ''; el.appendChild(sp9); el.appendChild(document.createTextNode(KICK9)); } else el.textContent = KICK9; } }
     el = root.querySelector('.cm-title'); if (el && el.textContent !== TITLE9) el.textContent = TITLE9;
     el = root.querySelector('.cm-sub'); if (el && el.textContent !== SUB9) el.textContent = SUB9;
   }
@@ -2564,4 +2564,40 @@
     setInterval(boot9, 2000);
   }
   init9();
+})();
+
+
+/* Iteración 8 (arreglo 1) — tres cosas que la primera pasada no vio.
+   1) Las variables móviles --mx/--my se fijan ahora con !important: sin
+   eso, las reglas !important del fix móvil de la Iteración 3.1 seguirían
+   sentando a client, finance, Orcen Kit, Tallyhound, OpsFlow y MissionMind
+   en sus posiciones antiguas en móvil.
+   2) El kicker conserva su span «FIG. 1» (lo añade la Iteración 4);
+   machacarlo con textContent lo duplicaría en cada reinstalación.
+   3) Al redibujar los hilos, las líneas viejas quedan desmontadas y con
+   ellas los pulsos de la Iteración 4 (que las guardan por referencia): al
+   reconstruir se re-arman los pulsos y el engrosado de hover se
+   re-implementa delegado, resolviendo las líneas vivas en cada evento. */
+(function () {
+  'use strict';
+  if (window.__i9b) return; window.__i9b = true;
+  function setHot9(key) {
+    var chart = document.querySelector('.constellation-map .cm-chart');
+    if (!chart) return;
+    var lines = chart.querySelectorAll('.cm-link, .cm-link-proj');
+    for (var i = 0; i < lines.length; i++) {
+      var el = lines[i];
+      if (!key) { el.style.strokeOpacity = ''; el.style.strokeWidth = ''; continue; }
+      var on = el.getAttribute('data-a') === key || el.getAttribute('data-b') === key;
+      el.style.strokeOpacity = on ? '1' : '0.22';
+      el.style.strokeWidth = on ? '2' : '';
+    }
+  }
+  function keyOf9(ev) {
+    var n = ev.target && ev.target.closest ? ev.target.closest('.cm-node') : null;
+    return n ? n.getAttribute('data-key') : null;
+  }
+  document.addEventListener('mouseover', function (ev) { setHot9(keyOf9(ev)); });
+  document.addEventListener('focus', function (ev) { setHot9(keyOf9(ev)); }, true);
+  document.addEventListener('touchstart', function (ev) { setHot9(keyOf9(ev)); }, true);
 })();
