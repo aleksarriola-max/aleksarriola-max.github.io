@@ -1373,7 +1373,7 @@
       var c2 = s2.querySelector('.i5-count'), p2 = s2.querySelector('.i5-pct'), l2 = s2.querySelector('.i5-log');
       if (c2) c2.textContent = '147 / 147 LAYERS';
       if (p2) p2.textContent = '100%';
-      if (l2) l2.textContent = 'REBUILT · RECONSTRUIDO — WACC ' + M6.w.toFixed(1) + '% · growth ' + M6.g.toFixed(1) + '% → fair value ' + fmt6(r.base) + ' · margin of safety ' + Math.round(r.mos * 100) + '%.';
+      if (l2) { var rf = applyModel6() || r; l2.textContent = 'REBUILT · RECONSTRUIDO — WACC ' + M6.w.toFixed(1) + '% · growth ' + M6.g.toFixed(1) + '% → fair value ' + fmt6(rf.base) + ' · margin of safety ' + Math.round(rf.mos * 100) + '%.'; }
     }, 90 * layers.length + 200);
   }
   function ensureControls6() {
@@ -2821,4 +2821,185 @@
   if (window.MutationObserver) {
     new MutationObserver(function () { syncThumb10(); }).observe(document.documentElement, { childList: true, subtree: true });
   }
+})();
+
+
+/* Iteración 10 — pulidos de la verificación de la Iteración 9 (a–e) y celdas de
+   escenario jugables en la rejilla de sensibilidad de FIG.2.
+   (a) La descripción flotante del mapa nunca tapa una etiqueta (ni la propia);
+       si ningún hueco la libra, se oculta antes que tapar.
+   (b)+(e) La línea de estado y la narración del build se corrigen en vivo contra el memo.
+   (c) El aviso fijo inferior se desvanece cuando cubriría un botón o un enlace.
+   (d) El recuadro WACC · GROWTH no parte su valor en dos líneas a 390px.
+   WOW: un clic en una celda de la rejilla reconstruye el memo con ese escenario. */
+(function () {
+  if (window.__i11) return; window.__i11 = true;
+  var CSS11 = [
+    '#constellation-cue{transition:opacity .25s ease!important;}',
+    '#constellation-cue.i11-cue-hide{opacity:0!important;pointer-events:none!important;}',
+    '@media (max-width: 900px){',
+    '.i5-kpi[data-i5="kpi4"] span{white-space:nowrap!important;font-size:20px!important;}',
+    '}',
+    '.i5-grid div.i11-pick{outline:2px solid #D9B36A!important;outline-offset:2px;}'
+  ].join('\n');
+  var st11 = document.createElement('style');
+  st11.id = 'constellation-iter11';
+  st11.textContent = CSS11;
+  document.head.appendChild(st11);
+  function rectsOverlap11(a, b) {
+    return a.left < b.right - 2 && a.right > b.left + 2 && a.top < b.bottom - 2 && a.bottom > b.top + 2;
+  }
+  function liveModel11() {
+    var m = window.__i6Model || { w: 8.5, g: 4.0, price: 186 };
+    var w = parseFloat(m.w), g = parseFloat(m.g);
+    return { w: isNaN(w) ? 8.5 : w, g: isNaN(g) ? 4.0 : g, price: parseFloat(m.price) || 186 };
+  }
+  function liveMemo11() {
+    var sec = document.querySelector('.i5-build'); if (!sec) return null;
+    var fv = sec.querySelector('[data-i5="kpi1"] span');
+    var mos = sec.querySelector('[data-i5="kpi3"] span');
+    var ver = sec.querySelector('[data-i5="verdict"]');
+    if (!fv || !mos) return null;
+    return { fv: (fv.textContent || '').replace(/\s+/g, ''), mos: (mos.textContent || '').replace('%', '').replace(/\s+/g, ''), verdict: ver ? (ver.textContent || '') : '' };
+  }
+  /* (a) descripción flotante: nunca tapar una etiqueta, ni la propia */
+  function clampDesc11(node) {
+    if (!node || !node.querySelector) return;
+    var desc = node.querySelector('.cm-desc'); if (!desc) return;
+    if (desc.style.display === 'none') return;
+    var chart = node.closest ? node.closest('.cm-chart') : null; if (!chart) return;
+    var labels = chart.querySelectorAll('.cm-label');
+    function rectOf(el) { return el.getBoundingClientRect(); }
+    function hits() {
+      var d = rectOf(desc);
+      if (!d.width && !d.height) return false;
+      var cr = chart.getBoundingClientRect();
+      if (d.left < cr.left + 2 || d.right > cr.right - 2 || d.top < cr.top + 2 || d.bottom > cr.bottom - 2) return true;
+      for (var j = 0; j < labels.length; j++) { if (rectsOverlap11(d, rectOf(labels[j]))) return true; }
+      return false;
+    }
+    if (!hits()) return;
+    var offs = [12, 40], shifts = [0, -30, 30, -60, 60, -90, 90, -120, 120];
+    var k, s;
+    function tryPos(off, dx, above) {
+      desc.style.left = dx + 'px';
+      desc.style.transform = 'translate(-50%,0)';
+      if (above) { desc.style.top = 'auto'; desc.style.bottom = 'calc(100% + ' + off + 'px)'; }
+      else { desc.style.bottom = 'auto'; desc.style.top = 'calc(100% + ' + off + 'px)'; }
+    }
+    for (k = 0; k < offs.length; k++) {
+      for (s = 0; s < shifts.length; s++) { tryPos(offs[k], shifts[s], true); if (!hits()) return; }
+    }
+    for (k = 0; k < offs.length; k++) {
+      for (s = 0; s < shifts.length; s++) { tryPos(offs[k] + 2, shifts[s], false); if (!hits()) return; }
+    }
+    desc.style.display = 'none';
+  }
+  function descNode11(key) {
+    if (!key) return null;
+    try { return document.querySelector('.cm-node[data-key="' + key + '"]'); } catch (e) { return null; }
+  }
+  ['pointerover', 'focus', 'touchstart'].forEach(function (evn) {
+    document.addEventListener(evn, function (ev) {
+      var n = ev.target && ev.target.closest ? ev.target.closest('.cm-node') : null;
+      if (!n) return;
+      var key = n.getAttribute ? n.getAttribute('data-key') : null;
+      setTimeout(function () { try { clampDesc11(descNode11(key) || n); } catch (e) {} }, 320);
+      setTimeout(function () { try { clampDesc11(descNode11(key) || n); } catch (e) {} }, 700);
+    }, true);
+  });
+  /* (b)+(e) la línea de estado y la narración siempre de acuerdo con el memo vivo */
+  function syncLog11() {
+    var sec = document.querySelector('.i5-build'); if (!sec) return;
+    var log = sec.querySelector('.i5-log'); if (!log) return;
+    var memo = liveMemo11(); if (!memo) return;
+    var txt = log.textContent || '';
+    var m = liveModel11();
+    var corr = txt;
+    corr = corr.replace(/fair value \$[\d,]+/g, 'fair value ' + memo.fv);
+    corr = corr.replace(/(margin of safety)(:?)\s*(-?\d+)%/gi, function (mm, phrase, colon) {
+      return phrase + colon + ' ' + memo.mos + '%';
+    });
+    corr = corr.replace(/WACC\s*([\d.]+)%\s*·\s*growth\s*([\d.]+)%/g, function () {
+      return 'WACC ' + m.w.toFixed(1) + '% · growth ' + m.g.toFixed(1) + '%';
+    });
+    var vm = memo.verdict || '';
+    var ven = 'UNDERVALUED', ves = 'infravalorado';
+    if (/^OVERVALUED/.test(vm)) { ven = 'OVERVALUED'; ves = 'sobrevalorado'; }
+    else if (/^FAIR VALUE/.test(vm)) { ven = 'FAIR VALUE'; ves = 'valor razonable'; }
+    corr = corr.replace(/^Verdict:\s*[A-Z ]+·\s*[A-Za-záéíóú ]+$/, 'Verdict: ' + ven + ' · ' + ves);
+    if (corr !== txt) { try { log.textContent = corr; } catch (e) {} }
+  }
+  setInterval(syncLog11, 250);
+  syncLog11();
+  /* (c) el aviso fijo no tapa botones ni enlaces */
+  var cueRaf11 = false;
+  function cueCheck11() {
+    var cue = document.getElementById('constellation-cue');
+    if (!cue) return;
+    var r = cue.getBoundingClientRect();
+    if (!r.width || !r.height) { cue.classList.remove('i11-cue-hide'); return; }
+    var hide = false;
+    var xs = [r.left + 8, r.left + r.width * 0.25, r.left + r.width * 0.5, r.left + r.width * 0.75, r.right - 8];
+    var cy = r.top + r.height / 2;
+    for (var i = 0; i < xs.length; i++) {
+      var el = document.elementFromPoint(xs[i], cy);
+      if (!el) continue;
+      if (el === cue || (cue.contains && cue.contains(el))) continue;
+      var hit = el.closest ? el.closest('a,button,input,select,textarea,[role="button"]') : null;
+      if (hit) { hide = true; break; }
+    }
+    cue.classList.toggle('i11-cue-hide', hide);
+  }
+  function cueReq11() {
+    if (cueRaf11) return; cueRaf11 = true;
+    requestAnimationFrame(function () { cueRaf11 = false; try { cueCheck11(); } catch (e) {} });
+  }
+  window.addEventListener('scroll', cueReq11, { passive: true });
+  window.addEventListener('resize', cueReq11);
+  window.addEventListener('hashchange', cueReq11);
+  setInterval(cueCheck11, 400);
+  cueCheck11();
+  /* WOW: celdas de escenario — un clic en la rejilla reconstruye el memo */
+  function gridPick11(cell) {
+    var grid = cell.parentElement;
+    if (!grid || !grid.classList || !grid.classList.contains('i5-grid')) return null;
+    var kids = grid.children, idx = -1, i;
+    for (i = 0; i < kids.length; i++) { if (kids[i] === cell) { idx = i; break; } }
+    if (idx < 0) return null;
+    var row = Math.floor(idx / 4), col = idx % 4;
+    if (row < 1 || col < 1) return null;
+    var m = liveModel11();
+    var w = Math.round((m.w + (row - 2)) * 10) / 10;
+    var g = Math.round((m.g + (col - 2)) * 10) / 10;
+    if (w < 7.5) w = 7.5; if (w > 9.5) w = 9.5;
+    if (g < 3) g = 3; if (g > 5) g = 5;
+    return { w: w, g: g };
+  }
+  function gridCellValue11(cell) {
+    if (!cell || cell.classList.contains('h')) return false;
+    return /^\s*\$?\d+(\.\d+)?\s*$/.test(cell.textContent || '');
+  }
+  document.addEventListener('click', function (ev) {
+    var cell = ev.target && ev.target.closest ? ev.target.closest('.i5-grid div') : null;
+    if (!cell || !gridCellValue11(cell)) return;
+    if (!cell.closest('.i5-build')) return;
+    var pick = gridPick11(cell); if (!pick) return;
+    var m = window.__i6Model || (window.__i6Model = { w: 8.5, g: 4.0, price: 186 });
+    m.w = pick.w; m.g = pick.g;
+    try { localStorage.setItem('i6-model', JSON.stringify({ w: m.w, g: m.g })); } catch (e) {}
+    if (window.__i6controls) { try { window.__i6controls(); } catch (e) {} }
+    if (window.__i6rebuild) { try { window.__i6rebuild(); } catch (e) {} }
+    if (window.__i7ticket) { try { window.__i7ticket(); } catch (e) {} }
+    cell.classList.add('i11-pick');
+    setTimeout(function () { try { cell.classList.remove('i11-pick'); } catch (e) {} }, 2600);
+  }, true);
+  document.addEventListener('pointerover', function (ev) {
+    var cell = ev.target && ev.target.closest ? ev.target.closest('.i5-grid div') : null;
+    if (!cell || !gridCellValue11(cell)) return;
+    if (!cell.closest('.i5-build')) return;
+    var pick = gridPick11(cell); if (!pick) return;
+    cell.style.cursor = 'pointer';
+    cell.title = 'Rebuild the memo with WACC ' + pick.w.toFixed(1) + '% · growth ' + pick.g.toFixed(1) + '% — reconstruir con este escenario';
+  }, true);
 })();
