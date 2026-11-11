@@ -2379,3 +2379,189 @@
   setInterval(boot8, 2000);
   boot8();
 })();
+
+
+/* Iteración 8 — La telaraña radial.
+   El mapa de Home deja de ser una constelación dispersa y pasa a ser una
+   telaraña organizada: un buje central (ALEKS ARRIOLA, el origen de todo),
+   un anillo interior con las 9 páginas y un anillo exterior con los 8
+   proyectos; radios del buje a las páginas, hilos de página a proyecto y
+   hebras concéntricas entre vecinos de cada anillo. Solo el mapa de Home
+   cambia: la tira de navegación de las demás páginas queda como estaba.
+   Las posiciones y las líneas se reescriben sobre el mapa que construyen
+   las iteraciones anteriores (mismos nodos, mismos SVG, mismos data-a y
+   data-b), así que el hover, la descripción flotante, la sujeción de la
+   Iteración 7, el vuelo de datos y el draw-in de las líneas siguen
+   funcionando. Los textos de la sección pasan a hablar de telaraña. */
+(function () {
+  'use strict';
+  if (window.__i9) return; window.__i9 = true;
+  var PRE9 = false;
+  try { PRE9 = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { }
+  /* Geometría del cielo (coordenadas del viewBox de cada SVG): centro del
+     buje y radios del anillo interior (páginas) y exterior (proyectos). */
+  var CXD = 500, CYD = 260, RX1D = 215, RY1D = 150, RX2D = 430, RY2D = 230;
+  var CXM = 200, CYM = 280, RX1M = 100, RY1M = 125, RX2M = 155, RY2M = 200;
+  var PAGES = ['home', 'cases', 'coding', 'client', 'finance', 'experience', 'writing', 'certs', 'recs'];
+  var ANG_PAGE = { home: -90, cases: -50, coding: -10, client: 30, finance: 70, experience: 110, writing: 150, certs: 190, recs: 230 };
+  var PROJS = ['Lifeline', 'PitMind', 'Outsette', 'Orcen Kit', 'Tallyhound', 'OpsFlow', 'StoryForge', 'MissionMind'];
+  var ANG_PROJ = { 'Lifeline': -67.5, 'PitMind': -22.5, 'Outsette': 22.5, 'Orcen Kit': 67.5, 'Tallyhound': 112.5, 'OpsFlow': 157.5, 'StoryForge': 202.5, 'MissionMind': 247.5 };
+  var PARENT = { 'Lifeline': 'cases', 'PitMind': 'coding', 'Outsette': 'coding', 'Orcen Kit': 'finance', 'Tallyhound': 'coding', 'OpsFlow': 'coding', 'StoryForge': 'client', 'MissionMind': 'cases' };
+  /* Etiqueta móvil por nodo (en escritorio va arriba o abajo según el anillo). */
+  var LAB_M_INNER = { home: 'up', cases: 'right', coding: 'right', client: 'right', finance: 'right', experience: 'left', writing: 'left', certs: 'down', recs: 'up' };
+  var LAB_M_OUTER = { 'Lifeline': 'up', 'PitMind': 'down', 'Outsette': 'down', 'Orcen Kit': 'down', 'Tallyhound': 'down', 'OpsFlow': 'down', 'StoryForge': 'down', 'MissionMind': 'up' };
+  /* Textos de la sección, bilingües en una sola línea como la pista. */
+  var HINT9 = 'TRAVEL THE WEB · RECORRE LA TELARAÑA';
+  var KICK9 = 'FIG. 1 — EXPLORE THE WEB · EXPLORA LA TELARAÑA';
+  var TITLE9 = 'Follow the web · Sigue la telaraña.';
+  var SUB9 = 'Every thread is a real page or project. Hover to see what it is, click to travel — this is the web, not decoration. / Cada hilo es una página o un proyecto real. Pasa el cursor para ver qué es y haz clic para viajar: es la telaraña, no decoración.';
+  var HUB_DS = 'The origin of everything — el origen de todo';
+  var CSS9 = [
+    '.constellation-map .cm-node.i9-hub .cm-dot{width:18px;height:18px;background:#C9A86A;box-shadow:0 0 0 3px rgba(201,168,106,.30),0 0 22px rgba(201,168,106,.55);}',
+    '.constellation-map .cm-node.i9-hub .cm-label{font-size:12px;font-weight:700;letter-spacing:.24em;color:#F2EFE6;}',
+    '.constellation-map .cm-node.i9-up .cm-label{left:0!important;top:auto!important;bottom:14px!important;transform:translateX(-50%)!important;}',
+    '.constellation-map .cm-node.i9-down .cm-label{left:0!important;top:14px!important;bottom:auto!important;transform:translateX(-50%)!important;}',
+    '.constellation-map .cm-link[data-a="hub"]{stroke-width:1.4;}',
+    '@media (max-width:900px){',
+    '.constellation-map .cm-chart .cm-node.i9-m-up .cm-label{left:0!important;top:auto!important;bottom:14px!important;transform:translateX(-50%)!important;}',
+    '.constellation-map .cm-chart .cm-node.i9-m-down .cm-label{left:0!important;top:14px!important;bottom:auto!important;transform:translateX(-50%)!important;}',
+    '.constellation-map .cm-chart .cm-node.i9-m-left .cm-label{left:auto!important;right:12px!important;top:0!important;bottom:auto!important;transform:translateY(-50%)!important;}',
+    '.constellation-map .cm-chart .cm-node.i9-m-right .cm-label{left:12px!important;right:auto!important;top:0!important;bottom:auto!important;transform:translateY(-50%)!important;}',
+    '.constellation-map .cm-node.i9-hub .cm-label{font-size:11px;letter-spacing:.2em;}',
+    '}'
+  ].join('\n');  /* Posición de un nodo en el anillo según su ángulo (0° = derecha, 90° = abajo). */
+  function polar9(cx, cy, rx, ry, deg) {
+    var a = deg * Math.PI / 180;
+    return [Math.round(cx + rx * Math.cos(a)), Math.round(cy + ry * Math.sin(a))];
+  }
+  function posOf9(key, mobile) {
+    if (key === 'hub') return mobile ? [CXM, CYM] : [CXD, CYD];
+    if (ANG_PAGE[key] !== undefined) return mobile ? polar9(CXM, CYM, RX1M, RY1M, ANG_PAGE[key]) : polar9(CXD, CYD, RX1D, RY1D, ANG_PAGE[key]);
+    if (ANG_PROJ[key] !== undefined) return mobile ? polar9(CXM, CYM, RX2M, RY2M, ANG_PROJ[key]) : polar9(CXD, CYD, RX2D, RY2D, ANG_PROJ[key]);
+    return mobile ? [CXM, CYM] : [CXD, CYD];
+  }
+  function nodeName9(node) {
+    var lab = node.querySelector('.cm-label');
+    if (!lab) return null;
+    return (lab.textContent || '').replace(/^\s+|\s+$/g, '');
+  }
+  /* Sienta un nodo en su lugar de la telaraña y fija su etiqueta (radial:
+     arriba/abajo en escritorio, por nodo en móvil). */
+  function seatNode9(node, key) {
+    var d = posOf9(key, false), m = posOf9(key, true), cl = node.classList, lm;
+    if (cl) {
+      cl.remove('lab-t'); cl.remove('lab-l');
+      cl.remove('i9-up'); cl.remove('i9-down');
+      cl.remove('i9-m-up'); cl.remove('i9-m-down'); cl.remove('i9-m-left'); cl.remove('i9-m-right');
+    }
+    node.style.setProperty('--x', (d[0] / 10).toFixed(1) + '%');
+    node.style.setProperty('--y', (d[1] / 5.2).toFixed(2) + '%');
+    node.style.setProperty('--mx', (m[0] / 4).toFixed(2) + '%');
+    node.style.setProperty('--my', (m[1] / 5.6).toFixed(2) + '%');
+    if (!cl) return;
+    if (d[1] < CYD) cl.add('i9-up'); else cl.add('i9-down');
+    if (key === 'hub') lm = 'up';
+    else if (ANG_PAGE[key] !== undefined) lm = LAB_M_INNER[key];
+    else if (ANG_PROJ[key] !== undefined) lm = LAB_M_OUTER[key];
+    else lm = 'up';
+    cl.add(lm === 'up' ? 'i9-m-up' : lm === 'down' ? 'i9-m-down' : lm === 'left' ? 'i9-m-left' : 'i9-m-right');
+  }
+  function line9(cls, a, b, ka, kb) {
+    return '<line class="' + cls + '" x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" data-a="' + ka + '" data-b="' + kb + '" pathLength="1"/>';
+  }
+  /* 34 hilos por cielo: 9 radios buje->página, 9 hebras del anillo interior,
+     8 hilos proyecto->página padre (discontinuos) y 8 hebras del anillo exterior. */
+  function buildLines9(mobile) {
+    var s = '', i, hub = posOf9('hub', mobile), pt, nxt;
+    for (i = 0; i < PAGES.length; i++) { pt = posOf9(PAGES[i], mobile); s += line9('cm-link', hub, pt, 'hub', PAGES[i]); }
+    for (i = 0; i < PAGES.length; i++) { pt = posOf9(PAGES[i], mobile); nxt = posOf9(PAGES[(i + 1) % PAGES.length], mobile); s += line9('cm-link', pt, nxt, PAGES[i], PAGES[(i + 1) % PAGES.length]); }
+    for (i = 0; i < PROJS.length; i++) { pt = posOf9(PROJS[i], mobile); s += line9('cm-link-proj', pt, posOf9(PARENT[PROJS[i]], mobile), 'p' + i, PARENT[PROJS[i]]); }
+    for (i = 0; i < PROJS.length; i++) { pt = posOf9(PROJS[i], mobile); nxt = posOf9(PROJS[(i + 1) % PROJS.length], mobile); s += line9('cm-link', pt, nxt, 'p' + i, 'p' + ((i + 1) % PROJS.length)); }
+    return s;
+  }
+  function ensureHub9(chart) {
+    var hub = chart.querySelector('.cm-hub');
+    if (hub) return hub;
+    hub = document.createElement('span');
+    hub.className = 'cm-node cm-hub i9-hub';
+    hub.setAttribute('data-key', 'hub');
+    hub.setAttribute('role', 'img');
+    hub.setAttribute('aria-label', 'Aleks Arriola — ' + HUB_DS);
+    hub.innerHTML = '<span class="cm-dot"></span><span class="cm-label">Aleks Arriola</span><span class="cm-desc">' + HUB_DS + '</span>';
+    hub.style.setProperty('--s', '18px');
+    chart.appendChild(hub);
+    return hub;
+  }
+  /* Draw-in de los hilos nuevos (mismo gesto de la Iteración 4, sobre cada SVG). */
+  function drawWeb9(svg, tag) {
+    if (PRE9) { svg.setAttribute('data-i9-drawn', '1'); return; }
+    if (!window.gsap || !window.ScrollTrigger) return;
+    var solid = svg.querySelectorAll('.cm-link');
+    var dashed = svg.querySelectorAll('.cm-link-proj');
+    var old, oldD;
+    try { old = window.ScrollTrigger.getById('i9-map-' + tag); if (old) old.kill(); } catch (e) { }
+    try { oldD = window.ScrollTrigger.getById('i9-mapd-' + tag); if (oldD) oldD.kill(); } catch (e) { }
+    if (solid.length) { window.gsap.fromTo(solid, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', stagger: 0.05, scrollTrigger: { id: 'i9-map-' + tag, trigger: svg, start: 'top 92%', end: 'top 45%', scrub: true } }); }
+    if (dashed.length) { window.gsap.fromTo(dashed, { opacity: 0 }, { opacity: 1, ease: 'none', stagger: 0.05, scrollTrigger: { id: 'i9-mapd-' + tag, trigger: svg, start: 'top 92%', end: 'top 45%', scrub: true } }); }
+    svg.setAttribute('data-i9-drawn', '1');
+  }
+  function webLines9(svg, markup, tag) {
+    if (svg.getAttribute('data-i9-sig') !== markup) {
+      svg.innerHTML = markup;
+      svg.setAttribute('data-i9-sig', markup);
+      svg.removeAttribute('data-i9-drawn');
+    }
+    if (svg.getAttribute('data-i9-drawn') !== '1') drawWeb9(svg, tag);
+  }  function dressText9(root) {
+    if (!root || !root.querySelector) return;
+    var el;
+    el = root.querySelector('.cm-hint'); if (el && el.textContent !== HINT9) el.textContent = HINT9;
+    el = root.querySelector('.cm-kicker'); if (el && el.textContent !== KICK9) el.textContent = KICK9;
+    el = root.querySelector('.cm-title'); if (el && el.textContent !== TITLE9) el.textContent = TITLE9;
+    el = root.querySelector('.cm-sub'); if (el && el.textContent !== SUB9) el.textContent = SUB9;
+  }
+  function applyWeb9() {
+    var map = document.querySelector('.constellation-map');
+    if (!map) return;
+    var chart = map.querySelector('.cm-chart');
+    if (!chart) return;
+    var sec = map.closest ? map.closest('section') : map.parentNode;
+    var nodes = chart.querySelectorAll('.cm-node');
+    var i, node, key, name, num;
+    for (i = 0; i < nodes.length; i++) {
+      node = nodes[i];
+      if (node.classList && node.classList.contains('cm-hub')) { seatNode9(node, 'hub'); continue; }
+      key = node.getAttribute('data-key');
+      if (key && ANG_PAGE[key] !== undefined) { seatNode9(node, key); continue; }
+      name = nodeName9(node);
+      if (name && ANG_PROJ[name] !== undefined) { seatNode9(node, name); continue; }
+      if (key && key.charAt(0) === 'p') { num = parseInt(key.slice(1), 10); if (!isNaN(num) && PROJS[num]) seatNode9(node, PROJS[num]); }
+    }
+    seatNode9(ensureHub9(chart), 'hub');
+    var svgD = chart.querySelector('.cm-svg-d'), svgM = chart.querySelector('.cm-svg-m');
+    if (svgD) webLines9(svgD, buildLines9(false), 'd');
+    if (svgM) webLines9(svgM, buildLines9(true), 'm');
+    dressText9(map);
+    if (sec && sec !== map) dressText9(sec);
+  }
+  function injectCSS9() {
+    if (document.getElementById('constellation-iter9')) return;
+    var st = document.createElement('style');
+    st.id = 'constellation-iter9';
+    st.textContent = CSS9;
+    document.head.appendChild(st);
+  }
+  function boot9() { applyWeb9(); }
+  function init9() {
+    injectCSS9();
+    boot9();
+    if (document.addEventListener) document.addEventListener('DOMContentLoaded', boot9);
+    if (window.addEventListener) window.addEventListener('load', function () { setTimeout(boot9, 700); });
+    if (window.MutationObserver && document.body) {
+      var obs = new MutationObserver(function () { boot9(); });
+      obs.observe(document.body, { childList: true, subtree: true, characterData: true });
+    }
+    setInterval(boot9, 2000);
+  }
+  init9();
+})();
