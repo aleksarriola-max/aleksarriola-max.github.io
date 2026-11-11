@@ -861,7 +861,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
       <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:36px"><div><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-300);margin-bottom:10px">Featured Finance Projects</div><h2 style="font-size:clamp(36px,4.4vw,56px);margin:0;text-transform:uppercase;line-height:0.95">Finance &amp; Quantitative Tools</h2></div><button class="btn btn-secondary" sc-camel-on-click="{{ goFinance }}" style="color:var(--color-bg);border-color:var(--color-accent-500)">See finance portfolio →</button></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:40px">
         <div data-reveal="1" style="display:flex;flex-direction:column;gap:24px">
-          <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-300)">Fig. 1 — Move the assumptions yourself · Orcen Capital <span style="border:1px solid var(--color-accent-400);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></div>
+          <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-300)"><span>Fig. 1 — Move the assumptions yourself · Orcen Capital</span> <span style="border:1px solid var(--color-accent-400);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></div>
           <label style="display:block"><span style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-200);margin-bottom:8px"><span>Discount rate (WACC)</span><b style="font-family:var(--font-heading);font-size:24px;color:var(--color-bg);letter-spacing:0;font-variant-numeric:tabular-nums">{{ waccLabel }}</b></span><input type="range" min="6.5" max="14" step="0.1" value="{{ wacc }}" sc-camel-on-change="{{ onWacc }}"></label>
           <label style="display:block"><span style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-200);margin-bottom:8px"><span>Terminal growth rate</span><b style="font-family:var(--font-heading);font-size:24px;color:var(--color-bg);letter-spacing:0;font-variant-numeric:tabular-nums">{{ gLabel }}</b></span><input type="range" min="1" max="4" step="0.1" value="{{ g }}" sc-camel-on-change="{{ onG }}"></label>
           <div>
@@ -890,7 +890,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
           </div>
           <figure data-gsap="1" style="margin:0 0 40px;border:1px solid var(--color-accent-700);padding:16px">
 <video controls preload="none" poster="assets/videos/dcf-sensitivity-poster.jpg" src="assets/videos/dcf-sensitivity.mp4" style="display:block;width:100%;height:auto;background:#0d1210"></video>
-<figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:var(--color-accent-100)">DCF sensitivity · how the value moves when WACC and terminal growth move. Animated with Manim. <span style="border:1px solid var(--color-accent-400);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></figcaption>
+<figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:var(--color-accent-100)"><span>DCF sensitivity · how the value moves when WACC and terminal growth move. Animated with Manim.</span> <span style="border:1px solid var(--color-accent-400);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></figcaption>
 </figure>
 <div style="border:1px solid var(--color-accent-700);padding:20px;display:flex;flex-direction:column;gap:10px">
             <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-300)">Python · SEC EDGAR API · Excel</span>
@@ -1050,7 +1050,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
       </div>
       <div id="scanner" data-reveal="1" style="background:var(--ink);color:var(--paper);margin-bottom:64px;scroll-margin-top:60px">
         <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:end;padding:22px;border-bottom:1px solid color-mix(in srgb, var(--paper) 16%, transparent)">
-          <div><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:6px">Try it · Red-Flag Scanner <span style="border:1px solid var(--coral);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></div><h2 style="margin:0;font-size:clamp(28px,3vw,40px);text-transform:uppercase">Pick a company profile</h2></div>
+          <div><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:6px"><span>Try it · Red-Flag Scanner</span> <span style="border:1px solid var(--coral);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></div><h2 style="margin:0;font-size:clamp(28px,3vw,40px);text-transform:uppercase">Pick a company profile</h2></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ coChips }}" as="c" hint-placeholder-count="5"><button class="btn" sc-camel-on-click="{{ c.go }}" style="background:{{ c.bg }};color:{{ c.fg }};border-color:var(--paper)">{{ c.label }}</button></sc-for></div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
@@ -1069,7 +1069,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
         </div>
 <figure data-gsap="1" style="margin:0;border-top:1px solid color-mix(in srgb, var(--paper) 16%, transparent);padding:22px">
 <video controls preload="none" poster="assets/videos/altman-z-poster.jpg" src="assets/videos/altman-z.mp4" style="display:block;width:100%;max-width:860px;height:auto;background:#0d1210"></video>
-<figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--paper) 75%, transparent)">Altman Z-score · how five ratios combine into a distress signal. Animated with Manim. <span style="border:1px solid var(--coral);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></figcaption>
+<figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--paper) 75%, transparent)"><span>Altman Z-score · how five ratios combine into a distress signal. Animated with Manim.</span> <span style="border:1px solid var(--coral);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></figcaption>
 </figure>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));border-top:1px solid var(--color-divider);border-left:1px solid var(--color-divider)">
