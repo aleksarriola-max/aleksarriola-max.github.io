@@ -361,3 +361,23 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
+
+/* Iteración 3.1 (corrección móvil): separar las etiquetas del cielo vertical
+   que quedaban en contacto en la verificación a 390px (CLIENT WORK / FINANCE
+   y STORYFORGE / MISSIONMIND) y afinar el espaciado de las etiquetas.
+   Las posiciones de escritorio no cambian; solo se corrigen las variables
+   móviles (--mx / --my) con !important dentro del mismo media query. */
+(function () {
+  'use strict';
+  var s = document.createElement('style');
+  s.id = 'constellation-iter31-mobile-fix';
+  s.textContent = '@media (max-width:900px){' +
+    '.cm-node[data-key="client"]{--mx:17.5%!important;--my:30.4%!important}' +
+    '.cm-node[data-key="finance"]{--mx:72.5%!important;--my:28.6%!important}' +
+    '.cm-node[data-key="p7"]{--mx:82.5%!important;--my:87.5%!important}' +
+    '.cm-node[data-key="p5"]{--mx:90%!important;--my:93.75%!important}' +
+    '.cm-node .cm-label{letter-spacing:.13em}' +
+    '.cm-node.cm-proj .cm-label{letter-spacing:.10em}' +
+    '}';
+  document.head.appendChild(s);
+})();
