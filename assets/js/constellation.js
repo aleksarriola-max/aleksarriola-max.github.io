@@ -1430,7 +1430,7 @@
   function markFig06() {
     var btn = document.querySelector('.i4-gate-btn');
     var fig = btn ? btn.closest('figure') : null;
-    if (!fig) return;
+    if (!svg) return;
     var WORDS = ['Request', 'Proposes', 'Enforces', 'Computes', 'Model'];
     var NUMS = ['01', '02', '03', '04', '05'];
     var boxes = [];
@@ -1808,13 +1808,13 @@
    ========================================================================== */
 (function () {
   if (window.__i7) return; window.__i7 = true;
-  function MOBILE7() { return window.matchMedia && window.matchMedia('(max-width: 640px)').matches; }
+  function MOBILE7() { return (window.matchMedia && window.matchMedia('(max-width: 640px)').matches) || window.innerWidth <= 640; }
 
   /* ---------- CSS ---------- */
   var CSS7 = [
     '@media (max-width: 640px){',
-    'figure.blueprint.i7-gate-m > div{overflow-x:visible!important;}',
-    'figure.blueprint.i7-gate-m svg{min-width:0!important;width:100%!important;}',
+    'svg.i7-gate-m{min-width:0!important;width:100%!important;}',
+    'figure.i7-gate-m > div{overflow-x:visible!important;overflow-y:visible!important;}',
     'svg.i7-gate-m line{display:none!important;}',
     'svg.i7-gate-m circle[data-pk]{display:none!important;}',
     '}',
@@ -1858,16 +1858,16 @@
     return out;
   }
   function gateRestack7() {
-    var btn = document.querySelector('.i4-gate-btn');
-    var fig = btn ? btn.closest('figure') : null;
-    if (!fig) return;
-    var svg = fig.querySelector('svg');
+    var svg = null; var svgs7 = document.querySelectorAll('svg'); for (var si7 = 0; si7 < svgs7.length; si7++) { var tx7 = svgs7[si7].textContent || ''; if (/0([1-5])\s*[·•]/.test(tx7) && tx7.indexOf('POLICY GATE') >= 0) { svg = svgs7[si7]; break; } }
+    var fig = svg ? svg.closest('figure') : null; var sc7 = svg ? svg.parentElement : null;
+  if (!svg) return;
+    /* el svg ya quedó resuelto por el bucle de arriba */
     if (!svg) return;
     if (!MOBILE7()) {
       if (svg.getAttribute('data-i7-m') === '1') {
         svg.removeAttribute('data-i7-m');
-        svg.classList.remove('i7-gate-m'); fig.classList.remove('i7-gate-m');
-        svg.setAttribute('viewBox', '0 0 1000 290');
+        svg.classList.remove('i7-gate-m'); if (fig) fig.classList.remove('i7-gate-m');
+        svg.setAttribute('viewBox', '0 0 1000 290'); if (sc7) { sc7.style.overflowX = ''; sc7.style.overflowY = ''; }
         var gs0 = svg.querySelectorAll('g');
         for (var i0 = 0; i0 < gs0.length; i0++) gs0[i0].removeAttribute('transform');
         var ts0 = svg.querySelectorAll('text');
@@ -1879,7 +1879,7 @@
     var st = gg.stages;
     if (!st[0] || !st[1] || !st[2] || !st[3] || !st[4]) return;
     for (var k = 0; k < 5; k++) if (!st[k].rect) return;
-    svg.classList.add('i7-gate-m'); fig.classList.add('i7-gate-m');
+    svg.classList.add('i7-gate-m'); if (fig) fig.classList.add('i7-gate-m'); if (sc7) { sc7.style.overflowX = 'visible'; sc7.style.overflowY = 'visible'; }
     svg.setAttribute('data-i7-m', '1');
     svg.setAttribute('viewBox', '0 0 400 780');
     for (var n = 0; n < 5; n++) {
