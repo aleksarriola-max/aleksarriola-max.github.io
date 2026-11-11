@@ -2141,7 +2141,7 @@
     if (!sec || REDUCED8 || routeNow8() !== 'home') return;
     var now = Date.now();
     if (now - userInputAt8 < 5000) return;
-    if (!allowRestart8 && now - lastStart8 < 60000) return;
+    if (!allowRestart8 && now - lastStart8 < 15000) return;
     if (!freshSec8(sec)) return;
     startedEls8.push(sec);
     allowRestart8 = false;
@@ -2600,4 +2600,225 @@
   document.addEventListener('mouseover', function (ev) { setHot9(keyOf9(ev)); });
   document.addEventListener('focus', function (ev) { setHot9(keyOf9(ev)); }, true);
   document.addEventListener('touchstart', function (ev) { setHot9(keyOf9(ev)); }, true);
+})();
+
+/* ============================================================================
+   ITERACIÓN 9 — clics de la telaraña a prueba de re-render (a),
+   pulgar del deslizador con el modelo guardado desde la primera pintura (b).
+   Capa aditiva: no toca el código anterior; solo añade este bloque.
+   Estilo: #constellation-iter10 · Guarda: window.__i10
+   (c) vive en la Iteración 7: el hueco entre auto-arranques de FIG.2 bajó
+   de 60 s a 15 s en maybeStart8 (la guarda anti-interrupción de 5 s sigue).
+   ============================================================================ */
+(function () {
+  'use strict';
+  if (window.__i10) return;
+  window.__i10 = true;
+
+  var REDUCED10 = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var BRASS10 = '#D9B36A';
+  /* Acentos por ruta (los mismos de ROUTES). */
+  var ACC10 = { home: '#92AC9B', cases: '#9BB8D3', coding: '#7FB8A6', client: '#C9A86A', finance: '#D9B36A', experience: '#A8B8C8', writing: '#D8CDB4', certs: '#B5C08A', recs: '#C08A7E' };
+
+  /* CSS mínimo del vuelo de la Iteración 9 (la estela y el destello
+     reutilizan las clases .i8-flow/.i8-arrive de la Iteración 7). */
+  var st10 = document.createElement('style');
+  st10.id = 'constellation-iter10';
+  st10.textContent = '.i9-flow{position:fixed!important;left:0!important;top:0!important;width:100vw!important;height:100vh!important;pointer-events:none!important;z-index:70!important}';
+  document.head.appendChild(st10);
+
+  function route10() {
+    var h = (location.hash || '').replace(/^#/, '').split('?')[0].split('/')[0];
+    return h || 'home';
+  }
+  function dist10(x1, y1, x2, y2) {
+    var dx = x1 - x2, dy = y1 - y2;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+  function nodeOf10(el) {
+    if (!el || !el.closest) return null;
+    return el.closest('a.cm-node');
+  }
+  function dotRect10(node) {
+    var d = node.querySelector('.cm-dot');
+    var r = (d || node).getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height };
+  }
+
+  /* -------- (a) Intención de toque: se registra en pointerdown -------- */
+  var PEND10 = null, UP10 = null;
+  function clearPend10() { PEND10 = null; UP10 = null; }
+  document.addEventListener('pointerdown', function (ev) {
+    if (ev.isPrimary === false) return;
+    var a = nodeOf10(ev.target);
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (!href) return;
+    PEND10 = { key: a.getAttribute('data-key') || '', href: href, target: a.getAttribute('target') || '', x: ev.clientX, y: ev.clientY, t: Date.now(), rect: dotRect10(a) };
+    UP10 = null;
+  }, true);
+  document.addEventListener('pointermove', function (ev) {
+    if (PEND10 && dist10(ev.clientX, ev.clientY, PEND10.x, PEND10.y) > 12) clearPend10();
+  }, true);
+  document.addEventListener('pointerup', function (ev) {
+    if (!PEND10) return;
+    if (dist10(ev.clientX, ev.clientY, PEND10.x, PEND10.y) > 12) { clearPend10(); return; }
+    UP10 = { x: ev.clientX, y: ev.clientY, t: Date.now() };
+  }, true);
+  document.addEventListener('pointercancel', clearPend10, true);
+
+  /* El clic llega después de pointerup; el handler de la Iteración 7 corre
+     primero (documento) y resuelve el nodo en ese instante. Si el mapa se
+     regeneró entre el toque y el clic, el clic ya no cae sobre ningún nodo
+     (o cae sobre otro) y el viaje se pierde. Este guarda corre antes que
+     nadie — en captura sobre window — y rescata el destino registrado. */
+  window.addEventListener('click', function (ev) {
+    if (!PEND10 || !UP10) return;
+    if (ev.detail === 0) return; /* teclado: no tocar */
+    if (Date.now() - PEND10.t > 1200) { clearPend10(); return; }
+    if (dist10(ev.clientX, ev.clientY, PEND10.x, PEND10.y) > 32) return;
+    var a = nodeOf10(ev.target);
+    var key = a ? (a.getAttribute('data-key') || '') : '';
+    if (key && key === PEND10.key) { clearPend10(); return; } /* vía normal: no estorbar */
+    var href = PEND10.href, tgt = PEND10.target, rect = PEND10.rect;
+    clearPend10();
+    if (!href) return;
+    if (href.charAt(0) === '#') {
+      var dest = href.slice(1);
+      if (!dest || dest === route10()) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      fly10(dest, rect);
+    } else {
+      ev.preventDefault();
+      ev.stopPropagation();
+      try { window.open(href, tgt || '_blank'); } catch (e) { location.href = href; }
+    }
+  }, true);
+
+  /* Vuelo de datos de la Iteración 9: mismo arco que el de la Iteración 7,
+     pero con las coordenadas registradas en pointerdown (el nodo destino
+     puede no existir ya en el DOM vivo). */
+  var flying10 = false;
+  function fly10(dest, rect) {
+    if (REDUCED10) { location.hash = '#' + dest; return; }
+    if (flying10) { location.hash = '#' + dest; return; }
+    var fromEl = document.querySelector('.cm-node[data-key="' + route10() + '"] .cm-dot');
+    var toEl = document.querySelector('.cm-node[data-key="' + dest + '"] .cm-dot');
+    var fr = fromEl ? fromEl.getBoundingClientRect() : null;
+    var tr = toEl ? toEl.getBoundingClientRect() : null;
+    var x1, y1, x2, y2;
+    if (fr) { x1 = fr.left + fr.width / 2; y1 = fr.top + fr.height / 2; }
+    else { location.hash = '#' + dest; return; }
+    if (tr) { x2 = tr.left + tr.width / 2; y2 = tr.top + tr.height / 2; }
+    else if (rect) { x2 = rect.x; y2 = rect.y; }
+    else { location.hash = '#' + dest; return; }
+    var color = ACC10[dest] || BRASS10;
+    var mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    var dx = x2 - x1, dy = y2 - y1;
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var px = -dy / len, py = dx / len;
+    var cx = mx + px * 0.22 * len, cy = my + py * 0.22 * len;
+    if (cy > my) { cx = mx - px * 0.22 * len; cy = my - py * 0.22 * len; } /* arco hacia arriba */
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'i9-flow');
+    svg.setAttribute('aria-hidden', 'true');
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M' + x1 + ' ' + y1 + ' Q' + cx + ' ' + cy + ' ' + x2 + ' ' + y2);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', color);
+    path.setAttribute('stroke-width', '1.4');
+    path.setAttribute('pathLength', '1');
+    path.setAttribute('stroke-dasharray', '0.22 0.78');
+    path.setAttribute('stroke-dashoffset', '0.22');
+    var halo = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    halo.setAttribute('r', '10');
+    halo.setAttribute('fill', color);
+    halo.setAttribute('opacity', '0.25');
+    var pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    pulse.setAttribute('r', '4.5');
+    pulse.setAttribute('fill', color);
+    svg.appendChild(path);
+    svg.appendChild(halo);
+    svg.appendChild(pulse);
+    document.body.appendChild(svg);
+    flying10 = true;
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      flying10 = false;
+      try { svg.parentNode.removeChild(svg); } catch (e) {}
+      var node = document.querySelector('.cm-node[data-key="' + dest + '"]');
+      if (node) {
+        node.classList.add('i8-arrive');
+        setTimeout(function () { try { node.classList.remove('i8-arrive'); } catch (e2) {} }, 1000);
+      }
+      location.hash = '#' + dest;
+    }
+    var t0 = null;
+    function frame(ts) {
+      if (done) return;
+      if (!t0) t0 = ts;
+      var e = Math.min(1, (ts - t0) / 650);
+      var ee = e < 0.5 ? 2 * e * e : 1 - Math.pow(-2 * e + 2, 2) / 2;
+      path.setAttribute('stroke-dashoffset', String(0.22 - 1.0 * ee));
+      path.setAttribute('opacity', String(0.15 + 0.55 * Math.sin(ee * Math.PI)));
+      var L = path.getTotalLength();
+      var pt = path.getPointAtLength(Math.max(0, Math.min(1, ee)) * L);
+      halo.setAttribute('cx', String(pt.x));
+      halo.setAttribute('cy', String(pt.y));
+      pulse.setAttribute('cx', String(pt.x));
+      pulse.setAttribute('cy', String(pt.y));
+      if (e < 1) requestAnimationFrame(frame);
+      else finish();
+    }
+    setTimeout(finish, 1400);
+    requestAnimationFrame(frame);
+  }
+
+  /* -------- (b) El pulgar refleja el modelo guardado desde la primera pintura --------
+     El memo ya se aplica en la primera pintura (Iteración 7), pero el botón
+     del deslizador solo se sincronizaba con el ciclo de 2 s de la parte A.
+     Este observador lo pone en su sitio en cuanto aparece el deslizador
+     (antes de pintar) y cada vez que el runtime lo vuelve a crear. El
+     objetivo se lee del modelo vivo (window.__i6Model), que el handler de
+     entrada actualiza al arrastrar, así que no lucha con el dedo. */
+  function model10() {
+    var m = window.__i6Model;
+    if (m && isFinite(+m.w) && isFinite(+m.g) && +m.w >= 7.5 && +m.w <= 9.5 && +m.g >= 3 && +m.g <= 5) return { w: +m.w, g: +m.g };
+    try {
+      var s = JSON.parse(localStorage.getItem('i6-model') || 'null');
+      if (s && isFinite(+s.w) && isFinite(+s.g) && +s.w >= 7.5 && +s.w <= 9.5 && +s.g >= 3 && +s.g <= 5) return { w: +s.w, g: +s.g };
+    } catch (e) {}
+    return { w: 8.5, g: 4 };
+  }
+  function syncThumb10() {
+    var m = model10();
+    var secs = document.querySelectorAll('.i5-build');
+    for (var i = 0; i < secs.length; i++) {
+      var ranges = secs[i].querySelectorAll('input[type="range"]');
+      for (var j = 0; j < ranges.length; j++) {
+        var el = ranges[j];
+        var min = parseFloat(el.getAttribute('min'));
+        var target;
+        if (Math.abs(min - 7.5) < 0.01) target = m.w;
+        else if (Math.abs(min - 3) < 0.01) target = m.g;
+        else target = (j === 0) ? m.w : m.g;
+        target = Math.round(target * 10) / 10;
+        if (Math.abs(parseFloat(el.value) - target) > 0.001) {
+          el.value = String(target);
+          el.setAttribute('value', String(target));
+        }
+      }
+    }
+  }
+  syncThumb10();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncThumb10);
+  }
+  window.addEventListener('load', function () { setTimeout(syncThumb10, 100); });
+  if (window.MutationObserver) {
+    new MutationObserver(function () { syncThumb10(); }).observe(document.documentElement, { childList: true, subtree: true });
+  }
 })();
