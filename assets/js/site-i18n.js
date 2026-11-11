@@ -722,6 +722,7 @@ window.SITE_I18N = (function () {
   "Propose": "Proponer",
   "DCF sensitivity · how the value moves when WACC and terminal growth move. Animated with Manim.": "Sensibilidad DCF · cómo se mueve el valor cuando cambian WACC y crecimiento terminal. Animado con Manim.",
   "Altman Z-score · how five ratios combine into a distress signal. Animated with Manim.": "Z-score de Altman · cómo cinco ratios se combinan en una señal de quiebra. Animado con Manim.",
+  "Scroll u00B7 or hover the constellation": "Desplu00E1zate u00B7 o pasa el cursor sobre la constelaciu00F3n",
 };
 
   function norm(s) {

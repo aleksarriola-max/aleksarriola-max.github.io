@@ -31,10 +31,39 @@ window.__resources = {
 };
 </script>
 <script src="assets/js/dc-runtime.js"></script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
 <!-- Privacy-friendly visit counter (same as the previous site) -->
 <script data-goatcounter="https://aleksarriola.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* Iteration 2 - Terminal constellation + audit fixes. Active only with
+   body.constellation-on (Terminal palette). No structural change. */
+#starCanvas, #depthCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: none; }
+#depthCanvas { position: fixed; }
+body.constellation-on { background: #0D1210; font-variant-numeric: tabular-nums; }
+body.constellation-on #starCanvas.mode-on, body.constellation-on #depthCanvas.mode-on { display: block; }
+body.constellation-on x-dc { position: relative; z-index: 1; }
+body.constellation-on div[style*="min-height:100vh"], body.constellation-on div[style*="min-height: 100vh"] { background: transparent !important; position: relative; z-index: 1; }
+body.constellation-on section[data-screen-label][style*="background:var(--ink)"], body.constellation-on section[data-screen-label][style*="background: var(--ink)"] { background: transparent !important; }
+body.constellation-on footer[style*="background:var(--ink)"], body.constellation-on footer[style*="background: var(--ink)"], body.constellation-on div#scanner[style*="background:var(--ink)"], body.constellation-on div#scanner[style*="background: var(--ink)"] { background: transparent !important; }
+body.constellation-on section[data-screen-label="Hero C"] { position: relative; }
+body.constellation-on section[data-screen-label="Hero C"] h1 { text-wrap: balance; letter-spacing: -0.02em; }
+body.constellation-on section[data-screen-label] h2 { text-wrap: balance; }
+body.constellation-on section[data-screen-label="Hero C"] svg { filter: drop-shadow(0 0 24px rgba(146,172,155,0.12)); }
+body.constellation-on figure[data-gsap] { box-shadow: 0 0 0 1px rgba(146,172,155,0.10), 0 18px 50px -18px rgba(0,0,0,0.55); }
+#constellation-tip { position: fixed; z-index: 30; pointer-events: none; background: rgba(23,33,28,0.97); border: 1px solid rgba(146,172,155,0.5); border-radius: 10px; padding: 11px 14px; max-width: 250px; opacity: 0; transition: opacity 0.15s ease; backdrop-filter: blur(8px); }
+#constellation-tip .nm { font-family: Georgia, serif; font-size: 15px; color: #c9dace; margin-bottom: 3px; }
+#constellation-tip .ds { font-size: 11.5px; color: #8fa39a; line-height: 1.45; }
+#constellation-cue { position: fixed; right: 32px; bottom: 18px; z-index: 2; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(229,234,228,0.5); opacity: 0; transition: opacity 0.6s ease; pointer-events: none; white-space: nowrap; }
+body.constellation-on article.blueprint, body.constellation-on aside.blueprint, body.constellation-on figure.blueprint { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+body.constellation-on article.blueprint:hover, body.constellation-on aside.blueprint:hover, body.constellation-on figure.blueprint:hover { transform: translateY(-2px); box-shadow: 12px 12px 0 var(--ink); }
+body.constellation-on div[style*="box-shadow:10px 10px 0 var(--coral)"], body.constellation-on div[style*="box-shadow: 10px 10px 0 var(--coral)"] { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+body.constellation-on div[style*="box-shadow:10px 10px 0 var(--coral)"]:hover, body.constellation-on div[style*="box-shadow: 10px 10px 0 var(--coral)"]:hover { transform: translateY(-2px); box-shadow: 12px 12px 0 var(--coral); }
+body.constellation-on button[sc-camel-on-click*="propose"] { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+body.constellation-on button[sc-camel-on-click*="propose"]:hover { transform: translateY(-1px); box-shadow: 0 6px 18px -6px rgba(146,172,155,0.45); }
+body.constellation-on button[sc-camel-on-click*="propose"]:active { transform: translateY(0); box-shadow: none; }
+</style>
 </head>
 <body>
 <noscript>
@@ -540,6 +569,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 <script src="assets/js/portfolio-data.js"></script>
 <script src="assets/js/essays.js"></script>
 <script src="assets/js/site-i18n.js"></script>
+<script src="assets/js/constellation.js" defer></script>
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);--font-heading:'Instrument Serif',Georgia,serif;--font-heading-weight:400;--ink:oklch(0.27 0.03 250);--paper:oklch(0.97 0.012 85);--coral:oklch(0.76 0.08 45);--mint:oklch(0.89 0.04 150);--butter:oklch(0.93 0.04 85);--lilac:oklch(0.89 0.03 290);--sky:oklch(0.89 0.03 230)}
@@ -823,7 +853,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
           <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--color-divider)">
             <sc-for list="{{ lifelineTop }}" as="s" hint-placeholder-count="4"><dt style="padding:8px 16px 8px 0;border-bottom:1px solid var(--color-divider);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700)">{{ s.k }}</dt><dd style="margin:0;padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:14px">{{ s.v }}</dd></sc-for>
           </dl>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:auto"><button class="btn btn-secondary" sc-camel-on-click="{{ goLifelineCase }}">Read the case study</button><a class="btn btn-ghost" href="https://www.youtube.com/watch?v=dO4nQzA0oh4" target="_blank" style="text-decoration:none">Watch the demo ↗</a><a class="btn btn-ghost" href="https://github.com/SGGmilagro/lifeline" target="_blank" style="text-decoration:none">Team repo ↗</a></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:auto"><button class="btn btn-secondary" data-case="lifeline" sc-camel-on-click="{{ goLifelineCase }}">Read the case study</button><a class="btn btn-ghost" href="https://www.youtube.com/watch?v=dO4nQzA0oh4" target="_blank" style="text-decoration:none">Watch the demo ↗</a><a class="btn btn-ghost" href="https://github.com/SGGmilagro/lifeline" target="_blank" style="text-decoration:none">Team repo ↗</a></div>
         </div>
       </article>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px">
@@ -841,7 +871,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
     </div>
   </section>
 
-  <section data-screen-label="Lifeline replay" style="background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px)">
+  <section data-screen-label="Lifeline replay" data-choreo="lifeline" style="background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px)">
     <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:48px;align-items:center">
       <div data-reveal="1" style="display:flex;flex-direction:column;gap:16px">
         <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral)">Lifeline · illustrative replay</div>
@@ -856,7 +886,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
     </div>
   </section>
 
-  <section id="model" data-screen-label="Finance tools" style="background:var(--ink);color:var(--color-bg);padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px)">
+  <section id="model" data-choreo="dcf" data-screen-label="Finance tools" style="background:var(--ink);color:var(--color-bg);padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px)">
     <div style="max-width:1160px;margin:0 auto">
       <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:36px"><div><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-300);margin-bottom:10px">Featured Finance Projects</div><h2 style="font-size:clamp(36px,4.4vw,56px);margin:0;text-transform:uppercase;line-height:0.95">Finance &amp; Quantitative Tools</h2></div><button class="btn btn-secondary" sc-camel-on-click="{{ goFinance }}" style="color:var(--color-bg);border-color:var(--color-accent-500)">See finance portfolio →</button></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:40px">
@@ -889,7 +919,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
             </div>
           </div>
           <figure data-gsap="1" style="margin:0 0 40px;border:1px solid var(--color-accent-700);padding:16px">
-<video controls preload="none" poster="assets/videos/dcf-sensitivity-poster.jpg" src="assets/videos/dcf-sensitivity.mp4" style="display:block;width:100%;height:auto;background:#0d1210"></video>
+<video controls preload="none" poster="assets/videos/dcf-sensitivity-poster.jpg" width="1280" height="720" src="assets/videos/dcf-sensitivity.mp4" style="display:block;width:100%;height:auto;background:#0d1210"></video>
 <figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:var(--color-accent-100)"><span>DCF sensitivity · how the value moves when WACC and terminal growth move. Animated with Manim.</span> <span style="border:1px solid var(--color-accent-400);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></figcaption>
 </figure>
 <div style="border:1px solid var(--color-accent-700);padding:20px;display:flex;flex-direction:column;gap:10px">
@@ -940,7 +970,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
   <section data-screen-label="Coding" style="padding:clamp(48px,6vw,80px) clamp(20px,4vw,56px)">
     <div style="max-width:1160px;margin:0 auto">
       <div data-reveal="1" style="margin-bottom:28px"><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:10px">Engineering &amp; Tech</div><h1 data-letters="1" style="font-size:clamp(48px,6vw,88px);margin:0;text-transform:uppercase;line-height:0.9">Coding Projects</h1></div>
-      <div data-reveal="1" style="background:var(--ink);color:var(--paper);margin-bottom:40px;box-shadow:10px 10px 0 var(--coral)">
+      <div data-reveal="1" data-choreo="scanner" style="background:var(--ink);color:var(--paper);margin-bottom:40px;box-shadow:10px 10px 0 var(--coral)">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 22px;border-bottom:1px solid color-mix(in srgb, var(--paper) 16%, transparent)">
           <div><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:6px">How these systems are built</div><h2 style="margin:0;font-size:clamp(28px,3vw,40px);text-transform:uppercase">{{ modeTitle }}</h2></div>
           <div style="display:flex;border:1px solid var(--paper)"><button sc-camel-on-click="{{ setProposed }}" style="all:unset;cursor:pointer;padding:10px 18px;font-family:var(--font-heading);font-weight:400;font-size:16px;letter-spacing:0.06em;text-transform:uppercase;background:{{ propBg }};color:{{ propFg }}">Proposed</button><button sc-camel-on-click="{{ setEnforced }}" style="all:unset;cursor:pointer;padding:10px 18px;font-family:var(--font-heading);font-weight:400;font-size:16px;letter-spacing:0.06em;text-transform:uppercase;background:{{ enfBg }};color:{{ enfFg }}">Enforced</button></div>
@@ -969,7 +999,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:12px">
           <sc-for list="{{ gallery }}" as="im" hint-placeholder-count="5"><a href="{{ im.src }}" target="_blank" class="duotone" style="display:block;aspect-ratio:4/3;background:var(--color-neutral-300)"><img sc-camel-src="{{ im.src }}" alt="{{ im.alt }}" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1)"></a></sc-for>
         </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-secondary" sc-camel-on-click="{{ goLifelineCase }}">Read the full case study →</button><a class="btn btn-ghost" href="https://www.youtube.com/watch?v=dO4nQzA0oh4" target="_blank" style="text-decoration:none">Watch the demo ↗</a><a class="btn btn-ghost" href="https://github.com/SGGmilagro/lifeline" target="_blank" style="text-decoration:none">View team repo ↗</a></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-secondary" data-case="lifeline" sc-camel-on-click="{{ goLifelineCase }}">Read the full case study →</button><a class="btn btn-ghost" href="https://www.youtube.com/watch?v=dO4nQzA0oh4" target="_blank" style="text-decoration:none">Watch the demo ↗</a><a class="btn btn-ghost" href="https://github.com/SGGmilagro/lifeline" target="_blank" style="text-decoration:none">View team repo ↗</a></div>
       </article>
       </sc-if>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:28px">
@@ -1048,7 +1078,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
           </article>
         </sc-for>
       </div>
-      <div id="scanner" data-reveal="1" style="background:var(--ink);color:var(--paper);margin-bottom:64px;scroll-margin-top:60px">
+      <div id="scanner" data-choreo="scanner" data-reveal="1" style="background:var(--ink);color:var(--paper);margin-bottom:64px;scroll-margin-top:60px">
         <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:end;padding:22px;border-bottom:1px solid color-mix(in srgb, var(--paper) 16%, transparent)">
           <div><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:6px"><span>Try it · Red-Flag Scanner</span> <span style="border:1px solid var(--coral);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></div><h2 style="margin:0;font-size:clamp(28px,3vw,40px);text-transform:uppercase">Pick a company profile</h2></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ coChips }}" as="c" hint-placeholder-count="5"><button class="btn" sc-camel-on-click="{{ c.go }}" style="background:{{ c.bg }};color:{{ c.fg }};border-color:var(--paper)">{{ c.label }}</button></sc-for></div>
@@ -1068,7 +1098,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
           </div>
         </div>
 <figure data-gsap="1" style="margin:0;border-top:1px solid color-mix(in srgb, var(--paper) 16%, transparent);padding:22px">
-<video controls preload="none" poster="assets/videos/altman-z-poster.jpg" src="assets/videos/altman-z.mp4" style="display:block;width:100%;max-width:860px;height:auto;background:#0d1210"></video>
+<video controls preload="none" poster="assets/videos/altman-z-poster.jpg" width="1280" height="720" src="assets/videos/altman-z.mp4" style="display:block;width:100%;max-width:860px;height:auto;background:#0d1210"></video>
 <figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--paper) 75%, transparent)"><span>Altman Z-score · how five ratios combine into a distress signal. Animated with Manim.</span> <span style="border:1px solid var(--coral);padding:1px 6px;font-size:11px;letter-spacing:0.08em">SIM</span></figcaption>
 </figure>
       </div>
@@ -1527,6 +1557,19 @@ class Component extends DCLogic {
           window.gsap.from(f, { opacity: 0, y: 24, duration: 0.7, ease: 'power2.out', scrollTrigger: { trigger: f, start: 'top 88%' } });
         });
       } catch (e) {}
+        if (window.gsap && window.ScrollTrigger && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          window.ScrollTrigger.getAll().forEach(function (st) { if (st.vars && st.vars.id && String(st.vars.id).indexOf("choreo-") === 0) { st.kill(); } });
+          document.querySelectorAll("[data-choreo]").forEach(function (el) {
+            var nm = el.getAttribute("data-choreo") || "x";
+            var st = { trigger: el, start: "top 86%", end: "top 38%", scrub: 1, id: "choreo-" + nm };
+            if (el.hasAttribute("data-reveal")) { window.gsap.fromTo(el, { y: 40 }, { y: 0, ease: "none", scrollTrigger: st }); }
+            else { window.gsap.fromTo(el, { y: 40, opacity: 0 }, { y: 0, opacity: 1, ease: "none", scrollTrigger: st }); }
+          });
+          var heroSec = null;
+          document.querySelectorAll("section[data-screen-label]").forEach(function (s) { if (s.getAttribute("data-screen-label") === "Hero C") { heroSec = s; } });
+          var heroSvg = heroSec ? heroSec.querySelector("svg") : null;
+          if (heroSvg) { window.gsap.fromTo(heroSvg, { y: 18 }, { y: -18, ease: "none", scrollTrigger: { trigger: heroSec, start: "top top", end: "bottom top", scrub: true, id: "choreo-hero" } }); }
+        }
     }
   }
 
