@@ -1480,3 +1480,313 @@
   }
   setInterval(boot6a, 2000);
 })();
+/* Iteración 5 — B: capítulos fijados (GSAP ScrollTrigger pin, solo escritorio)
+   e interiores de las 8 páginas con su propio lenguaje visual.
+   El pin es la idea arriesgada diferida de la Iteración 4: se crea solo en
+   escritorio (>=1024px, puntero fino, sin reduced motion) y se re-crea sobre
+   el nodo vivo si el runtime re-renderiza la sección; en móvil y con
+   reduced motion cae a un reveal con scrub (el fallback seguro). */
+(function () {
+  if (window.__i6b) return; window.__i6b = true;
+  var REDUCED6 = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function PIN_OK() {
+    return !REDUCED6 && window.gsap && window.ScrollTrigger &&
+      window.matchMedia('(min-width: 1024px)').matches &&
+      window.matchMedia('(pointer: fine)').matches;
+  }
+  var CSS6B = [
+    'body[data-const-route="coding"] .i6-app{border:1px solid rgba(127,184,166,.45)!important;border-left:4px solid #7FB8A6!important;background:#0D1412!important;}',
+    'body[data-const-route="coding"] .i6-app>:first-child{font-family:ui-monospace,Menlo,Consolas,monospace!important;}',
+    'body[data-const-route="coding"] .i6-ledger{border-top:3px double #7FB8A6!important;}',
+    'body[data-const-route="coding"] .i6-ledger-row{border-bottom:1px solid rgba(237,243,235,.14)!important;}',
+    'body[data-const-route="coding"] .i6-ledger-row:nth-child(odd){background:rgba(127,184,166,.06)!important;}',
+    'body[data-const-route="finance"] .i6-flag{border-top:3px double #D9B36A!important;}',
+    'body[data-const-route="finance"] .i6-num{color:#D9B36A!important;font-variant-numeric:tabular-nums!important;}',
+    'body[data-const-route="finance"] .i6-sim{border:1px solid rgba(217,179,106,.5)!important;}',
+    'body[data-const-route="finance"] .i6-practice{border-left:3px solid #D9B36A!important;padding-left:12px;}',
+    'body[data-const-route="writing"] .i6-feature p:first-of-type::first-letter{font-family:Georgia,"Times New Roman",serif;font-size:3.4em;float:left;line-height:.85;padding:6px 10px 0 0;color:#D8CDB4;}',
+    'body[data-const-route="writing"] .i6-essaylist button{display:grid!important;grid-template-columns:92px 1fr auto;gap:14px;align-items:baseline;text-align:left;}',
+    '@media (max-width:640px){body[data-const-route="writing"] .i6-essaylist button{grid-template-columns:70px 1fr;}}',
+    'body[data-const-route="recs"] .i6-letter{border:1px solid rgba(192,138,126,.55)!important;box-shadow:0 0 0 6px rgba(192,138,126,.07)!important;position:relative;}',
+    'body[data-const-route="recs"] .i6-letter::before{content:"";position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;background:#C08A7E;box-shadow:inset 0 0 0 3px rgba(255,255,255,.4);z-index:1;}',
+    'body[data-const-route="recs"] .i6-quote{font-size:clamp(30px,4.2vw,46px)!important;line-height:1.12!important;}',
+    'body[data-const-route="client"] .i6-client .i6-result{color:#C9A86A!important;}',
+    'body[data-const-route="client"] .i6-marketing{display:grid!important;grid-template-columns:1fr 1fr;gap:18px;}',
+    'body[data-const-route="client"] .i6-marketing>:not(article){grid-column:1/-1;}',
+    '@media (max-width:900px){body[data-const-route="client"] .i6-marketing{grid-template-columns:1fr!important;}}',
+    'body[data-const-route="cases"] .i6-memo{position:relative;padding-left:54px!important;}',
+    'body[data-const-route="cases"] .i6-memo::before{content:"EXHIBIT " attr(data-i6-ex);position:absolute;left:12px;top:22px;writing-mode:vertical-rl;font-size:10px;letter-spacing:.24em;color:#9BB8D3;}',
+    'body[data-const-route="cases"] .i6-stamp{display:inline-block!important;border:2px solid #9BB8D3!important;color:#9BB8D3!important;padding:4px 10px;letter-spacing:.22em!important;transform:rotate(-2deg);font-weight:700;}',
+    'body[data-const-route="cases"] .i6-memo h3,body[data-const-route="cases"] .i6-memo h4{border-left:3px solid #9BB8D3;padding-left:10px;}',
+    'body[data-const-route="experience"] .i6-role{border-top:3px double #A8B8C8!important;}',
+    'body[data-const-route="experience"] .i6-score{color:#D9B36A!important;}',
+    'body[data-const-route="certs"] .i6-register button{border-bottom:1px solid rgba(20,22,26,.22)!important;border-radius:0!important;text-align:left!important;}',
+    'body[data-const-route="certs"] .i6-tile{border:1px solid rgba(181,192,138,.65)!important;}'
+  ].join('\n');
+  var st6b = document.createElement('style');
+  st6b.id = 'constellation-iter6b';
+  st6b.textContent = CSS6B;
+  document.head.appendChild(st6b);
+  if (window.ScrollTrigger && window.ScrollTrigger.config) { try { window.ScrollTrigger.config({ ignoreMobileResize: true }); } catch (e) {} }
+
+  function route6() { return document.body.getAttribute('data-const-route'); }
+
+  /* ---------- capítulos fijados ---------- */
+  var PINS6 = [];
+  var REVEALS6 = [];
+  var REVEAL_EL6 = null;
+  function chapters6() {
+    var out = [];
+    var btn = document.querySelector('.i4-gate-btn');
+    var fig = btn ? btn.closest('figure') : null;
+    if (fig) out.push({ key: 'fig0', el: fig, start: 'top top+=70', end: '+=50%' });
+    var memo = document.querySelector('.i5-build');
+    if (memo) out.push({ key: 'fig2', el: memo, start: 'top top+=10', end: '+=30%' });
+    var lifeline = null;
+    var pool = document.querySelectorAll('section[data-screen-label="Featured apps"] article');
+    var i, h;
+    for (i = 0; i < pool.length; i++) {
+      h = pool[i].querySelector('h1,h2,h3');
+      if (h && (h.textContent || '').trim().toUpperCase() === 'LIFELINE') { lifeline = pool[i]; break; }
+    }
+    if (!lifeline) {
+      var all = document.querySelectorAll('article');
+      for (i = 0; i < all.length; i++) {
+        h = all[i].querySelector('h1,h2,h3');
+        if (h && (h.textContent || '').trim().toUpperCase() === 'LIFELINE') { lifeline = all[i]; break; }
+      }
+    }
+    if (lifeline) out.push({ key: 'lifeline', el: lifeline, start: 'top top+=80', end: '+=40%' });
+    return out;
+  }
+  function killPins6() {
+    for (var i = 0; i < PINS6.length; i++) { try { PINS6[i].trig.kill(); } catch (e) {} }
+    PINS6 = [];
+  }
+  function killReveals6() {
+    for (var i = 0; i < REVEALS6.length; i++) { try { REVEALS6[i].kill(); } catch (e) {} }
+    REVEALS6 = []; REVEAL_EL6 = null;
+  }
+  function refreshPins6() {
+    if (route6() !== 'home' || !PIN_OK()) { killPins6(); return; }
+    var chs = chapters6();
+    var keep = [];
+    for (var i = 0; i < PINS6.length; i++) {
+      var rec = PINS6[i], live = null;
+      for (var j = 0; j < chs.length; j++) { if (chs[j].key === rec.key) live = chs[j]; }
+      if (live && live.el === rec.el && document.contains(rec.el)) keep.push(rec);
+      else { try { rec.trig.kill(); } catch (e) {} }
+    }
+    PINS6 = keep;
+    for (var k = 0; k < chs.length; k++) {
+      var exists = false;
+      for (var m = 0; m < PINS6.length; m++) { if (PINS6[m].key === chs[k].key) exists = true; }
+      if (exists) continue;
+      var tr;
+      try {
+        tr = window.ScrollTrigger.create({ trigger: chs[k].el, start: chs[k].start, end: chs[k].end, pin: true, anticipatePin: 1, invalidateOnRefresh: true });
+      } catch (e) { continue; }
+      PINS6.push({ key: chs[k].key, el: chs[k].el, trig: tr });
+    }
+    if (PINS6.length) { try { window.ScrollTrigger.refresh(); } catch (e) {} }
+  }
+  function refreshReveal6() {
+    if (PIN_OK() || route6() !== 'home' || !window.gsap || !window.ScrollTrigger) { killReveals6(); return; }
+    var lifeline = null;
+    var pool = document.querySelectorAll('section[data-screen-label="Featured apps"] article');
+    for (var i = 0; i < pool.length; i++) {
+      var h = pool[i].querySelector('h1,h2,h3');
+      if (h && (h.textContent || '').trim().toUpperCase() === 'LIFELINE') { lifeline = pool[i]; break; }
+    }
+    if (!lifeline) { killReveals6(); return; }
+    if (lifeline === REVEAL_EL6) return;
+    killReveals6();
+    try {
+      var tw = window.gsap.from(lifeline, { opacity: 0, y: 30, scrollTrigger: { trigger: lifeline, start: 'top 88%', end: 'top 60%', scrub: true } });
+      REVEALS6.push(tw); REVEAL_EL6 = lifeline;
+    } catch (e) {}
+  }
+
+  /* ---------- interiores: marcado por texto ---------- */
+  function sectionOf6(el) { return el.closest ? (el.closest('section') || el.closest('article') || el.parentElement) : el.parentElement; }
+  function markSectionByHeading6(text, cls) {
+    var els = document.querySelectorAll('main *');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.childElementCount > 0) continue;
+      if ((el.textContent || '').trim() === text) { var s = sectionOf6(el); if (s) s.classList.add(cls); return true; }
+    }
+    return false;
+  }
+  function markArticleByTitle6(title, cls) {
+    var arts = document.querySelectorAll('article');
+    for (var i = 0; i < arts.length; i++) {
+      var h = arts[i].querySelector('h1,h2,h3');
+      if (h) {
+        var ht = (h.textContent || '').trim().toUpperCase();
+        if (ht === title || ht.indexOf(title) === 0) { arts[i].classList.add(cls); return true; }
+      }
+    }
+    return false;
+  }
+  function markArticlesWith6(text, cls) {
+    var arts = document.querySelectorAll('article');
+    for (var i = 0; i < arts.length; i++) {
+      if ((arts[i].textContent || '').indexOf(text) >= 0) arts[i].classList.add(cls);
+    }
+  }
+  function markMemos6() {
+    var arts = document.querySelectorAll('article');
+    for (var i = 0; i < arts.length; i++) {
+      var m = /MEMO\s*0(\d)/.exec(arts[i].textContent || '');
+      if (m) { arts[i].classList.add('i6-memo'); arts[i].setAttribute('data-i6-ex', '0' + m[1]); }
+    }
+  }
+  function markLedgerRows6() {
+    var sec = document.querySelector('.i6-ledger'); if (!sec) return;
+    var names = ['OPSFLOW', 'MATCHMIND', 'LIFELINE', 'ORCEN KIT'];
+    var leafs = sec.querySelectorAll('*');
+    for (var i = 0; i < leafs.length; i++) {
+      var el = leafs[i];
+      if (el.childElementCount > 0) continue;
+      if (names.indexOf((el.textContent || '').trim()) >= 0) {
+        var row = el;
+        while (row.parentElement && row.parentElement !== sec) row = row.parentElement;
+        if (row !== sec) row.classList.add('i6-ledger-row');
+      }
+    }
+  }
+  function markPracticeItems6() {
+    var sec = document.querySelector('.i6-practices'); if (!sec) return;
+    var titles = ['Investment Analysis', 'Banking & Credit', 'Risk & Audit', 'Sales & Trading', 'Tax & Transaction Advisory', 'Bloomberg Terminal'];
+    var leafs = sec.querySelectorAll('*');
+    for (var i = 0; i < leafs.length; i++) {
+      var el = leafs[i];
+      if (el.childElementCount > 0) continue;
+      if (titles.indexOf((el.textContent || '').trim()) >= 0) {
+        var it = el;
+        while (it.parentElement && it.parentElement !== sec) it = it.parentElement;
+        if (it !== sec) it.classList.add('i6-practice');
+      }
+    }
+  }
+  function markBigNums6() {
+    var flags = document.querySelectorAll('.i6-flag');
+    for (var i = 0; i < flags.length; i++) {
+      var leafs = flags[i].querySelectorAll('*');
+      for (var j = 0; j < leafs.length; j++) {
+        var el = leafs[j];
+        if (el.childElementCount > 0) continue;
+        if (!/^\d+(\+|×)?$/.test((el.textContent || '').trim())) continue;
+        try { if (parseFloat(window.getComputedStyle(el).fontSize) >= 24) el.classList.add('i6-num'); } catch (e) {}
+      }
+    }
+  }
+  function markClientResult6() {
+    var arts = document.querySelectorAll('.i6-client');
+    for (var i = 0; i < arts.length; i++) {
+      var leafs = arts[i].querySelectorAll('*');
+      for (var j = 0; j < leafs.length; j++) {
+        var el = leafs[j];
+        if (el.childElementCount > 0) continue;
+        if ((el.textContent || '').trim() === '→') {
+          var strip = el.parentElement;
+          if (strip && /\d/.test(strip.textContent || '')) strip.classList.add('i6-result');
+        }
+      }
+    }
+  }
+  function markCertTiles6() {
+    var names = ['Goldman Sachs', 'J.P. Morgan', 'Bank of America', 'Bloomberg', 'Citi', 'Wells Fargo'];
+    var leafs = document.querySelectorAll('main *');
+    for (var i = 0; i < leafs.length; i++) {
+      var el = leafs[i];
+      if (el.childElementCount > 0) continue;
+      if (names.indexOf((el.textContent || '').trim()) >= 0) {
+        var tile = el.closest ? (el.closest('article') || el.closest('a') || el.parentElement) : el.parentElement;
+        if (tile) tile.classList.add('i6-tile');
+      }
+    }
+  }
+  function markFeature6() {
+    var els = document.querySelectorAll('a,button');
+    for (var i = 0; i < els.length; i++) {
+      if ((els[i].textContent || '').trim().indexOf('Read the essay') === 0) {
+        var a = els[i].closest ? els[i].closest('article') : null;
+        if (a) a.classList.add('i6-feature');
+      }
+    }
+  }
+  function dress6b() {
+    var r = route6();
+    if (r === 'coding') {
+      markArticlesWith6('TERM SHEET', 'i6-app');
+      markSectionByHeading6('WHAT THE CODE ALLOWS', 'i6-ledger');
+      markLedgerRows6();
+    } else if (r === 'finance') {
+      markArticleByTitle6('COMPANY HEALTH RED-FLAG SCANNER', 'i6-flag');
+      markArticleByTitle6('AUTO COMPANY VALUATION KIT', 'i6-flag');
+      markSectionByHeading6('TRY IT · RED-FLAG SCANNER SIM', 'i6-sim');
+      markSectionByHeading6('SELECTED EXPERTISE', 'i6-practices');
+      markPracticeItems6();
+      markBigNums6();
+    } else if (r === 'writing') {
+      markSectionByHeading6('ESSAY TAPE', 'i6-tape');
+      markSectionByHeading6('ALL 110 ESSAYS', 'i6-essaylist');
+      markFeature6();
+    } else if (r === 'recs') {
+      markArticleByTitle6('THE FULL LETTER', 'i6-letter');
+      var leafs = document.querySelectorAll('main *');
+      for (var i = 0; i < leafs.length; i++) {
+        var el = leafs[i];
+        if (el.childElementCount === 0 && (el.textContent || '').trim().indexOf('He could take an') === 0) el.classList.add('i6-quote');
+      }
+    } else if (r === 'client') {
+      markArticleByTitle6('AEROSHIELD', 'i6-client');
+      markArticleByTitle6('JET ROSE', 'i6-client');
+      markSectionByHeading6('MARKETING PROJECTS & RESEARCH', 'i6-marketing');
+      markClientResult6();
+    } else if (r === 'cases') {
+      markMemos6();
+      var memos = document.querySelectorAll('.i6-memo');
+      for (var j = 0; j < memos.length; j++) {
+        var ls = memos[j].querySelectorAll('*');
+        for (var k = 0; k < ls.length; k++) {
+          if (ls[k].childElementCount === 0 && (ls[k].textContent || '').trim() === 'APPROVED') ls[k].classList.add('i6-stamp');
+        }
+      }
+    } else if (r === 'experience') {
+      var arts = document.querySelectorAll('article');
+      for (var a = 0; a < arts.length; a++) arts[a].classList.add('i6-role');
+      var els2 = document.querySelectorAll('article *');
+      for (var b = 0; b < els2.length; b++) {
+        var el2 = els2[b];
+        if (el2.childElementCount > 0) continue;
+        var t2 = (el2.textContent || '').trim();
+        if (/^\d+×$/.test(t2)) el2.classList.add('i6-score');
+        else if (/^\d+×/.test(t2)) { try { if (parseFloat(window.getComputedStyle(el2).fontSize) >= 28) el2.classList.add('i6-score'); } catch (e) {} }
+      }
+    } else if (r === 'certs') {
+      markSectionByHeading6('SELECTED CREDENTIALS', 'i6-tiles');
+      markSectionByHeading6('ALL 53 CREDENTIALS', 'i6-register');
+      markCertTiles6();
+    }
+  }
+  var lastRoute6 = null;
+  function boot6b() {
+    try { refreshPins6(); } catch (e) {}
+    try { refreshReveal6(); } catch (e) {}
+    try { dress6b(); } catch (e) {}
+    lastRoute6 = route6();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot6b); else boot6b();
+  window.addEventListener('load', function () { setTimeout(boot6b, 700); });
+  if (window.MutationObserver && !window.__i6bObs) {
+    window.__i6bObs = true;
+    var mo6b = new MutationObserver(function () { clearTimeout(mo6b._t); mo6b._t = setTimeout(boot6b, 450); });
+    mo6b.observe(document.documentElement, { childList: true, subtree: true });
+  }
+  setInterval(function () { if (route6() !== lastRoute6) boot6b(); else { try { refreshPins6(); } catch (e) {} try { refreshReveal6(); } catch (e) {} } }, 2000);
+  var rsz6 = null;
+  window.addEventListener('resize', function () { clearTimeout(rsz6); rsz6 = setTimeout(function () { try { refreshPins6(); } catch (e) {} try { refreshReveal6(); } catch (e) {} }, 300); });
+})();
