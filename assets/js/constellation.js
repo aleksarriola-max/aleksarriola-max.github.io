@@ -17,7 +17,7 @@
   var ROUTES = {
     home: { acc: '#92AC9B', rgb: '146,172,155', nm: 'Home', ds: 'You are here · Estás aquí — highlights & quick guide' },
     cases: { acc: '#9BB8D3', rgb: '155,184,211', nm: 'Case Studies', ds: 'Systems · risk decisions — sistemas y decisiones de riesgo' },
-    coding: { acc: '#7FB8A6', rgb: '127,184,166', nm: 'Coding', ds: '8 live apps deployed — 8 apps en vivo' },
+    coding: { acc: '#7FB8A6', rgb: '127,184,166', nm: 'Coding', ds: '9 live apps deployed — 9 apps en vivo' },
     client: { acc: '#C9A86A', rgb: '201,168,106', nm: 'Client Work', ds: '8 live engagements — 8 proyectos reales' },
     finance: { acc: '#D9B36A', rgb: '217,179,106', nm: 'Finance', ds: 'Tools & IB simulations — herramientas y simulaciones' },
     experience: { acc: '#A8B8C8', rgb: '168,184,200', nm: 'Experience', ds: 'Internships & roles — prácticas y roles' },
@@ -1264,4 +1264,219 @@
   }
   setInterval(arm5, 1500);
   arm5();
+})();
+/* Iteración 5 — A: el memo de FIG.2 es interactivo (modelo DCF en vivo),
+   FIG.0 legible en móvil (etapas apiladas) y la pista del mapa en una línea.
+   Misma cura que FIG.0/FIG.2: resolución en vivo y delegación, para que los
+   re-renders del runtime no dejen controles muertos. */
+(function () {
+  if (window.__i6a) return; window.__i6a = true;
+  var CSS6 = [
+    '@media (max-width: 640px){',
+    '.i6-stage-row{display:flex!important;flex-direction:column!important;gap:6px!important;}',
+    '.i6-stage-row>:not(.i6-stage){display:none!important;}',
+    '.i6-stage{width:100%!important;max-width:none!important;text-align:left!important;}',
+    '.i6-escalate{width:100%!important;max-width:none!important;}',
+    '.i6-ctl-row{grid-template-columns:1fr!important;}',
+    '}',
+    '@media (max-width: 480px){',
+    '.cm-hint{white-space:nowrap!important;letter-spacing:.05em!important;font-size:10px!important;}',
+    '}',
+    '.i6-controls{margin-top:18px;border-top:1px solid rgba(217,179,106,.35);padding-top:14px;}',
+    '.i6-ctl-k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#D9B36A;margin:0 0 10px;}',
+    '.i6-ctl-row{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end;}',
+    '.i6-ctl{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,243,235,.75);}',
+    '.i6-ctl output{color:#E8DFC8;font-family:ui-monospace,Menlo,Consolas,monospace;margin-left:6px;}',
+    '.i6-ctl input[type=range]{width:100%;accent-color:#D9B36A;margin-top:6px;}',
+    '.i6-ctl-btn{background:transparent;border:1px solid #D9B36A;color:#D9B36A;font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:9px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;}',
+    '.i6-ctl-btn:hover,.i6-ctl-btn:focus-visible{background:#D9B36A;color:#14161a;}'
+  ].join('\n');
+  var st6 = document.createElement('style');
+  st6.id = 'constellation-iter6';
+  st6.textContent = CSS6;
+  document.head.appendChild(st6);
+
+  /* ---------- modelo DCF en vivo (FIG.2) ---------- */
+  var M6 = window.__i6Model || (window.__i6Model = { w: 8.5, g: 4.0, price: 186 });
+  var SCALE6 = null;
+  /* DCF en dos etapas: 10 años explícitos con FCF +6%/año y valor terminal Gordon
+     con tope de 20x FCF (práctica conservadora cuando el diferencial w-g es bajo). */
+  function dcfUnit6(w, g) {
+    var pv = 0, i;
+    for (i = 1; i <= 10; i++) pv += Math.pow(1.06, i) / Math.pow(1 + w, i);
+    var fcf10 = Math.pow(1.06, 10);
+    var mult = (1 + g) / (w - g); if (mult > 20) mult = 20; if (mult < 0) mult = 0;
+    return pv + fcf10 * mult / Math.pow(1 + w, 10);
+  }
+  function fv6(w, g) {
+    if (SCALE6 === null) SCALE6 = 245 / dcfUnit6(0.085, 0.04);
+    return dcfUnit6(w, g) * SCALE6;
+  }
+  function fmt6(x) { return '$' + Math.round(x); }
+  function liveSec6() { return document.querySelector('.i5-build'); }
+  function applyModel6() {
+    var sec = liveSec6(); if (!sec) return null;
+    var w = M6.w / 100, g = M6.g / 100;
+    var base = fv6(w, g), bear = fv6(w + 0.01, g - 0.01), bull = fv6(w - 0.01, g + 0.01);
+    var mos = (base - M6.price) / base;
+    var q = function (s) { return sec.querySelector(s); };
+    var set = function (sel, txt) { var el = q(sel); if (el) el.textContent = txt; };
+    set('[data-i5="kpi1"] span', fmt6(base));
+    set('[data-i5="kpi3"] span', Math.round(mos * 100) + '%');
+    set('[data-i5="kpi4"] span', M6.w.toFixed(1) + '% · ' + M6.g.toFixed(1) + '%');
+    var grid = q('.i5-grid');
+    if (grid) {
+      var hs = grid.querySelectorAll('.h');
+      if (hs.length >= 7) {
+        hs[1].textContent = 'g ' + (M6.g - 1).toFixed(1) + '%';
+        hs[2].textContent = 'g ' + M6.g.toFixed(1) + '%';
+        hs[3].textContent = 'g ' + (M6.g + 1).toFixed(1) + '%';
+        hs[4].textContent = 'WACC ' + (M6.w - 1).toFixed(1) + '%';
+        hs[5].textContent = 'WACC ' + M6.w.toFixed(1) + '%';
+        hs[6].textContent = 'WACC ' + (M6.w + 1).toFixed(1) + '%';
+      }
+      var cells = grid.querySelectorAll('div:not(.h)');
+      var vals = [
+        fv6(w - 0.01, g - 0.01), fv6(w - 0.01, g), fv6(w - 0.01, g + 0.01),
+        fv6(w, g - 0.01), base, fv6(w, g + 0.01),
+        fv6(w + 0.01, g - 0.01), fv6(w + 0.01, g), fv6(w + 0.01, g + 0.01)
+      ];
+      cells.forEach(function (c, i) { if (i < vals.length) c.textContent = Math.round(vals[i]); });
+    }
+    var bars = sec.querySelectorAll('.i5-barrow');
+    var bvals = [bear, base, bull];
+    bars.forEach(function (row, i) {
+      var v = bvals[i] || base;
+      var fill = row.querySelector('i');
+      if (fill) fill.style.width = Math.round(v / bull * 100) + '%';
+      var spans = row.querySelectorAll('span');
+      if (spans.length) spans[spans.length - 1].textContent = fmt6(v);
+    });
+    var verd = mos >= 0.15 ? 'UNDERVALUED' : (mos >= 0 ? 'FAIR VALUE' : 'OVERVALUED');
+    set('[data-i5="verdict"]', verd + ' — margin of safety ' + Math.round(mos * 100) + '% · Altman Z 3.1 — safe zone.');
+    return { base: base, mos: mos };
+  }
+  function rebuild6() {
+    var sec = liveSec6(); if (!sec) return;
+    var btn = sec.querySelector('.i5-run');
+    if (btn && btn.disabled) { setTimeout(rebuild6, 600); return; }
+    var r = applyModel6(); if (!r) return;
+    var logEl = sec.querySelector('.i5-log'), countEl = sec.querySelector('.i5-count'), pctEl = sec.querySelector('.i5-pct');
+    var layers = Array.prototype.slice.call(sec.querySelectorAll('.i5-layer'));
+    layers.forEach(function (l) { l.classList.remove('i5-on'); });
+    if (countEl) countEl.textContent = 'REBUILDING · RECONSTRUYENDO';
+    if (pctEl) pctEl.textContent = '…';
+    if (logEl) logEl.textContent = 'Rebuilding — WACC ' + M6.w.toFixed(1) + '% · growth ' + M6.g.toFixed(1) + '%…';
+    layers.forEach(function (l, i) { setTimeout(function () { l.classList.add('i5-on'); }, 90 * i + 60); });
+    setTimeout(function () {
+      var s2 = liveSec6(); if (!s2) return;
+      var c2 = s2.querySelector('.i5-count'), p2 = s2.querySelector('.i5-pct'), l2 = s2.querySelector('.i5-log');
+      if (c2) c2.textContent = '147 / 147 LAYERS';
+      if (p2) p2.textContent = '100%';
+      if (l2) l2.textContent = 'REBUILT · RECONSTRUIDO — WACC ' + M6.w.toFixed(1) + '% · growth ' + M6.g.toFixed(1) + '% → fair value ' + fmt6(r.base) + ' · margin of safety ' + Math.round(r.mos * 100) + '%.';
+    }, 90 * layers.length + 200);
+  }
+  function ensureControls6() {
+    var sec = liveSec6(); if (!sec) return;
+    var canvas = sec.querySelector('.i5-canvas'); if (!canvas) return;
+    var ctl = canvas.querySelector('.i6-controls');
+    if (!ctl) {
+      ctl = document.createElement('div');
+      ctl.className = 'i6-controls';
+      ctl.innerHTML = '<p class="i6-ctl-k">Live model · modelo en vivo — move the assumptions, the memo rebuilds</p>' +
+        '<div class="i6-ctl-row">' +
+        '<label class="i6-ctl">WACC <output data-i6-wo>' + M6.w.toFixed(1) + '%</output><input type="range" min="7.5" max="9.5" step="0.1" value="' + M6.w + '" data-i6-w aria-label="WACC"></label>' +
+        '<label class="i6-ctl">Growth g <output data-i6-go>' + M6.g.toFixed(1) + '%</output><input type="range" min="3" max="5" step="0.1" value="' + M6.g + '" data-i6-g aria-label="Terminal growth"></label>' +
+        '<button type="button" class="i6-ctl-btn" data-i6-rebuild>↻ Rebuild the memo</button>' +
+        '</div>';
+      var kpis = canvas.querySelector('.i5-kpis');
+      if (kpis) kpis.insertAdjacentElement('afterend', ctl); else canvas.appendChild(ctl);
+    } else {
+      var wi = ctl.querySelector('[data-i6-w]'), gi = ctl.querySelector('[data-i6-g]');
+      if (wi && +wi.value !== M6.w) wi.value = M6.w;
+      if (gi && +gi.value !== M6.g) gi.value = M6.g;
+      var wo = ctl.querySelector('[data-i6-wo]'), go = ctl.querySelector('[data-i6-go]');
+      if (wo) wo.textContent = M6.w.toFixed(1) + '%';
+      if (go) go.textContent = M6.g.toFixed(1) + '%';
+    }
+  }
+  var deb6 = null;
+  document.addEventListener('input', function (ev) {
+    var t = ev.target && ev.target.closest ? ev.target.closest('[data-i6-w],[data-i6-g]') : null;
+    if (!t) return;
+    var v = parseFloat(t.value); if (isNaN(v)) return;
+    if (t.hasAttribute('data-i6-w')) M6.w = v; else M6.g = v;
+    var out = t.parentElement ? t.parentElement.querySelector('output') : null;
+    if (out) out.textContent = v.toFixed(1) + '%';
+    clearTimeout(deb6);
+    deb6 = setTimeout(rebuild6, 400);
+  }, true);
+  document.addEventListener('click', function (ev) {
+    var t = ev.target && ev.target.closest ? ev.target.closest('[data-i6-rebuild]') : null;
+    if (!t) return;
+    ev.stopPropagation();
+    rebuild6();
+  }, true);
+
+  /* ---------- FIG.0 en móvil + pista corta ---------- */
+  var HINT6 = 'TAP A STAR TO TRAVEL · TOCA UNA ESTRELLA';
+  function hint6() {
+    var hs = document.querySelectorAll('.cm-hint');
+    if (hs.length) { hs.forEach(function (h) { if (h.textContent !== HINT6) h.textContent = HINT6; }); return; }
+    document.querySelectorAll('p').forEach(function (p) {
+      if ((p.textContent || '').indexOf('HOVER OR TAP A STAR') === 0) p.textContent = HINT6;
+    });
+  }
+  function markFig06() {
+    var btn = document.querySelector('.i4-gate-btn');
+    var fig = btn ? btn.closest('figure') : null;
+    if (!fig) return;
+    var WORDS = ['Request', 'Proposes', 'Enforces', 'Computes', 'Model'];
+    var NUMS = ['01', '02', '03', '04', '05'];
+    var boxes = [];
+    var leafs = Array.prototype.slice.call(fig.querySelectorAll('*'));
+    leafs.forEach(function (el) {
+      if (el.childElementCount > 0) return;
+      var t = (el.textContent || '').trim();
+      for (var i = 0; i < WORDS.length; i++) {
+        if (t === WORDS[i] || t.indexOf(WORDS[i]) === 0) {
+          var b = el;
+          while ((b.textContent || '').indexOf(NUMS[i]) < 0 && b.parentElement && b.parentElement !== fig) b = b.parentElement;
+          if ((b.textContent || '').indexOf(NUMS[i]) >= 0 && b !== fig) { b.classList.add('i6-stage'); boxes.push(b); }
+          return;
+        }
+      }
+    });
+    if (boxes.length >= 4) {
+      var row = boxes[0].parentElement;
+      var same = row && boxes.every(function (b) { return b.parentElement === row; });
+      if (same && row.children.length <= 9) row.classList.add('i6-stage-row');
+    }
+    var hr = null;
+    leafs.forEach(function (el) {
+      if (el.childElementCount === 0 && (el.textContent || '').trim() === 'Human review') hr = el;
+    });
+    if (hr) {
+      var eb = hr;
+      while ((eb.textContent || '').indexOf('ESCALATE') < 0 && eb.parentElement && eb.parentElement !== fig) eb = eb.parentElement;
+      if ((eb.textContent || '').indexOf('ESCALATE') >= 0) eb.classList.add('i6-escalate');
+    }
+  }
+  function dress6a() {
+    try { hint6(); } catch (e) {}
+    try { markFig06(); } catch (e) {}
+    try {
+      ensureControls6();
+      if (M6.w !== 8.5 || M6.g !== 4.0) applyModel6();
+    } catch (e) {}
+  }
+  function boot6a() { dress6a(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot6a); else boot6a();
+  window.addEventListener('load', function () { setTimeout(boot6a, 700); });
+  if (window.MutationObserver && !window.__i6Obs) {
+    window.__i6Obs = true;
+    var mo6 = new MutationObserver(function () { clearTimeout(mo6._t); mo6._t = setTimeout(boot6a, 450); });
+    mo6.observe(document.documentElement, { childList: true, subtree: true });
+  }
+  setInterval(boot6a, 2000);
 })();
