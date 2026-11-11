@@ -2411,7 +2411,7 @@
   var LAB_M_INNER = { home: 'up', cases: 'right', coding: 'right', client: 'right', finance: 'right', experience: 'left', writing: 'left', certs: 'down', recs: 'up' };
   var LAB_M_OUTER = { 'Lifeline': 'up', 'PitMind': 'down', 'Outsette': 'down', 'Orcen Kit': 'down', 'Tallyhound': 'down', 'OpsFlow': 'down', 'StoryForge': 'down', 'MissionMind': 'up' };
   /* Textos de la sección, bilingües en una sola línea como la pista. */
-  var HINT9 = 'TRAVEL THE WEB · RECORRE LA TELARAÑA';
+  var HINT9 = 'TRAVEL THE WEB · RECORRE LA TELARAÑA'; var CUE9 = 'SCROLL ↓ · THE WEB IS THE MAP — LA TELARAÑA ES EL MAPA';
   var KICK9 = 'Explore the web — Explora la telaraña';
   var TITLE9 = 'Follow the web · Sigue la telaraña.';
   var SUB9 = 'Every thread is a real page or project. Hover to see what it is, click to travel — this is the web, not decoration. / Cada hilo es una página o un proyecto real. Pasa el cursor para ver qué es y haz clic para viajar: es la telaraña, no decoración.';
@@ -2541,7 +2541,7 @@
     var svgD = chart.querySelector('.cm-svg-d'), svgM = chart.querySelector('.cm-svg-m');
     if (svgD) webLines9(svgD, buildLines9(false), 'd');
     if (svgM) webLines9(svgM, buildLines9(true), 'm');
-    dressText9(map);
+    dressText9(map); var cue9 = document.getElementById('constellation-cue'); if (cue9 && cue9.textContent !== CUE9) cue9.textContent = CUE9;
     if (sec && sec !== map) dressText9(sec);
   }
   function injectCSS9() {
