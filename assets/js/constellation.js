@@ -948,3 +948,208 @@
     }
   }, 2000);
 })();
+/* Iteración 4 (reel) — el agente construye un memo de valoración en vivo, capa a capa.
+   Adaptación del reel de Harshil @harshil.irll (4 nov 2026, «delivering stakeholder value
+   in style»): en el reel, un agente construye un dashboard completo en el navegador, capa a
+   capa, con la barra de estado «1 agent · 0 / 147 layers · 0%» (según los comentarios el
+   herramienta es Anticode, no Claude, y hay quien menciona una extensión «swarm»).
+   Aquí no se copia la demo del reel: la misma idea — un agente que construye un entregable
+   pulido delante del visitante — se traduce al portafolio de Aleks: OPSFLOW, el agente de
+   FIG.0, construye en vivo un memo de valoración DCF de AAPL (su trabajo canónico: hay
+   Apple_Valuation_v29_Report y Apple_Valuation_v45.xlsx en el repo), capa a capa, con la
+   misma barra «1 AGENT · n / 147 LAYERS · %» y un memo que termina siendo un entregable
+   para stakeholders, con enlace al modelo en vivo (#finance). Es la sección «FIG. 2»,
+   continuación de FIG.0 (el héroe) y FIG.1 (el mapa). Valores de demostración, coherentes
+   entre sí (DCF: valor $245, precio $186, margen de seguridad 24%, WACC 8,5%, g 4,0%).
+   La construcción arranca sola cuando la sección entra en ventanilla; hay botón de replay.
+   Solo en Home (ruta home); se reinstala si la SPA reconstruye la ruta. */
+(function () {
+  'use strict';
+  var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var CSS = [
+    '.i5-build{border-top:1px solid rgba(217,179,106,.4);padding:70px 0 78px;position:relative;z-index:1}',
+    '.i5-inner{max-width:1180px;margin:0 auto;padding:0 24px}',
+    '.i5-fig{display:inline-block;margin-right:10px;color:#D9B36A;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em}',
+    '.i5-kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#92AC9B}',
+    '.i5-title{font-family:Georgia,serif;font-size:clamp(36px,4.5vw,60px);line-height:1.05;margin:14px 0 12px;color:#EDF3EB}',
+    '.i5-title em{color:#92AC9B;font-style:italic}',
+    '.i5-sub{max-width:660px;color:rgba(237,243,235,.72);font-size:15px;line-height:1.6;margin:0 0 26px}',
+    '.i5-status{display:flex;gap:18px;align-items:baseline;font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:rgba(237,243,235,.85);text-transform:uppercase}',
+    '.i5-status .i5-live{color:#92AC9B}',
+    '.i5-bar{height:3px;background:rgba(237,243,235,.14);margin:12px 0 4px;border-radius:2px;overflow:hidden}',
+    '.i5-bar i{display:block;height:100%;width:0%;background:#D9B36A;transition:width .3s ease}',
+    '.i5-log{font:500 12px/1.6 ui-monospace,Menlo,monospace;color:rgba(237,243,235,.6);min-height:20px;margin:6px 0 0}',
+    '.i5-log b{color:#D9B36A;font-weight:700}',
+    '.i5-canvas{margin-top:24px;border:1px solid rgba(146,172,155,.3);border-radius:14px;padding:26px 28px;background:rgba(13,18,16,.88);box-shadow:0 20px 60px rgba(0,0,0,.35)}',
+    '.i5-layer{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}',
+    '.i5-layer.i5-on{opacity:1;transform:none}',
+    '.i5-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}',
+    '.i5-head h3{font-family:Georgia,serif;font-size:24px;margin:0;color:#EDF3EB}',
+    '.i5-head span{font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:rgba(237,243,235,.6)}',
+    '.i5-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}',
+    '.i5-kpi{border:1px solid rgba(237,243,235,.14);border-radius:10px;padding:12px 14px}',
+    '.i5-kpi b{display:block;font:700 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,243,235,.55);margin-bottom:8px}',
+    '.i5-kpi span{font-family:Georgia,serif;font-size:26px;color:#EDF3EB}',
+    '.i5-kpi.hot{border-color:rgba(217,179,106,.7)}',
+    '.i5-st{margin-top:22px;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,243,235,.6)}',
+    '.i5-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;font:500 13px/1 ui-monospace,Menlo,monospace}',
+    '.i5-grid div{border:1px solid rgba(237,243,235,.12);border-radius:8px;padding:9px 6px;text-align:center;color:rgba(237,243,235,.85)}',
+    '.i5-grid div.h{border-color:transparent;color:rgba(237,243,235,.5);font-size:11px;letter-spacing:.1em}',
+    '.i5-grid div.base{border-color:rgba(217,179,106,.9);color:#D9B36A;font-weight:700}',
+    '.i5-bars{margin-top:22px}',
+    '.i5-barrow{display:flex;align-items:center;gap:12px;margin:10px 0}',
+    '.i5-barrow b{width:44px;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:rgba(237,243,235,.7)}',
+    '.i5-barrow .tr{flex:1;height:10px;background:rgba(237,243,235,.12);border-radius:6px;overflow:hidden}',
+    '.i5-barrow .tr i{display:block;height:100%;background:#92AC9B}',
+    '.i5-barrow.base .tr i{background:#D9B36A}',
+    '.i5-barrow span{width:52px;text-align:right;font:700 13px/1 ui-monospace,Menlo,monospace;color:#EDF3EB}',
+    '.i5-verdict{margin-top:24px;font-family:Georgia,serif;font-style:italic;font-size:23px;line-height:1.3;color:#92AC9B}',
+    '.i5-foot{margin-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}',
+    '.i5-foot p{font:500 11px/1.6 ui-monospace,Menlo,monospace;color:rgba(237,243,235,.55);margin:0}',
+    '.i5-cta{color:#D9B36A;border:1px solid rgba(217,179,106,.6);border-radius:999px;padding:10px 16px;text-decoration:none;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase}',
+    '.i5-cta:hover{background:rgba(217,179,106,.14)}',
+    '.i5-run{margin-top:24px;display:inline-block;padding:11px 18px;border:1px solid rgba(146,172,155,.6);border-radius:999px;background:transparent;color:#D9B36A;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}',
+    '.i5-run:hover{border-color:#D9B36A;background:rgba(217,179,106,.12)}',
+    '.i5-run[disabled]{opacity:.5;cursor:default}',
+    '@media (max-width:900px){.i5-kpis{grid-template-columns:repeat(2,1fr)}.i5-canvas{padding:20px 16px}.i5-grid{font-size:11px}.i5-status{flex-wrap:wrap;gap:8px}}'
+  ].join('\n');
+  var st = document.createElement('style'); st.id = 'constellation-iter5'; st.textContent = CSS; document.head.appendChild(st);
+
+  var TOTAL = 147;
+  var STEPS = [
+    {sel: '[data-i5="head"]', log: 'Pulling 10-K \u00B7 AAPL FY24\u2026'},
+    {sel: '[data-i5="kpi1"]', log: 'Valuing \u00B7 DCF \u2014 fair value $245'},
+    {sel: '[data-i5="kpi2"]', log: 'Market price: $186'},
+    {sel: '[data-i5="kpi3"]', log: 'Margin of safety: 24% \u2014 green'},
+    {sel: '[data-i5="kpi4"]', log: 'WACC 8.5% \u00B7 growth 4.0% \u2014 locked'},
+    {sel: '[data-i5="sens-h"]', log: 'Building sensitivity table \u00B7 WACC \u00D7 growth\u2026'},
+    {sel: '[data-i5="sens"]', log: 'Sensitivity ready \u2014 9 cells'},
+    {sel: '[data-i5="bars"]', log: 'Painting scenario bars\u2026'},
+    {sel: '[data-i5="verdict"]', log: 'Verdict: UNDERVALUED \u00B7 infravalorado'},
+    {sel: '[data-i5="foot"]', log: 'Altman Z 3.1 \u2014 safe zone \u00B7 zona segura'},
+    {sel: '[data-i5="cta"]', log: 'Signing the memo \u2014 OPSFLOW \u00B7 entregando\u2026'}
+  ];
+  function html5() {
+    return [
+      '<div class="i5-inner">',
+      '<p class="i5-kicker"><span class="i5-fig">FIG. 2</span>LIVE BUILD \u2014 CONSTRUCCI\u00D3N EN VIVO</p>',
+      '<h2 class="i5-title">Watch the agent build it. <em>Mira c\u00F3mo el agente lo construye.</em></h2>',
+      '<p class="i5-sub">OPSFLOW \u2014 the agent behind FIG.0 \u2014 builds a valuation memo here, layer by layer, while you watch. Demo data \u00B7 datos de demostraci\u00F3n.</p>',
+      '<div class="i5-status"><span class="i5-live">\u25CF 1 AGENT</span><span class="i5-count">0 / 147 LAYERS</span><span class="i5-pct">0%</span></div>',
+      '<div class="i5-bar"><i></i></div>',
+      '<p class="i5-log">Standing by \u00B7 en espera\u2026</p>',
+      '<div class="i5-canvas">',
+      '<div class="i5-layer" data-i5="head"><div class="i5-head"><h3>ORCEN VALUATION MEMO \u2014 AAPL</h3><span>10-K FY24 \u00B7 DCF</span></div></div>',
+      '<div class="i5-kpis">',
+      '<div class="i5-layer i5-kpi" data-i5="kpi1"><b>Fair value</b><span>$245</span></div>',
+      '<div class="i5-layer i5-kpi" data-i5="kpi2"><b>Price</b><span>$186</span></div>',
+      '<div class="i5-layer i5-kpi hot" data-i5="kpi3"><b>Margin of safety</b><span>24%</span></div>',
+      '<div class="i5-layer i5-kpi" data-i5="kpi4"><b>WACC \u00B7 growth</b><span>8.5% \u00B7 4.0%</span></div>',
+      '</div>',
+      '<p class="i5-layer i5-st" data-i5="sens-h">Sensitivity \u2014 fair value by WACC \u00D7 growth</p>',
+      '<div class="i5-layer i5-grid" data-i5="sens">',
+      '<div class="h"></div><div class="h">g 3.0%</div><div class="h">g 4.0%</div><div class="h">g 5.0%</div>',
+      '<div class="h">WACC 7.5%</div><div>262</div><div>278</div><div>296</div>',
+      '<div class="h">WACC 8.5%</div><div>231</div><div class="base">245</div><div>261</div>',
+      '<div class="h">WACC 9.5%</div><div>207</div><div>219</div><div>233</div>',
+      '</div>',
+      '<div class="i5-layer i5-bars" data-i5="bars">',
+      '<div class="i5-barrow"><b>BEAR</b><span class="tr"><i style="width:69%"></i></span><span>$205</span></div>',
+      '<div class="i5-barrow base"><b>BASE</b><span class="tr"><i style="width:82%"></i></span><span>$245</span></div>',
+      '<div class="i5-barrow"><b>BULL</b><span class="tr"><i style="width:100%"></i></span><span>$298</span></div>',
+      '</div>',
+      '<p class="i5-layer i5-verdict" data-i5="verdict">UNDERVALUED \u2014 margin of safety 24% \u00B7 Altman Z 3.1 \u2014 safe zone.</p>',
+      '<div class="i5-layer i5-foot" data-i5="foot"><p>Demo data \u00B7 datos de demostraci\u00F3n \u2014 built from the public 10-K.</p></div>',
+      '<div class="i5-layer i5-foot" data-i5="cta"><p>Built live by OPSFLOW \u00B7 el mismo agente de FIG.0</p><a class="i5-cta" href="#finance">Open the live model \u2192</a></div>',
+      '</div>',
+      '<button type="button" class="i5-run">\u25B6 Watch the agent work</button>',
+      '</div>'
+    ].join('\n');
+  }
+  function wait5(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+  function sectionByLabel5(label) {
+    var l = String(label).toLowerCase(), found = null;
+    Array.prototype.slice.call(document.querySelectorAll('[data-screen-label]')).some(function (el) {
+      if ((el.getAttribute('data-screen-label') || '').toLowerCase() === l) { found = el; return true; }
+      return false;
+    });
+    return found;
+  }
+  function install5() {
+    if (document.querySelector('.i5-build')) return;
+    var route = document.body.getAttribute('data-const-route');
+    if (route && route !== 'home') return;
+    var map = document.querySelector('.constellation-map');
+    var anchor = map ? (map.closest('section') || map) : sectionByLabel5('Stats');
+    if (!anchor) return;
+    var sec = document.createElement('section');
+    sec.className = 'i5-build';
+    sec.setAttribute('data-screen-label', 'Live build');
+    sec.innerHTML = html5();
+    anchor.insertAdjacentElement('afterend', sec);
+    wire5(sec);
+  }
+  function wire5(sec) {
+    var layers = Array.prototype.slice.call(sec.querySelectorAll('.i5-layer'));
+    var countEl = sec.querySelector('.i5-count'), pctEl = sec.querySelector('.i5-pct'),
+        barEl = sec.querySelector('.i5-bar i'), logEl = sec.querySelector('.i5-log'),
+        btn = sec.querySelector('.i5-run');
+    var busy = false, started = false;
+    function status(n, msg) {
+      countEl.textContent = n + ' / ' + TOTAL + ' LAYERS';
+      var p = Math.round(n / TOTAL * 100);
+      pctEl.textContent = p + '%';
+      barEl.style.width = p + '%';
+      if (msg) logEl.textContent = msg;
+    }
+    function layersFor(step) {
+      return layers.filter(function (l) { return STEPS.indexOf(step) < 0 ? false : l.getAttribute('data-i5') === step.sel.replace('[data-i5="', '').replace('"]', ''); });
+    }
+    function reveal(step) {
+      layersFor(step).forEach(function (l) { l.classList.add('i5-on'); });
+    }
+    async function run() {
+      if (busy) return; busy = true;
+      layers.forEach(function (l) { l.classList.remove('i5-on'); });
+      status(0, 'Starting \u00B7 empezando\u2026');
+      btn.disabled = true; btn.textContent = '\u25CF BUILDING\u2026';
+      if (REDUCED) {
+        layers.forEach(function (l) { l.classList.add('i5-on'); });
+        status(TOTAL, '');
+        finish(); return;
+      }
+      for (var i = 0; i < STEPS.length; i++) {
+        await wait5(i === 0 ? 380 : 310);
+        reveal(STEPS[i]);
+        var n = Math.round((i + 1) * TOTAL / STEPS.length);
+        status(n, STEPS[i].log);
+      }
+      finish();
+    }
+    function finish() {
+      busy = false;
+      btn.disabled = false; btn.textContent = '\u21BB Replay';
+      countEl.textContent = TOTAL + ' / ' + TOTAL + ' LAYERS';
+      pctEl.textContent = '100%';
+      barEl.style.width = '100%';
+      logEl.innerHTML = '<b>DELIVERED \u00B7 ENTREGADO</b> \u2014 memo ready for stakeholders.';
+    }
+    btn.addEventListener('click', function () { if (!started) started = true; if (!busy) run(); });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !started) { started = true; io.disconnect(); setTimeout(run, 500); }
+        });
+      }, {threshold: 0.2, rootMargin: '0px 0px 100px 0px'});
+      io.observe(sec);
+    }
+  }
+  function boot5() { try { install5(); } catch (e) {} }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot5); else boot5();
+  window.addEventListener('load', function () { setTimeout(boot5, 700); });
+  if (window.MutationObserver && !window.__i5Obs) {
+    window.__i5Obs = true;
+    var mo5 = new MutationObserver(function () { clearTimeout(mo5._t); mo5._t = setTimeout(boot5, 450); });
+    mo5.observe(document.documentElement, {childList: true, subtree: true});
+  }
+})();
