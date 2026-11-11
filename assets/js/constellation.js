@@ -395,3 +395,381 @@
   '}';
   document.head.appendChild(s);
 })();
+/* Iteración 4 — la constelación vive, FIG.0 se juega y el héroe se disuelve al hacer scroll.
+   Qué entra en esta pasada (rama de vista previa, sin tocar main):
+   1) La constelación como grafo de datos vivo: pulsos luminosos recorren las aristas del
+      mapa y de la franja con el color del acento de la página de destino. Solo se animan
+      cuando el mapa está en ventanilla y respetan prefers-reduced-motion.
+   2) FIG.0 jugable — «RUN THE GATE»: una ficha de latón viaja por las cinco etapas
+      (INPUT → LLM AGENT → POLICY GATE → ENGINE → OUTPUT); la puerta de políticas aprueba o
+      bloquea cada propuesta según una regla visible, y la ficha se desvía a ESCALATE cuando
+      la bloquean. Los contadores PROPOSED / EXECUTED / ESCALATED se actualizan en pantalla
+      y queda una línea de bitácora con el veredicto.
+   3) El héroe se disuelve al hacer scroll: las palabras del titular suben y se desvanecen
+      con ScrollTrigger (scrub, sin pin) y las líneas del mapa se dibujan al entrar en
+      ventanilla, con los nodos apareciendo en cascada.
+   4) Tipografía y contraste: el mapa pasa a ser «FIG. 1» — continuación de FIG.0 —, la
+      sección de logros gana una regla doble de latón y sus numerales en latón, la
+      marquesina del toolkit gana separadores de latón y «Keep exploring» gana un hover de
+      salvia. La banda crema de logros ya existía y se respeta como la única banda clara.
+   Queda para la siguiente pasada (más arriesgado): capítulos fijados con ScrollTrigger
+   (pin). La Iteración 2 evitó el pin deliberadamente y fijar el héroe sobre la barra
+   lateral fija puede romper el maquetado; esta pasada usa scrub sin pin. */
+(function () {
+  'use strict';
+
+  var BRASS = '#D9B36A';
+  var ACCENT = {home:'#92AC9B',cases:'#9BB8D3',coding:'#7FB8A6',client:'#C9A86A',finance:'#D9B36A',experience:'#A8B8C8',writing:'#D8CDB4',certs:'#B5C08A',recs:'#C08A7E'};
+  var PROJ = {p0:'#7FB8A6',p1:'#C08A7E',p2:'#D9B36A',p3:'#9BB8D3',p4:'#92AC9B',p5:'#C9A86A',p6:'#D8CDB4',p7:'#A8B8C8'};
+  var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var SVGNS = 'http://www.w3.org/2000/svg';
+
+  var CSS = [
+    '.i4-pulse{pointer-events:none;filter:drop-shadow(0 0 6px rgba(217,179,106,.85))}',
+    '.i4-gate-btn{display:inline-block;margin:6px 0 0 10px;padding:9px 15px;border:1px solid rgba(146,172,155,.6);border-radius:999px;background:transparent;color:#D9B36A;font:700 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;vertical-align:middle}',
+    '.i4-gate-btn:hover,.i4-gate-btn:focus-visible{border-color:#D9B36A;background:rgba(217,179,106,.14);outline:none}',
+    '.i4-gate-btn[disabled]{opacity:.45;cursor:default}',
+    '.i4-gate-log{margin:10px 0 0;font:500 12px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.02em;color:rgba(237,243,235,.78)}',
+    '.i4-gate-log b{color:#D9B36A;font-weight:700}',
+    '.i4-gate-log .i4-ok{color:#92AC9B}',
+    '.i4-gate-log .i4-no{color:#E08E7E}',
+    '.i4-gate-token{position:fixed;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#F6E7B4,#D9B36A 55%,#9C7A33);box-shadow:0 0 16px 4px rgba(217,179,106,.55);z-index:9999;pointer-events:none}',
+    '.i4-gate-hot{outline:1px solid rgba(217,179,106,.95)!important;outline-offset:3px;box-shadow:0 0 26px rgba(217,179,106,.30)!important}',
+    '.i4-gate-blocked{outline:1px solid rgba(224,142,126,.95)!important;outline-offset:3px;box-shadow:0 0 26px rgba(224,142,126,.38)!important}',
+    '.i4-w{display:inline-block;will-change:transform,opacity}',
+    '.i4-fig1{display:inline-block;margin-right:10px;color:#D9B36A;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em}',
+    '.i4-diamond{display:inline-block;margin:0 14px;color:#D9B36A;font-size:10px;vertical-align:middle}',
+    '[data-screen-label="Achievements" i]{border-top:3px double rgba(180,140,70,.65)}',
+    '[data-screen-label="Achievements" i] .i4-ach-num{color:#D9B36A!important}',
+    '[data-screen-label="Keep exploring" i] button{transition:background-color .25s,color .25s,padding-left .25s}',
+    '[data-screen-label="Keep exploring" i] button:hover,[data-screen-label="Keep exploring" i] button:focus-visible{background:rgba(146,172,155,.18);padding-left:26px;outline:none}',
+    '@media (max-width:900px){.i4-gate-btn{display:block;margin:10px 0 0}.i4-diamond{margin:0 8px}}'
+  ].join('\n');
+  var st = document.createElement('style'); st.id = 'constellation-iter4'; st.textContent = CSS; document.head.appendChild(st);
+
+  function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function txt(el) { return (el.textContent || '').trim(); }
+  function leafWithText(t) {
+    var els = all('*');
+    for (var i = 0; i < els.length; i++) { var el = els[i]; if (!el.children.length && txt(el) === t) return el; }
+    return null;
+  }
+  function sectionByLabel(label) {
+    var l = String(label).toLowerCase(), found = null;
+    all('[data-screen-label]').some(function (el) {
+      if ((el.getAttribute('data-screen-label') || '').toLowerCase() === l) { found = el; return true; }
+      return false;
+    });
+    return found;
+  }
+  function wait(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+
+  /* ---------- 1) La constelación como grafo de datos vivo ---------- */
+  function segmentsOf(svg) {
+    var segs = [];
+    all('line', svg).forEach(function (l) {
+      var x1 = parseFloat(l.getAttribute('x1')), y1 = parseFloat(l.getAttribute('y1'));
+      var x2 = parseFloat(l.getAttribute('x2')), y2 = parseFloat(l.getAttribute('y2'));
+      if (!isFinite(x1) || !isFinite(x2)) return;
+      segs.push({line: l, x1: x1, y1: y1, x2: x2, y2: y2, len: Math.max(1, Math.hypot(x2 - x1, y2 - y1)), key: (l.getAttribute('data-b') || l.getAttribute('data-a') || '')});
+    });
+    if (!segs.length) {
+      all('path', svg).forEach(function (p) {
+        try {
+          var L = p.getTotalLength(); if (!L || L < 10) return;
+          segs.push({path: p, len: L, key: (p.getAttribute('data-b') || p.getAttribute('data-a') || '')});
+        } catch (e) {}
+      });
+    }
+    return segs;
+  }
+  function installPulses() {
+    if (REDUCED) return;
+    all('svg[class*="cm-svg"]').forEach(function (svg) {
+      if (svg.getAttribute('data-i4-pulses')) return;
+      var segs = segmentsOf(svg);
+      if (!segs.length) return;
+      svg.setAttribute('data-i4-pulses', '1');
+      var pulses = segs.map(function (sg, i) {
+        var c = document.createElementNS(SVGNS, 'circle');
+        c.setAttribute('r', '2.6'); c.setAttribute('class', 'i4-pulse');
+        c.setAttribute('fill', ACCENT[sg.key] || PROJ[sg.key] || BRASS);
+        svg.appendChild(c);
+        return {el: c, sg: sg, t: (i * 0.37) % 1, rate: 55 / sg.len};
+      });
+      var visible = false, last = 0;
+      function loop(now) {
+        if (!visible) return;
+        var dt = Math.min(64, now - (last || now)); last = now;
+        pulses.forEach(function (p) {
+          p.t += (dt / 1000) * p.rate; if (p.t > 1) p.t = 0;
+          var x, y;
+          if (p.sg.path) { var pt = p.sg.path.getPointAtLength(p.t * p.sg.len); x = pt.x; y = pt.y; }
+          else { x = p.sg.x1 + (p.sg.x2 - p.sg.x1) * p.t; y = p.sg.y1 + (p.sg.y2 - p.sg.y1) * p.t; }
+          p.el.setAttribute('cx', x.toFixed(1)); p.el.setAttribute('cy', y.toFixed(1));
+          p.el.setAttribute('opacity', (0.3 + 0.7 * Math.sin(p.t * Math.PI)).toFixed(2));
+        });
+        requestAnimationFrame(loop);
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !visible) { visible = true; last = 0; requestAnimationFrame(loop); }
+          else if (!en.isIntersecting) visible = false;
+        });
+      }, {rootMargin: '240px'});
+      io.observe(svg);
+    });
+  }
+
+  /* ---------- 3) El héroe se disuelve; el mapa se dibuja al entrar ---------- */
+  function splitWords(el) {
+    function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          ch.nodeValue.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) node.insertBefore(document.createTextNode(part), ch);
+            else { var s = document.createElement('span'); s.className = 'i4-w'; s.textContent = part; node.insertBefore(s, ch); }
+          });
+          node.removeChild(ch);
+        } else if (ch.nodeType === 1) walk(ch);
+      });
+    }
+    walk(el);
+  }
+  var heroTween = null, heroH1 = null;
+  function installMapDraw(svg) {
+    if (!svg || svg.getAttribute('data-i4-draw')) return;
+    if (svg.getBoundingClientRect().width <= 0) return;
+    var solid = all('line', svg).filter(function (l) { return l.classList && l.classList.contains('cm-link'); });
+    var dashed = all('line', svg).filter(function (l) { return l.classList && l.classList.contains('cm-link-proj'); });
+    var holder = svg.parentElement;
+    var dots = (holder && !holder.getAttribute('data-i4-dots')) ? all('.cm-dot', holder) : [];
+    if (!solid.length && !dashed.length && !dots.length) return;
+    svg.setAttribute('data-i4-draw', '1');
+    try {
+      if (solid.length) {
+        solid.forEach(function (l) { try { l.setAttribute('pathLength', '1'); } catch (e) {} });
+        window.gsap.fromTo(solid, {strokeDasharray: 1, strokeDashoffset: 1}, {strokeDashoffset: 0, ease: 'none', stagger: 0.05, scrollTrigger: {id: 'i4-map', trigger: svg, start: 'top 92%', end: 'top 45%', scrub: true}});
+      }
+      if (dashed.length) {
+        window.gsap.fromTo(dashed, {opacity: 0}, {opacity: 1, ease: 'none', stagger: 0.08, scrollTrigger: {id: 'i4-map-p', trigger: svg, start: 'top 92%', end: 'top 45%', scrub: true}});
+      }
+      if (dots.length) {
+        holder.setAttribute('data-i4-dots', '1');
+        window.gsap.fromTo(dots, {scale: 0.4, opacity: 0}, {scale: 1, opacity: 1, ease: 'none', stagger: 0.04, scrollTrigger: {id: 'i4-map-d', trigger: svg, start: 'top 90%', end: 'top 42%', scrub: true}});
+      }
+    } catch (e) {}
+  }
+  function installChoreo() {
+    if (REDUCED || !window.gsap || !window.ScrollTrigger) return;
+    try { window.gsap.registerPlugin(window.ScrollTrigger); } catch (e) { return; }
+    var h1 = all('h1').filter(function (h) { return /AGENTIC AI/i.test(h.textContent || ''); })[0] || null;
+    if (h1 !== heroH1) {
+      if (heroTween) { try { if (heroTween.scrollTrigger) heroTween.scrollTrigger.kill(); heroTween.kill(); } catch (e) {} heroTween = null; }
+      heroH1 = h1;
+      if (h1) {
+        if (!h1.querySelector('.i4-w')) splitWords(h1);
+        var words = all('.i4-w', h1);
+        var hero = h1.closest('[data-screen-label]') || h1;
+        if (words.length) {
+          heroTween = window.gsap.to(words, {y: -70, opacity: 0, scale: 0.88, ease: 'none', stagger: {each: 0.045}, scrollTrigger: {id: 'i4-hero', trigger: hero, start: 'top top', end: 'bottom top', scrub: true}});
+        }
+      }
+    }
+    all('svg[class*="cm-svg"]').forEach(function (svg) { try { installMapDraw(svg); } catch (e) {} });
+  }
+
+  /* ---------- 2) FIG.0 jugable: RUN THE GATE ---------- */
+  var SCEN = [
+    {t: 'Deploy scanner v30 to production', rule: 'POLICY: a deploy needs a green test suite', risk: 'low'},
+    {t: 'Auto-send DCF memo to 600 companies', rule: 'POLICY: no auto-send without human approval', risk: 'high'},
+    {t: 'Rebalance portfolio with 2× leverage', rule: 'POLICY: leverage needs a human sign-off', risk: 'high'},
+    {t: 'Publish daily essay #111', rule: 'POLICY: essays are pre-approved', risk: 'low'},
+    {t: 'Approve wire transfer · $25,000', rule: 'POLICY: wires over $10k need two signatures', risk: 'high'},
+    {t: 'Pull 10-K · AAPL FY24', rule: 'POLICY: public filings are safe to pull', risk: 'low'},
+    {t: 'Refresh market-data cache', rule: 'POLICY: cache refresh is read-only', risk: 'low'}
+  ];
+  var gateBusy = false, gateIdx = 0;
+  function gateStages() {
+    var spec = [['INPUT', 'Request'], ['LLM AGENT', 'Proposes'], ['POLICY GATE', 'Enforces'], ['ENGINE', 'Computes'], ['OUTPUT', 'Model · memo']];
+    var out = [];
+    spec.forEach(function (sp) {
+      var leaf = leafWithText(sp[1]); if (!leaf) return;
+      var box = leaf, p = leaf.parentElement;
+      while (p && p !== document.body) { if ((p.textContent || '').indexOf(sp[0]) >= 0) { box = p; break; } p = p.parentElement; }
+      out.push({name: sp[0], leaf: leaf, box: box});
+    });
+    var escLeaf = leafWithText('Human review'), esc = null;
+    if (escLeaf) {
+      var b2 = escLeaf, p2 = escLeaf.parentElement;
+      while (p2 && p2 !== document.body) { if ((p2.textContent || '').indexOf('ESCALATE') >= 0) { b2 = p2; break; } p2 = p2.parentElement; }
+      esc = {name: 'ESCALATE', leaf: escLeaf, box: b2};
+    }
+    return {stages: out, esc: esc};
+  }
+  function bumpCounter(label) {
+    var cands = [];
+    all('*').forEach(function (el) {
+      if (!el.children.length && txt(el).toUpperCase() === label) {
+        var p = el.parentElement; if (!p) return;
+        all('*', p).forEach(function (k) { if (!k.children.length && /^\d+$/.test(txt(k))) cands.push(k); });
+      }
+    });
+    for (var i = 0; i < cands.length; i++) {
+      if (cands[i].getBoundingClientRect().width > 0) { var v = parseInt(cands[i].textContent, 10); if (isFinite(v)) cands[i].textContent = String(v + 1); return; }
+    }
+    if (cands.length) { var v2 = parseInt(cands[0].textContent, 10); if (isFinite(v2)) cands[0].textContent = String(v2 + 1); }
+  }
+  function nextRunNumber() {
+    var nums = ((document.body.textContent || '').match(/#0?(\d{3,4})/g) || []).map(function (s) { return parseInt(s.replace('#', ''), 10); }).filter(isFinite);
+    return (nums.length ? Math.max.apply(null, nums) : 400) + 1;
+  }
+  function centerOf(el) { var r = el.getBoundingClientRect(); return {x: r.left + r.width / 2, y: r.top + r.height / 2}; }
+  function ensureVisible(el) {
+    var p = el.parentElement;
+    while (p && p !== document.body) {
+      var cs = null; try { cs = getComputedStyle(p); } catch (e) {}
+      if (cs && (cs.overflowX === 'auto' || cs.overflowX === 'scroll' || cs.overflowY === 'auto' || cs.overflowY === 'scroll') && (p.scrollWidth > p.clientWidth + 4 || p.scrollHeight > p.clientHeight + 4)) {
+        var r = el.getBoundingClientRect(), pr = p.getBoundingClientRect(), dx = 0, dy = 0;
+        if (r.left < pr.left) dx = r.left - pr.left - 12; else if (r.right > pr.right) dx = r.right - pr.right + 12;
+        if (r.top < pr.top) dy = r.top - pr.top - 12; else if (r.bottom > pr.bottom) dy = r.bottom - pr.bottom + 12;
+        if (dx || dy) { try { p.scrollTo({left: p.scrollLeft + dx, top: p.scrollTop + dy, behavior: REDUCED ? 'auto' : 'smooth'}); } catch (e) { p.scrollLeft += dx; p.scrollTop += dy; } }
+      }
+      p = p.parentElement;
+    }
+  }
+  function animateToken(token, from, getTarget, dur, onMove) {
+    return new Promise(function (resolve) {
+      var t0 = performance.now();
+      function frame(now) {
+        var pr = Math.min(1, (now - t0) / dur);
+        var e = pr < 0.5 ? 2 * pr * pr : 1 - Math.pow(-2 * pr + 2, 2) / 2;
+        var tg = getTarget();
+        var x = from.x + (tg.x - from.x) * e, y = from.y + (tg.y - from.y) * e;
+        token.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+        if (onMove) onMove({x: x, y: y});
+        if (pr < 1) requestAnimationFrame(frame); else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+  async function runGate(btn, log) {
+    if (gateBusy) return; gateBusy = true; btn.disabled = true;
+    var g = gateStages();
+    if (g.stages.length < 5) { gateBusy = false; btn.disabled = false; log.textContent = 'FIG.0 is not on screen right now.'; return; }
+    var scen = SCEN[gateIdx % SCEN.length]; gateIdx++;
+    var n = nextRunNumber();
+    bumpCounter('PROPOSED');
+    log.innerHTML = 'RUN #' + String(n).padStart(4, '0') + ' \u00B7 \u201C' + scen.t + '\u201D \u2014 en route\u2026';
+    var token = document.createElement('div'); token.className = 'i4-gate-token';
+    document.body.appendChild(token);
+    var pos = centerOf(g.stages[0].box);
+    token.style.transform = 'translate(' + pos.x.toFixed(1) + 'px,' + pos.y.toFixed(1) + 'px)';
+    try {
+      for (var i = 0; i < g.stages.length; i++) {
+        var s = g.stages[i];
+        ensureVisible(s.box);
+        if (!REDUCED) {
+          var targetBox = s.box;
+          await animateToken(token, pos, function () { return centerOf(targetBox); }, i === 0 ? 120 : 430, function (p) { pos = p; });
+        }
+        s.box.classList.add('i4-gate-hot');
+        if (i === 2) {
+          await wait(420);
+          log.innerHTML = 'RUN #' + String(n).padStart(4, '0') + ' \u00B7 \u201C' + scen.t + '\u201D \u2014 ' + scen.rule;
+          if (scen.risk === 'high') {
+            s.box.classList.add('i4-gate-blocked');
+            if (g.esc) {
+              ensureVisible(g.esc.box);
+              if (!REDUCED) { var escBox = g.esc.box; await animateToken(token, pos, function () { return centerOf(escBox); }, 560, function (p) { pos = p; }); }
+              g.esc.box.classList.add('i4-gate-hot');
+            }
+            bumpCounter('ESCALATED');
+            log.innerHTML = 'RUN #' + String(n).padStart(4, '0') + ' \u00B7 \u201C' + scen.t + '\u201D \u2192 <span class="i4-no">BLOCKED</span> \u2014 ' + scen.rule + ' \u00B7 requiere revisi\u00F3n humana.';
+            await wait(300);
+            break;
+          }
+          log.innerHTML = 'RUN #' + String(n).padStart(4, '0') + ' \u00B7 \u201C' + scen.t + '\u201D \u2014 policy check passed / la pol\u00EDtica lo permite.';
+        }
+        await wait(140);
+      }
+      if (scen.risk !== 'high') {
+        bumpCounter('EXECUTED');
+        log.innerHTML = 'RUN #' + String(n).padStart(4, '0') + ' \u00B7 \u201C' + scen.t + '\u201D \u2192 <span class="i4-ok">APPROVED</span> \u2014 executed / ejecutado.';
+        await wait(300);
+      }
+    } finally {
+      setTimeout(function () { all('.i4-gate-hot, .i4-gate-blocked').forEach(function (el) { el.classList.remove('i4-gate-hot'); el.classList.remove('i4-gate-blocked'); }); }, 2600);
+      if (token.parentNode) token.parentNode.removeChild(token);
+      gateBusy = false; btn.disabled = false;
+    }
+  }
+  function installGate() {
+    if (document.querySelector('.i4-gate-btn')) return;
+    var propose = all('button').filter(function (b) { return txt(b) === 'Propose'; })[0];
+    if (!propose) return;
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'i4-gate-btn'; btn.textContent = 'Run the gate \u21BB';
+    propose.insertAdjacentElement('afterend', btn);
+    var log = document.createElement('p');
+    log.className = 'i4-gate-log';
+    log.textContent = 'FIG.0 is live \u2014 run the gate to watch a proposal travel through the five stages. \u00B7 FIG.0 est\u00E1 en vivo: corre la puerta y mira c\u00F3mo viaja una propuesta.';
+    btn.insertAdjacentElement('afterend', log);
+    btn.addEventListener('click', function () { runGate(btn, log); });
+  }
+
+  /* ---------- 4) Tipografía y contraste ---------- */
+  function installEditorial() {
+    var map = document.querySelector('.constellation-map') || document.querySelector('[aria-label^="Constellation navigation"]');
+    if (map && !map.querySelector('.i4-fig1')) {
+      var eb = null;
+      all('.cm-kicker', map).forEach(function (el) { if (!eb) eb = el; });
+      if (!eb) all('*', map).forEach(function (el) { if (!eb && !el.children.length && /EXPLORE BY CONSTELLATION/i.test(txt(el))) eb = el; });
+      if (eb) { var tag = document.createElement('span'); tag.className = 'i4-fig1'; tag.textContent = 'FIG. 1'; eb.insertBefore(tag, eb.firstChild); }
+    }
+    var ach = sectionByLabel('Achievements');
+    if (ach && !ach.getAttribute('data-i4-ach')) {
+      ach.setAttribute('data-i4-ach', '1');
+      all('*', ach).forEach(function (el) {
+        if (el.children.length) return;
+        var t = txt(el);
+        if (t === '1' || t === '2' || t === '3') {
+          var fs = parseFloat((window.getComputedStyle(el).fontSize || '0').replace('px', ''));
+          if (fs >= 40) el.classList.add('i4-ach-num');
+        }
+      });
+    }
+    var tk = sectionByLabel('Toolkit');
+    if (tk && !tk.getAttribute('data-i4-tape')) {
+      var cands = all('*', tk).filter(function (el) {
+        var kids = Array.prototype.slice.call(el.children).filter(function (k) { return txt(k).length > 1; });
+        return kids.length >= 4 && /PYTHON/.test(el.textContent || '') && /LANGGRAPH/.test(el.textContent || '');
+      });
+      var cand = cands[cands.length - 1];
+      if (cand) {
+        var direct = Array.prototype.slice.call(cand.children).filter(function (k) { return txt(k).length > 1; });
+        if (direct.length >= 4) {
+          tk.setAttribute('data-i4-tape', '1');
+          for (var i = direct.length - 1; i > 0; i--) { var d = document.createElement('span'); d.className = 'i4-diamond'; d.textContent = '\u25C6'; cand.insertBefore(d, direct[i]); }
+        }
+      }
+    }
+  }
+
+  /* ---------- arranque (reinstala tras cada cambio de ruta de la SPA) ---------- */
+  function boot() {
+    try { installPulses(); } catch (e) {}
+    try { installGate(); } catch (e) {}
+    try { installChoreo(); } catch (e) {}
+    try { installEditorial(); } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  window.addEventListener('load', function () { setTimeout(boot, 700); });
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(function () { clearTimeout(mo._t); mo._t = setTimeout(boot, 450); });
+    mo.observe(document.documentElement, {childList: true, subtree: true});
+  }
+  var rzT = 0;
+  window.addEventListener('resize', function () { if (rzT) clearTimeout(rzT); rzT = setTimeout(boot, 350); });
+})();
