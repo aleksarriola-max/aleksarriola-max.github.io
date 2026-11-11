@@ -1297,7 +1297,7 @@
   document.head.appendChild(st6);
 
   /* ---------- modelo DCF en vivo (FIG.2) ---------- */
-  var M6 = window.__i6Model || (window.__i6Model = { w: 8.5, g: 4.0, price: 186 });
+  var M6 = window.__i6Model || (window.__i6Model = { w: 8.5, g: 4.0, price: 186 }); window.__i6apply = applyModel6; window.__i6rebuild = rebuild6; window.__i6controls = ensureControls6;
   var SCALE6 = null;
   /* DCF en dos etapas: 10 años explícitos con FCF +6%/año y valor terminal Gordon
      con tope de 20x FCF (práctica conservadora cuando el diferencial w-g es bajo). */
@@ -1999,7 +1999,7 @@
     try { gateRestack7(); } catch (e) {}
     try { ticket7(); } catch (e) {}
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot7); else boot7();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot7); else boot7(); window.__i7ticket = ticket7;
   window.addEventListener('load', function () { setTimeout(boot7, 700); });
   if (window.MutationObserver && !window.__i7Obs) {
     window.__i7Obs = true;
@@ -2018,4 +2018,364 @@
   }
   window.addEventListener('resize', function () { clearTimeout(window.__i7Rz); window.__i7Rz = setTimeout(boot7, 300); });
   boot7();
+})();
+
+/* ==========================================================================
+   Iteración 7 — pulido de las limitaciones de la Iteración 6 y viaje de datos.
+   (a) Sin destello del modelo por defecto: cuando hay supuestos guardados
+       (localStorage 'i6-model') distintos del defecto, la lona del memo
+       queda oculta (opacity 0) hasta que el modelo vivo se aplica sobre
+       la sección viva; la aplicación es inmediata (50 ms) en cada
+       inserción de la sección, no cada 2 s.
+   (b) FIG.2 vuelve a auto-arrancar tras un cambio de ruta: una sección
+       fresca (0/147, «Standing by») en Home se arranca sola cuando entra
+       en ventanilla, sin doble arranque y sin arrancar mientras el usuario
+       mueve los supuestos.
+   (c) La tabla de demostración ya no es estática: applyModel6 se aplica
+       siempre (también con los supuestos por defecto) en cada inserción
+       de la sección, así la rejilla, las barras, los KPI y el veredicto
+       derivan del modelo vivo y nunca discrepan. (Donde el tope de 20x del
+       valor terminal ata, dos celdas pueden coincidir: es el modelo, no
+       un desacuerdo.)
+   (d) La descripción flotante del mapa se sujeta: al mostrarla se mide
+       contra el cielo y contra las demás etiquetas; si solapa (p. ej. la
+       de RECOMMENDATIONS sobre PITMIND a 390px), se gira al otro lado
+       y/o se desplaza hasta quedar libre.
+   (e) El pin de Lifeline ya no desplaza las tarjetas: el pin-spacer se
+       re-mide en vivo varias veces por segundo y una medida transitoria
+       se corrige sola, sin tocar el pin de la Iteración 5-B.
+   WOW — viaje de datos: al viajar por el mapa, un pulso vuela de la
+       estrella de origen a la de destino por un arco, la estrella de
+       destino se enciende, y al llegar la página nueva enciende su
+       estrella de destino. Con reduced motion no hay vuelo.
+   ========================================================================== */
+(function () {
+  if (window.__i8) return; window.__i8 = true;
+  var REDUCED8 = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var ACC8 = { home: '#92AC9B', cases: '#9BB8D3', coding: '#7FB8A6', client: '#C9A86A', finance: '#D9B36A', experience: '#A8B8C8', writing: '#D8CDB4', certs: '#B5C08A', recs: '#C08A7E' };
+  var SVGNS8 = 'http://www.w3.org/2000/svg';
+
+  /* ---------- CSS ---------- */
+  var CSS8 = [
+    'html.i8-saved .i5-build:not(.i8-applied) .i5-canvas{opacity:0!important}',
+    'html.i8-saved .i5-build.i8-applied .i5-canvas{transition:opacity .3s ease}',
+    '@keyframes i8-flare{0%{transform:translate(-50%,-50%) scale(1)}30%{transform:translate(-50%,-50%) scale(2.1)}100%{transform:translate(-50%,-50%) scale(1)}}',
+    '.cm-node.i8-arrive .cm-dot{animation:i8-flare .9s ease}',
+    '.cm-node.i8-arrive .cm-label{color:#EDF3EB!important}',
+    '.ct-node.i8-arrive{color:#EDF3EB!important}',
+    '.ct-node.i8-arrive .ct-dot{box-shadow:0 0 0 5px rgba(var(--const-accent-rgb),.25),0 0 18px rgba(var(--const-accent-rgb),.9)}',
+    '.i8-flow{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:9998}'
+  ].join('\n');
+  var st8 = document.createElement('style');
+  st8.id = 'constellation-iter8';
+  st8.textContent = CSS8;
+  document.head.appendChild(st8);
+
+  function routeNow8() { return document.body.getAttribute('data-const-route') || 'home'; }
+  function liveSec8() { return document.querySelector('.i5-build'); }
+
+  /* ---------- (a) + (c): supuestos guardados y modelo vivo inmediato ---------- */
+  var SAVED8 = null;
+  try {
+    var s8 = JSON.parse(localStorage.getItem('i6-model') || 'null');
+    if (s8 && isFinite(s8.w) && isFinite(s8.g) && s8.w >= 7.5 && s8.w <= 9.5 && s8.g >= 3 && s8.g <= 5) SAVED8 = { w: +s8.w, g: +s8.g };
+  } catch (e) {}
+  if (SAVED8 && (SAVED8.w !== 8.5 || SAVED8.g !== 4.0)) {
+    var M8 = window.__i6Model || (window.__i6Model = { w: 8.5, g: 4.0, price: 186 });
+    M8.w = SAVED8.w; M8.g = SAVED8.g;
+    document.documentElement.classList.add('i8-saved');
+  }
+  function applyNow8() {
+    var sec = liveSec8(); if (!sec) return false;
+    try { if (window.__i6controls) window.__i6controls(); } catch (e) {}
+    var ok = false;
+    try { if (window.__i6apply) { window.__i6apply(); ok = true; } } catch (e) {}
+    try { if (window.__i7ticket) window.__i7ticket(); } catch (e) {}
+    if (ok) sec.classList.add('i8-applied');
+    return ok;
+  }
+  var applyT8 = null;
+  function applySoon8() {
+    if (applyT8) return;
+    applyT8 = setTimeout(function () { applyT8 = null; applyNow8(); }, 50);
+  }
+  if (window.MutationObserver) {
+    var mo8 = new MutationObserver(function () {
+      var sec = liveSec8();
+      if (sec && !sec.classList.contains('i8-applied')) applySoon8();
+    });
+    mo8.observe(document.documentElement, { childList: true, subtree: true });
+  }
+  setTimeout(function () {
+    var secs = document.querySelectorAll('.i5-build');
+    for (var i = 0; i < secs.length; i++) secs[i].classList.add('i8-applied');
+  }, 3000);
+  applyNow8();
+
+  /* ---------- (b): FIG.2 vuelve a auto-arrancar tras un cambio de ruta ---------- */
+  var startedEls8 = [];
+  var lastStart8 = 0, userInputAt8 = 0, allowRestart8 = true;
+  document.addEventListener('input', function (ev) {
+    if (ev.target && ev.target.closest && ev.target.closest('.i5-build')) userInputAt8 = Date.now();
+  }, true);
+  window.addEventListener('hashchange', function () {
+    if (routeNow8() === 'home') allowRestart8 = true;
+    armStart8();
+  });
+  function freshSec8(sec) {
+    if (!sec) return false;
+    var c = sec.querySelector('.i5-count'), l = sec.querySelector('.i5-log'), b = sec.querySelector('.i5-run');
+    if (!c || !l || !b) return false;
+    if ((c.textContent || '').indexOf('0 / 147') < 0) return false;
+    if ((l.textContent || '').indexOf('Standing by') < 0) return false;
+    if (b.disabled) return false;
+    if ((b.textContent || '').toUpperCase().indexOf('WATCH') < 0) return false;
+    for (var i = 0; i < startedEls8.length; i++) { if (startedEls8[i] === sec) return false; }
+    return true;
+  }
+  function inView8(el) {
+    var r = el.getBoundingClientRect();
+    return r.top < (window.innerHeight || 900) && r.bottom > 0 && r.height > 0;
+  }
+  function maybeStart8(sec) {
+    if (!sec || REDUCED8 || routeNow8() !== 'home') return;
+    var now = Date.now();
+    if (now - userInputAt8 < 5000) return;
+    if (!allowRestart8 && now - lastStart8 < 60000) return;
+    if (!freshSec8(sec)) return;
+    startedEls8.push(sec);
+    allowRestart8 = false;
+    lastStart8 = now;
+    setTimeout(function () { var b2 = sec.querySelector('.i5-run'); if (b2 && !b2.disabled) b2.click(); }, 150);
+  }
+  var ioObs8 = null, ioSec8 = null;
+  function armStart8() {
+    var sec = liveSec8();
+    if (!sec || sec === ioSec8) return;
+    if (ioObs8) { try { ioObs8.disconnect(); } catch (e) {} }
+    ioSec8 = sec;
+    if (!('IntersectionObserver' in window)) return;
+    ioObs8 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) maybeStart8(ioSec8); });
+    }, { threshold: 0.2, rootMargin: '0px 0px 100px 0px' });
+    ioObs8.observe(sec);
+  }
+  armStart8();
+
+  /* ---------- (d): descripción flotante del mapa, sujeta ---------- */
+  function rectsOverlap8(a, b) {
+    return a.left < b.right - 2 && a.right > b.left + 2 && a.top < b.bottom - 2 && a.bottom > b.top + 2;
+  }
+  function clampDesc8(node) {
+    var desc = node.querySelector('.cm-desc'); if (!desc) return;
+    var chart = node.closest ? node.closest('.cm-chart') : null; if (!chart) return;
+    var labels = [];
+    var all = chart.querySelectorAll('.cm-label');
+    for (var i = 0; i < all.length; i++) { if (all[i].parentElement !== node) labels.push(all[i]); }
+    desc.style.top = ''; desc.style.bottom = ''; desc.style.left = ''; desc.style.transform = '';
+    var mobile = window.innerWidth <= 900;
+    function descRect() { return desc.getBoundingClientRect(); }
+    function hits() {
+      var r = descRect(); if (!r.width && !r.height) return false;
+      var cr = chart.getBoundingClientRect();
+      if (r.left < cr.left + 2 || r.right > cr.right - 2 || r.top < cr.top + 2 || r.bottom > cr.bottom - 2) return true;
+      for (var j = 0; j < labels.length; j++) { if (rectsOverlap8(r, labels[j].getBoundingClientRect())) return true; }
+      return false;
+    }
+    if (!hits()) return;
+    if (mobile) { desc.style.top = 'auto'; desc.style.bottom = 'calc(100% + 12px)'; desc.style.transform = 'translate(-50%,0)'; }
+    else { desc.style.bottom = 'auto'; desc.style.top = 'calc(100% + 14px)'; desc.style.transform = 'translate(-50%,0)'; }
+    if (!hits()) return;
+    var dx;
+    for (dx = 30; dx <= 120; dx += 30) {
+      desc.style.left = (-dx) + 'px';
+      if (!hits()) return;
+      desc.style.left = dx + 'px';
+      if (!hits()) return;
+    }
+    desc.style.left = '0px';
+    desc.style.top = ''; desc.style.bottom = ''; desc.style.transform = '';
+    for (dx = 30; dx <= 120; dx += 30) {
+      desc.style.left = (-dx) + 'px';
+      if (!hits()) return;
+      desc.style.left = dx + 'px';
+      if (!hits()) return;
+    }
+    desc.style.left = '0px';
+  }
+  ['pointerover', 'focus', 'touchstart'].forEach(function (evn) {
+    document.addEventListener(evn, function (ev) {
+      var n = ev.target && ev.target.closest ? ev.target.closest('.cm-node') : null;
+      if (!n) return;
+      setTimeout(function () { try { clampDesc8(n); } catch (e) {} }, 30);
+      setTimeout(function () { try { clampDesc8(n); } catch (e) {} }, 260);
+    }, true);
+  });
+
+  /* ---------- (e): el pin-spacer se re-mide en vivo ---------- */
+  var spacerRecs8 = [];
+  function stabilizePins8() {
+    if (!window.ScrollTrigger) return;
+    var sps = document.querySelectorAll('.pin-spacer');
+    for (var i = 0; i < sps.length; i++) {
+      var sp = sps[i];
+      var trig = sp.firstElementChild;
+      if (!trig || !trig.isConnected) continue;
+      var sh = sp.offsetHeight, th = trig.offsetHeight;
+      if (!sh || !th || th < 50) continue;
+      var rec = null;
+      for (var j = 0; j < spacerRecs8.length; j++) { if (spacerRecs8[j].sp === sp) { rec = spacerRecs8[j]; break; } }
+      if (!rec) { rec = { sp: sp, h: null, th: null, lastH: null, lastTh: null }; spacerRecs8.push(rec); }
+      if (rec.h === null) {
+        if (rec.lastH === sh && rec.lastTh === th) { rec.h = sh; rec.th = th; }
+        else { rec.lastH = sh; rec.lastTh = th; }
+        continue;
+      }
+      if (th === rec.th) {
+        if (Math.abs(sh - rec.h) > 2) {
+          var curStyle = parseFloat(sp.style.height) || sh;
+          sp.style.height = (curStyle + (rec.h - sh)) + 'px';
+        }
+      } else {
+        if (rec.lastH === sh && rec.lastTh === th) { rec.h = sh; rec.th = th; rec.lastH = null; rec.lastTh = null; }
+        else { rec.lastH = sh; rec.lastTh = th; }
+      }
+    }
+    spacerRecs8 = spacerRecs8.filter(function (r) { return r.sp.isConnected; });
+  }
+  setInterval(function () { try { stabilizePins8(); } catch (e) {} }, 500);
+
+  /* ---------- viaje de datos entre estrellas ---------- */
+  var flying8 = false;
+  function dotCenter8(el) { var r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+  function fly8(fromDot, toDot, to) {
+    if (flying8 || REDUCED8) return false;
+    flying8 = true;
+    var a = dotCenter8(fromDot), b = dotCenter8(toDot), acc = ACC8[to] || '#D9B36A';
+    var dx = b.x - a.x, dy = b.y - a.y, len = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+    var px = -dy / len, py = dx / len;
+    if (py > 0) { px = -px; py = -py; }
+    var cx = (a.x + b.x) / 2 + px * len * 0.22, cy = (a.y + b.y) / 2 + py * len * 0.22;
+    var layer = document.createElement('div');
+    layer.className = 'i8-flow';
+    var svg = document.createElementNS(SVGNS8, 'svg');
+    svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%');
+    var path = document.createElementNS(SVGNS8, 'path');
+    path.setAttribute('d', 'M ' + a.x.toFixed(1) + ' ' + a.y.toFixed(1) + ' Q ' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + b.x.toFixed(1) + ' ' + b.y.toFixed(1));
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', acc);
+    path.setAttribute('stroke-width', '1.4');
+    path.setAttribute('pathLength', '1');
+    path.setAttribute('stroke-dasharray', '0.22 0.78');
+    path.setAttribute('stroke-dashoffset', '0.22');
+    path.style.opacity = '0';
+    svg.appendChild(path);
+    var halo = document.createElementNS(SVGNS8, 'circle');
+    halo.setAttribute('r', '10'); halo.setAttribute('fill', acc); halo.setAttribute('opacity', '0.25');
+    svg.appendChild(halo);
+    var dot = document.createElementNS(SVGNS8, 'circle');
+    dot.setAttribute('r', '4.5'); dot.setAttribute('fill', acc);
+    svg.appendChild(dot);
+    layer.appendChild(svg);
+    document.body.appendChild(layer);
+    var dur = 650, t0 = null, done = false;
+    function qPoint(t) {
+      var u = 1 - t;
+      return { x: u * u * a.x + 2 * u * t * cx + t * t * b.x, y: u * u * a.y + 2 * u * t * cy + t * t * b.y };
+    }
+    function finish() {
+      if (done) return; done = true;
+      try { if (layer.parentNode) layer.parentNode.removeChild(layer); } catch (e) {}
+      flying8 = false;
+      var node = document.querySelector('.cm-node[data-key="' + to + '"]');
+      if (node) node.classList.add('i8-arrive');
+      setTimeout(function () { if (node) node.classList.remove('i8-arrive'); }, 1000);
+      location.hash = '#' + to;
+    }
+    setTimeout(finish, 1400);
+    function frame(now) {
+      if (done) return;
+      if (t0 === null) t0 = now;
+      var p = Math.min(1, (now - t0) / dur);
+      var e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      var pt = qPoint(e);
+      dot.setAttribute('cx', pt.x.toFixed(1)); dot.setAttribute('cy', pt.y.toFixed(1));
+      halo.setAttribute('cx', pt.x.toFixed(1)); halo.setAttribute('cy', pt.y.toFixed(1));
+      path.setAttribute('stroke-dashoffset', (0.22 - e).toFixed(3));
+      path.style.opacity = (0.15 + 0.55 * Math.sin(e * Math.PI)).toFixed(2);
+      if (p < 1) requestAnimationFrame(frame);
+      else setTimeout(finish, 90);
+    }
+    requestAnimationFrame(frame);
+    return true;
+  }
+  document.addEventListener('click', function (ev) {
+    if (ev.detail === 0 || REDUCED8) return;
+    var a = ev.target && ev.target.closest ? ev.target.closest('a.cm-node[href^="#"]') : null;
+    if (!a) return;
+    var to = (a.getAttribute('href') || '').slice(1) || 'home';
+    var from = routeNow8();
+    if (to === from || !ACC8[to]) return;
+    var origin = document.querySelector('.cm-node[data-key="' + from + '"]');
+    var destDot = a.querySelector('.cm-dot');
+    if (!origin || !destDot) return;
+    var originDot = origin.querySelector('.cm-dot');
+    if (!originDot) return;
+    ev.preventDefault(); ev.stopPropagation();
+    if (!fly8(originDot, destDot, to)) location.hash = '#' + to;
+  }, true);
+  function flareArrival8(to) {
+    var tries = 0;
+    var iv = setInterval(function () {
+      tries++;
+      var node = null;
+      if (routeNow8() === 'home') node = document.querySelector('.cm-node[data-key="' + to + '"]');
+      else node = document.querySelector('.ct-node[href="#' + to + '"]');
+      if (node) {
+        clearInterval(iv);
+        var r = node.getBoundingClientRect();
+        if (r.top < (window.innerHeight || 900) && r.bottom > 0) {
+          node.classList.add('i8-arrive');
+          setTimeout(function () { node.classList.remove('i8-arrive'); }, 1000);
+        } else if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                try { io.disconnect(); } catch (e) {}
+                node.classList.add('i8-arrive');
+                setTimeout(function () { node.classList.remove('i8-arrive'); }, 1000);
+              }
+            });
+          });
+          io.observe(node);
+          setTimeout(function () { try { io.disconnect(); } catch (e) {} }, 9000);
+        }
+      } else if (tries > 14) clearInterval(iv);
+    }, 150);
+  }
+  var lastHashRoute8 = routeNow8();
+  window.addEventListener('hashchange', function () {
+    var r = routeNow8();
+    if (r !== lastHashRoute8) { lastHashRoute8 = r; setTimeout(function () { flareArrival8(r); }, 250); }
+  });
+
+  /* ---------- arranque ---------- */
+  function boot8() {
+    try { applyNow8(); } catch (e) {}
+    try { armStart8(); } catch (e) {}
+    try { stabilizePins8(); } catch (e) {}
+    try {
+      var sec = liveSec8();
+      if (sec && routeNow8() === 'home' && inView8(sec)) maybeStart8(sec);
+    } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot8); else boot8();
+  window.addEventListener('load', function () { setTimeout(boot8, 700); });
+  if (window.MutationObserver && !window.__i8Obs) {
+    window.__i8Obs = true;
+    var mo8b = new MutationObserver(function () { clearTimeout(mo8b._t); mo8b._t = setTimeout(boot8, 450); });
+    mo8b.observe(document.documentElement, { childList: true, subtree: true });
+  }
+  setInterval(boot8, 2000);
+  boot8();
 })();
