@@ -1,24 +1,18 @@
 (function () {
   'use strict';
-  /* Iteración 3 — La constelación es la navegación.
-     Cambios frente a Iteración 2:
-     - El campo de estrellas ya no vive solo en el héroe: los dos canvas son
-       fijos (100vw x 100vh) y acompañan TODA la página y TODAS las rutas,
-       con paralaje de ratón y deriva al hacer scroll. Nunca se apagan.
-     - Cada ruta tiene su propia paleta (acento) y su propio arreglo de
-       profundidad: la esfera 3D se regenera con semilla por ruta.
-     - La constelación es navegación real: un mapa DOM en Home con nodos
-       (9 páginas + 8 proyectos), con nombre visible, descripción al pasar
-       el cursor o enfocar, y clic que viaja; y una franja de constelación
-       compacta en la parte superior de cada una de las demás páginas.
-     - Home corto: en la ruta home se ocultan (solo con CSS, sin borrar
-       contenido) las secciones largas que ya viven en sus páginas — About,
-       How I work, Recommendation, Lifeline replay, Finance tools y Client
-       work — y quedan Hero, Stats, Achievements, Toolkit, Featured apps,
-       el mapa, Keep exploring y Contact.
-     - Firma, ticker, Propose, vídeos, EN/ES y automatizaciones: no se tocan.
-     El texto del mapa es bilingüe por construcción (EN · ES) para no tocar
-     el diccionario i18n del runtime. */
+  /* Iteración 3.1 — El mapa es un cielo, no un menú.
+     Cambios frente a Iteración 3: se eliminó por completo la cuadrícula de
+     pastillas (también en móvil). El mapa ahora es una constelación orgánica
+     en todos los tamaños: estrellas de distintos tamaños y brillos, líneas
+     finas, disposición irregular, etiquetas flotantes en versales pequeñas
+     sin fondo ni borde, y un área táctil invisible de 44px por nodo.
+     Hover (escritorio) y toque (móvil) iluminan la estrella, engrosan sus
+     líneas conectadas y muestran la descripción como texto flotante, sin caja.
+     En móvil el cielo es vertical (400 x 560) para que las etiquetas se lean
+     y los nodos se puedan tocar sin recortes ni solapes. El aviso inferior
+     quedó en una sola línea corta. El resto de Iteración 3 sigue igual:
+     canvas fijos en todas las rutas, paleta por ruta, franja de constelación
+     en las demás páginas, Home corto, firma, ticker, Propose, vídeos, EN/ES. */
   var TERMINAL_INK = '0.177 0.008 171';
   var ROUTES = {
     home: { acc: '#92AC9B', rgb: '146,172,155', nm: 'Home', ds: 'You are here · Estás aquí — highlights & quick guide' },
@@ -35,6 +29,10 @@
   var ALIASES = { 'case-studies': 'cases', 'casestudies': 'cases', 'client-work': 'client', 'marketing': 'experience', 'certifications': 'certs', 'recommendations': 'recs', 'cases': 'cases', 'coding': 'coding', 'client': 'client', 'finance': 'finance', 'experience': 'experience', 'writing': 'writing', 'certs': 'certs', 'recs': 'recs', 'home': 'home' };
   var PAGE_POS = { home: [90, 320], cases: [185, 140], coding: [305, 340], client: [425, 140], finance: [545, 340], experience: [665, 140], writing: [780, 340], certs: [875, 150], recs: [940, 320] };
   var PAGE_TOP = { cases: 1, client: 1, experience: 1, certs: 1 };
+  var PAGE_SIZE = { home: 17, cases: 12, coding: 14, client: 12, finance: 14, experience: 11, writing: 12, certs: 11, recs: 12 };
+  var M_POS = { home: [58, 58], cases: [215, 38], coding: [345, 95], client: [85, 165], finance: [255, 160], experience: [350, 235], writing: [110, 275], certs: [290, 295], recs: [185, 375] };
+  var M_PROJ = { Lifeline: [70, 440], PitMind: [215, 430], Outsette: [340, 455], StoryForge: [130, 495], MissionMind: [320, 490], 'Orcen Kit': [80, 540], Tallyhound: [225, 545], OpsFlow: [355, 520] };
+  var DECOR = [ [3, 12], [14, 8], [26, 4], [38, 10], [52, 6], [66, 12], [78, 4], [90, 10], [96, 20], [8, 30], [20, 48], [34, 26], [48, 48], [60, 30], [70, 48], [84, 32], [93, 45], [5, 55], [16, 72], [30, 88], [44, 70], [58, 90], [72, 72], [86, 88], [95, 68], [12, 92], [26, 64], [40, 80], [56, 60], [68, 84], [82, 62], [94, 84] ];
   var PROJECTS = [
     { nm: 'Lifeline', ds: '1st of 40 teams, Dell and NVIDIA hackathon', url: 'https://github.com/SGGmilagro/lifeline', go: 'goLifelineCase', btn: '[data-case=lifeline]', page: 'cases', x: 95, y: 478 },
     { nm: 'PitMind', ds: 'Most Innovative, IBM SkillsBuild', url: 'https://pitmind-bvihgej8qmkrzerqphkxb4.streamlit.app/', page: 'coding', x: 210, y: 478 },
@@ -60,40 +58,45 @@
     '.cm-sub{max-width:660px;color:rgba(237,243,235,.72);font-size:15px;line-height:1.6;margin:0}',
     '.cm-chart{position:relative;margin-top:38px;aspect-ratio:1000/520;min-height:340px}',
     '.cm-chart svg{position:absolute;inset:0;width:100%;height:100%}',
-    '.cm-link{stroke:rgba(var(--const-accent-rgb),.55);stroke-width:1;fill:none}',
-    '.cm-link-proj{stroke:rgba(var(--const-accent-rgb),.26);stroke-width:1;stroke-dasharray:3 4;fill:none}',
+    '.cm-svg-m{display:none}',
+    '.cm-link{stroke:rgba(var(--const-accent-rgb),.55);stroke-width:1;fill:none;transition:stroke-width .18s ease,stroke-opacity .18s ease}',
+    '.cm-link-proj{stroke:rgba(var(--const-accent-rgb),.26);stroke-width:1;stroke-dasharray:3 4;fill:none;transition:stroke-width .18s ease,stroke-opacity .18s ease}',
     '.cm-nodes{position:absolute;inset:0}',
-    '.cm-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-decoration:none;z-index:2;outline:none}',
-    '.cm-dot{flex:0 0 auto;width:13px;height:13px;border-radius:50%;background:#0D1210;border:2px solid var(--const-accent);box-shadow:0 0 0 4px rgba(var(--const-accent-rgb),.12),0 0 14px rgba(var(--const-accent-rgb),.55);transition:transform .18s ease,background .18s ease}',
-    '.cm-node:hover .cm-dot,.cm-node:focus-visible .cm-dot{transform:scale(1.45);background:var(--const-accent)}',
-    '.cm-node:focus-visible .cm-dot{box-shadow:0 0 0 4px rgba(var(--const-accent-rgb),.35),0 0 18px rgba(var(--const-accent-rgb),.8)}',
+    '.cm-node{position:absolute;left:var(--x);top:var(--y);width:0;height:0;text-decoration:none;z-index:2;outline:none}',
+    '.cm-node::after{content:"";position:absolute;left:-22px;top:-22px;width:44px;height:44px}',
+    '.cm-dot{position:absolute;left:0;top:0;width:var(--s,12px);height:var(--s,12px);transform:translate(-50%,-50%);border-radius:50%;background:#0D1210;border:2px solid var(--const-accent);box-shadow:0 0 0 4px rgba(var(--const-accent-rgb),.12),0 0 14px rgba(var(--const-accent-rgb),.55);transition:transform .18s ease,background .18s ease,box-shadow .18s ease}',
+    '.cm-node:hover .cm-dot,.cm-node:focus-visible .cm-dot,.cm-node:active .cm-dot{transform:translate(-50%,-50%) scale(1.5);background:var(--const-accent);box-shadow:0 0 0 6px rgba(var(--const-accent-rgb),.18),0 0 24px rgba(var(--const-accent-rgb),.85)}',
     '.cm-node.is-current .cm-dot{background:var(--const-accent);box-shadow:0 0 0 5px rgba(var(--const-accent-rgb),.2),0 0 22px rgba(var(--const-accent-rgb),.85)}',
-    '.cm-node.is-home .cm-dot{width:17px;height:17px}',
-    '.cm-label{margin-top:10px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,243,235,.88);white-space:nowrap}',
-    '.cm-node.cm-top .cm-label{order:-1;margin:0 0 10px}',
-    '.cm-node.is-current .cm-label{color:var(--const-accent)}',
-    '.cm-desc{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translate(-50%,4px);background:#16211B;border:1px solid rgba(var(--const-accent-rgb),.5);color:#EDF3EB;font-size:12px;line-height:1.45;padding:8px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:6}',
-    '.cm-node:hover .cm-desc,.cm-node:focus-visible .cm-desc{opacity:1;transform:translate(-50%,0)}',
-    '.cm-node.cm-proj .cm-dot{width:8px;height:8px;border-width:1.5px}',
+    '.cm-node.cm-dim .cm-dot{opacity:.75;box-shadow:0 0 0 3px rgba(var(--const-accent-rgb),.08),0 0 8px rgba(var(--const-accent-rgb),.35)}',
+    '.cm-label{position:absolute;left:0;top:14px;transform:translateX(-50%);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,243,235,.88);white-space:nowrap}',
+    '.cm-node.lab-t .cm-label{top:auto;bottom:14px}',
     '.cm-node.cm-proj .cm-label{font-size:9.5px;letter-spacing:.12em;color:rgba(237,243,235,.62)}',
+    '.cm-desc{position:absolute;left:0;bottom:calc(100% + 14px);transform:translate(-50%,4px);width:max-content;max-width:200px;white-space:normal;text-align:center;font-size:12px;line-height:1.45;color:var(--const-accent);text-shadow:0 1px 6px #0D1210,0 0 14px #0D1210,0 0 4px #0D1210;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:6}',
+    '.cm-node.lab-t .cm-desc{bottom:auto;top:calc(100% + 14px);transform:translate(-50%,-4px)}',
+    '.cm-node:hover .cm-desc,.cm-node:focus-visible .cm-desc,.cm-node:active .cm-desc{opacity:1;transform:translate(-50%,0)}',
+    '.cm-node.lab-t:hover .cm-desc,.cm-node.lab-t:focus-visible .cm-desc,.cm-node.lab-t:active .cm-desc{transform:translate(-50%,0)}',
+    '.cm-star{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(224,230,224,.7);transform:translate(-50%,-50%);pointer-events:none}',
     '.cm-hint{margin-top:20px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,243,235,.45)}',
-    '.constellation-trail{position:relative;z-index:1;display:flex;gap:6px;overflow-x:auto;padding:16px 4px 20px;margin:0 0 8px;scrollbar-width:none}',
+    '.constellation-trail{position:relative;z-index:1;display:flex;gap:18px;overflow-x:auto;padding:16px 4px 20px;margin:0 0 8px;scrollbar-width:none}',
     '.constellation-trail::-webkit-scrollbar{display:none}',
-    '.ct-node{display:flex;align-items:center;gap:8px;flex:0 0 auto;padding:8px 12px;border:1px solid rgba(var(--const-accent-rgb),.3);border-radius:999px;text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,243,235,.78);background:rgba(13,18,16,.65);white-space:nowrap}',
-    '.ct-node:hover{border-color:var(--const-accent);color:#EDF3EB}',
+    '.ct-node{display:flex;align-items:center;gap:8px;flex:0 0 auto;padding:6px 2px;text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,243,235,.72);white-space:nowrap}',
+    '.ct-node:hover{color:#EDF3EB}',
     '.ct-dot{width:8px;height:8px;border-radius:50%;background:transparent;border:1.5px solid var(--const-accent);box-shadow:0 0 8px rgba(var(--const-accent-rgb),.5)}',
-    '.ct-node.is-current{background:var(--const-accent);color:#0D1210;border-color:var(--const-accent)}',
-    '.ct-node.is-current .ct-dot{background:#0D1210;border-color:#0D1210;box-shadow:none}',
+    '.ct-node.is-current{color:var(--const-accent)}',
+    '.ct-node.is-current .ct-dot{background:var(--const-accent);box-shadow:0 0 10px rgba(var(--const-accent-rgb),.8)}',
     '@media (max-width:900px){',
     '.constellation-map{padding:56px 0}',
-    '.cm-chart{aspect-ratio:auto;min-height:0}',
-    '.cm-chart svg{display:none}',
-    '.cm-nodes{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px}',
-    '.cm-node{position:static!important;left:auto!important;top:auto!important;transform:none;flex-direction:row;align-items:center;gap:10px;border:1px solid rgba(var(--const-accent-rgb),.3);border-radius:12px;padding:13px 14px;text-align:left}',
-    '.cm-node .cm-label{margin:0;white-space:normal}',
-    '.cm-node.cm-top .cm-label{order:0;margin:0}',
-    '.cm-node .cm-desc{display:none}',
-    '.cm-node.is-current{border-color:var(--const-accent);background:rgba(var(--const-accent-rgb),.1)}',
+    '.cm-chart{aspect-ratio:400/560;min-height:0}',
+    '.cm-svg-d{display:none}',
+    '.cm-svg-m{display:block}',
+    '.cm-node{left:var(--mx);top:var(--my)}',
+    '.cm-node .cm-label{left:12px;right:auto;top:0;bottom:auto;transform:translateY(-50%)}',
+    '.cm-node.lab-l .cm-label{left:auto;right:12px}',
+    '.cm-node.lab-t .cm-label{left:12px;right:auto;top:0;bottom:auto;transform:translateY(-50%)}',
+    '.cm-node.lab-t.lab-l .cm-label{left:auto;right:12px}',
+    '.cm-node .cm-desc,.cm-node.lab-t .cm-desc{top:calc(100% + 12px);bottom:auto;transform:translate(-50%,-4px);max-width:150px;font-size:11px}',
+    '.cm-node:hover .cm-desc,.cm-node:focus-visible .cm-desc,.cm-node:active .cm-desc,.cm-node.lab-t:hover .cm-desc,.cm-node.lab-t:focus-visible .cm-desc,.cm-node.lab-t:active .cm-desc{transform:translate(-50%,0)}',
+    '.cm-hint{font-size:10px}',
     '}',
     '@media (prefers-reduced-motion:reduce){.cm-dot{box-shadow:none}}'
   ].join('\n');
@@ -213,22 +216,58 @@
     if (!reduced) raf = requestAnimationFrame(frame);
   }
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-  function nodeHtml(kind, r, label, ds, href, extra, x, y, top) {
-    return '<a class="cm-node' + (kind === 'proj' ? ' cm-proj' : '') + (top ? ' cm-top' : '') + (r === route && kind === 'page' ? ' is-current' : '') + (r === 'home' && kind === 'page' ? ' is-home' : '') + '" style="left:' + (x / 10) + '%;top:' + (y / 5.2) + '%" href="' + href + '"' + extra + (r === route && kind === 'page' ? ' aria-current="page"' : '') + '><span class="cm-dot"></span><span class="cm-label">' + esc(label) + '</span><span class="cm-desc">' + esc(ds) + '</span></a>';
+  function nodeHtml(kind, key, label, ds, href, extra, pos, mpos, labD, size, dim) {
+    var labM = mpos[0] > 200 ? 'l' : 'r';
+    return '<a class="cm-node' + (kind === 'proj' ? ' cm-proj' : '') + (labD === 't' ? ' lab-t' : '') + (labM === 'l' ? ' lab-l' : '') + (dim ? ' cm-dim' : '') + (key === route && kind === 'page' ? ' is-current' : '') + (key === 'home' && kind === 'page' ? ' is-home' : '') + '" style="--x:' + (pos[0] / 10) + '%;--y:' + (pos[1] / 5.2) + '%;--mx:' + (mpos[0] / 4) + '%;--my:' + (mpos[1] / 5.6) + '%;--s:' + size + 'px" href="' + href + '" data-key="' + key + '"' + extra + (key === route && kind === 'page' ? ' aria-current="page"' : '') + '><span class="cm-dot"></span><span class="cm-label">' + esc(label) + '</span><span class="cm-desc">' + esc(ds) + '</span></a>';
+  }
+  function segLines(posOf, cls, aKey, bKey) {
+    var s = '';
+    for (var i = 0; i < ORDER.length - 1; i++) {
+      var a = posOf(ORDER[i]), b = posOf(ORDER[i + 1]);
+      s += '<line class="' + cls + '" x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" data-a="' + ORDER[i] + '" data-b="' + ORDER[i + 1] + '"/>';
+    }
+    return s;
   }
   function buildMap() {
     var sec = document.createElement('section');
     sec.id = 'constellation-map';
     sec.className = 'constellation-map';
     sec.setAttribute('aria-label', 'Constellation navigation — Navegación por constelación');
-    var lines = '<polyline class="cm-link" points="';
-    ORDER.forEach(function (r, i) { lines += PAGE_POS[r][0] + ',' + PAGE_POS[r][1] + (i < ORDER.length - 1 ? ' ' : ''); });
-    lines += '"/>';
-    PROJECTS.forEach(function (p) { lines += '<line class="cm-link-proj" x1="' + p.x + '" y1="' + p.y + '" x2="' + PAGE_POS[p.page][0] + '" y2="' + PAGE_POS[p.page][1] + '"/>'; });
+    var linesD = segLines(function (r) { return PAGE_POS[r]; }, 'cm-link');
+    var linesM = segLines(function (r) { return M_POS[r]; }, 'cm-link');
+    PROJECTS.forEach(function (p, idx) {
+      linesD += '<line class="cm-link-proj" x1="' + p.x + '" y1="' + p.y + '" x2="' + PAGE_POS[p.page][0] + '" y2="' + PAGE_POS[p.page][1] + '" data-a="p' + idx + '" data-b="' + p.page + '"/>';
+      var mp = M_PROJ[p.nm];
+      linesM += '<line class="cm-link-proj" x1="' + mp[0] + '" y1="' + mp[1] + '" x2="' + M_POS[p.page][0] + '" y2="' + M_POS[p.page][1] + '" data-a="p' + idx + '" data-b="' + p.page + '"/>';
+    });
+    var starsHtml = '';
+    DECOR.forEach(function (p, i) { starsHtml += '<span class="cm-star" aria-hidden="true" style="left:' + p[0] + '%;top:' + p[1] + '%;width:' + (1 + (i % 3) * 0.6) + 'px;height:' + (1 + (i % 3) * 0.6) + 'px;opacity:' + (0.3 + (i % 4) * 0.12).toFixed(2) + '"></span>'; });
     var nodes = '';
-    ORDER.forEach(function (r) { nodes += nodeHtml('page', r, ROUTES[r].nm, ROUTES[r].ds, r === 'home' ? '#home' : '#' + r, '', PAGE_POS[r][0], PAGE_POS[r][1], !!PAGE_TOP[r]); });
-    PROJECTS.forEach(function (p) { nodes += nodeHtml('proj', p.page, p.nm, p.ds, p.url, (p.go ? ' data-go="' + p.go + '" data-btn="' + p.btn + '"' : '') + ' target="_blank" rel="noopener"', p.x, p.y, 0); });
-    sec.innerHTML = '<div class="cm-inner"><p class="cm-kicker">Explore by constellation — Explora por constelación</p><h2 class="cm-title">Follow the stars · Sigue las estrellas.</h2><p class="cm-sub">Every star is a real page or project. Hover to see what it is, click to travel there — this is the map, not decoration. / Cada estrella es una página o un proyecto real. Pasa el cursor para ver qué es y haz clic para viajar: es el mapa, no decoración.</p><div class="cm-chart"><svg viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">' + lines + '</svg><div class="cm-nodes">' + nodes + '</div></div><p class="cm-hint">Hover a star to see what it is · Click to travel — Pasa el cursor sobre una estrella · Haz clic para viajar</p></div>';
+    ORDER.forEach(function (r) { nodes += nodeHtml('page', r, ROUTES[r].nm, ROUTES[r].ds, r === 'home' ? '#home' : '#' + r, '', PAGE_POS[r], M_POS[r], PAGE_TOP[r] ? 't' : 'b', PAGE_SIZE[r], (r === 'experience' || r === 'certs') ? 1 : 0); });
+    PROJECTS.forEach(function (p, idx) { nodes += nodeHtml('proj', 'p' + idx, p.nm, p.ds, p.url, (p.go ? ' data-go="' + p.go + '" data-btn="' + p.btn + '"' : '') + ' target="_blank" rel="noopener"', [p.x, p.y], M_PROJ[p.nm], 'b', p.nm === 'Lifeline' ? 9 : 8, (p.nm === 'PitMind' || p.nm === 'OpsFlow') ? 1 : 0); });
+    sec.innerHTML = '<div class="cm-inner"><p class="cm-kicker">Explore by constellation — Explora por constelación</p><h2 class="cm-title">Follow the stars · Sigue las estrellas.</h2><p class="cm-sub">Every star is a real page or project. Hover to see what it is, click to travel there — this is the map, not decoration. / Cada estrella es una página o un proyecto real. Pasa el cursor para ver qué es y haz clic para viajar: es el mapa, no decoración.</p><div class="cm-chart"><svg class="cm-svg-d" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">' + linesD + '</svg><svg class="cm-svg-m" viewBox="0 0 400 560" preserveAspectRatio="none" aria-hidden="true">' + linesM + '</svg><div class="cm-nodes">' + starsHtml + nodes + '</div></div><p class="cm-hint">Hover or tap a star to travel · Toca una estrella para viajar</p></div>';
+    var chart = sec.querySelector('.cm-chart');
+    var mapLines = sec.querySelectorAll('.cm-link, .cm-link-proj');
+    function setHot(key) {
+      for (var i = 0; i < mapLines.length; i++) {
+        var el = mapLines[i];
+        if (!key) { el.style.strokeOpacity = ''; el.style.strokeWidth = ''; continue; }
+        var on = el.getAttribute('data-a') === key || el.getAttribute('data-b') === key;
+        el.style.strokeOpacity = on ? '1' : '0.22';
+        el.style.strokeWidth = on ? '2' : '';
+      }
+    }
+    var mapNodes = sec.querySelectorAll('.cm-node');
+    for (var n = 0; n < mapNodes.length; n++) {
+      (function (a) {
+        var k = a.getAttribute('data-key');
+        a.addEventListener('mouseenter', function () { setHot(k); });
+        a.addEventListener('mouseleave', function () { setHot(null); });
+        a.addEventListener('focus', function () { setHot(k); });
+        a.addEventListener('blur', function () { setHot(null); });
+        a.addEventListener('touchstart', function () { setHot(k); }, { passive: true });
+      })(mapNodes[n]);
+    }
     sec.addEventListener('click', function (e) {
       var a = e.target.closest ? e.target.closest('a[data-go]') : null;
       if (!a) return;
