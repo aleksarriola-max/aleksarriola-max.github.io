@@ -381,3 +381,17 @@
     '}';
   document.head.appendChild(s);
 })();
+/* Iteración 3.1 (fix móvil 2): separar ORCEN KIT / TALLYHOUND. En la segunda
+   verificación a 390px sus etiquetas se solapaban ~26px en la fila inferior del
+   cielo vertical (puntos demasiado juntos y etiquetas hacia adentro). Tallyhound
+   se mueve a la derecha y Orcen Kit un poco a la izquierda; el resto no cambia. */
+(function () {
+  'use strict';
+  var s = document.createElement('style');
+  s.id = 'constellation-iter31-mobile-fix2';
+  s.textContent = '@media (max-width:900px){' +
+    '.cm-node[data-key="p3"]{--mx:17.5%!important}' +
+    '.cm-node[data-key="p4"]{--mx:75%!important}' +
+  '}';
+  document.head.appendChild(s);
+})();
