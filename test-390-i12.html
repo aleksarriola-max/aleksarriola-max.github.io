@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prueba 390px - Iteración 12 (temporal)</title>
+<style>
+body{background:#111;color:#eee;font:14px/1.5 monospace;margin:0;padding:12px}
+iframe{width:390px;height:830px;border:1px solid #555;background:#000}
+button{margin:4px 4px 0 0;padding:8px 10px;cursor:pointer}
+pre{white-space:pre-wrap;word-break:break-word;background:#000;color:#8f8;padding:10px;border:1px solid #333;max-height:300px;overflow:auto}
+</style>
+</head>
+<body>
+<p>Prueba 390px — Iteración 12 (temporal). El iframe apunta al dominio de la rama.</p>
+<iframe id="f" src="https://aleks-portfolio-redesign-git-redesign-terminal-20-21be50-aleks9.vercel.app/#home"></iframe>
+<div>
+<button id="b-mapa">Medir mapa</button>
+<button id="b-kpi4">Medir KPI4</button>
+<button id="b-aviso">Medir aviso</button>
+<button id="b-rejilla">Medir rejilla</button>
+<button id="b-veredicto">Medir veredicto</button>
+<button id="b-hist">Medir historial</button>
+<button id="b-dedup">Dedup tras recarga</button>
+<button id="b-105">Experimento 10,5%</button>
+<button id="b-grid105">Celda 10,5% por rejilla</button>
+<button id="b-overflow">Buscar desbordamiento</button>
+<button id="b-todo">Medir todo</button>
+</div>
+<pre id="probe">Cargando el iframe…</pre>
+<script>
+var F = document.getElementById('f'), P = document.getElementById('probe');
+function W(){ return F.contentWindow; }
+function D(){ return F.contentDocument; }
+function log(s){ P.textContent += '\n' + s; }
+function q(sel){ try { return D().querySelector(sel); } catch(e){ return null; } }
+function qa(sel){ try { return Array.prototype.slice.call(D().querySelectorAll(sel)); } catch(e){ return []; } }
+function txt(el){ return el ? (el.textContent || '').replace(/\s+/g,' ').trim() : ''; }
+function sec(){ return q('.i5-build'); }
+function liveModel(){ return W().__i6Model || null; }
+function kpi(n){ var s = sec(); if(!s) return ''; var el = s.querySelector('[data-i5="kpi'+n+'"] span'); return txt(el); }
+function logLine(){ var s = sec(); if(!s) return ''; var el = s.querySelector('.i5-log'); return txt(el); }
+function modeloGuardado(){ try { return W().localStorage.getItem('i6-model'); } catch(e){ return 'n/a'; } }
+function medirMapa(){
+  var n = q('[data-key="p3"]');
+  if(!n){ log('MAPA: no hay nodo p3'); return; }
+  ['pointerover','mouseover'].forEach(function(t){ try{ n.dispatchEvent(new W().PointerEvent(t,{bubbles:true})); }catch(e){} });
+  var d = n.querySelector('.cm-desc');
+  var chart = n.closest('.cm-chart');
+  var r = d ? d.getBoundingClientRect() : null, c = chart ? chart.getBoundingClientRect() : null;
+  var labels = chart ? Array.prototype.slice.call(chart.querySelectorAll('.cm-label')) : [];
+  var solapa = 'ninguna';
+  if (d && r){ labels.forEach(function(l){ var lr = l.getBoundingClientRect(); if (!(r.right < lr.left || r.left > lr.right || r.bottom < lr.top || r.top > lr.bottom)) solapa = txt(l); }); }
+  log('MAPA ORCEN KIT p3: desc="' + txt(d) + '" display="' + (d ? d.style.display : '?') + '" opacity=' + (d ? W().getComputedStyle(d).opacity : '?') +
+    ' rect=[' + (r ? [r.left|0, r.top|0, r.right|0, r.bottom|0].join(' ') : '?') + ']' +
+    ' chart=[' + (c ? [c.left|0, c.top|0, c.right|0, c.bottom|0].join(' ') : '?') + ']' +
+    ' dentroDelChart=' + (r && c ? (r.left >= c.left - 1 && r.right <= c.right + 1 && r.top >= c.top - 1 && r.bottom <= c.bottom + 1) : '?') + ' solapaEtiquetas=' + solapa);
+}
+function medirKpi4(){
+  var s = sec(); if(!s){ log('KPI4: no hay seccion'); return; }
+  var box = s.querySelector('[data-i5="kpi4"]');
+  var sp = box ? box.querySelector('span') : null;
+  var cs = sp ? W().getComputedStyle(sp) : null;
+  var r = sp ? sp.getBoundingClientRect() : null, b = box ? box.getBoundingClientRect() : null;
+  log('KPI4: texto="' + txt(sp) + '" font=' + (cs ? cs.fontSize : '?') + ' whiteSpace=' + (cs ? cs.whiteSpace : '?') +
+    ' rects=' + (sp ? sp.getClientRects().length : '?') + ' unaLinea=' + (sp ? sp.getClientRects().length === 1 : '?') +
+    ' span=[' + (r ? [r.left|0, r.top|0, r.right|0, r.bottom|0, r.width|0].join(' ') : '?') + ']' +
+    ' caja=[' + (b ? [b.left|0, b.top|0, b.right|0, b.bottom|0, b.width|0].join(' ') : '?') + ']' +
+    ' desbordaDer=' + (r && b ? r.right > b.right + 1 : '?') + ' modeloGuardado=' + modeloGuardado());
+}
+function medirAviso(){
+  var cue = q('#constellation-cue');
+  if(!cue){ log('AVISO: no hay #constellation-cue'); return; }
+  var r = cue.getBoundingClientRect(), cs = W().getComputedStyle(cue);
+  log('AVISO: texto="' + txt(cue) + '" rect=[' + [r.left|0, r.top|0, r.right|0, r.bottom|0, r.width|0, r.height|0].join(' ') + ']' +
+    ' anchoIframe=390 huecoDerecho=' + (390 - r.right).toFixed(0) + 'px huecoIzquierdo=' + r.left.toFixed(0) + 'px' +
+    ' whiteSpace=' + cs.whiteSpace + ' textOverflow=' + cs.textOverflow +
+    ' scrollW=' + cue.scrollWidth + ' clientW=' + cue.clientWidth + ' scrollH=' + cue.scrollHeight + ' clientH=' + cue.clientHeight +
+    ' recorta=' + (cue.scrollWidth > cue.clientWidth + 1 || cue.scrollHeight > cue.clientHeight + 1) +
+    ' opacity=' + cs.opacity);
+}
+function gridCells(){
+  var s = sec(); if(!s) return [];
+  var g = s.querySelector('.i5-grid'); if(!g) return [];
+  return Array.prototype.slice.call(g.children).filter(function(c){ return /^\s*\$?\d+(\.\d+)?\s*$/.test(c.textContent || ''); });
+}
+function titleFor(w, g){ return 'Rebuild the memo with WACC ' + w.toFixed(1) + '% · growth ' + g.toFixed(1) + '% — reconstruir con este escenario'; }
+function cellFor(w, g){
+  var cells = gridCells();
+  for (var i = 0; i < cells.length; i++){ if ((cells[i].title || '') === titleFor(w, g)) return cells[i]; }
+  return null;
+}
+function medirGrid(){
+  var cells = gridCells();
+  if(cells.length < 9){ log('REJILLA: solo ' + cells.length + ' celdas'); return; }
+  var c = cells[0];
+  var tHover = c.title || '';
+  c.click();
+  var tClick = c.title || '';
+  log('REJILLA: celda="' + txt(c) + '" tituloTrasHover="' + tHover + '" tituloTrasClicSinHover="' + tClick + '" iguales=' + (tHover === tClick) + ' modelo=' + JSON.stringify(liveModel()));
+  esperarRebuild(function(){
+    log('REJILLA tras rebuild: tituloTrasRebuild="' + (c.title || '') + '" kpi1="' + kpi(1) + '" kpi3="' + kpi(3) + '" veredicto="' + txt(q('[data-i5="verdict"]')) + '" log="' + logLine() + '"');
+  });
+}
+function medirVerdict(){
+  log('VEREDICTO: kpi1="' + kpi(1) + '" kpi3="' + kpi(3) + '" kpi4="' + kpi(4) + '" veredicto="' + txt(q('[data-i5="verdict"]')) + '" log="' + logLine() + '"');
+}
+function medirHist(clickChip){
+  var chips = qa('.i12-chips button');
+  log('HIST: chips=' + chips.length + ' [' + chips.map(function(b){ return txt(b); }).join(' | ') + ']');
+  if (clickChip && chips.length >= 2){
+    var antes = kpi(1);
+    chips[1].click();
+    log('HIST: clic en chip 2 — kpi1 antes="' + antes + '"');
+    esperarRebuild(function(){
+      log('HIST tras restaurar chip 2: kpi1="' + kpi(1) + '" modelo=' + JSON.stringify(liveModel()));
+    });
+  }
+}
+function histRaw(){
+  try { var raw = W().localStorage.getItem('i12-hist'); return raw ? JSON.parse(raw) : []; }
+  catch(e){ return 'error'; }
+}
+function chipTexts(){
+  return qa('.i12-chips button').map(function(b){ return txt(b); });
+}
+function medirDedup(){
+  var antes = chipTexts(), rawA = histRaw();
+  log('DEDUP antes de recargar: chips=' + antes.length + ' [' + antes.join(' | ') + '] raw=' + JSON.stringify(rawA));
+  var guardado = JSON.stringify(rawA);
+  F.addEventListener('load', function onLoad(){
+    F.removeEventListener('load', onLoad);
+    setTimeout(function(){
+      var desp = chipTexts(), rawD = histRaw();
+      var dup = {};
+      var dupChips = [];
+      desp.forEach(function(t){ if (dup[t]) dupChips.push(t); dup[t]=1; });
+      log('DEDUP tras recargar: chips=' + desp.length + ' [' + desp.join(' | ') + '] raw=' + JSON.stringify(rawD) +
+        ' duplicadosVisibles=' + JSON.stringify(dupChips) + ' rawIgualAlDeAntes=' + (JSON.stringify(rawD) === guardado));
+    }, 3000);
+  });
+  F.contentWindow.location.reload();
+}
+function medir105(){
+  var wi = q('[data-i6-w]'), gi = q('[data-i6-g]');
+  var m = liveModel();
+  log('EXP105 modelo antes=' + JSON.stringify(m) + ' guardado=' + modeloGuardado() +
+    ' sliderMax w=' + (wi ? wi.getAttribute('max') : '?') + ' g=' + (gi ? gi.getAttribute('max') : '?'));
+  if (!m){ log('EXP105: no hay __i6Model'); return; }
+  m.w = 10.5; m.g = 5;
+  try { W().localStorage.setItem('i6-model', JSON.stringify({w:10.5,g:5})); } catch(e){}
+  try { W().__i6controls && W().__i6controls(); } catch(e){}
+  try { W().__i6rebuild && W().__i6rebuild(); } catch(e){}
+  log('EXP105 __i6Model mutado a 10,5%/5,0% + controls + rebuild — esperando…');
+  esperarRebuild(function(){
+    log('EXP105 tras rebuild (directo): modelo=' + JSON.stringify(liveModel()) + ' kpi1="' + kpi(1) + '" kpi4="' + kpi(4) + '" guardado=' + modeloGuardado() + ' log="' + logLine() + '"');
+  }, 25000);
+}
+function medirGrid105(){
+  function aplicarYClick(){
+    var c = cellFor(10.5, 5.0);
+    if (!c){ log('REJILLA105: no hay celda 10,5%/5,0% con el modelo actual=' + JSON.stringify(liveModel())); return; }
+    c.click();
+    log('REJILLA105: clic en celda "' + txt(c) + '" titulo="' + (c.title || '') + '" — esperando rebuild…');
+    esperarRebuild(function(){
+      log('REJILLA105 tras clic: modelo=' + JSON.stringify(liveModel()) + ' kpi1="' + kpi(1) + '" kpi4="' + kpi(4) + '" guardado=' + modeloGuardado() + ' log="' + logLine() + '"');
+    }, 25000);
+  }
+  var m = liveModel();
+  if (m && (m.w !== 9.5 || m.g !== 5)){
+    m.w = 9.5; m.g = 5;
+    try { W().localStorage.setItem('i6-model', JSON.stringify({w:9.5,g:5})); } catch(e){}
+    try { W().__i6controls && W().__i6controls(); } catch(e){}
+    try { W().__i6rebuild && W().__i6rebuild(); } catch(e){}
+    log('REJILLA105: modelo previo puesto a 9,5%/5,0% — esperando rebuild…');
+    esperarRebuild(aplicarYClick, 25000);
+  } else {
+    aplicarYClick();
+  }
+}
+function medirOverflow(){
+  var de = D().documentElement;
+  log('OVERFLOW docScrollW=' + de.scrollWidth + ' clientW=' + de.clientWidth + ' innerWidthIframe=' + W().innerWidth);
+  var out = [];
+  qa('*').forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if (r.right > 390.5 || r.left < -0.5){
+      var cls = '';
+      if (el.className && el.className.baseVal === undefined) cls = String(el.className).split(' ')[0];
+      out.push(el.tagName.toLowerCase() + (cls ? '.' + cls : '') + (el.id ? '#' + el.id : '') + ' [l' + (r.left|0) + ' r' + (r.right|0) + ' w' + (r.width|0) + ']');
+    }
+  });
+  log('OVERFLOW elementos fuera de 390px (' + out.length + '): ' + out.slice(0, 15).join(' ; '));
+}
+function esperarRebuild(cb, timeoutMs){
+  var t0 = Date.now(), to = timeoutMs || 20000;
+  var iv = setInterval(function(){
+    var l = logLine();
+    if (/REBUILT/.test(l) || Date.now() - t0 > to){
+      clearInterval(iv);
+      setTimeout(cb, 300);
+    }
+  }, 1000);
+}
+function medirTodo(){
+  medirMapa(); medirKpi4(); medirAviso(); medirVerdict(); medirHist(false); medirOverflow();
+  log('FIN mediciones');
+}
+document.getElementById('b-mapa').onclick = medirMapa;
+document.getElementById('b-kpi4').onclick = medirKpi4;
+document.getElementById('b-aviso').onclick = medirAviso;
+document.getElementById('b-rejilla').onclick = medirGrid;
+document.getElementById('b-veredicto').onclick = medirVerdict;
+document.getElementById('b-hist').onclick = function(){ medirHist(true); };
+document.getElementById('b-dedup').onclick = medirDedup;
+document.getElementById('b-105').onclick = medir105;
+document.getElementById('b-grid105').onclick = medirGrid105;
+document.getElementById('b-overflow').onclick = medirOverflow;
+document.getElementById('b-todo').onclick = medirTodo;
+F.addEventListener('load', function(){ setTimeout(medirTodo, 1500); });
+</script>
+</body>
+</html>
