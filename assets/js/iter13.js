@@ -290,3 +290,4 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sweep14);
   else sweep14();
 })();
+/* Nota de regresión: la guardia if (window.__i14) return; debe ir DENTRO del IIFE — un return a nivel superior es un error de sintaxis en un script clásico y todo el archivo deja de ejecutar. */
