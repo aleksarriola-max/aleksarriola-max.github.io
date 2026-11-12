@@ -1,39 +1,42 @@
 /* Iteración 15 — FIG.0 compacta y aviso inferior que no pisa el texto.
    Diagnóstico verificado en el sitio en vivo (escritorio 1920×998, 2026-11-12):
    (1) Hueco muerto en FIG.0: entre la caja ESCALATE «Human review» y la rejilla
-       de contadores y registro queda una franja vacía de unos 210 px en reposo,
-       con solo estrellas. El SVG de FIG.0 (viewBox 1000×290) mide unos 331 px de
-       alto, pero su contenedor queda mucho más alto y la rejilla queda lejos de
-       las etapas. No hay pin de FIG.0 que romper: la Iteración 4 usa scrub de
-       ScrollTrigger sin pin, deliberadamente. No se añade contenido nuevo: la
-       rejilla sube hasta quedar a unos 12 px del contenedor del SVG. La
-       corrección se mide en vivo (getBoundingClientRect) en cada pasada, así que
-       vale en escritorio y a 390 px, donde las 5 etapas se apilan (viewBox
-       400×780 de la Iteración 7): si no hay hueco, no se aplica nada.
+   de contadores y registro queda una franja vacía de unos 210 px en reposo,
+   con solo estrellas. El SVG de FIG.0 (viewBox 1000×290) mide unos 331 px de
+   alto, pero su contenedor queda mucho más alto y la rejilla queda lejos de
+   las etapas. No hay pin de FIG.0 que romper: la Iteración 4 usa scrub de
+   ScrollTrigger sin pin, deliberadamente. No se añade contenido nuevo: la
+   rejilla sube hasta quedar a unos 12 px del contenedor del SVG. La
+   corrección se mide en vivo (getBoundingClientRect) en cada pasada, así que
+   vale en escritorio y a 390 px, donde las 5 etapas se apilan (viewBox
+   400×780 de la Iteración 7): si no hay hueco, no se aplica nada.
+   Endurecimiento: la tapa se calcula sobre la parte baja del contenido del
+   SVG (getBBox); y en escritorio el viewBox se restablece a 1000×290 si llega
+   más alto, por si el hueco vive dentro del propio SVG.
    (2) Aviso inferior: el desvanecimiento de la Iteración 10 (cueCheck11, en
-       constellation.js) solo oculta el aviso cuando cubre contenido interactivo
-       (a, button, input…); el registro de FIG.0 es texto, así que el aviso se
-       cruzaba con líneas como «Vendor payment · $4,200» y «EXECUTED». Esta capa
-       añade una clase propia (i15-cue-hide) que también se activa cuando el aviso
-       cubre glifos de texto, detectados con caretRangeFromPoint en varios puntos
-       de la banda del aviso. No toca la lógica de la Iteración 10: cada clase
-       oculta el aviso por su lado.
+   constellation.js) solo oculta el aviso cuando cubre contenido interactivo
+   (a, button, input…); el registro de FIG.0 es texto, así que el aviso se
+   cruzaba con líneas como «Vendor payment · $4,200» y «EXECUTED». Esta capa
+   añade una clase propia (i15-cue-hide) que también se activa cuando el aviso
+   cubre glifos de texto, detectados con caretRangeFromPoint en varios puntos
+   de la banda del aviso. No toca la lógica de la Iteración 10: cada clase
+   oculta el aviso por su lado.
    (3) «Opportunities» bajo el ticker: es la última línea del párrafo del héroe
-       («open to finance & AI opportunities.») deslizándose bajo el ticker fijo al
-       hacer scroll; el texto está completo en el DOM y se lee entero. No es un
-       defecto del sitio: no requiere cambio de código.
+   («open to finance & AI opportunities.») deslizándose bajo el ticker fijo al
+   hacer scroll; el texto está completo en el DOM y se lee entero. No es un
+   defecto del sitio: no requiere cambio de código.
    (4) Mancha oscura en la foto: en el render en vivo no hay ningún blob radial
-       detrás de FIG.0 (solo el canvas de estrellas fijo y los gradientes tenues de
-       FIG.1); era el reflejo en el monitor. No requiere cambio de código.
+   detrás de FIG.0 (solo el canvas de estrellas fijo y los gradientes tenues de
+   FIG.1); era el reflejo en el monitor. No requiere cambio de código.
    Como el runtime (dc-runtime.js) es generado, sin editar, la reparación vive
    aquí, en la capa de iteración, igual que las Iteraciones 11–14. */
-(function () {
+(function() {
   'use strict';
   if (window.__i15) return; window.__i15 = true;
 
   /* ---------- (1) Compactar FIG.0: subir la rejilla hasta el SVG ---------- */
   var GAP_MAX = 12; /* hueco que queda entre el contenedor del SVG y la rejilla */
-  var SLACK = 24;   /* margen para el scrub vertical de GSAP sobre el SVG (±18 px) */
+  var SLACK = 24; /* margen para el scrub vertical de GSAP sobre el SVG (±18 px) */
   var MIN_EXCESS = 24; /* solo se ciñe el contenedor si sobra más que esto */
 
   function figParts15() {
@@ -71,6 +74,16 @@
     var svgR, wrapR, gridR;
     /* Se mide el tamaño natural: se sueltan primero los ajustes propios para
        que la medición no se mida a sí misma y la corrección no oscile. */
+    /* (0) En escritorio el viewBox de FIG.0 es 1000×290; si en vivo llega más
+       alto, se restablece antes de medir, para que el SVG no arrastre hueco. */
+    try {
+      if (window.innerWidth >= 900) {
+        var vb0 = p.svg.viewBox && p.svg.viewBox.baseVal;
+        if (vb0 && vb0.width === 1000 && vb0.height > 290) {
+          p.svg.setAttribute('viewBox', '0 0 1000 290');
+        }
+      }
+    } catch (e0) { /* se sigue midiendo con el viewBox que haya */ }
     try {
       p.wrap.style.height = '';
       p.wrap.style.overflowY = '';
@@ -79,11 +92,20 @@
       wrapR = p.wrap.getBoundingClientRect();
     } catch (e2) { return; }
     if (!svgR.height || !wrapR.height) return;
-    /* (a) El contenedor del SVG se ciñe a la altura del SVG (más el margen del
-       scrub). El contenido —etapas, ESCALATE, línea y fichas— queda intacto. */
-    var excess = wrapR.height - svgR.height;
+    /* (a) El contenedor del SVG se ciñe a la parte baja del CONTENIDO del SVG
+       (etapas, ESCALATE, línea y fichas), no a la altura del elemento: si el
+       SVG es más alto que su contenido, el hueco queda dentro del SVG y la
+       tapa anterior no lo tocaba. */
+    var targetH = svgR.height;
+    try {
+      var bb = p.svg.getBBox();
+      var vbW = (p.svg.viewBox && p.svg.viewBox.baseVal && p.svg.viewBox.baseVal.width) || 1000;
+      var scale = svgR.width / vbW;
+      if (bb && bb.height > 0 && scale > 0) targetH = (bb.y + bb.height) * scale;
+    } catch (e4) { /* se usa la altura del SVG */ }
+    var excess = wrapR.height - (targetH + SLACK);
     if (excess > MIN_EXCESS) {
-      p.wrap.style.height = Math.round(svgR.height + SLACK) + 'px';
+      p.wrap.style.height = Math.round(targetH + SLACK) + 'px';
       p.wrap.style.overflowY = 'hidden';
     }
     /* (b) Lo que quede entre el contenedor del SVG y la rejilla se cierra
