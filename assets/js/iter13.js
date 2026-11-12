@@ -27,9 +27,9 @@
    sus clics.
    (6) El tooltip del mapa tiene fondo oscuro sólido: el brillo de hover del
    punto ya no lava el texto. */
-if (window.__i14) return; window.__i14 = true;
 (function () {
   'use strict';
+   if (window.__i14) return; window.__i14 = true;
   var WMIN = 7.5, WMAX = 10.5, GMIN = 3, GMAX = 6;
   var OWMIN = 7.5, OWMAX = 9.5, OGMIN = 3, OGMAX = 5;
   var CSS14 = [
