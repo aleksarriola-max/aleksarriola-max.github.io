@@ -29,6 +29,19 @@
    de la Iteración 7): si no hay hueco, no se aplica nada. Además, esta versión
    ya no suelta la altura de la envoltura para medir: durante el pin, soltarla
    dejaba la envoltura en 320 px (el recorrido) y la rejilla subía aún más.
+   Corrección a 390 px (sonda debug-390.html, 2026-11-12 12:22 EST): a 390 px
+   no hay pin (sin ScrollTrigger con pin) y la envoltura mide lo mismo que el
+   SVG (650 px), así que no hay hueco que compactar. Pero la medición de la
+   parte baja del contenido usaba getBBox, que mide en las coordenadas locales
+   del texto y no ve el desplazamiento vertical que la recoordinación móvil de
+   la Iteración 7 aplica a los grupos de etapas: devolvía 278 unidades (la
+   geometría de escritorio) y la tapa quedaba en 345 px, recortando las etapas
+   04–05 y ESCALATE; luego la guardia de la tapa la soltaba y en la siguiente
+   pasada volvía a aplicarse (parpadeo cada 400 ms, y la rejilla tapaba
+   ESCALATE en +45/+81 px). Esta versión mide la parte baja del contenido con
+   getBoundingClientRect (que sí incluye los desplazamientos de los grupos) y
+   la guardia de la tapa compara contra la misma parte baja, no contra la
+   altura del SVG.
    (2) Aviso inferior: el desvanecimiento de la Iteración 10 (cueCheck11, en
    constellation.js) solo oculta el aviso cuando cubre contenido interactivo
    (a, button, input…); el registro de FIG.0 es texto, así que el aviso se
@@ -74,17 +87,30 @@ return svgs[0];
 }
 /* Parte baja del contenido visible del SVG, en unidades del viewBox: el
 máximo, entre las etiquetas <text> renderizadas, de la parte baja del texto
-o de su grupo padre (si el grupo mide 220 unidades o menos), más 10 unidades. */
+o de su grupo padre (si el grupo mide 220 unidades o menos), más 10 unidades.
+Se mide con getBoundingClientRect (rectángulos en pantalla) y no con getBBox:
+getBBox mide en las coordenadas locales del texto y no ve el desplazamiento
+que la recoordinación móvil de la Iteración 7 aplica a los grupos de etapas,
+así que a 390 px devolvía la geometría de escritorio y la tapa recortaba la
+figura apilada. */
 function contentBottom15(svg){
-var texts=svg.querySelectorAll('text'),best=null,i,t,b,g,gb,bot;
+var svgR=svg.getBoundingClientRect(),vb=null,scale=1;
+try{
+vb=svg.getAttribute('viewBox').split(/\s+/);
+scale=svgR.width/((vb&&+vb[2])||svgR.width||1);
+}catch(e){scale=1;}
+var texts=svg.querySelectorAll('text'),best=null,i,t,r,g,gr,bot;
 for(i=0;i<texts.length;i++){
 t=texts[i];
 if(!t.getClientRects().length)continue;
-try{b=t.getBBox();}catch(e){continue;}
-bot=b.y+b.height;
+try{r=t.getBoundingClientRect();}catch(e){continue;}
+bot=(r.bottom-svgR.top)/scale;
 try{
 g=t.parentElement;
-if(g&&g.getBBox){gb=g.getBBox();if(gb.height<=220)bot=Math.max(bot,gb.y+gb.height);}
+if(g&&g.getBoundingClientRect){
+gr=g.getBoundingClientRect();
+if((gr.height/scale)<=220)bot=Math.max(bot,(gr.bottom-svgR.top)/scale);
+}
 }catch(e){/* sigue */}
 if(best===null||bot>best)best=bot;
 }
@@ -180,9 +206,10 @@ var wrapR=wrap.getBoundingClientRect();
 if(wrapR.height-capH>MIN_EXCESS){
 wrap.style.height=capH+'px';
 wrap.style.overflowY='hidden';
-}else if(wrap.style.height&&wrapR.height<svgR.height){
-/* Tapa obsoleta (p. ej., tras un cambio de ancho la envoltura quedó más baja
-que el SVG): suéltala para no recortar contenido. */
+}else if(wrap.style.height&&wrapR.height<targetH-4){
+/* Tapa obsoleta (p. ej., la tapa se calculó antes de la recoordinación móvil
+y quedó más baja que el contenido): suéltala para no recortar nada. Se
+compara contra la parte baja del contenido, no contra la altura del SVG. */
 wrap.style.height='';
 wrap.style.overflowY='';
 }
