@@ -11,6 +11,7 @@
 <button id="b-cue">Medir aviso inferior</button>
 <button id="b-grid">Medir rejilla (titulo tras clic)</button>
 <button id="b-verd">Medir veredicto</button>
+<button id="b-hist">Medir historial</button>
 <button id="b-peor">Peor caso KPI4: 10.5% - 5.0%</button>
 <button id="b-base">Modelo base 8.5% - 4.0%</button>
 <button id="b-todo">Medir todo</button>
@@ -32,7 +33,7 @@ async function medirMapa(){
   var nodes=[].slice.call(d.querySelectorAll('.cm-node')).map(function(n){return (n.getAttribute('data-key')||'?')+':'+(n.querySelector('.cm-label')?n.querySelector('.cm-label').textContent.trim():'');});
   out('MAPA nodos: '+nodes.join(' | '));
   chart.scrollIntoView({block:'center'});await sleep(500);
-  var node=d.querySelector('.cm-node[data-key="p4"]');if(!node){out('MAPA: no hay nodo p4 (ORCEN KIT)');return;}
+  var node=d.querySelector('.cm-node[data-key="p3"]');if(!node){out('MAPA: no hay nodo p3 (ORCEN KIT)');return;}
   node.scrollIntoView({block:'center'});await sleep(300);
   try{node.focus();}catch(e){}
   ['pointerover','mouseover','touchstart'].forEach(function(t){try{node.dispatchEvent(new w.Event(t,{bubbles:true,cancelable:true}));}catch(e){}});
@@ -41,7 +42,7 @@ async function medirMapa(){
   var cs=w.getComputedStyle(desc);var dr=desc.getBoundingClientRect(),cr=chart.getBoundingClientRect();
   var hits=[].slice.call(d.querySelectorAll('.cm-label')).filter(function(l){return ov(dr,l.getBoundingClientRect());}).map(function(l){return l.textContent.trim().slice(0,22);});
   var dentro=dr.left>=cr.left-1&&dr.right<=cr.right+1&&dr.top>=cr.top-1&&dr.bottom<=cr.bottom+1;
-  out('MAPA ORCEN KIT p4: desc="'+(desc.textContent||'').trim().slice(0,60)+'" display="'+desc.style.display+'" opacity='+cs.opacity+' rect='+rr(desc)+' chart='+rr(chart)+' dentroDelChart='+dentro+' solapaEtiquetas='+(hits.length?hits.join(' | '):'ninguna'));
+  out('MAPA ORCEN KIT p3: desc="'+(desc.textContent||'').trim().slice(0,60)+'" display="'+desc.style.display+'" opacity='+cs.opacity+' rect='+rr(desc)+' chart='+rr(chart)+' dentroDelChart='+dentro+' solapaEtiquetas='+(hits.length?hits.join(' | '):'ninguna'));
  }catch(e){out('MAPA ERROR: '+e.message);}
 }
 async function medirKpi(){
@@ -57,7 +58,7 @@ async function medirCue(){
  try{
   var d=D(),w=W();var cue=d.getElementById('constellation-cue');if(!cue){out('AVISO: no hay #constellation-cue');return;}
   var r=cue.getBoundingClientRect();
-  out('AVISO: texto="'+(cue.textContent||'').trim().slice(0,60)+'" rect='+rr(cue)+' anchoIframe='+w.innerWidth+' huecoDerecho='+(Math.round(w.innerWidth-r.right))+'px opacity='+w.getComputedStyle(cue).opacity);
+  out('AVISO: texto="'+(cue.textContent||'').trim().slice(0,60)+'" rect='+rr(cue)+' anchoIframe='+w.innerWidth+' huecoDerecho='+(Math.round(w.innerWidth-r.right))+'px huecoIzquierdo='+(Math.round(r.left))+'px opacity='+w.getComputedStyle(cue).opacity);
  }catch(e){out('AVISO ERROR: '+e.message);}
 }
 async function medirGrid(){
@@ -65,15 +66,16 @@ async function medirGrid(){
   var d=D(),w=W();var sec=d.querySelector('.i5-build');if(!sec){out('REJILLA: no hay .i5-build');return;}
   sec.scrollIntoView({block:'center'});await sleep(400);
   var grid=sec.querySelector('.i5-grid');var cells=[].slice.call(grid.children).filter(function(c){return /^\s*\$?\d+(\.\d+)?\s*$/.test(c.textContent||'');});
-  var cell=cells[4]||cells[0];if(!cell){out('REJILLA: sin celdas de valor');return;}
+  var cell=cells[0]||cells[1];if(!cell){out('REJILLA: sin celdas de valor');return;}
   cell.dispatchEvent(new w.Event('pointerover',{bubbles:true,cancelable:true}));await sleep(250);
   var tAntes=cell.title;
   cell.click();await sleep(700);
   var tDespues=cell.title;
   out('REJILLA: celda="'+cell.textContent.trim()+'" tituloTrasHover="'+tAntes+'" tituloTrasClicSinHover="'+tDespues+'" iguales='+(tAntes===tDespues)+' modelo='+JSON.stringify(w.__i6Model||null));
   await sleep(2500);
+  var tRebuild=cell.title;
   var v=sec.querySelector('[data-i5="verdict"]');
-  out('REJILLA tras rebuild: kpi1="'+(sec.querySelector('[data-i5="kpi1"] span')||{textContent:''}).textContent.trim()+'" kpi3="'+(sec.querySelector('[data-i5="kpi3"] span')||{textContent:''}).textContent.trim()+'" veredicto="'+(v?v.textContent.trim():'')+'" log="'+(sec.querySelector('.i5-log')||{textContent:''}).textContent.trim()+'"');
+  out('REJILLA tras rebuild: tituloTrasRebuild="'+tRebuild+'" kpi1="'+(sec.querySelector('[data-i5="kpi1"] span')||{textContent:''}).textContent.trim()+'" kpi3="'+(sec.querySelector('[data-i5="kpi3"] span')||{textContent:''}).textContent.trim()+'" veredicto="'+(v?v.textContent.trim():'')+'" log="'+(sec.querySelector('.i5-log')||{textContent:''}).textContent.trim()+'"');
  }catch(e){out('REJILLA ERROR: '+e.message);}
 }
 async function medirVerdict(){
@@ -83,13 +85,29 @@ async function medirVerdict(){
   out('VEREDICTO: kpi1="'+(sec.querySelector('[data-i5="kpi1"] span')||{textContent:''}).textContent.trim()+'" kpi3="'+(sec.querySelector('[data-i5="kpi3"] span')||{textContent:''}).textContent.trim()+'" kpi4="'+(sec.querySelector('[data-i5="kpi4"] span')||{textContent:''}).textContent.trim()+'" veredicto="'+(v?v.textContent.trim():'')+'" log="'+(sec.querySelector('.i5-log')||{textContent:''}).textContent.trim()+'"');
  }catch(e){out('VEREDICTO ERROR: '+e.message);}
 }
-function recargar(){document.getElementById('f').src=BR+'/#home';}
-async function medirTodo(){await medirKpi();await medirCue();await medirMapa();await medirVerdict();out('FIN mediciones');}
+async function medirHist(){
+ try{
+  var d=D(),w=W();var sec=d.querySelector('.i5-build');if(!sec){out('HIST: no hay .i5-build');return;}
+  sec.scrollIntoView({block:'center'});await sleep(500);
+  var box=sec.querySelector('.i12-hist');if(!box){out('HIST: no hay .i12-hist (¿iter11 no cargó?)');return;}
+  var chips=[].slice.call(box.querySelectorAll('.i12-chips button'));
+  out('HIST: chips='+chips.length+' ['+chips.map(function(c){return c.textContent.trim();}).join(' | ')+']');
+  if(chips.length>1){
+   var antes=(sec.querySelector('[data-i5="kpi1"] span')||{textContent:''}).textContent.trim();
+   chips[1].click();await sleep(3200);
+   var despues=(sec.querySelector('[data-i5="kpi1"] span')||{textContent:''}).textContent.trim();
+   out('HIST: clic en chip 2 — kpi1 antes="'+antes+'" despues="'+despues+'" modelo='+JSON.stringify(w.__i6Model||null));
+  }
+ }catch(e){out('HIST ERROR: '+e.message);}
+}
+function recargar(){try{document.getElementById('f').contentWindow.location.reload();}catch(e){document.getElementById('f').src=BR+'/#home';}}
+async function medirTodo(){await medirKpi();await medirCue();await medirMapa();await medirVerdict();await medirHist();out('FIN mediciones');}
 document.getElementById('b-mapa').onclick=medirMapa;
 document.getElementById('b-kpi').onclick=medirKpi;
 document.getElementById('b-cue').onclick=medirCue;
 document.getElementById('b-grid').onclick=medirGrid;
 document.getElementById('b-verd').onclick=medirVerdict;
+document.getElementById('b-hist').onclick=medirHist;
 document.getElementById('b-todo').onclick=medirTodo;
 document.getElementById('b-peor').onclick=function(){try{W().localStorage.setItem('i6-model',JSON.stringify({w:10.5,g:5}));}catch(e){} recargar();};
 document.getElementById('b-base').onclick=function(){try{W().localStorage.setItem('i6-model',JSON.stringify({w:8.5,g:4}));}catch(e){} recargar();};
