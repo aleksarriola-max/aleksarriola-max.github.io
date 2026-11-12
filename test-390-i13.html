@@ -268,3 +268,30 @@ function medirTodo(){
 </script>
 </body>
 </html>
+<script>
+// Diagnóstico de carga de iter13.js (Iteración 13, temporal)
+(function(){
+  function medirCarga13(){
+    var W=fr.contentWindow,D=fr.contentDocument;
+    if(!D||D.URL==='about:blank'){log('Carga iter13: el iframe aún no cargó');return;}
+    var tag=D.querySelector('script[src*="iter13.js"]');
+    var tag12=D.querySelector('script[src*="iter12.js"]');
+    var estilo=D.querySelector('#constellation-iter14');
+    var recs=[];
+    try{
+      var res=W.performance.getEntriesByType('resource')||[];
+      for(var i=0;i<res.length;i++){
+        if(/iter1[123]\.js/.test(res[i].name))recs.push(res[i].name.split('/').pop()+' dur='+Math.round(res[i].duration)+'ms size='+res[i].transferSize);
+      }
+    }catch(e){recs.push('performance no disponible: '+e.message);}
+    log('Carga iter13: tagIter13='+(tag?tag.getAttribute('src'):'NO')+' tagIter12='+(tag12?tag12.getAttribute('src'):'NO')+' window.__i14='+W.__i14+' window.__i13='+W.__i13+' estiloIter14='+(estilo?'sí':'no')+' recursos='+JSON.stringify(recs));
+  }
+  window.medirCarga13=medirCarga13;
+  var b=document.createElement('button');
+  b.textContent='Carga iter13';
+  b.onclick=medirCarga13;
+  document.querySelector('.row').appendChild(b);
+  var origTodo=window.medirTodo;
+  window.medirTodo=function(){medirCarga13();origTodo();};
+})();
+</script>
