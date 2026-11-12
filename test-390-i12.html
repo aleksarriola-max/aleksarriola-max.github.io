@@ -24,6 +24,8 @@ pre{white-space:pre-wrap;word-break:break-word;background:#000;color:#8f8;paddin
 <button id="b-dedup">Dedup tras recarga</button>
 <button id="b-105">Experimento 10,5%</button>
 <button id="b-grid105">Celda 10,5% por rejilla</button>
+<button id="b-ref">Medir referencia</button>
+<button id="b-share">Compartir escenario</button>
 <button id="b-overflow">Buscar desbordamiento</button>
 <button id="b-todo">Medir todo</button>
 </div>
@@ -178,19 +180,64 @@ function medirGrid105(){
     aplicarYClick();
   }
 }
+function medirRef(){
+  var refs = qa('.i12-ref');
+  log('REF celdas de referencia (' + refs.length + '): ' + refs.map(function(c){ return txt(c) + ' [' + (c.title || '') + ']'; }).join(' ; '));
+  if (refs.length){
+    var antes = JSON.stringify(liveModel());
+    refs[0].click();
+    setTimeout(function(){
+      var ahora = JSON.stringify(liveModel());
+      log('REF tras clic en celda de referencia: modelo antes=' + antes + ' ahora=' + ahora + ' cambio=' + (antes !== ahora) + ' log="' + logLine() + '"');
+    }, 3000);
+  }
+}
+function medirShare(){
+  var btn = q('.i12-share-btn');
+  if (!btn){ log('SHARE: no hay botón de compartir'); return; }
+  btn.click();
+  setTimeout(function(){
+    var o = q('.i12-share-out');
+    var t = txt(o);
+    log('SHARE salida="' + t + '"');
+    var m = t.match(/https?:\/\/\S+/);
+    if (m && m[0]){
+      var url = m[0];
+      log('SHARE abriendo el enlace en el iframe: ' + url);
+      F.addEventListener('load', function onShareLoad(){
+        F.removeEventListener('load', onShareLoad);
+        setTimeout(function(){
+          log('SHARE tras abrir el enlace: modelo=' + JSON.stringify(liveModel()) + ' kpi1="' + kpi(1) + '" kpi4="' + kpi(4) + '" guardado=' + modeloGuardado());
+        }, 10000);
+      });
+      F.src = url;
+    }
+  }, 800);
+}
 function medirOverflow(){
   var de = D().documentElement;
-  log('OVERFLOW docScrollW=' + de.scrollWidth + ' clientW=' + de.clientWidth + ' innerWidthIframe=' + W().innerWidth);
+  var sc = D().scrollingElement;
+  log('OVERFLOW docScrollW=' + de.scrollWidth + ' clientW=' + de.clientWidth + ' innerWidthIframe=' + W().innerWidth + ' scrollLeft=' + (sc ? sc.scrollLeft : '?') + ' bodyScrollW=' + D().body.scrollWidth);
   var out = [];
   qa('*').forEach(function(el){
     var r = el.getBoundingClientRect();
-    if (r.right > 390.5 || r.left < -0.5){
-      var cls = '';
-      if (el.className && el.className.baseVal === undefined) cls = String(el.className).split(' ')[0];
-      out.push(el.tagName.toLowerCase() + (cls ? '.' + cls : '') + (el.id ? '#' + el.id : '') + ' [l' + (r.left|0) + ' r' + (r.right|0) + ' w' + (r.width|0) + ']');
-    }
+    if (r.right > 390.5 || r.left < -0.5){ out.push({ el: el, r: r }); }
   });
-  log('OVERFLOW elementos fuera de 390px (' + out.length + '): ' + out.slice(0, 15).join(' ; '));
+  out.sort(function(a, b){ return a.r.right - b.r.right; });
+  var lines = out.slice(0, 12).map(function(o){
+    var el = o.el, r = o.r;
+    var anc = 'ninguno';
+    var p = el.parentElement, n = 0;
+    while (p && n < 5){
+      var ox = W().getComputedStyle(p).overflowX;
+      if (ox === 'hidden' || ox === 'clip' || ox === 'scroll' || ox === 'auto'){ anc = p.tagName.toLowerCase() + '(' + ox + ')'; break; }
+      p = p.parentElement; n++;
+    }
+    var cls = '';
+    if (el.className && el.className.baseVal === undefined) cls = String(el.className).split(' ')[0];
+    return el.tagName.toLowerCase() + (cls ? '.' + cls : '') + (el.id ? '#' + el.id : '') + ' [l' + (r.left|0) + ' r' + (r.right|0) + ' w' + (r.width|0) + '] pos=' + W().getComputedStyle(el).position + ' recorteAncestro=' + anc;
+  });
+  log('OVERFLOW elementos fuera de 390px (' + out.length + ', ordenados por borde derecho): ' + lines.join(' ; '));
 }
 function esperarRebuild(cb, timeoutMs){
   var t0 = Date.now(), to = timeoutMs || 20000;
@@ -215,6 +262,8 @@ document.getElementById('b-hist').onclick = function(){ medirHist(true); };
 document.getElementById('b-dedup').onclick = medirDedup;
 document.getElementById('b-105').onclick = medir105;
 document.getElementById('b-grid105').onclick = medirGrid105;
+document.getElementById('b-ref').onclick = medirRef;
+document.getElementById('b-share').onclick = medirShare;
 document.getElementById('b-overflow').onclick = medirOverflow;
 document.getElementById('b-todo').onclick = medirTodo;
 F.addEventListener('load', function(){ setTimeout(medirTodo, 1500); });
