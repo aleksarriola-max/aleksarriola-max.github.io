@@ -10,9 +10,10 @@
    corrección se mide en vivo (getBoundingClientRect) en cada pasada, así que
    vale en escritorio y a 390 px, donde las 5 etapas se apilan (viewBox
    400×780 de la Iteración 7): si no hay hueco, no se aplica nada.
-   Endurecimiento: la tapa se calcula sobre la parte baja del contenido del
-   SVG (getBBox); y en escritorio el viewBox se restablece a 1000×290 si llega
-   más alto, por si el hueco vive dentro del propio SVG.
+   Endurecimiento: la tapa se calcula sobre la parte baja del contenido
+   VISIBLE del SVG (la última etiqueta de texto, con su caja; el getBBox del
+   SVG entero no servía porque incluye contenido que no se ve bajo ESCALATE)
+   y en escritorio el viewBox se restablece a 1000×290 si llega más alto.
    (2) Aviso inferior: el desvanecimiento de la Iteración 10 (cueCheck11, en
    constellation.js) solo oculta el aviso cuando cubre contenido interactivo
    (a, button, input…); el registro de FIG.0 es texto, así que el aviso se
@@ -39,10 +40,29 @@
   var SLACK = 24; /* margen para el scrub vertical de GSAP sobre el SVG (±18 px) */
   var MIN_EXCESS = 24; /* solo se ciñe el contenedor si sobra más que esto */
 
+  /* El SVG de FIG.0 es el que contiene la etiqueta «Human review»: dentro de
+     Hero C puede haber otros SVG (iconos) y si se toma el primero, la medida
+     sale del elemento equivocado y la tapa no se aplica. */
+  function pickSvg15(hero) {
+    var svgs = hero.querySelectorAll('svg');
+    if (!svgs || !svgs.length) return null;
+    var k, m, ts;
+    for (k = 0; k < svgs.length; k++) {
+      ts = svgs[k].querySelectorAll('text');
+      for (m = 0; m < ts.length; m++) {
+        if ((ts[m].textContent || '').trim() === 'Human review') return svgs[k];
+      }
+    }
+    for (k = 0; k < svgs.length; k++) {
+      if (svgs[k].querySelector('text')) return svgs[k];
+    }
+    return svgs[0];
+  }
+
   function figParts15() {
     var hero = document.querySelector('section[data-screen-label="Hero C"]');
     if (!hero) return null;
-    var svg = hero.querySelector('svg');
+    var svg = pickSvg15(hero);
     if (!svg || !svg.parentElement) return null;
     var wrap = svg.parentElement;
     var fig = wrap.parentElement;
@@ -65,6 +85,37 @@
     }
     if (!grid || wrap.contains(grid)) return null;
     return { svg: svg, wrap: wrap, grid: grid };
+  }
+
+  /* Parte baja del contenido VISIBLE del SVG: la más baja de las etiquetas
+     de texto renderizadas (con su grupo, que incluye la caja) más 10 unidades.
+     No se usa el getBBox del SVG entero: su rectángulo incluye contenido que no
+     se ve bajo ESCALATE y con él la tapa no cerraba el hueco en la vista
+     previa (la envoltura medía unos 830 px con el contenido hasta ~360 px). */
+  function contentBottom15(svg) {
+    var maxB = null;
+    var ts, i, t, b, bot, par, gb;
+    try { ts = svg.querySelectorAll('text'); } catch (e) { return null; }
+    for (i = 0; i < ts.length; i++) {
+      t = ts[i];
+      try {
+        if (!t.getClientRects || !t.getClientRects().length) continue;
+        b = t.getBBox();
+      } catch (e2) { continue; }
+      if (!b || !(b.height > 0) || !isFinite(b.y) || !isFinite(b.height)) continue;
+      bot = b.y + b.height;
+      par = t.parentElement;
+      if (par && par !== svg && par.getBBox) {
+        try {
+          gb = par.getBBox();
+          if (gb && gb.height > 0 && gb.height <= 220 && isFinite(gb.y) && isFinite(gb.height)) {
+            if (gb.y + gb.height > bot) bot = gb.y + gb.height;
+          }
+        } catch (e3) {}
+      }
+      if (maxB === null || bot > maxB) maxB = bot;
+    }
+    return maxB;
   }
 
   function compactFig15() {
@@ -92,17 +143,30 @@
       wrapR = p.wrap.getBoundingClientRect();
     } catch (e2) { return; }
     if (!svgR.height || !wrapR.height) return;
-    /* (a) El contenedor del SVG se ciñe a la parte baja del CONTENIDO del SVG
-       (etapas, ESCALATE, línea y fichas), no a la altura del elemento: si el
+    /* (a) El contenedor del SVG se ciñe a la parte baja del contenido VISIBLE
+       (la última etiqueta, con su caja), no a la altura del elemento: si el
        SVG es más alto que su contenido, el hueco queda dentro del SVG y la
        tapa anterior no lo tocaba. */
     var targetH = svgR.height;
-    try {
-      var bb = p.svg.getBBox();
+    var cb = null;
+    try { cb = contentBottom15(p.svg); } catch (e5) {}
+    if (cb !== null && isFinite(cb)) {
       var vbW = (p.svg.viewBox && p.svg.viewBox.baseVal && p.svg.viewBox.baseVal.width) || 1000;
       var scale = svgR.width / vbW;
-      if (bb && bb.height > 0 && scale > 0) targetH = (bb.y + bb.height) * scale;
-    } catch (e4) { /* se usa la altura del SVG */ }
+      if (scale > 0) targetH = (cb + 10) * scale;
+    } else {
+      try {
+        var bb = p.svg.getBBox();
+        var vbH = (p.svg.viewBox && p.svg.viewBox.baseVal && p.svg.viewBox.baseVal.height) || 0;
+        var vbW2 = (p.svg.viewBox && p.svg.viewBox.baseVal && p.svg.viewBox.baseVal.width) || 1000;
+        var scale2 = svgR.width / vbW2;
+        if (bb && bb.height > 0 && scale2 > 0) {
+          var bbBot = bb.y + bb.height;
+          if (vbH > 0 && bbBot > vbH) bbBot = vbH;
+          targetH = bbBot * scale2;
+        }
+      } catch (e4) { /* se usa la altura del SVG */ }
+    }
     var excess = wrapR.height - (targetH + SLACK);
     if (excess > MIN_EXCESS) {
       p.wrap.style.height = Math.round(targetH + SLACK) + 'px';
