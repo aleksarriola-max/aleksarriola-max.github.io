@@ -5,6 +5,7 @@
    (i) El title de cada celda de la rejilla se recalcula al hacer clic, sin esperar al siguiente hover.
    (ii) El veredicto refleja el margen corregido: la línea del paso incluye el margen en vivo y la
        marca >=15%, y el texto del veredicto añade "margen corregido: X% (base 24%)" cuando cambia.
+       syncVerdict12 solo escribe cuando el texto cambia, para no realimentar el MutationObserver.
    (iii) El aviso fijo inferior tiene inset real en escritorio y ya no se sale por la izquierda a 390px.
    WOW: historial de escenarios del memo en vivo — cada escenario visitado queda como chip y
    tocarlo restaura ese modelo exacto (WACC, growth, valor razonable y margen). */
@@ -108,7 +109,8 @@
     }
   }
 
-  /* (ii) El veredicto distingue la corrección: margen en vivo, marca >=15% y "corregido desde base". */
+  /* (ii) El veredicto distingue la corrección: margen en vivo, marca >=15% y "corregido desde base".
+     Solo escribe cuando el texto cambia: si no, el MutationObserver se realimentaría sin fin. */
   var BASE_MOS12 = 24;
   function syncVerdict12() {
     var s = sec12(); if (!s) return;
@@ -125,11 +127,13 @@
     }
     if (logEl) {
       var lt = logEl.textContent || '';
+      var nt = null;
       if (/^Verdict:/.test(lt) && lt.indexOf('margin of safety') === -1) {
-        logEl.textContent = 'Verdict: ' + verd + ' · ' + verdEs + ' — margin of safety ' + mos + '% · ' + (mos >= 15 ? '≥15% · margen sólido' : mos >= 0 ? '<15% · margen estrecho' : 'sin margen');
+        nt = 'Verdict: ' + verd + ' · ' + verdEs + ' — margin of safety ' + mos + '% · ' + (mos >= 15 ? '≥15% · margen sólido' : mos >= 0 ? '<15% · margen estrecho' : 'sin margen');
       } else if (/^Margin of safety:/.test(lt)) {
-        logEl.textContent = lt.replace(/^(Margin of safety:\s*)-?\d+%/, '$1' + mos + '%');
+        nt = lt.replace(/^(Margin of safety:\s*)-?\d+%/, '$1' + mos + '%');
       }
+      if (nt !== null && nt !== lt) logEl.textContent = nt;
     }
   }
   var obs12 = null, obsTargets12 = [];
