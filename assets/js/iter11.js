@@ -14,7 +14,7 @@
 
   var CSS = [
     '#constellation-cue{right:clamp(16px,4vw,64px)!important;max-width:calc(100vw - 32px)!important;overflow:hidden!important;text-overflow:ellipsis!important;}',
-    '@media (max-width:900px){.i5-kpi[data-i5="kpi4"] span{font-size:var(--i12-kpi4,20px)!important;}}',
+    '@media (max-width:900px){.i5-build .i5-kpi[data-i5="kpi4"] span{font-size:var(--i12-kpi4,20px)!important;}}',
     '.i12-hist{margin:10px 0 0;padding:10px 12px;border:1px solid rgba(146,172,155,.25);background:rgba(13,18,16,.6);border-radius:10px;}',
     '.i12-hist-t{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#92AC9B;margin-bottom:8px;}',
     '.i12-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;}',
