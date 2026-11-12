@@ -3,7 +3,7 @@
 // Bloqueador 1 (vídeos): las dos <video> de la plantilla quedan inertes en la
 // página — el póster se ve, pero no aparecen los controles nativos al pasar el
 // ratón, el clic no reproduce y el vídeo nunca toma el foco — y la figura DCF
-// ni siquiera llega al DOM vivo (la plantilla la trae dentro de #model, tras
+// nunca se ve en Home (la plantilla la trae dentro de #model, tras
 // la rejilla de sensibilidad). Como el runtime (dc-runtime.js, generado, sin
 // editar) es quien compila la plantilla, la reparación se hace aquí, en la
 // capa de iteración: se repone la figura que falta con el marcado exacto de
@@ -121,9 +121,9 @@
     return fig;
   }
 
-  function ensureVideos() {
+  /* Solo cuenta lo visible: un <video> dentro de una sección oculta (display:none) no se ve. */ function visEl(s){var a=document.querySelectorAll(s),i,r;for(i=0;i<a.length;i++){r=a[i].getBoundingClientRect();if(r.width>0&&r.height>0)return a[i];}return null;} function ensureVideos() {
     // Altman: está en la plantilla de Finance; si el runtime lo dejó sin controles, se los devolvemos.
-    var av = $('video[src*="altman-z"]');
+    var av = visEl('video[src*="altman-z"]');
     if (av) {
       fixVideo(av);
       var afig = av.closest ? av.closest('figure') : null;
@@ -137,22 +137,22 @@
       } else if (document.getElementById('scanner') && !$('figure[data-i14="altman"]')) {
         var nf = buildFigure('assets/videos/altman-z.mp4', 'assets/videos/altman-z-poster.jpg', ALTMAN_CAP, true);
         nf.setAttribute('data-i14', 'altman');
-        nf.style.cssText = 'margin:0;border-top:1px solid color-mix(in srgb, var(--paper) 16%, transparent);padding:24px 0 0';
+        nf.style.cssText = 'margin:0;border-top:1px solid color-mix(in srgb, var(--paper) 16%, transparent);padding:22px';
         document.getElementById('scanner').insertAdjacentElement('afterend', nf);
         wireFigure(nf);
       }
     }
-    // DCF: la plantilla la trae dentro de #model, tras la rejilla; el runtime no la renderiza.
-    var dv = $('video[src*="dcf-sensitivity"]');
+    // DCF: la plantilla la trae dentro de #model, tras la rejilla. En la ruta home esa sección queda oculta (constellation.js), así que un <video> presente pero invisible no cuenta: la figura debe reponerse en la sección visible de FIG.2.
+    var dv = visEl('video[src*="dcf-sensitivity"]');
     if (dv) {
       fixVideo(dv);
       var dfig = dv.closest ? dv.closest('figure') : null;
       if (dfig) wireFigure(dfig);
       return;
     }
-    if ($('figure[data-i14="dcf"]')) return;
-    var hist = $('.i12-hist');
-    var grid = $('.i5-grid');
+    var mine = visEl('figure[data-i14="dcf"]'); if (mine) { wireFigure(mine); return; }
+    var hist = visEl('.i12-hist');
+    var grid = visEl('.i5-grid');
     if (!hist && !grid) return;
     var fig = buildFigure('assets/videos/dcf-sensitivity.mp4', 'assets/videos/dcf-sensitivity-poster.jpg', DCF_CAP, false);
     fig.setAttribute('data-i14', 'dcf');
