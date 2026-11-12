@@ -1,19 +1,21 @@
 /* Iteración 15 — FIG.0 compacta y aviso inferior que no pisa el texto.
    Diagnóstico verificado en el sitio en vivo (escritorio 1920×998, 2026-11-12):
    (1) Hueco muerto en FIG.0: entre la caja ESCALATE «Human review» y la rejilla
-   de contadores y registro queda una franja vacía de unos 210 px en reposo,
-   con solo estrellas. El SVG de FIG.0 (viewBox 1000×290) mide unos 331 px de
-   alto, pero su contenedor queda mucho más alto y la rejilla queda lejos de
-   las etapas. No hay pin de FIG.0 que romper: la Iteración 4 usa scrub de
-   ScrollTrigger sin pin, deliberadamente. No se añade contenido nuevo: la
-   rejilla sube hasta quedar a unos 12 px del contenedor del SVG. La
-   corrección se mide en vivo (getBoundingClientRect) en cada pasada, así que
-   vale en escritorio y a 390 px, donde las 5 etapas se apilan (viewBox
-   400×780 de la Iteración 7): si no hay hueco, no se aplica nada.
-   Endurecimiento: la tapa se calcula sobre la parte baja del contenido
-   VISIBLE del SVG (la última etiqueta de texto, con su caja; el getBBox del
-   SVG entero no servía porque incluye contenido que no se ve bajo ESCALATE)
-   y en escritorio el viewBox se restablece a 1000×290 si llega más alto.
+   de contadores y registro queda una franja vacía (unos 210 px en reposo en el
+   sitio en vivo; unos 520 px en la vista previa, donde el borde inferior de
+   ESCALATE está en y≈363 y el de la envoltura en y≈885, sin nada entre
+   ambos salvo estrellas). La causa es el pin de ScrollTrigger: el padre del
+   SVG es un DIV.pin-spacer con altura en línea de unos 651 px mientras el
+   SVG mide 331 px; ese espaciador guarda el recorrido para fijar la figura
+   mientras se desplaza. Además, la rejilla NO es hija del contenedor de la
+   figura (que solo guarda el pin-spacer), así que la búsqueda antigua
+   devolvía null y la compactación no se aplicaba nunca. La corrección busca
+   la rejilla por el botón Propose dentro del héroe y ciñe el pin-spacer a la
+   parte baja del contenido visible, dejando 60 px de recorrido para el pin,
+   de modo que el pin sigue funcionando (con un recorrido corto) y el registro
+   sube junto a las cajas. No se añade contenido nuevo. Vale en escritorio y
+   a 390 px, donde las 5 etapas se apilan (viewBox 400×780 de la
+   Iteración 7): si no hay hueco, no se aplica nada.
    (2) Aviso inferior: el desvanecimiento de la Iteración 10 (cueCheck11, en
    constellation.js) solo oculta el aviso cuando cubre contenido interactivo
    (a, button, input…); el registro de FIG.0 es texto, así que el aviso se
@@ -39,6 +41,7 @@
   var GAP_MAX = 12; /* hueco que queda entre el contenedor del SVG y la rejilla */
   var SLACK = 24; /* margen para el scrub vertical de GSAP sobre el SVG (±18 px) */
   var MIN_EXCESS = 24; /* solo se ciñe el contenedor si sobra más que esto */
+  var PIN_ROOM = 60; /* recorrido que se deja al pin al ceñir el pin-spacer */
 
   /* El SVG de FIG.0 es el que contiene la etiqueta «Human review»: dentro de
      Hero C puede haber otros SVG (iconos) y si se toma el primero, la medida
@@ -64,26 +67,33 @@
     if (!hero) return null;
     var svg = pickSvg15(hero);
     if (!svg || !svg.parentElement) return null;
-    var wrap = svg.parentElement;
+    var wrap = svg.parentElement; /* el pin-spacer de ScrollTrigger */
     var fig = wrap.parentElement;
     if (!fig) return null;
+    /* La rejilla es hermana del contenedor de la figura, no hija: el
+       contenedor solo guarda el pin-spacer. Se busca por el botón Propose
+       dentro del héroe. */
     var grid = null;
     var btns = hero.querySelectorAll('button');
     for (var i = 0; i < btns.length; i++) {
       var t = (btns[i].textContent || '').trim();
       if (/^propos/i.test(t)) {
-        var col = btns[i].parentElement;
-        if (col && col.parentElement && col.parentElement.parentElement === fig) grid = col.parentElement;
+        var node = btns[i].parentElement;
+        while (node && node !== hero) {
+          var cs15 = null;
+          try { cs15 = window.getComputedStyle(node); } catch (e6) {}
+          if (cs15 && cs15.display === 'grid' &&
+              (node.textContent || '').indexOf('THE MODEL PROPOSES') >= 0) { grid = node; break; }
+          node = node.parentElement;
+        }
+        if (!grid) {
+          var col = btns[i].parentElement;
+          if (col && col.parentElement) grid = col.parentElement;
+        }
         break;
       }
     }
-    if (!grid) {
-      var kids = fig.children;
-      for (var j = 0; j < kids.length; j++) {
-        if (kids[j] !== wrap) { grid = kids[j]; break; }
-      }
-    }
-    if (!grid || wrap.contains(grid)) return null;
+    if (!grid || grid === wrap || wrap.contains(grid)) return null;
     return { svg: svg, wrap: wrap, grid: grid };
   }
 
@@ -143,10 +153,10 @@
       wrapR = p.wrap.getBoundingClientRect();
     } catch (e2) { return; }
     if (!svgR.height || !wrapR.height) return;
-    /* (a) El contenedor del SVG se ciñe a la parte baja del contenido VISIBLE
-       (la última etiqueta, con su caja), no a la altura del elemento: si el
-       SVG es más alto que su contenido, el hueco queda dentro del SVG y la
-       tapa anterior no lo tocaba. */
+    /* (a) El pin-spacer se ciñe a la parte baja del contenido VISIBLE (la
+       última etiqueta, con su caja), más el margen del scrub y 60 px de
+       recorrido para el pin: si el SVG es más alto que su contenido, el hueco
+       queda dentro del pin-spacer y la tapa anterior no lo tocaba. */
     var targetH = svgR.height;
     var cb = null;
     try { cb = contentBottom15(p.svg); } catch (e5) {}
@@ -167,9 +177,9 @@
         }
       } catch (e4) { /* se usa la altura del SVG */ }
     }
-    var excess = wrapR.height - (targetH + SLACK);
+    var excess = wrapR.height - (targetH + SLACK + PIN_ROOM);
     if (excess > MIN_EXCESS) {
-      p.wrap.style.height = Math.round(targetH + SLACK) + 'px';
+      p.wrap.style.height = Math.round(targetH + SLACK + PIN_ROOM) + 'px';
       p.wrap.style.overflowY = 'hidden';
     }
     /* (b) Lo que quede entre el contenedor del SVG y la rejilla se cierra
