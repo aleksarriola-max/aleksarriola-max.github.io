@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Prueba 390px - Iteración 13 (temporal)</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#0d1210;color:#e8f0e6;margin:0;padding:12px}
+h1{font-size:16px;margin:0 0 8px}
+p{font-size:12px;color:#9fb3a4;margin:0 0 10px;max-width:760px}
+.row{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+button{background:#1e2b24;color:#e8f0e6;border:1px solid #4a6b57;border-radius:6px;padding:6px 10px;font-size:12px;cursor:pointer}
+button:hover{border-color:#d9b36a}
+iframe{width:390px;height:830px;border:1px solid #4a6b57;display:block;background:#0d1210}
+#log{white-space:pre-wrap;font:12px/1.5 ui-monospace,Menlo,monospace;background:#101a15;border:1px solid #2b3d33;border-radius:6px;padding:10px;margin-top:10px;min-height:120px}
+</style>
+</head>
+<body>
+<h1>Prueba 390px — Iteración 13 (temporal)</h1>
+<p>El iframe carga el dominio de la rama (código actual, Iteración 13) en 390×830 px. «Medir todo» corre solo las sondas de solo lectura. Las numeradas (1)–(5) mutan el modelo y se pulsan a mano, en orden: primero (1), luego (2), (3), (4) y (5).</p>
+<div class="row">
+  <button onclick="medirMapa()">Medir mapa</button>
+  <button onclick="medirKPI4()">Medir KPI4</button>
+  <button onclick="medirAviso()">Medir aviso</button>
+  <button onclick="medirRejilla()">Medir rejilla</button>
+  <button onclick="medirVeredicto()">Medir veredicto</button>
+  <button onclick="medirHist()">Medir historial</button>
+  <button onclick="medirRef13()">(1) Referencia</button>
+  <button onclick="medirTitulos13()">(2) Títulos</button>
+  <button onclick="medirPulgares13()">(3) Pulgares</button>
+  <button onclick="medirNulos13()">(4) Nulos</button>
+  <button onclick="medirNavegacion13()">(5) Navegación</button>
+  <button onclick="medirShare()">Compartir escenario</button>
+  <button onclick="medirOverflow()">Buscar desbordamiento</button>
+  <button onclick="medirTodo()">Medir todo</button>
+</div>
+<iframe id="f" src="https://aleks-portfolio-redesign-git-redesign-terminal-20-21be50-aleks9.vercel.app/#home"></iframe>
+<pre id="log">Esperando a que cargue el iframe…</pre>
+<script>
+var fr = document.getElementById('f');
+var logEl = document.getElementById('log');
+var err13 = [];
+function log(s){ logEl.textContent += '\n' + s; }
+function w(){ return fr.contentWindow; }
+function d(){ return fr.contentDocument; }
+function txt(el){ return (el && el.textContent || '').replace(/\s+/g,' ').trim(); }
+function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+function modelo(){ var m = w().__i6Model || {w:8.5,g:4.0}; return {w:+m.w, g:+m.g}; }
+function kpi(n){ var el = d().querySelector('[data-i5="kpi'+n+'"] span') || d().querySelector('[data-i5="kpi'+n+'"]'); return txt(el); }
+function logTxt(){ var el = d().querySelector('.i5-log'); return txt(el); }
+async function esperarRebuild(maxMs){
+  maxMs = maxMs || 25000;
+  var antes = logTxt(), t0 = Date.now();
+  while (Date.now() - t0 < maxMs) {
+    var ahora = logTxt();
+    if (ahora !== antes && /REBUILT/.test(ahora)) return true;
+    await sleep(250);
+  }
+  return false;
+}
+async function aplicarModelo(ww, gg){
+  var W = w();
+  var M = W.__i6Model || (W.__i6Model = { w:8.5, g:4.0, price:186 });
+  M.w = ww; M.g = gg;
+  try { W.localStorage.setItem('i6-model', JSON.stringify({w:ww, g:gg})); } catch(e){}
+  if (W.__i6controls) { try { W.__i6controls(); } catch(e2){} }
+  if (W.__i6rebuild) { try { W.__i6rebuild(); } catch(e3){} }
+  return esperarRebuild(25000);
+}
+function celdas(){
+  var out = [];
+  var g = d().querySelector('.i5-grid'); if (!g) return out;
+  for (var i = 0; i < g.children.length; i++) {
+    var c = g.children[i];
+    if (c.classList && !c.classList.contains('h') && /^\s*\$?\d+(\.\d+)?\s*$/.test(c.textContent || '')) out.push(c);
+  }
+  return out;
+}
+function histGuardado(){
+  try { var a = JSON.parse(w().localStorage.getItem('i12-hist') || 'null'); return Array.isArray(a) ? a : []; } catch(e){ return []; }
+}
+function chipsDom(){
+  var out = [];
+  var cs = d().querySelectorAll('.i12-chips button');
+  for (var i = 0; i < cs.length; i++) out.push(txt(cs[i]));
+  return out;
+}
+fr.addEventListener('load', function(){
+  try { w().addEventListener('error', function (ev) { err13.push('error: ' + (ev.message || ev.type)); }); } catch(e){}
+  log('iframe cargado.');
+  setTimeout(medirTodo, 1500);
+});
+function medirMapa(){
+  var D = d();
+  var nodos = D.querySelectorAll('.cm-node');
+  var minX = 1e9, maxX = -1e9, centro = '', orcen = null;
+  for (var i = 0; i < nodos.length; i++) {
+    var r = nodos[i].getBoundingClientRect();
+    if (r.left < minX) minX = r.left;
+    if (r.right > maxX) maxX = r.right;
+    var t = txt(nodos[i]);
+    if (t.indexOf('ALEKS ARRIOLA') === 0) centro = 'ALEKS ARRIOLA';
+    if (t.indexOf('ORCEN KIT') >= 0) orcen = nodos[i];
+  }
+  var desc = orcen ? txt(orcen.querySelector('.cm-desc')) : '';
+  log('Mapa: nodos=' + nodos.length + ' centro=' + centro + ' minX=' + Math.round(minX) + ' maxX=' + Math.round(maxX) + ' anchoViewport=' + w().innerWidth + ' ORCEN desc=' + JSON.stringify(desc));
+}
+function medirKPI4(){
+  var box = d().querySelector('[data-i5="kpi4"]');
+  if (!box) return log('KPI4: no se encontró el elemento');
+  var cs = w().getComputedStyle(box);
+  var v = w().getComputedStyle(d().documentElement).getPropertyValue('--i12-kpi4');
+  log('KPI4: texto=' + JSON.stringify(txt(box)) + ' fontSize=' + cs.fontSize + ' --i12-kpi4=' + (v || '').trim() + ' alto=' + box.offsetHeight + ' scrollW=' + box.scrollWidth + ' clientW=' + box.clientWidth + ' unaLinea=' + (box.scrollWidth <= box.clientWidth + 1));
+}
+function medirAviso(){
+  var c = d().querySelector('#constellation-cue');
+  if (!c) return log('Aviso: no se encontró #constellation-cue');
+  var r = c.getBoundingClientRect(), cs = w().getComputedStyle(c);
+  var iw = w().innerWidth;
+  log('Aviso: texto=' + JSON.stringify(txt(c)) + ' alto=' + Math.round(r.height) + ' huecoDerecho=' + Math.round(iw - r.right) + ' huecoIzquierdo=' + Math.round(r.left) + ' whiteSpace=' + cs.whiteSpace + ' textOverflow=' + cs.textOverflow + ' scrollW=' + d().documentElement.scrollWidth + ' clientW=' + d().documentElement.clientWidth);
+}
+function medirRejilla(){
+  var cs = celdas();
+  var vals = cs.map(function(c){ return txt(c) + (c.classList.contains('i12-ref') ? '[ref]' : ''); });
+  log('Rejilla: celdas=' + cs.length + ' valores=' + vals.join(' ') + ' modelo=' + modelo().w + '/' + modelo().g);
+}
+function medirVeredicto(){
+  var D = d();
+  var el = D.querySelector('[data-i5="verdict"]') || D.querySelector('.i5-verdict') || D.querySelector('.i7-verdict');
+  var t = el ? txt(el) : '';
+  if (!t) {
+    var els = D.querySelectorAll('.i5-build span, .i5-build div');
+    for (var i = 0; i < els.length; i++) { var s = txt(els[i]); if (/margin of safety/i.test(s) && s.length < 240) { t = s; break; } }
+  }
+  log('Veredicto: ' + JSON.stringify(t) + ' modelo=' + modelo().w + '/' + modelo().g + ' kpi1=' + kpi(1) + ' kpi4=' + kpi(4));
+}
+function medirHist(){
+  var h = histGuardado();
+  var nulos = h.filter(function(e){ return e.fv == null || e.mos == null; }).length;
+  var chips = chipsDom();
+  var chipsNulos = chips.filter(function(t){ return t.indexOf('—') === 0 || t.indexOf('MoS —') >= 0; }).length;
+  var dup = chips.length - new Set(chips).size;
+  log('Historial: guardado=' + h.length + ' nulosGuardados=' + nulos + ' chipsDom=' + chips.length + ' chipsNulos=' + chipsNulos + ' duplicadosDom=' + dup + ' ' + JSON.stringify(chips));
+}
+async function medirRef13(){
+  log('— (1) Referencia —');
+  var ok = await aplicarModelo(10.5, 5.0);
+  log('  modelo 10.5/5.0 aplicado, rebuild=' + ok + ' modelo=' + JSON.stringify(modelo()) + ' kpi1=' + kpi(1) + ' kpi4=' + kpi(4));
+  var refs = celdas().filter(function(c){ return c.classList.contains('i12-ref'); });
+  log('  celdas referencia=' + refs.length + ' ' + refs.map(function(c){ return txt(c) + ' title=' + JSON.stringify(c.getAttribute('title')); }).join(' | '));
+  if (!refs.length) { log('  SIN celdas de referencia: no se puede probar el clic'); return; }
+  var antesM = modelo(), antesK = kpi(1), antesLog = logTxt();
+  refs[0].click();
+  await sleep(3000);
+  var despM = modelo(), despK = kpi(1), despLog = logTxt();
+  log('  tras clic en celda ' + txt(refs[0]) + ': modelo=' + JSON.stringify(despM) + ' kpi1=' + despK + ' cambio=' + (despM.w !== antesM.w || despM.g !== antesM.g) + ' logCambio=' + (despLog !== antesLog));
+  log('  ' + ((despM.w === 10.5 && despM.g === 5.0 && despK === antesK) ? 'GUARDIA OK: el modelo no cambió' : 'GUARDIA FALLA: el modelo cambió o el KPI1 cambió'));
+}
+async function medirTitulos13(){
+  log('— (2) Títulos —');
+  var m = modelo();
+  if (m.w !== 10.5 || m.g !== 5.0) { var ok = await aplicarModelo(10.5, 5.0); log('  modelo 10.5/5.0, rebuild=' + ok); }
+  var refs = celdas().filter(function(c){ return c.classList.contains('i12-ref'); });
+  if (!refs.length) { log('  SIN celdas de referencia'); return; }
+  var cell = refs[0];
+  var refTitle = cell.getAttribute('title');
+  log('  celda ' + txt(cell) + ' título inicial=' + JSON.stringify(refTitle));
+  // El manejador nativo de pointerover retitula la celda con el tope viejo (9,5%): dispara eso y muestrea.
+  try { cell.dispatchEvent(new w().PointerEvent('pointerover', { bubbles: true })); } catch(e1) { try { cell.dispatchEvent(new w().Event('pointerover', { bubbles: true })); } catch(e2){} }
+  var muestras = [];
+  for (var i = 0; i < 6; i++) {
+    if (i > 0) await sleep(600);
+    muestras.push(cell.getAttribute('title'));
+  }
+  log('  muestras del título (0 / 0,6 / 1,2 / 1,8 / 2,4 / 3,0 s): ' + JSON.stringify(muestras));
+  var estables = muestras.every(function(t){ return t === refTitle; });
+  log('  ' + (estables ? 'TÍTULOS ESTABLES: siempre el texto de referencia' : 'TÍTULOS PARPADEAN: el texto cambió entre muestras'));
+}
+async function medirPulgares13(){
+  log('— (3) Pulgares —');
+  var ok = await aplicarModelo(10.5, 5.0);
+  log('  modelo 10.5/5.0, rebuild=' + ok);
+  var muestras = [];
+  for (var i = 0; i < 6; i++) {
+    await sleep(500);
+    var wi = d().querySelector('[data-i6-w]'), gi = d().querySelector('[data-i6-g]');
+    var wo = d().querySelector('[data-i6-wo]'), go = d().querySelector('[data-i6-go]');
+    muestras.push('w=' + (wi ? wi.value : '?') + ' (max ' + (wi ? wi.getAttribute('max') : '?') + ') g=' + (gi ? gi.value : '?') + ' (max ' + (gi ? gi.getAttribute('max') : '?') + ') salidas=' + txt(wo) + '/' + txt(go));
+  }
+  log('  muestras pulgares (cada 0,5 s):');
+  muestras.forEach(function(s){ log('    ' + s); });
+  var wi2 = d().querySelector('[data-i6-w]'), gi2 = d().querySelector('[data-i6-g]');
+  var todosIguales = muestras.every(function(s){ return s.indexOf('w=10.5') >= 0 && s.indexOf('g=5') >= 0; });
+  log('  ' + ((wi2 && +wi2.value === 10.5 && gi2 && +gi2.value === 5.0 && todosIguales) ? 'PULGARES OK: 10.5/5.0 estables en las 6 muestras' : 'PULGARES FALLAN: no siguen al modelo o oscilan'));
+}
+async function medirNulos13(){
+  log('— (4) Nulos —');
+  var antes = histGuardado();
+  var nulosAntes = antes.filter(function(e){ return e.fv == null || e.mos == null; }).length;
+  log('  guardado antes=' + JSON.stringify(antes) + ' nulosAntes=' + nulosAntes + ' chips=' + JSON.stringify(chipsDom()));
+  var cs = celdas().filter(function(c){ return !c.classList.contains('i12-ref'); });
+  if (!cs.length) { log('  SIN celdas en rango'); return; }
+  log('  clic en celda ' + txt(cs[0]) + ' (cambia el escenario)…');
+  cs[0].click();
+  var reb = await esperarRebuild(25000);
+  log('  rebuild=' + reb + ' modelo=' + JSON.stringify(modelo()) + ' kpi1=' + kpi(1) + ' kpi4=' + kpi(4));
+  await sleep(2000);
+  var desp = histGuardado();
+  var nulosDesp = desp.filter(function(e){ return e.fv == null || e.mos == null; }).length;
+  var chips = chipsDom();
+  var chipsNulos = chips.filter(function(t){ return t.indexOf('—') === 0 || t.indexOf('MoS —') >= 0; }).length;
+  log('  guardado después=' + JSON.stringify(desp) + ' nulosDesp=' + nulosDesp + ' chipsNulos=' + chipsNulos + ' chips=' + JSON.stringify(chips));
+  log('  ' + ((nulosDesp === 0 && chipsNulos === 0) ? 'NULOS OK: sin entradas ni chips nulos' : 'NULOS FALLAN: quedan entradas o chips nulos'));
+}
+async function medirNavegacion13(){
+  log('— (5) Navegación —');
+  var antes = chipsDom();
+  log('  chips antes: ' + JSON.stringify(antes) + ' guardado: ' + JSON.stringify(histGuardado()));
+  var W = w();
+  W.history.pushState(null, '', '#cases');
+  W.dispatchEvent(new W.Event('popstate'));
+  await sleep(1500);
+  var pagCases = (d().querySelector('section[data-screen-label="Case studies"]') ? 'sí' : 'no');
+  log('  en Casos de estudio: ' + pagCases + ' hash=' + W.location.hash);
+  W.history.pushState(null, '', '#home');
+  W.dispatchEvent(new W.Event('popstate'));
+  await sleep(2500);
+  var despues = chipsDom();
+  log('  chips después de ir a Casos y volver: ' + JSON.stringify(despues));
+  log('  ' + ((despues.length > 0 && JSON.stringify(despues) === JSON.stringify(antes)) ? 'NAVEGACIÓN OK: la tira volvió con los mismos chips' : (despues.length === 0 ? 'NAVEGACIÓN FALLA: la tira quedó vacía' : 'NAVEGACIÓN PARCIAL: los chips difieren')));
+}
+async function medirShare(){
+  log('— Compartir escenario —');
+  var btn = d().querySelector('.i12-share-btn');
+  if (!btn) { log('  SIN botón de compartir'); return; }
+  btn.click();
+  await sleep(1000);
+  var out = d().querySelector('.i12-share-out');
+  var t = txt(out);
+  log('  salida=' + JSON.stringify(t));
+  var m = /(https:\/\/[^\s]+)/.exec(t);
+  if (!m) { log('  SIN URL en la salida'); return; }
+  log('  abriendo la URL compartida en el iframe…');
+  fr.src = m[1];
+  await sleep(10000);
+  log('  modelo tras el enlace=' + JSON.stringify(modelo()) + ' kpi1=' + kpi(1) + ' kpi4=' + kpi(4) + ' modeloGuardado=' + (w().localStorage.getItem('i6-model') || ''));
+}
+function medirOverflow(){
+  var D = d(), W = w();
+  var malas = [];
+  var els = D.querySelectorAll('body *');
+  for (var i = 0; i < els.length; i++) {
+    var r = els[i].getBoundingClientRect();
+    if (r.right > 390.5 || r.left < -0.5) {
+      var anc = els[i].closest('[style*="overflow"]') || els[i].parentElement;
+      malas.push((els[i].tagName || '?') + '.' + ((els[i].className && els[i].className.baseVal === undefined) ? String(els[i].className).split(' ')[0] : '') + ' right=' + Math.round(r.right) + ' left=' + Math.round(r.left) + ' texto=' + JSON.stringify(txt(els[i]).slice(0, 40)));
+      if (malas.length >= 8) break;
+    }
+  }
+  var se = D.scrollingElement;
+  log('Desbordamiento: docScrollW=' + D.documentElement.scrollWidth + ' clientW=' + D.documentElement.clientWidth + ' innerW=' + W.innerWidth + ' scrollLeft=' + (se ? se.scrollLeft : '?') + ' bodyScrollW=' + D.body.scrollWidth + ' elementosFuera=' + malas.length);
+  malas.forEach(function(s){ log('  ' + s); });
+}
+function medirTodo(){
+  log('=== Medir todo (solo lectura) ===');
+  medirMapa(); medirKPI4(); medirAviso(); medirRejilla(); medirVeredicto(); medirHist(); medirOverflow();
+  log('Errores capturados en el iframe: ' + (err13.length ? JSON.stringify(err13) : 'ninguno'));
+}
+</script>
+</body>
+</html>
