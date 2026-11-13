@@ -130,7 +130,21 @@ const essays = [
   E('AI Systems', 'Aug 10', 'The Case for Boring AI Architecture'), E('Perspective', 'Aug 9', 'Why I Build Things I Can’t Fully Use'), E('Finance', 'Aug 8', 'What Quality of Earnings Analysis Actually Catches'),
 ];
 const featuredEssay = ['The Altman Z-Score is almost fifty years old, and I still run it on every company in the Red-Flag Scanner. It blends five ratios of working capital, retained earnings, operating profit, market value and sales into a single number, and companies below the distress threshold have historically failed far more often than the rest. When I first saw it flag a name I already thought was fragile, I felt validated. When it flagged a name I loved, I felt something more useful, which was doubt about my own thesis.', 'But the score has a quiet weakness. Every input is something management can influence. Retained earnings can be dressed up by capitalizing costs, working capital can be managed around quarter-end, and sales can be pulled forward. A model built on reported numbers inherits every choice behind those numbers. Altman published the original in 1968, and a model that old has been read by every finance team on earth. Any metric people know about becomes a metric people manage toward.', 'That is why I never let the Z-Score stand alone in the scanner. It sits next to the Beneish M-Score and the Dechow F-Score, which ask a different question: not whether the company looks healthy, but whether the numbers look manipulated. Disagreement between the models is where I learn the most. A healthy Z-Score paired with an ugly accruals profile tells me the safety is cosmetic. My takeaway is that no single distress model is a verdict. It is a witness, and like any witness it needs to be cross-examined by another one.'];
-return { achievements, toolkit, habits, featured, coding, lifelineSpecs, client, marketing, financeFlagships, areas, roles, cases, certs, selectedCreds, essays, featuredEssay };
+/* ── Connected stars ── which skills sit behind which build.
+   Every link below is backed by a tag or sentence already on this site (nothing invented).
+   To connect a new build: add one line here. `skills` must use the exact names in `toolkit`.
+   `page` is the page it lives on; `anchor` (optional) is the element id to scroll to. */
+const stars = [
+  { id: 'case-orcen', title: 'Orcen Valuation Kit', page: 'cases', anchor: 'case-orcen', skills: ['Python', 'DCF · LBO · Comps', 'SEC EDGAR / XBRL', 'Equity Research', 'Excel Automation', 'Streamlit', 'Risk & Controls'] },
+  { id: 'case-scanner', title: 'Red-Flag Scanner', page: 'cases', anchor: 'case-scanner', skills: ['SEC EDGAR / XBRL', 'Risk & Controls'] },
+  { id: 'case-opsflow', title: 'OpsFlow', page: 'cases', anchor: 'case-opsflow', skills: ['LangGraph / LLM Agents', 'Sui · Move', 'Risk & Controls'] },
+  { id: 'case-lifeline', title: 'Lifeline', page: 'cases', anchor: 'case-lifeline', skills: ['LangGraph / LLM Agents', 'Risk & Controls'] },
+  { id: 'tallyhound', title: 'Tallyhound', page: 'coding', skills: ['Python', 'LangGraph / LLM Agents', 'Streamlit', 'Risk & Controls'] },
+  { id: 'pitmind', title: 'PitMind', page: 'coding', skills: ['Python', 'Streamlit'] },
+  { id: 'adaptive-funding', title: 'Adaptive Funding Engine', page: 'coding', skills: ['Sui · Move'] },
+  { id: 'deepbook', title: 'DeepBook Market OS', page: 'coding', skills: ['Sui · Move'] },
+];
+return { achievements, toolkit, habits, featured, coding, lifelineSpecs, client, marketing, financeFlagships, areas, roles, cases, certs, selectedCreds, essays, featuredEssay, stars };
 })();
 
 /* Verification links and descriptions for each credential, keyed by title (carried over from the previous site). */

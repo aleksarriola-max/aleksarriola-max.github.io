@@ -1148,7 +1148,16 @@ input[type=range]{accent-color:var(--coral);width:100%}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:1px solid var(--color-divider);border-left:1px solid var(--color-divider);margin-bottom:56px">
         <sc-for list="{{ caseIndex }}" as="c" hint-placeholder-count="4"><button sc-camel-on-click="{{ c.go }}" style="all:unset;cursor:pointer;padding:18px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);display:flex;flex-direction:column;gap:4px" style-hover="background:var(--color-accent-100)"><span style="font-size:12px;color:var(--color-accent-700)">{{ c.n }} · {{ c.kicker }}</span><span style="font-family:var(--font-heading);font-weight:400;font-size:22px;line-height:1.1">{{ c.title }} ↓</span></button></sc-for>
       </div>
-      <sc-for list="{{ D.cases }}" as="c" hint-placeholder-count="2">
+      <sc-if value="{{ hasStarChips }}" hint-placeholder-val="{{ false }}">
+        <div id="stars" data-reveal="1" style="margin-bottom:56px;padding:18px 20px;border:1px dashed var(--ink);scroll-margin-top:80px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:baseline"><span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>✦ Connected stars</b></span><span style="font-size:13px">Pick a skill to see every build that used it.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ starChips }}" as="k" hint-placeholder-count="8"><button class="btn" sc-camel-on-click="{{ k.go }}" style="background:{{ k.bg }};color:{{ k.fg }};border-color:var(--ink);font-size:13px;padding:6px 12px">{{ k.label }} · {{ k.n }}</button></sc-for></div>
+          <sc-if value="{{ hasStarBuilds }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;padding-top:10px;border-top:1px dashed var(--ink)"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase">Builds that used it</span><sc-for list="{{ starBuilds }}" as="b" hint-placeholder-count="3"><button sc-camel-on-click="{{ b.go }}" style="all:unset;cursor:pointer;font-size:14px;border-bottom:1px solid var(--ink)" style-hover="background:var(--color-accent-100)"><b>{{ b.label }}</b> <span style="font-size:12px">· {{ b.where }} →</span></button></sc-for></div>
+          </sc-if>
+        </div>
+      </sc-if>
+      <sc-for list="{{ casesV }}" as="c" hint-placeholder-count="2">
         <article id="{{ c.id }}" style="margin-bottom:72px;scroll-margin-top:80px">
           <div data-reveal="1" class="blueprint" style="background:var(--paper);border-color:var(--ink);box-shadow:10px 10px 0 var(--ink);padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px 40px;margin-bottom:28px"><span data-approve="1" style="position:absolute;top:-16px;right:24px;z-index:3;opacity:0;transform:rotate(-6deg);border:3px solid var(--ink);padding:4px 14px;background:var(--coral);color:var(--ink);font-family:var(--font-heading);font-weight:400;font-size:20px;letter-spacing:0.14em">APPROVED</span>
             <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
@@ -1162,6 +1171,12 @@ input[type=range]{accent-color:var(--coral);width:100%}
             <div><div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-bottom:8px">In finance terms</div><ul style="margin:0;padding:0;list-style:none"><sc-for list="{{ c.terms }}" as="t" hint-placeholder-count="4"><li data-check="1" style="display:grid;grid-template-columns:22px 1fr;padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span style="color:color-mix(in oklab, var(--coral) 72%, var(--ink));font-weight:700">✓</span><span><b>{{ t.k }}</b> — {{ t.v }}</span></li></sc-for></ul></div>
             <sc-if value="{{ c.fig }}" hint-placeholder-val="{{ false }}"><button class="btn btn-primary blueprint" sc-camel-on-click="{{ goModel }}" style="justify-self:start;padding:12px 18px">Fig. 1 — Move the assumptions yourself →<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></sc-if>
           </div>
+          <sc-if value="{{ c.hasStars }}" hint-placeholder-val="{{ false }}">
+            <div data-reveal="1" style="margin-top:24px;padding-top:14px;border-top:1px dashed var(--ink);display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-right:6px"><b>✦ Connected stars</b> · Skills behind this build</span><sc-for list="{{ c.starSkills }}" as="k" hint-placeholder-count="4"><button class="tag tag-accent" sc-camel-on-click="{{ k.go }}" style="border:0;cursor:pointer;font:inherit;font-size:12px">{{ k.label }}</button></sc-for></div>
+              <sc-if value="{{ c.hasOthers }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-right:6px">Other builds sharing these skills</span><sc-for list="{{ c.starOthers }}" as="o" hint-placeholder-count="3"><button sc-camel-on-click="{{ o.go }}" style="all:unset;cursor:pointer;font-size:14px;border-bottom:1px solid var(--ink)" style-hover="background:var(--color-accent-100)">{{ o.label }} →</button></sc-for></div></sc-if>
+            </div>
+          </sc-if>
         </article>
       </sc-for>
     </div>
@@ -1676,7 +1691,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const D0 = window.PORTFOLIO || {};
-    const D = { achievements: [], toolkit: [], habits: [], featured: [], coding: [], lifelineSpecs: [], client: [], marketing: [], financeFlagships: [], areas: [], roles: [], cases: [], certs: [], selectedCreds: [], essays: [], featuredEssay: [], ...D0 };
+    const D = { achievements: [], toolkit: [], habits: [], featured: [], coding: [], lifelineSpecs: [], client: [], marketing: [], financeFlagships: [], areas: [], roles: [], cases: [], certs: [], selectedCreds: [], essays: [], featuredEssay: [], stars: [], ...D0 };
     // Full essays (newest first) come from assets/js/essays.js, kept current by the daily publisher.
     const MON = { January: 'Jan', February: 'Feb', March: 'Mar', April: 'Apr', May: 'May', June: 'Jun', July: 'Jul', August: 'Aug', September: 'Sep', October: 'Oct', November: 'Nov', December: 'Dec' };
     if (Array.isArray(window.ESSAYS) && window.ESSAYS.length) D.essays = window.ESSAYS.map(e => {
@@ -1733,6 +1748,14 @@ class Component extends DCLogic {
     const v3 = { dot3Ref: this.dot3Ref || (this.dot3Ref = React.createRef()), copyLabel: st.copied ? 'Copied ✓' : 'Copy address', copyEmail: () => { try { navigator.clipboard.writeText('aleksarriola@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.cpT); this.cpT = setTimeout(() => this.setState({ copied: false }), 1800); }, gRef: this.gRef, guilloche: this.GUIL, wipeRef: this.wipeRef, wipeText: this.wipeText, readRef: this.readRef, tlBox: this.tlBox, tlLine: this.tlLine, quoteRef: this.quoteRef, wave: this.wave, readLeft: this.state.narrow ? '0px' : '252px', lights, co, coChips, peRows, modeTitle: enf ? 'What the code allows' : 'What the model proposes', setProposed: () => this.setState({ mode: 'proposed' }), setEnforced: () => this.setState({ mode: 'enforced' }), propBg: enf ? 'transparent' : 'var(--coral)', propFg: enf ? 'var(--paper)' : 'var(--ink)', enfBg: enf ? 'var(--coral)' : 'transparent', enfFg: enf ? 'var(--ink)' : 'var(--paper)', tapePts, tapePath, tapeHover, sites, tickerLoop, tickRef: this.tickRef, scoreRef: this.scoreRef, mapRef: this.mapRef, llEnd: this.llEnd, llCount: this.llCount, goScanner: this.nav('finance', 'scanner'), eyebrow: L === 'EN' ? 'Portfolio — Aleks Arriola' : 'Portafolio — Aleks Arriola', setEN: () => { this.setState({ lang: 'EN' }); window.SITE_I18N && SITE_I18N.set('en', this.rootRef.current); }, setES: () => { this.setState({ lang: 'ES' }); window.SITE_I18N && SITE_I18N.set('es', this.rootRef.current); }, enBg: L === 'EN' ? 'var(--butter)' : 'transparent', enFg: L === 'EN' ? 'var(--ink)' : 'var(--paper)', esBg: L === 'ES' ? 'var(--butter)' : 'transparent', esFg: L === 'ES' ? 'var(--ink)' : 'var(--paper)' };
     this.v3 = v3;
     const toolkitLoop = D.toolkit.concat(D.toolkit).map((t, i) => ({ label: t, c: P[i % 5] }));
+    /* Connected stars — cross-links between builds and skills, driven by D.stars (portfolio-data.js). */
+    const starSel = st.star || null, starUses = k => D.stars.filter(x => (x.skills || []).includes(k));
+    const starPick = (k, scroll) => this.go['star' + k + (scroll ? '↓' : '')] || (this.go['star' + k + (scroll ? '↓' : '')] = () => this.setState(s => ({ star: !scroll && s.star === k ? null : k }), () => { if (!scroll) return; const el = document.getElementById('stars'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (this.state.narrow ? 120 : 70), behavior: 'smooth' }); }));
+    const starChips = D.toolkit.filter(k => starUses(k).length).map(k => ({ label: k, n: starUses(k).length, go: starPick(k), bg: k === starSel ? 'var(--coral)' : 'transparent', fg: 'var(--ink)' }));
+    const starBuilds = starSel ? starUses(starSel).map(x => ({ label: x.title, where: this.LABELS[x.page] || '', go: this.nav(x.page, x.anchor) })) : [];
+    const casesV = D.cases.map(c => { const me = D.stars.find(x => x.id === c.id), sk = me ? me.skills || [] : [];
+      const others = D.stars.filter(x => x.id !== c.id && (x.skills || []).some(k => sk.includes(k)));
+      return { ...c, hasStars: sk.length > 0, starSkills: sk.map(k => ({ label: k, go: starPick(k, true) })), hasOthers: others.length > 0, starOthers: others.map(x => ({ label: x.title, go: this.nav(x.page, x.anchor) })) }; });
     const showLifeline = cf === 'All' || cf === 'AI & Agents' || cf === 'Award Winners';
     const certCats = ['All', 'Coursera', 'Banking', 'Finance', 'Consulting', 'Tech & Data', 'Insurance'];
     const xf = this.state.xf, CI = window.CERT_INFO || {}, certList = (xf === 'All' ? D.certs : D.certs.filter(c => c.cat === xf)).map(c => {
@@ -1753,7 +1776,7 @@ class Component extends DCLogic {
     return {
       D, rootRef: this.rootRef, svgRef: this.svgRef, gateRef: this.gateRef, blockRef: this.blockRef, logRef: this.logRef,
       cProp: this.cProp, cExec: this.cExec, cEsc: this.cEsc, dotRef: this.dotRef, dot2Ref: this.dot2Ref,
-      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, ...this.v3,
+      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, casesV, starChips, starBuilds, hasStarChips: starChips.length > 0, hasStarBuilds: starBuilds.length > 0, ...this.v3,
       wide: !this.state.narrow, narrow: this.state.narrow, cols: this.state.narrow ? 'minmax(0,1fr)' : '252px minmax(0,1fr)',
       menuOpen: this.state.menu, menuIcon: this.state.menu ? '×' : '≡', toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
       nav, isHome: page === 'home', isCases: page === 'cases', isCoding: page === 'coding', isClient: page === 'client', isFinance: page === 'finance', isExperience: page === 'experience', isWriting: page === 'writing', isCerts: page === 'certs', isRecs: page === 'recs',
