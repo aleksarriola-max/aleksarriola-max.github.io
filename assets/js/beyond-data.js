@@ -3,6 +3,9 @@
    Open the site with ?draft at the end of the address (…github.io/?draft#beyond) to see
    every empty slot, marked as an example, so you know what is still missing. */
 window.BEYOND = {
+  /* 'ring' = personal stars in the Home web, each opening a scene. 'section' = one section on the Experience page. */
+  layout: 'ring',
+
   intro: 'The same person builds the models. This is the rest of him.',
 
   perfumes: {
@@ -37,8 +40,8 @@ window.BEYOND = {
   cooking: { line: '' },
 
   journey: [
-    { place: 'Guatemala City', note: 'Where it started — first jobs at Western Union and SeOnline.' },
-    { place: 'Boston', note: 'Hult International Business School · Marketing + Finance · Class of 2027.' },
+    { place: 'Guatemala City', lat: 14.63, lon: -90.51, note: 'Where it started — first jobs at Western Union and SeOnline.' },
+    { place: 'Boston', lat: 42.36, lon: -71.06, note: 'Hult International Business School · Marketing + Finance · Class of 2027.' },
   ],
 
   watching: { title: 'Black Clover', line: 'Asta has no magic and outworks everyone anyway.' },
