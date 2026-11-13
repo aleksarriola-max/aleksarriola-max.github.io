@@ -793,8 +793,20 @@ input[type=range]{accent-color:var(--coral);width:100%}
   </section>
 
   <section data-screen-label="Toolkit" style="background:var(--ink);color:var(--paper);padding:24px 0 28px;overflow:hidden;display:flex;flex-direction:column;gap:14px">
+    <sc-if value="{{ noPyramid }}" hint-placeholder-val="{{ true }}">
     <span style="padding:0 clamp(20px,4vw,56px);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--butter)">Toolkit — what I build with</span>
     <div ref="{{ marqRef }}" style="display:flex;gap:12px;width:max-content;will-change:transform"><sc-for list="{{ toolkitLoop }}" as="t" hint-placeholder-count="12"><span style="flex:none;font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,3vw,40px);line-height:1.1;text-transform:uppercase;padding:6px 18px;background:{{ t.c }};color:var(--ink)">{{ t.label }}</span></sc-for></div>
+    </sc-if>
+    <sc-if value="{{ hasPyramid }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:8px clamp(20px,4vw,56px) 4px;display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--butter)">Toolkit — read it like a fragrance</span>
+      <sc-for list="{{ pyramid }}" as="r" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px 28px;padding:16px 0;border-top:1px dashed color-mix(in srgb, var(--paper) 28%, transparent);align-items:start">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:var(--font-heading);font-size:clamp(28px,3vw,40px);line-height:1;text-transform:uppercase">{{ r.k }}</span><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7">{{ r.sub }}</span></div>
+        <div style="grid-column:span 3;display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ r.skills }}" as="k" hint-placeholder-count="4"><button sc-camel-on-click="{{ k.go }}" title="{{ k.tip }}" style="all:unset;cursor:{{ k.cur }};font-family:var(--font-heading);font-size:clamp(18px,1.9vw,26px);line-height:1.1;text-transform:uppercase;padding:5px 14px;background:{{ k.c }};color:var(--ink)" style-hover="outline:2px solid var(--paper);outline-offset:2px">{{ k.label }}{{ k.mark }}</button></sc-for></div>
+      </div></sc-for>
+      <span style="font-size:12px;opacity:0.7">✦ opens every build that used that skill.</span>
+    </div>
+    </sc-if>
   </section>
 
   <section data-screen-label="About" style="padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px);background:var(--sky)">
@@ -1434,7 +1446,7 @@ class Component extends DCLogic {
   /* ── Linkable URLs: /#finance, /#writing, /#essay-42, /#case-scanner, /#contact ──
      Old page names from the previous site keep working through ALIASES. */
   ALIASES = { casestudies: 'cases', 'case-studies': 'cases', marketing: 'experience', 'client-work': 'client', certifications: 'certs', recommendations: 'recs', recommendation: 'recs' };
-  TARGETS = { contact: 'home', model: 'home', scanner: 'finance', 'case-scanner': 'cases', 'case-opsflow': 'cases', 'case-orcen': 'cases', 'case-lifeline': 'cases', beyond: 'experience' };
+  TARGETS = { contact: 'home', model: 'home', scanner: 'finance', 'case-scanner': 'cases', 'case-opsflow': 'cases', 'case-orcen': 'cases', 'case-lifeline': 'cases', beyond: 'experience', stars: 'cases' };
   setHash(h, replace) {
     const url = h ? '#' + h : location.pathname + location.search;
     if ((h ? '#' + h : '') === location.hash) return;
@@ -1765,7 +1777,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const D0 = window.PORTFOLIO || {};
-    const D = { achievements: [], toolkit: [], habits: [], featured: [], coding: [], lifelineSpecs: [], client: [], marketing: [], financeFlagships: [], areas: [], roles: [], cases: [], certs: [], selectedCreds: [], essays: [], featuredEssay: [], stars: [], ...D0 };
+    const D = { achievements: [], toolkit: [], habits: [], featured: [], coding: [], lifelineSpecs: [], client: [], marketing: [], financeFlagships: [], areas: [], roles: [], cases: [], certs: [], selectedCreds: [], essays: [], featuredEssay: [], stars: [], notes: null, ...D0 };
     // Full essays (newest first) come from assets/js/essays.js, kept current by the daily publisher.
     const MON = { January: 'Jan', February: 'Feb', March: 'Mar', April: 'Apr', May: 'May', June: 'Jun', July: 'Jul', August: 'Aug', September: 'Sep', October: 'Oct', November: 'Nov', December: 'Dec' };
     if (Array.isArray(window.ESSAYS) && window.ESSAYS.length) D.essays = window.ESSAYS.map(e => {
@@ -1853,6 +1865,9 @@ class Component extends DCLogic {
     const starPick = (k, scroll) => this.go['star' + k + (scroll ? '↓' : '')] || (this.go['star' + k + (scroll ? '↓' : '')] = () => this.setState(s => ({ star: !scroll && s.star === k ? null : k }), () => { if (!scroll) return; const el = document.getElementById('stars'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (this.state.narrow ? 120 : 70), behavior: 'smooth' }); }));
     const starChips = D.toolkit.filter(k => starUses(k).length).map(k => ({ label: k, n: starUses(k).length, go: starPick(k), bg: k === starSel ? 'var(--coral)' : 'transparent', fg: 'var(--ink)' }));
     const starBuilds = starSel ? starUses(starSel).map(x => ({ label: x.title, where: this.LABELS[x.page] || '', go: this.nav(x.page, x.anchor) })) : [];
+    const pyramid = D.notes ? [['Top', 'What you notice first', D.notes.top], ['Heart', 'What does the work', D.notes.heart], ['Base', 'What lasts', D.notes.base]].filter(r => (r[2] || []).length).map((r, ri) => ({ k: r[0], sub: r[1],
+      skills: r[2].map((k, i) => { const n = starUses(k).length; return { label: k, c: P[(i + ri * 2) % 5], mark: n ? ' ✦' : '', cur: n ? 'pointer' : 'default', tip: n ? n + (n === 1 ? ' build used this' : ' builds used this') : '',
+        go: n ? (this.go['note' + k] || (this.go['note' + k] = () => { this.setState({ star: k }); this.nav('cases', 'stars')(); })) : (this.go.noop || (this.go.noop = () => {})) }; }) })) : [];
     const casesV = D.cases.map(c => { const me = D.stars.find(x => x.id === c.id), sk = me ? me.skills || [] : [];
       const others = D.stars.filter(x => x.id !== c.id && (x.skills || []).some(k => sk.includes(k)));
       return { ...c, hasStars: sk.length > 0, starSkills: sk.map(k => ({ label: k, go: starPick(k, true) })), hasOthers: others.length > 0, starOthers: others.map(x => ({ label: x.title, go: this.nav(x.page, x.anchor) })) }; });
@@ -1876,7 +1891,7 @@ class Component extends DCLogic {
     return {
       D, rootRef: this.rootRef, svgRef: this.svgRef, gateRef: this.gateRef, blockRef: this.blockRef, logRef: this.logRef,
       cProp: this.cProp, cExec: this.cExec, cEsc: this.cEsc, dotRef: this.dotRef, dot2Ref: this.dot2Ref,
-      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, beyond, casesV, starChips, starBuilds, hasStarChips: starChips.length > 0, hasStarBuilds: starBuilds.length > 0, ...this.v3,
+      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, pyramid, hasPyramid: pyramid.length > 0, noPyramid: pyramid.length === 0, beyond, casesV, starChips, starBuilds, hasStarChips: starChips.length > 0, hasStarBuilds: starBuilds.length > 0, ...this.v3,
       wide: !this.state.narrow, narrow: this.state.narrow, cols: this.state.narrow ? 'minmax(0,1fr)' : '252px minmax(0,1fr)',
       menuOpen: this.state.menu, menuIcon: this.state.menu ? '×' : '≡', toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
       nav, isHome: page === 'home', isCases: page === 'cases', isCoding: page === 'coding', isClient: page === 'client', isFinance: page === 'finance', isExperience: page === 'experience', isWriting: page === 'writing', isCerts: page === 'certs', isRecs: page === 'recs',
