@@ -515,6 +515,13 @@ textarea.input { min-height: 90px; resize: vertical; }
 .tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
 .tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
 .tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
+.by-route { stroke-dasharray: 1; stroke-dashoffset: 1; animation: byDraw 2.6s .5s cubic-bezier(.7,0,.2,1) forwards; }
+.by-pin { opacity: 0; animation: byPin .5s 2.9s ease forwards; }
+@keyframes byDraw { to { stroke-dashoffset: 0; } }
+@keyframes byPin { to { opacity: 1; } }
+.by-card { transition: border-color .25s, transform .25s; }
+.by-card:hover { border-color: var(--coral) !important; transform: translateY(-3px); }
+@media (prefers-reduced-motion: reduce) { .by-route { animation: none; stroke-dashoffset: 0; } .by-pin { animation: none; opacity: 1; } .by-card:hover { transform: none; } }
 .tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
 
 /* — navigation — */
@@ -795,6 +802,10 @@ input[type=range]{accent-color:var(--coral);width:100%}
     <span style="padding:0 clamp(20px,4vw,56px);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--butter)">Toolkit — what I build with</span>
     <div ref="{{ marqRef }}" style="display:flex;gap:12px;width:max-content;will-change:transform"><sc-for list="{{ toolkitLoop }}" as="t" hint-placeholder-count="12"><span style="flex:none;font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,3vw,40px);line-height:1.1;text-transform:uppercase;padding:6px 18px;background:{{ t.c }};color:var(--ink)">{{ t.label }}</span></sc-for></div>
   </section>
+
+  <sc-if value="{{ beyond.show }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Beyond teaser" style="background:var(--ink);color:var(--paper);padding:0 clamp(20px,4vw,56px) 26px"><button sc-camel-on-click="{{ beyond.goBeyond }}" style="all:unset;cursor:pointer;display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;padding-top:18px;border-top:1px dashed color-mix(in srgb, var(--paper) 30%, transparent);width:100%" style-hover="color:var(--coral)"><span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral)">$ whoami --beyond</span><span style="font-family:var(--font-heading);font-size:clamp(20px,2.2vw,28px);line-height:1.1">Beyond the numbers — the shelf, the route, the drill →</span></button></section>
+  </sc-if>
 
   <section data-screen-label="About" style="padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px);background:var(--sky)">
     <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:48px">
@@ -1150,7 +1161,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
         <p style="margin:0;font-family:var(--font-heading);font-size:clamp(22px,2.4vw,30px);line-height:1.15;max-width:820px;text-wrap:pretty">{{ beyond.rule }}</p>
         <sc-if value="{{ beyond.hasProfile }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px"><span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;margin-right:8px">Notes that keep coming back</span>{{ beyond.profile }}</div></sc-if>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:12px">
-          <sc-for list="{{ beyond.shelf }}" as="p" hint-placeholder-count="4"><article style="padding:16px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ beyond.shelf }}" as="p" hint-placeholder-count="4"><article class="by-card" style="padding:16px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:8px">
             <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral)">{{ p.house }}</span>
             <h3 style="margin:0;font-size:24px;line-height:1.05;color:var(--paper)">{{ p.name }}</h3>
             <sc-if value="{{ p.hasNotes }}" hint-placeholder-val="{{ false }}"><dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px"><sc-for list="{{ p.notes }}" as="n" hint-placeholder-count="3"><dt style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7">{{ n.k }}</dt><dd style="margin:0">{{ n.v }}</dd></sc-for></dl></sc-if>
@@ -1197,6 +1208,7 @@ input[type=range]{accent-color:var(--coral);width:100%}
         <sc-if value="{{ beyond.hasJourney }}" hint-placeholder-val="{{ false }}">
         <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
           <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>The route</b></span>
+          <sc-if value="{{ beyond.hasRouteMap }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 130" role="img" aria-label="Route" style="width:100%;height:auto;overflow:visible"><path d="{{ beyond.routePath }}" pathLength="1" class="by-route" fill="none" stroke="var(--coral)" stroke-width="1.6" stroke-dasharray="1"></path><sc-for list="{{ beyond.routePts }}" as="r" hint-placeholder-count="2"><g class="{{ r.cls }}"><circle cx="{{ r.x }}" cy="{{ r.y }}" r="4" fill="var(--ink)" stroke="var(--coral)" stroke-width="2"></circle><text x="{{ r.tx }}" y="{{ r.ty }}" text-anchor="{{ r.anchor }}" fill="var(--paper)" style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase">{{ r.place }}</text></g></sc-for></svg></sc-if>
           <sc-for list="{{ beyond.journey }}" as="j" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:8px 0;border-top:1px dashed color-mix(in srgb, var(--paper) 30%, transparent)"><span style="font-size:12px;color:var(--coral)">{{ j.n }}</span><div><div style="font-family:var(--font-heading);font-size:24px;line-height:1">{{ j.arrow }} {{ j.place }}</div><div style="font-size:13px;margin-top:4px">{{ j.note }}</div></div></div></sc-for>
         </div>
         </sc-if>
@@ -1843,7 +1855,9 @@ class Component extends DCLogic {
         hasQuotes: quotes.length > 0 || draft, quotes: (quotes.length ? quotes : ['Your first gym quote goes here.', 'Your second gym quote goes here.']).map(q => ({ q })), quoteNote: quotes.length ? '' : EX,
         hasFootball: !!fb.line || !!fbBits, fbLine: fb.line || '', fbBits, hasFbBits: !!fbBits, fbPending: draft && !fbBits,
         hasCooking: !!ck.line || draft, cookLine: ck.line || 'One line about what you cook goes here.', cookNote: ck.line ? '' : EX,
-        hasJourney: journey.length > 0, journey, hasWatching: !!wt.title, watchTitle: wt.title || '', watchLine: wt.line || '',
+        hasJourney: journey.length > 0, journey, ...(() => { const g = journey.filter(j => typeof j.lat === 'number' && typeof j.lon === 'number').map((j, i, a) => { const x = Math.round((j.lon + 97) / 32 * 300), y = Math.round((47 - j.lat) / 37 * 130), last = i === a.length - 1; return { place: j.place, x, y, tx: last ? x - 9 : x + 9, ty: y + 3, anchor: last ? 'end' : 'start', cls: i ? 'by-pin' : '' }; });
+          if (g.length < 2) return { hasRouteMap: false, routePath: '', routePts: [] };
+          const a = g[0], b = g[g.length - 1]; return { hasRouteMap: true, routePts: g, routePath: `M${a.x},${a.y} Q ${Math.round((a.x + b.x) / 2 - 40)},${Math.min(a.y, b.y) + 8} ${b.x},${b.y}` }; })(), goBeyond: this.nav('experience', 'beyond'), hasWatching: !!wt.title, watchTitle: wt.title || '', watchLine: wt.line || '',
         goOrcen: this.nav('cases', 'case-orcen'), goWriting: this.nav('writing'), goHome: this.nav('home'), goLifeline: this.nav('cases', 'case-lifeline'), draft };
       v.show = !!(v.rule || v.hasShelf || v.hasGym || v.hasFootball || v.hasJourney || v.hasWatching);
       return v;

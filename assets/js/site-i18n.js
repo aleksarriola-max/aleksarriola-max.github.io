@@ -728,6 +728,7 @@ window.SITE_I18N = (function () {
   "✦ Connected stars · Skills behind this build": "✦ Estrellas conectadas · Habilidades detrás de este proyecto",
   "Other builds sharing these skills": "Otros proyectos que comparten estas habilidades",
   "Beyond the numbers": "Más allá de los números",
+  "Beyond the numbers — the shelf, the route, the drill →": "Más allá de los números: el estante, la ruta, la práctica →",
   "The same person builds the models. This is the rest of him.": "La misma persona construye los modelos. Este es el resto de él.",
   "The shelf · Fragrance": "El estante · Fragancias",
   "I don’t buy by price tag. I buy what I like, what someone I trust recommends, and now and then a great deal.": "No compro por la etiqueta de precio. Compro lo que me gusta, lo que me recomienda alguien de confianza y, de vez en cuando, una gran oferta.",
