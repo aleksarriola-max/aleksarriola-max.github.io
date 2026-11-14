@@ -572,11 +572,10 @@ textarea.input { min-height: 90px; resize: vertical; }
 </style>
 <script src="assets/js/ds-bundle.js"></script>
 <script src="assets/js/portfolio-data.js"></script>
-<script src="assets/js/beyond-data.js"></script>
 <script src="assets/js/essays.js"></script>
 <script src="assets/js/site-i18n.js"></script>
 <script src="assets/js/constellation.js" defer></script>
-<script src="assets/js/beyond-ring.js" defer></script>
+<script src="assets/js/web-sparks.js" defer></script>
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);--font-heading:'Instrument Serif',Georgia,serif;--font-heading-weight:400;--ink:oklch(0.27 0.03 250);--paper:oklch(0.97 0.012 85);--coral:oklch(0.76 0.08 45);--mint:oklch(0.89 0.04 150);--butter:oklch(0.93 0.04 85);--lilac:oklch(0.89 0.03 290);--sky:oklch(0.89 0.03 230)}
@@ -1152,78 +1151,6 @@ input[type=range]{accent-color:var(--coral);width:100%}
       </div>
     </div>
   </section>
-  <sc-if value="{{ beyond.show }}" hint-placeholder-val="{{ false }}">
-  <section id="beyond" data-screen-label="Beyond the numbers" style="background:var(--ink);color:var(--paper);padding:clamp(48px,6vw,80px) clamp(20px,4vw,56px);scroll-margin-top:80px">
-    <div style="max-width:1160px;margin:0 auto;display:flex;flex-direction:column;gap:28px">
-      <div data-reveal="1"><div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:10px">$ whoami --beyond</div><h2 style="font-size:clamp(40px,5vw,72px);margin:0 0 14px;text-transform:uppercase;line-height:0.9;color:var(--paper)">Beyond the numbers</h2><p style="margin:0;max-width:680px;color:var(--paper)">{{ beyond.intro }}</p></div>
-
-      <sc-if value="{{ beyond.hasShelf }}" hint-placeholder-val="{{ false }}">
-      <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
-        <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>The shelf</b> · Fragrance</span>
-        <p style="margin:0;font-family:var(--font-heading);font-size:clamp(22px,2.4vw,30px);line-height:1.15;max-width:820px;text-wrap:pretty">{{ beyond.rule }}</p>
-        <sc-if value="{{ beyond.hasProfile }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px"><span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;margin-right:8px">Notes that keep coming back</span>{{ beyond.profile }}</div></sc-if>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:12px">
-          <sc-for list="{{ beyond.shelf }}" as="p" hint-placeholder-count="4"><article style="padding:16px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:8px">
-            <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral)">{{ p.house }}</span>
-            <h3 style="margin:0;font-size:24px;line-height:1.05;color:var(--paper)">{{ p.name }}</h3>
-            <sc-if value="{{ p.hasNotes }}" hint-placeholder-val="{{ false }}"><dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px"><sc-for list="{{ p.notes }}" as="n" hint-placeholder-count="3"><dt style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7">{{ n.k }}</dt><dd style="margin:0">{{ n.v }}</dd></sc-for></dl></sc-if>
-            <sc-if value="{{ p.hasOcc }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;padding-top:8px;border-top:1px dashed color-mix(in srgb, var(--paper) 30%, transparent)"><span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;margin-right:8px">Wear it for</span>{{ p.occasion }}</div></sc-if>
-            <sc-if value="{{ p.pending }}" hint-placeholder-val="{{ false }}"><span data-i18n-skip="1" style="font-size:11px;letter-spacing:0.1em;color:var(--ink);background:var(--coral);padding:2px 8px;align-self:flex-start">DRAFT · notes or occasion missing</span></sc-if>
-          </article></sc-for>
-        </div>
-        <button sc-camel-on-click="{{ beyond.goOrcen }}" style="all:unset;cursor:pointer;font-size:13px;border-bottom:1px solid var(--coral);align-self:flex-start;margin-top:auto">✦ Connected: value over price tag → Orcen Valuation Kit</button>
-      </div>
-      </sc-if>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px">
-        <sc-if value="{{ beyond.hasGym }}" hint-placeholder-val="{{ false }}">
-        <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>Consistency</b> · Gym, last 26 weeks</span>
-          <div style="display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,auto);grid-template-columns:repeat(26,minmax(0,1fr));gap:3px;max-width:420px"><sc-for list="{{ beyond.gymCells }}" as="c" hint-placeholder-count="14"><i title="{{ c.t }}" style="display:block;aspect-ratio:1;background:{{ c.bg }}"></i></sc-for></div>
-          <span data-i18n-skip="1" style="font-size:12px">{{ beyond.gymNote }}</span>
-          <button sc-camel-on-click="{{ beyond.goWriting }}" style="all:unset;cursor:pointer;font-size:13px;border-bottom:1px solid var(--coral);align-self:flex-start;margin-top:auto">✦ Connected: the other daily streak → Writing</button>
-        </div>
-        </sc-if>
-        <sc-if value="{{ beyond.hasQuotes }}" hint-placeholder-val="{{ false }}">
-        <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>On the wall</b> · Gym quotes</span>
-          <sc-for list="{{ beyond.quotes }}" as="q" hint-placeholder-count="2"><p style="margin:0;font-family:var(--font-heading);font-size:22px;line-height:1.15">“{{ q.q }}”</p></sc-for>
-          <sc-if value="{{ beyond.quoteNote }}" hint-placeholder-val="{{ false }}"><span data-i18n-skip="1" style="font-size:11px;letter-spacing:0.1em;color:var(--ink);background:var(--coral);padding:2px 8px;align-self:flex-start">{{ beyond.quoteNote }}</span></sc-if>
-        </div>
-        </sc-if>
-        <sc-if value="{{ beyond.hasFootball }}" hint-placeholder-val="{{ false }}">
-        <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>Football</b></span>
-          <p style="margin:0;font-family:var(--font-heading);font-size:22px;line-height:1.15">{{ beyond.fbLine }}</p>
-          <sc-if value="{{ beyond.hasFbBits }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px">{{ beyond.fbBits }}</span></sc-if>
-          <sc-if value="{{ beyond.fbPending }}" hint-placeholder-val="{{ false }}"><span data-i18n-skip="1" style="font-size:11px;letter-spacing:0.1em;color:var(--ink);background:var(--coral);padding:2px 8px;align-self:flex-start">DRAFT · team / position / follows missing</span></sc-if>
-        </div>
-        </sc-if>
-        <sc-if value="{{ beyond.hasCooking }}" hint-placeholder-val="{{ false }}">
-        <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>Kitchen</b></span>
-          <p style="margin:0;font-family:var(--font-heading);font-size:22px;line-height:1.15">{{ beyond.cookLine }}</p>
-          <sc-if value="{{ beyond.cookNote }}" hint-placeholder-val="{{ false }}"><span data-i18n-skip="1" style="font-size:11px;letter-spacing:0.1em;color:var(--ink);background:var(--coral);padding:2px 8px;align-self:flex-start">{{ beyond.cookNote }}</span></sc-if>
-        </div>
-        </sc-if>
-        <sc-if value="{{ beyond.hasJourney }}" hint-placeholder-val="{{ false }}">
-        <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>The route</b></span>
-          <sc-for list="{{ beyond.journey }}" as="j" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:8px 0;border-top:1px dashed color-mix(in srgb, var(--paper) 30%, transparent)"><span style="font-size:12px;color:var(--coral)">{{ j.n }}</span><div><div style="font-family:var(--font-heading);font-size:24px;line-height:1">{{ j.arrow }} {{ j.place }}</div><div style="font-size:13px;margin-top:4px">{{ j.note }}</div></div></div></sc-for>
-        </div>
-        </sc-if>
-        <sc-if value="{{ beyond.hasWatching }}" hint-placeholder-val="{{ false }}">
-        <div data-reveal="1" style="padding:22px;border:1px solid color-mix(in srgb, var(--paper) 22%, transparent);display:flex;flex-direction:column;gap:12px">
-          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>On screen</b></span>
-          <p style="margin:0;font-family:var(--font-heading);font-size:22px;line-height:1.15">{{ beyond.watchTitle }}</p>
-          <span style="font-size:14px">{{ beyond.watchLine }}</span>
-          <button sc-camel-on-click="{{ beyond.goLifeline }}" style="all:unset;cursor:pointer;font-size:13px;border-bottom:1px solid var(--coral);align-self:flex-start;margin-top:auto">✦ Connected: 1st of 40 teams, built in one day → Lifeline</button>
-        </div>
-        </sc-if>
-      </div>
-    </div>
-  </section>
-  </sc-if>
 </sc-if>
 
 <sc-if value="{{ isCases }}" hint-placeholder-val="{{ false }}">
@@ -1446,7 +1373,7 @@ class Component extends DCLogic {
   /* ── Linkable URLs: /#finance, /#writing, /#essay-42, /#case-scanner, /#contact ──
      Old page names from the previous site keep working through ALIASES. */
   ALIASES = { casestudies: 'cases', 'case-studies': 'cases', marketing: 'experience', 'client-work': 'client', certifications: 'certs', recommendations: 'recs', recommendation: 'recs' };
-  TARGETS = { contact: 'home', model: 'home', scanner: 'finance', 'case-scanner': 'cases', 'case-opsflow': 'cases', 'case-orcen': 'cases', 'case-lifeline': 'cases', beyond: 'experience', stars: 'cases' };
+  TARGETS = { contact: 'home', model: 'home', scanner: 'finance', 'case-scanner': 'cases', 'case-opsflow': 'cases', 'case-orcen': 'cases', 'case-lifeline': 'cases', stars: 'cases' };
   setHash(h, replace) {
     const url = h ? '#' + h : location.pathname + location.search;
     if ((h ? '#' + h : '') === location.hash) return;
@@ -1834,32 +1761,6 @@ class Component extends DCLogic {
     const v3 = { dot3Ref: this.dot3Ref || (this.dot3Ref = React.createRef()), copyLabel: st.copied ? 'Copied ✓' : 'Copy address', copyEmail: () => { try { navigator.clipboard.writeText('aleksarriola@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.cpT); this.cpT = setTimeout(() => this.setState({ copied: false }), 1800); }, gRef: this.gRef, guilloche: this.GUIL, wipeRef: this.wipeRef, wipeText: this.wipeText, readRef: this.readRef, tlBox: this.tlBox, tlLine: this.tlLine, quoteRef: this.quoteRef, wave: this.wave, readLeft: this.state.narrow ? '0px' : '252px', lights, co, coChips, peRows, modeTitle: enf ? 'What the code allows' : 'What the model proposes', setProposed: () => this.setState({ mode: 'proposed' }), setEnforced: () => this.setState({ mode: 'enforced' }), propBg: enf ? 'transparent' : 'var(--coral)', propFg: enf ? 'var(--paper)' : 'var(--ink)', enfBg: enf ? 'var(--coral)' : 'transparent', enfFg: enf ? 'var(--ink)' : 'var(--paper)', tapePts, tapePath, tapeHover, sites, tickerLoop, tickRef: this.tickRef, scoreRef: this.scoreRef, mapRef: this.mapRef, llEnd: this.llEnd, llCount: this.llCount, goScanner: this.nav('finance', 'scanner'), eyebrow: L === 'EN' ? 'Portfolio — Aleks Arriola' : 'Portafolio — Aleks Arriola', setEN: () => { this.setState({ lang: 'EN' }); window.SITE_I18N && SITE_I18N.set('en', this.rootRef.current); }, setES: () => { this.setState({ lang: 'ES' }); window.SITE_I18N && SITE_I18N.set('es', this.rootRef.current); }, enBg: L === 'EN' ? 'var(--butter)' : 'transparent', enFg: L === 'EN' ? 'var(--ink)' : 'var(--paper)', esBg: L === 'ES' ? 'var(--butter)' : 'transparent', esFg: L === 'ES' ? 'var(--ink)' : 'var(--paper)' };
     this.v3 = v3;
     const toolkitLoop = D.toolkit.concat(D.toolkit).map((t, i) => ({ label: t, c: P[i % 5] }));
-    /* Beyond the numbers — personal layer, driven by window.BEYOND (assets/js/beyond-data.js). Empty = hidden; ?draft shows marked examples. */
-    const beyond = (() => {
-      const B = window.BEYOND || {}, draft = /[?&]draft\b/.test(location.search), EX = 'EXAMPLE · not real data';
-      const pf = B.perfumes || {}, gy = B.gym || {}, fb = B.football || {}, ck = B.cooking || {}, wt = B.watching || {};
-      const shelf = (pf.shelf || []).filter(p => p && p.name).map(p => { const notes = [['Top', p.top], ['Heart', p.heart], ['Base', p.base]].filter(n => n[1]).map(n => ({ k: n[0], v: n[1] }));
-        return { name: p.name, house: p.house || '', notes, hasNotes: notes.length > 0, occasion: p.occasion || '', hasOcc: !!p.occasion, pending: draft && (notes.length < 3 || !p.occasion) }; });
-      const tally = {}; let noted = 0;
-      (pf.shelf || []).forEach(p => { const all = [p.top, p.heart, p.base].filter(Boolean).join(','); if (!all) return; noted++; [...new Set(all.split(',').map(x => x.trim()).filter(Boolean))].forEach(n => { tally[n] = (tally[n] || 0) + 1; }); });
-      const top5 = Object.entries(tally).filter(e => e[1] > 1).sort((a, b) => b[1] - a[1]).slice(0, 5).map(e => e[0]);
-      const real = (gy.days || []).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)), iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-      const today = new Date(); today.setHours(0, 0, 0, 0); const start = new Date(today); start.setDate(start.getDate() - ((start.getDay() + 6) % 7) - 25 * 7);
-      const exDays = []; if (!real.length) [0, 2, 4].forEach(o => { const d = new Date(today); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) + o); exDays.push(iso(d)); });
-      const set = new Set(real.length ? real : exDays), cells = [];
-      for (let i = 0; i < 26 * 7; i++) { const d = new Date(start); d.setDate(d.getDate() + i); const k = iso(d), on = set.has(k); cells.push({ t: k, bg: d > today ? 'transparent' : on ? 'var(--coral)' : 'color-mix(in srgb, var(--paper) 10%, transparent)' }); }
-      const quotes = (gy.quotes || []).filter(Boolean), fbBits = [fb.team, fb.position, fb.follows].filter(Boolean).join(' · ');
-      const journey = (B.journey || []).filter(j => j && j.place).map((j, i) => ({ ...j, n: String(i + 1).padStart(2, '0'), arrow: i ? '→' : '' }));
-      const v = { intro: B.intro || '', rule: pf.rule || '', shelf, hasShelf: shelf.length > 0, hasProfile: noted >= 4 && top5.length > 0, profile: top5.join(' · '),
-        hasGym: real.length > 0 || draft, gymCells: cells, gymNote: real.length ? real.length + ' training days logged' : EX, 
-        hasQuotes: quotes.length > 0 || draft, quotes: (quotes.length ? quotes : ['Your first gym quote goes here.', 'Your second gym quote goes here.']).map(q => ({ q })), quoteNote: quotes.length ? '' : EX,
-        hasFootball: !!fb.line || !!fbBits, fbLine: fb.line || '', fbBits, hasFbBits: !!fbBits, fbPending: draft && !fbBits,
-        hasCooking: !!ck.line || draft, cookLine: ck.line || 'One line about what you cook goes here.', cookNote: ck.line ? '' : EX,
-        hasJourney: journey.length > 0, journey, hasWatching: !!wt.title, watchTitle: wt.title || '', watchLine: wt.line || '',
-        goOrcen: this.nav('cases', 'case-orcen'), goWriting: this.nav('writing'), goHome: this.nav('home'), goLifeline: this.nav('cases', 'case-lifeline'), draft };
-      v.show = B.layout !== 'ring' && !!(v.rule || v.hasShelf || v.hasGym || v.hasFootball || v.hasJourney || v.hasWatching);
-      return v;
-    })();
     /* Connected stars — cross-links between builds and skills, driven by D.stars (portfolio-data.js). */
     const starSel = st.star || null, starUses = k => D.stars.filter(x => (x.skills || []).includes(k));
     const starPick = (k, scroll) => this.go['star' + k + (scroll ? '↓' : '')] || (this.go['star' + k + (scroll ? '↓' : '')] = () => this.setState(s => ({ star: !scroll && s.star === k ? null : k }), () => { if (!scroll) return; const el = document.getElementById('stars'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (this.state.narrow ? 120 : 70), behavior: 'smooth' }); }));
@@ -1891,7 +1792,7 @@ class Component extends DCLogic {
     return {
       D, rootRef: this.rootRef, svgRef: this.svgRef, gateRef: this.gateRef, blockRef: this.blockRef, logRef: this.logRef,
       cProp: this.cProp, cExec: this.cExec, cEsc: this.cEsc, dotRef: this.dotRef, dot2Ref: this.dot2Ref,
-      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, pyramid, hasPyramid: pyramid.length > 0, noPyramid: pyramid.length === 0, beyond, casesV, starChips, starBuilds, hasStarChips: starChips.length > 0, hasStarBuilds: starBuilds.length > 0, ...this.v3,
+      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, pyramid, hasPyramid: pyramid.length > 0, noPyramid: pyramid.length === 0, casesV, starChips, starBuilds, hasStarChips: starChips.length > 0, hasStarBuilds: starBuilds.length > 0, ...this.v3,
       wide: !this.state.narrow, narrow: this.state.narrow, cols: this.state.narrow ? 'minmax(0,1fr)' : '252px minmax(0,1fr)',
       menuOpen: this.state.menu, menuIcon: this.state.menu ? '×' : '≡', toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
       nav, isHome: page === 'home', isCases: page === 'cases', isCoding: page === 'coding', isClient: page === 'client', isFinance: page === 'finance', isExperience: page === 'experience', isWriting: page === 'writing', isCerts: page === 'certs', isRecs: page === 'recs',
