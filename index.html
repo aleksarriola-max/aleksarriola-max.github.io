@@ -575,6 +575,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 <script src="assets/js/essays.js"></script>
 <script src="assets/js/site-i18n.js"></script>
 <script src="assets/js/constellation.js" defer></script>
+<script src="assets/js/web-sparks.js" defer></script>
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);--font-heading:'Instrument Serif',Georgia,serif;--font-heading-weight:400;--ink:oklch(0.27 0.03 250);--paper:oklch(0.97 0.012 85);--coral:oklch(0.76 0.08 45);--mint:oklch(0.89 0.04 150);--butter:oklch(0.93 0.04 85);--lilac:oklch(0.89 0.03 290);--sky:oklch(0.89 0.03 230)}
@@ -791,8 +792,20 @@ input[type=range]{accent-color:var(--coral);width:100%}
   </section>
 
   <section data-screen-label="Toolkit" style="background:var(--ink);color:var(--paper);padding:24px 0 28px;overflow:hidden;display:flex;flex-direction:column;gap:14px">
+    <sc-if value="{{ noPyramid }}" hint-placeholder-val="{{ true }}">
     <span style="padding:0 clamp(20px,4vw,56px);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--butter)">Toolkit — what I build with</span>
     <div ref="{{ marqRef }}" style="display:flex;gap:12px;width:max-content;will-change:transform"><sc-for list="{{ toolkitLoop }}" as="t" hint-placeholder-count="12"><span style="flex:none;font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,3vw,40px);line-height:1.1;text-transform:uppercase;padding:6px 18px;background:{{ t.c }};color:var(--ink)">{{ t.label }}</span></sc-for></div>
+    </sc-if>
+    <sc-if value="{{ hasPyramid }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:8px clamp(20px,4vw,56px) 4px;display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--butter)">Toolkit — read it like a fragrance</span>
+      <sc-for list="{{ pyramid }}" as="r" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px 28px;padding:16px 0;border-top:1px dashed color-mix(in srgb, var(--paper) 28%, transparent);align-items:start">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:var(--font-heading);font-size:clamp(28px,3vw,40px);line-height:1;text-transform:uppercase">{{ r.k }}</span><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7">{{ r.sub }}</span></div>
+        <div style="grid-column:span 3;display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ r.skills }}" as="k" hint-placeholder-count="4"><button sc-camel-on-click="{{ k.go }}" title="{{ k.tip }}" style="all:unset;cursor:{{ k.cur }};font-family:var(--font-heading);font-size:clamp(18px,1.9vw,26px);line-height:1.1;text-transform:uppercase;padding:5px 14px;background:{{ k.c }};color:var(--ink)" style-hover="outline:2px solid var(--paper);outline-offset:2px">{{ k.label }}{{ k.mark }}</button></sc-for></div>
+      </div></sc-for>
+      <span style="font-size:12px;opacity:0.7">✦ opens every build that used that skill.</span>
+    </div>
+    </sc-if>
   </section>
 
   <section data-screen-label="About" style="padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px);background:var(--sky)">
@@ -1148,7 +1161,16 @@ input[type=range]{accent-color:var(--coral);width:100%}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:1px solid var(--color-divider);border-left:1px solid var(--color-divider);margin-bottom:56px">
         <sc-for list="{{ caseIndex }}" as="c" hint-placeholder-count="4"><button sc-camel-on-click="{{ c.go }}" style="all:unset;cursor:pointer;padding:18px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);display:flex;flex-direction:column;gap:4px" style-hover="background:var(--color-accent-100)"><span style="font-size:12px;color:var(--color-accent-700)">{{ c.n }} · {{ c.kicker }}</span><span style="font-family:var(--font-heading);font-weight:400;font-size:22px;line-height:1.1">{{ c.title }} ↓</span></button></sc-for>
       </div>
-      <sc-for list="{{ D.cases }}" as="c" hint-placeholder-count="2">
+      <sc-if value="{{ hasStarChips }}" hint-placeholder-val="{{ false }}">
+        <div id="stars" data-reveal="1" style="margin-bottom:56px;padding:18px 20px;border:1px dashed var(--ink);scroll-margin-top:80px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:baseline"><span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase"><b>✦ Connected stars</b></span><span style="font-size:13px">Pick a skill to see every build that used it.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ starChips }}" as="k" hint-placeholder-count="8"><button class="btn" sc-camel-on-click="{{ k.go }}" style="background:{{ k.bg }};color:{{ k.fg }};border-color:var(--ink);font-size:13px;padding:6px 12px">{{ k.label }} · {{ k.n }}</button></sc-for></div>
+          <sc-if value="{{ hasStarBuilds }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;padding-top:10px;border-top:1px dashed var(--ink)"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase">Builds that used it</span><sc-for list="{{ starBuilds }}" as="b" hint-placeholder-count="3"><button sc-camel-on-click="{{ b.go }}" style="all:unset;cursor:pointer;font-size:14px;border-bottom:1px solid var(--ink)" style-hover="background:var(--color-accent-100)"><b>{{ b.label }}</b> <span style="font-size:12px">· {{ b.where }} →</span></button></sc-for></div>
+          </sc-if>
+        </div>
+      </sc-if>
+      <sc-for list="{{ casesV }}" as="c" hint-placeholder-count="2">
         <article id="{{ c.id }}" style="margin-bottom:72px;scroll-margin-top:80px">
           <div data-reveal="1" class="blueprint" style="background:var(--paper);border-color:var(--ink);box-shadow:10px 10px 0 var(--ink);padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px 40px;margin-bottom:28px"><span data-approve="1" style="position:absolute;top:-16px;right:24px;z-index:3;opacity:0;transform:rotate(-6deg);border:3px solid var(--ink);padding:4px 14px;background:var(--coral);color:var(--ink);font-family:var(--font-heading);font-weight:400;font-size:20px;letter-spacing:0.14em">APPROVED</span>
             <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
@@ -1162,6 +1184,12 @@ input[type=range]{accent-color:var(--coral);width:100%}
             <div><div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-bottom:8px">In finance terms</div><ul style="margin:0;padding:0;list-style:none"><sc-for list="{{ c.terms }}" as="t" hint-placeholder-count="4"><li data-check="1" style="display:grid;grid-template-columns:22px 1fr;padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span style="color:color-mix(in oklab, var(--coral) 72%, var(--ink));font-weight:700">✓</span><span><b>{{ t.k }}</b> — {{ t.v }}</span></li></sc-for></ul></div>
             <sc-if value="{{ c.fig }}" hint-placeholder-val="{{ false }}"><button class="btn btn-primary blueprint" sc-camel-on-click="{{ goModel }}" style="justify-self:start;padding:12px 18px">Fig. 1 — Move the assumptions yourself →<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button></sc-if>
           </div>
+          <sc-if value="{{ c.hasStars }}" hint-placeholder-val="{{ false }}">
+            <div data-reveal="1" style="margin-top:24px;padding-top:14px;border-top:1px dashed var(--ink);display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-right:6px"><b>✦ Connected stars</b> · Skills behind this build</span><sc-for list="{{ c.starSkills }}" as="k" hint-placeholder-count="4"><button class="tag tag-accent" sc-camel-on-click="{{ k.go }}" style="border:0;cursor:pointer;font:inherit;font-size:12px">{{ k.label }}</button></sc-for></div>
+              <sc-if value="{{ c.hasOthers }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-right:6px">Other builds sharing these skills</span><sc-for list="{{ c.starOthers }}" as="o" hint-placeholder-count="3"><button sc-camel-on-click="{{ o.go }}" style="all:unset;cursor:pointer;font-size:14px;border-bottom:1px solid var(--ink)" style-hover="background:var(--color-accent-100)">{{ o.label }} →</button></sc-for></div></sc-if>
+            </div>
+          </sc-if>
         </article>
       </sc-for>
     </div>
@@ -1345,7 +1373,7 @@ class Component extends DCLogic {
   /* ── Linkable URLs: /#finance, /#writing, /#essay-42, /#case-scanner, /#contact ──
      Old page names from the previous site keep working through ALIASES. */
   ALIASES = { casestudies: 'cases', 'case-studies': 'cases', marketing: 'experience', 'client-work': 'client', certifications: 'certs', recommendations: 'recs', recommendation: 'recs' };
-  TARGETS = { contact: 'home', model: 'home', scanner: 'finance', 'case-scanner': 'cases', 'case-opsflow': 'cases', 'case-orcen': 'cases', 'case-lifeline': 'cases' };
+  TARGETS = { contact: 'home', model: 'home', scanner: 'finance', 'case-scanner': 'cases', 'case-opsflow': 'cases', 'case-orcen': 'cases', 'case-lifeline': 'cases', stars: 'cases' };
   setHash(h, replace) {
     const url = h ? '#' + h : location.pathname + location.search;
     if ((h ? '#' + h : '') === location.hash) return;
@@ -1676,7 +1704,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const D0 = window.PORTFOLIO || {};
-    const D = { achievements: [], toolkit: [], habits: [], featured: [], coding: [], lifelineSpecs: [], client: [], marketing: [], financeFlagships: [], areas: [], roles: [], cases: [], certs: [], selectedCreds: [], essays: [], featuredEssay: [], ...D0 };
+    const D = { achievements: [], toolkit: [], habits: [], featured: [], coding: [], lifelineSpecs: [], client: [], marketing: [], financeFlagships: [], areas: [], roles: [], cases: [], certs: [], selectedCreds: [], essays: [], featuredEssay: [], stars: [], notes: null, ...D0 };
     // Full essays (newest first) come from assets/js/essays.js, kept current by the daily publisher.
     const MON = { January: 'Jan', February: 'Feb', March: 'Mar', April: 'Apr', May: 'May', June: 'Jun', July: 'Jul', August: 'Aug', September: 'Sep', October: 'Oct', November: 'Nov', December: 'Dec' };
     if (Array.isArray(window.ESSAYS) && window.ESSAYS.length) D.essays = window.ESSAYS.map(e => {
@@ -1733,6 +1761,17 @@ class Component extends DCLogic {
     const v3 = { dot3Ref: this.dot3Ref || (this.dot3Ref = React.createRef()), copyLabel: st.copied ? 'Copied ✓' : 'Copy address', copyEmail: () => { try { navigator.clipboard.writeText('aleksarriola@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.cpT); this.cpT = setTimeout(() => this.setState({ copied: false }), 1800); }, gRef: this.gRef, guilloche: this.GUIL, wipeRef: this.wipeRef, wipeText: this.wipeText, readRef: this.readRef, tlBox: this.tlBox, tlLine: this.tlLine, quoteRef: this.quoteRef, wave: this.wave, readLeft: this.state.narrow ? '0px' : '252px', lights, co, coChips, peRows, modeTitle: enf ? 'What the code allows' : 'What the model proposes', setProposed: () => this.setState({ mode: 'proposed' }), setEnforced: () => this.setState({ mode: 'enforced' }), propBg: enf ? 'transparent' : 'var(--coral)', propFg: enf ? 'var(--paper)' : 'var(--ink)', enfBg: enf ? 'var(--coral)' : 'transparent', enfFg: enf ? 'var(--ink)' : 'var(--paper)', tapePts, tapePath, tapeHover, sites, tickerLoop, tickRef: this.tickRef, scoreRef: this.scoreRef, mapRef: this.mapRef, llEnd: this.llEnd, llCount: this.llCount, goScanner: this.nav('finance', 'scanner'), eyebrow: L === 'EN' ? 'Portfolio — Aleks Arriola' : 'Portafolio — Aleks Arriola', setEN: () => { this.setState({ lang: 'EN' }); window.SITE_I18N && SITE_I18N.set('en', this.rootRef.current); }, setES: () => { this.setState({ lang: 'ES' }); window.SITE_I18N && SITE_I18N.set('es', this.rootRef.current); }, enBg: L === 'EN' ? 'var(--butter)' : 'transparent', enFg: L === 'EN' ? 'var(--ink)' : 'var(--paper)', esBg: L === 'ES' ? 'var(--butter)' : 'transparent', esFg: L === 'ES' ? 'var(--ink)' : 'var(--paper)' };
     this.v3 = v3;
     const toolkitLoop = D.toolkit.concat(D.toolkit).map((t, i) => ({ label: t, c: P[i % 5] }));
+    /* Connected stars — cross-links between builds and skills, driven by D.stars (portfolio-data.js). */
+    const starSel = st.star || null, starUses = k => D.stars.filter(x => (x.skills || []).includes(k));
+    const starPick = (k, scroll) => this.go['star' + k + (scroll ? '↓' : '')] || (this.go['star' + k + (scroll ? '↓' : '')] = () => this.setState(s => ({ star: !scroll && s.star === k ? null : k }), () => { if (!scroll) return; const el = document.getElementById('stars'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (this.state.narrow ? 120 : 70), behavior: 'smooth' }); }));
+    const starChips = D.toolkit.filter(k => starUses(k).length).map(k => ({ label: k, n: starUses(k).length, go: starPick(k), bg: k === starSel ? 'var(--coral)' : 'transparent', fg: 'var(--ink)' }));
+    const starBuilds = starSel ? starUses(starSel).map(x => ({ label: x.title, where: this.LABELS[x.page] || '', go: this.nav(x.page, x.anchor) })) : [];
+    const pyramid = D.notes ? [['Top', 'What you notice first', D.notes.top], ['Heart', 'What does the work', D.notes.heart], ['Base', 'What lasts', D.notes.base]].filter(r => (r[2] || []).length).map((r, ri) => ({ k: r[0], sub: r[1],
+      skills: r[2].map((k, i) => { const n = starUses(k).length; return { label: k, c: P[(i + ri * 2) % 5], mark: n ? ' ✦' : '', cur: n ? 'pointer' : 'default', tip: n ? n + (n === 1 ? ' build used this' : ' builds used this') : '',
+        go: n ? (this.go['note' + k] || (this.go['note' + k] = () => { this.setState({ star: k }); this.nav('cases', 'stars')(); })) : (this.go.noop || (this.go.noop = () => {})) }; }) })) : [];
+    const casesV = D.cases.map(c => { const me = D.stars.find(x => x.id === c.id), sk = me ? me.skills || [] : [];
+      const others = D.stars.filter(x => x.id !== c.id && (x.skills || []).some(k => sk.includes(k)));
+      return { ...c, hasStars: sk.length > 0, starSkills: sk.map(k => ({ label: k, go: starPick(k, true) })), hasOthers: others.length > 0, starOthers: others.map(x => ({ label: x.title, go: this.nav(x.page, x.anchor) })) }; });
     const showLifeline = cf === 'All' || cf === 'AI & Agents' || cf === 'Award Winners';
     const certCats = ['All', 'Coursera', 'Banking', 'Finance', 'Consulting', 'Tech & Data', 'Insurance'];
     const xf = this.state.xf, CI = window.CERT_INFO || {}, certList = (xf === 'All' ? D.certs : D.certs.filter(c => c.cat === xf)).map(c => {
@@ -1753,7 +1792,7 @@ class Component extends DCLogic {
     return {
       D, rootRef: this.rootRef, svgRef: this.svgRef, gateRef: this.gateRef, blockRef: this.blockRef, logRef: this.logRef,
       cProp: this.cProp, cExec: this.cExec, cEsc: this.cEsc, dotRef: this.dotRef, dot2Ref: this.dot2Ref,
-      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, ...this.v3,
+      marqRef: this.marqRef, progRef: this.progRef, cursorRef: this.cursorRef, toolkitLoop, pyramid, hasPyramid: pyramid.length > 0, noPyramid: pyramid.length === 0, casesV, starChips, starBuilds, hasStarChips: starChips.length > 0, hasStarBuilds: starBuilds.length > 0, ...this.v3,
       wide: !this.state.narrow, narrow: this.state.narrow, cols: this.state.narrow ? 'minmax(0,1fr)' : '252px minmax(0,1fr)',
       menuOpen: this.state.menu, menuIcon: this.state.menu ? '×' : '≡', toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
       nav, isHome: page === 'home', isCases: page === 'cases', isCoding: page === 'coding', isClient: page === 'client', isFinance: page === 'finance', isExperience: page === 'experience', isWriting: page === 'writing', isCerts: page === 'certs', isRecs: page === 'recs',

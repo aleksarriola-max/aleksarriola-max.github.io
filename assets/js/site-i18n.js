@@ -722,7 +722,19 @@ window.SITE_I18N = (function () {
   "Propose": "Proponer",
   "DCF sensitivity · how the value moves when WACC and terminal growth move. Animated with Manim.": "Sensibilidad DCF · cómo se mueve el valor cuando cambian WACC y crecimiento terminal. Animado con Manim.",
   "Altman Z-score · how five ratios combine into a distress signal. Animated with Manim.": "Z-score de Altman · cómo cinco ratios se combinan en una señal de quiebra. Animado con Manim.",
-  "Scroll u00B7 or hover the constellation": "Desplu00E1zate u00B7 o pasa el cursor sobre la constelaciu00F3n",
+  "Scroll u00B7 or hover the constellation": "Desplu00E1zate u00B7 o pasa el cursor sobre la constelaciu00F3n",  "✦ Connected stars": "✦ Estrellas conectadas",
+  "Pick a skill to see every build that used it.": "Elige una habilidad para ver cada proyecto que la usó.",
+  "Builds that used it": "Proyectos que la usaron",
+  "✦ Connected stars · Skills behind this build": "✦ Estrellas conectadas · Habilidades detrás de este proyecto",
+  "Other builds sharing these skills": "Otros proyectos que comparten estas habilidades",
+  "Toolkit — read it like a fragrance": "Herramientas: léelas como una fragancia",
+  "Top": "Salida",
+  "What you notice first": "Lo que se nota primero",
+  "Heart": "Corazón",
+  "What does the work": "Lo que hace el trabajo",
+  "Base": "Fondo",
+  "What lasts": "Lo que perdura",
+  "✦ opens every build that used that skill.": "✦ abre cada proyecto que usó esa habilidad.",
 };
 
   function norm(s) {
