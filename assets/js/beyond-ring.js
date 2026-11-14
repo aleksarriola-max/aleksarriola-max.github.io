@@ -26,6 +26,8 @@
     if (ANG_PROJ[t] !== undefined) return polar(g, g.rx2, g.ry2, ANG_PROJ[t]);
     return null;
   }
+  function lang() { try { return localStorage.getItem('site-lang') === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } }
+  function t(s) { var d = B.es || {}; return (lang() === 'es' && d[s]) ? d[s] : s; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   var pf = B.perfumes || {}, gy = B.gym || {}, fb = B.football || {}, ck = B.cooking || {}, wt = B.watching || {};
@@ -37,11 +39,11 @@
 
   /* key, label, hover line, angle on the personal ring, the star it threads to, where "Connected" travels. */
   var STARS = [
-    { key: 'shelf', label: 'The shelf', ds: 'Fragrance · value over price tag', ang: 50, to: 'Orcen Kit', has: shelf.length > 0, go: '#case-orcen', goLabel: 'Value over price tag → Orcen Valuation Kit' },
+    { key: 'shelf', label: 'The shelf', ds: 'What I wear, and why', ang: 50, to: 'Orcen Kit', has: shelf.length > 0, go: '#case-orcen', goLabel: 'Value over price tag → Orcen Valuation Kit' },
     { key: 'route', label: 'The route', ds: 'Guatemala City → Boston', ang: 130, to: 'experience', has: journey.length > 0, go: '#experience', goLabel: 'Where the route led → Experience' },
-    { key: 'gym', label: 'Consistency', ds: 'Gym · one star per training day', ang: 170, to: 'writing', has: gymDays.length > 0 || quotes.length > 0, go: '#writing', goLabel: 'The other daily streak → Writing' },
-    { key: 'football', label: 'Football', ds: 'Drills, not reading', ang: -70, to: null, has: !!fb.line || !!fbBits, go: null },
-    { key: 'kitchen', label: 'Kitchen', ds: 'What I cook', ang: 10, to: null, has: !!ck.line, go: null }
+    { key: 'gym', label: 'Consistency', ds: 'I never want to go. I go anyway.', ang: 170, to: 'writing', has: gymDays.length > 0 || quotes.length > 0 || !!gy.line, go: '#writing', goLabel: 'The other daily streak → Writing' },
+    { key: 'football', label: 'Football', ds: 'Left foot, left side', ang: -70, to: null, has: !!fb.line || !!fbBits || !!fb.body, go: null },
+    { key: 'kitchen', label: 'Kitchen', ds: 'I eat. Occasionally, I cook.', ang: 10, to: null, has: !!ck.line, go: null }
   ].filter(function (s) { s.example = !s.has; return s.has || DRAFT; });
   var CLOVER = wt.title ? { key: 'clover', d: [500, 452], m: [200, 446], go: '#case-lifeline', goLabel: '1st of 40 teams, built in one day → Lifeline' } : null;
 
@@ -139,8 +141,13 @@
   }
   function ensureRing() {
     var chart = document.querySelector('.constellation-map .cm-chart');
-    if (!chart || chart.querySelector('.bx-node')) return;
+    if (!chart) return;
+    if (chart.querySelector('.bx-node')) {
+      if (chart.getAttribute('data-bx-lang') === lang()) return;
+      var old = chart.querySelectorAll('.bx-node,.bx-svg'); for (var o = 0; o < old.length; o++) old[o].parentNode.removeChild(old[o]);   /* language changed: redraw our own stars */
+    }
     if (!chart.querySelector('.cm-hub')) return;            /* wait until the web itself is seated */
+    chart.setAttribute('data-bx-lang', lang());
     var first = chart.querySelector('.cm-node');
     var sd = makeSvg('bx-svg-d', D, chart.querySelector('.cm-svg-d')), sm = makeSvg('bx-svg-m', M, chart.querySelector('.cm-svg-m'));
     var host = first ? first.parentNode : chart;
@@ -150,8 +157,8 @@
       var right = Math.cos(st.ang * Math.PI / 180) >= 0;
       a.className = 'bx-node ' + (right ? 'bx-r' : 'bx-l') + (st.example ? ' bx-ex' : '');
       a.href = '#'; a.setAttribute('data-bx', st.key); a.setAttribute('role', 'button');
-      a.setAttribute('aria-label', st.label + ' — ' + st.ds);
-      a.innerHTML = '<span class="bx-dot"></span><span class="bx-label">' + esc(st.label) + '</span><span class="bx-desc">' + esc(st.ds) + (st.example ? ' · ' + EX : '') + '</span>';
+      a.setAttribute('aria-label', t(st.label) + ' — ' + t(st.ds));
+      a.innerHTML = '<span class="bx-dot"></span><span class="bx-label">' + esc(t(st.label)) + '</span><span class="bx-desc">' + esc(t(st.ds)) + (st.example ? ' · ' + EX : '') + '</span>';
       place(a, polar(D, D.rx0, D.ry0, st.ang), polar(M, M.rx0, M.ry0, st.ang));
       a.addEventListener('mouseenter', function () { lightThreads(chart, st.key, true); });
       a.addEventListener('mouseleave', function () { lightThreads(chart, st.key, false); });
@@ -162,7 +169,7 @@
     if (CLOVER) {
       var c = document.createElement('a');
       c.className = 'bx-node bx-clover'; c.href = '#'; c.setAttribute('data-bx', 'clover'); c.setAttribute('role', 'button');
-      c.setAttribute('aria-label', 'A five-leaf clover');
+      c.setAttribute('aria-label', t('A five-leaf clover'));
       c.innerHTML = '<span class="bx-dot"></span>' + cloverSvg(22, false);
       place(c, CLOVER.d, CLOVER.m);
       host.appendChild(c);
@@ -172,7 +179,7 @@
   /* ---------- scenes ---------- */
   function exTag(t) { return '<span class="bx-ex-tag">' + esc(t || EX) + '</span>'; }
   function sceneShelf(root) {
-    var h = '<h2 class="bx-h">The shelf</h2>' + (pf.rule ? '<p class="bx-lead">' + esc(pf.rule) + '</p>' : '');
+    var h = '<h2 class="bx-h">' + esc(t('The shelf')) + '</h2>' + (pf.rule ? '<p class="bx-lead">' + esc(t(pf.rule)) + '</p>' : '') + (pf.story ? '<p class="bx-small" style="max-width:640px">' + esc(t(pf.story)) + '</p>' : '');
     if (!shelf.length) { root.innerHTML = h + exTag(); return; }
     var n = shelf.length, ys = [26, 62, 40, 74, 30, 58];
     h += '<div class="bx-sky">' + shelf.map(function (p, i) { return '<button class="bx-bottle" data-i="' + i + '" style="left:' + (11 + i * (78 / Math.max(1, n - 1))).toFixed(1) + '%;top:' + ys[i % ys.length] + '%" aria-label="' + esc(p.name) + '"><i></i><span>' + esc(p.name) + '</span></button>'; }).join('') + '</div><div class="bx-detail" aria-live="polite"></div>';
@@ -182,8 +189,9 @@
       var p = shelf[i], rows = [['Top', p.top], ['Heart', p.heart], ['Base', p.base]].filter(function (r) { return r[1]; });
       for (var k = 0; k < btns.length; k++) btns[k].classList[k === i ? 'add' : 'remove']('bx-sel');
       det.innerHTML = '<h4>' + esc(p.name) + ' <span class="bx-k">· ' + esc(p.house || '') + '</span></h4>' +
-        (rows.length ? '<dl class="bx-field">' + rows.map(function (r) { return '<dt class="bx-k">' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('') + '</dl>' : '') +
-        (p.occasion ? '<p class="bx-small"><span class="bx-k">Wear it for · </span>' + esc(p.occasion) + '</p>' : '') +
+        ((p.said || p.occasion) ? '<div style="display:flex;flex-direction:column;gap:8px">' + (p.said ? '<p class="bx-lead" style="font-size:20px">' + esc(t(p.said)) + '</p>' : '') +
+        (p.occasion ? '<p class="bx-small"><span class="bx-k">' + esc(t('Wear it for')) + ' · </span>' + esc(t(p.occasion)) + '</p>' : '') + '</div>' : '') +
+        (rows.length ? '<dl class="bx-field">' + rows.map(function (r) { return '<dt class="bx-k">' + esc(t(r[0])) + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('') + '</dl>' : '') +
         (DRAFT && (rows.length < 3 || !p.occasion) ? exTag('DRAFT · notes or occasion missing') : '');
     }
     for (var k = 0; k < btns.length; k++) (function (i) { btns[i].addEventListener('click', function () { show(i); }); btns[i].addEventListener('mouseenter', function () { show(i); }); })(k);
@@ -192,39 +200,45 @@
   }
   function sceneGym(root) {
     function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
-    var today = new Date(); today.setHours(0, 0, 0, 0);
-    var mon = new Date(today); mon.setDate(mon.getDate() - ((mon.getDay() + 6) % 7));
-    var start = new Date(mon); start.setDate(start.getDate() - 25 * 7);
-    var days = gymDays.slice(), example = !days.length;
-    if (example) [0, 2, 4].forEach(function (o) { var d = new Date(mon); d.setDate(d.getDate() + o); days.push(iso(d)); });
-    var set = {}; days.forEach(function (d) { set[d] = 1; });
-    var cells = '';
-    for (var i = 0; i < 182; i++) { var d = new Date(start); d.setDate(d.getDate() + i); var k = iso(d); cells += '<i title="' + k + '" class="' + (d > today ? 'off' : set[k] ? 'on' : '') + '"></i>'; }
-    var h = '<h2 class="bx-h">Consistency</h2><p class="bx-small">Gym · the last 26 weeks · one star per training day.</p><div class="bx-field-grid">' + cells + '</div>';
-    h += example ? exTag() : '<p class="bx-small">' + gymDays.length + ' training days logged.</p>';
+    var h = '<h2 class="bx-h">' + esc(t('Consistency')) + '</h2>' + (gy.line ? '<p class="bx-lead">' + esc(t(gy.line)) + '</p>' : '') + (gy.body ? '<p class="bx-small" style="max-width:640px">' + esc(t(gy.body)) + '</p>' : '');
+    if (gymDays.length || DRAFT) {
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var mon = new Date(today); mon.setDate(mon.getDate() - ((mon.getDay() + 6) % 7));
+      var start = new Date(mon); start.setDate(start.getDate() - 25 * 7);
+      var days = gymDays.slice(), example = !days.length;
+      if (example) [0, 2, 4].forEach(function (o) { var d = new Date(mon); d.setDate(d.getDate() + o); days.push(iso(d)); });
+      var set = {}; days.forEach(function (d) { set[d] = 1; });
+      var cells = '';
+      for (var i = 0; i < 182; i++) { var d = new Date(start); d.setDate(d.getDate() + i); var k = iso(d); cells += '<i title="' + k + '" class="' + (d > today ? 'off' : set[k] ? 'on' : '') + '"></i>'; }
+      h += '<p class="bx-k">' + esc(t('Gym · the last 26 weeks · one star per training day.')) + '</p><div class="bx-field-grid">' + cells + '</div>';
+      h += example ? exTag() : '<p class="bx-small">' + gymDays.length + ' ' + esc(t('training days logged.')) + '</p>';
+    }
     var qs = quotes.length ? quotes : (DRAFT ? ['Your first gym quote goes here.', 'Your second gym quote goes here.'] : []);
-    if (qs.length) h += qs.map(function (q) { return '<p class="bx-lead">“' + esc(q) + '”</p>'; }).join('') + (quotes.length ? '' : exTag());
+    if (qs.length) h += '<div style="display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px dashed rgba(237,243,235,.22)">' + qs.map(function (q) { return '<p class="bx-lead" style="font-size:clamp(18px,2vw,24px)">“' + esc(t(q)) + '”</p>'; }).join('') + '</div>' + (quotes.length ? '' : exTag());
     root.innerHTML = h;
   }
   function sceneFootball(root) {
-    root.innerHTML = '<h2 class="bx-h">Football</h2>' + (fb.line ? '<p class="bx-lead">' + esc(fb.line) + '</p>' : '') + (fbBits ? '<p class="bx-small">' + esc(fbBits) + '</p>' : (DRAFT ? exTag('DRAFT · team / position / follows missing') : ''));
+    root.innerHTML = '<h2 class="bx-h">' + esc(t('Football')) + '</h2>' + (fb.line ? '<p class="bx-lead">' + esc(t(fb.line)) + '</p>' : '') +
+      (fb.body ? '<p class="bx-small" style="max-width:640px">' + esc(t(fb.body)) + '</p>' : '') +
+      (fb.memory ? '<div style="padding-top:14px;border-top:1px dashed rgba(237,243,235,.22)"><span class="bx-k">' + esc(t('The goal')) + '</span><p class="bx-lead" style="font-size:clamp(18px,2vw,24px);margin-top:6px">' + esc(t(fb.memory)) + '</p></div>' : '') +
+      (fbBits ? '<p class="bx-k">' + esc([fb.team, fb.position, fb.follows].filter(Boolean).map(t).join(' · ')) + '</p>' : (DRAFT ? exTag('DRAFT · team / position / follows missing') : ''));
   }
   function sceneKitchen(root) {
-    root.innerHTML = '<h2 class="bx-h">Kitchen</h2><p class="bx-lead">' + esc(ck.line || 'One line about what you cook goes here.') + '</p>' + (ck.line ? '' : exTag());
+    root.innerHTML = '<h2 class="bx-h">' + esc(t('Kitchen')) + '</h2><p class="bx-lead">' + esc(t(ck.line || 'One line about what you cook goes here.')) + '</p>' + (ck.line ? '' : exTag());
   }
   function sceneRoute(root) {
     var pts = journey.filter(function (j) { return typeof j.lat === 'number' && typeof j.lon === 'number'; }).map(function (j) { return { p: j.place, x: Math.round((j.lon + 97) / 32 * 600), y: Math.round((47 - j.lat) / 37 * 200) }; });
-    var h = '<h2 class="bx-h">The route</h2>';
+    var h = '<h2 class="bx-h">' + esc(t('The route')) + '</h2>';
     if (pts.length > 1) {
       var a = pts[0], b = pts[pts.length - 1];
-      h += '<svg viewBox="0 0 600 220" role="img" aria-label="' + esc(a.p + ' to ' + b.p) + '" style="width:100%;height:auto;overflow:visible"><path class="bx-arc" pathLength="1" d="M' + a.x + ',' + a.y + ' Q ' + Math.round((a.x + b.x) / 2 - 80) + ',' + (Math.min(a.y, b.y) + 10) + ' ' + b.x + ',' + b.y + '" fill="none" stroke="' + BRASS + '" stroke-width="1.6"/>' +
+      h += '<svg viewBox="0 0 600 220" role="img" aria-label="' + esc(a.p + ' → ' + b.p) + '" style="width:100%;height:auto;overflow:visible;max-height:240px"><path class="bx-arc" pathLength="1" d="M' + a.x + ',' + a.y + ' Q ' + Math.round((a.x + b.x) / 2 - 80) + ',' + (Math.min(a.y, b.y) + 10) + ' ' + b.x + ',' + b.y + '" fill="none" stroke="' + BRASS + '" stroke-width="1.6"/>' +
         pts.map(function (p, i) { var last = i === pts.length - 1; return '<g class="' + (i ? 'bx-pin2' : '') + '"><circle cx="' + p.x + '" cy="' + p.y + '" r="5" fill="#0D1210" stroke="' + BRASS + '" stroke-width="2"/><text x="' + (last ? p.x - 12 : p.x + 12) + '" y="' + (p.y + 4) + '" text-anchor="' + (last ? 'end' : 'start') + '" fill="#EDF3EB" font-size="11" letter-spacing="1.6">' + esc(p.p.toUpperCase()) + '</text></g>'; }).join('') + '</svg>';
     }
-    h += '<div class="bx-stops">' + journey.map(function (j, i) { return '<div><div class="bx-k">' + String(i + 1).padStart(2, '0') + '</div><p class="bx-lead" style="margin:4px 0 6px">' + (i ? '→ ' : '') + esc(j.place) + '</p><p class="bx-small">' + esc(j.note || '') + '</p></div>'; }).join('') + '</div>';
+    h += '<div class="bx-stops">' + journey.map(function (j, i) { return '<div><div class="bx-k">' + String(i + 1).padStart(2, '0') + '</div><p class="bx-lead" style="margin:4px 0 6px">' + (i ? '→ ' : '') + esc(j.place) + '</p><p class="bx-small">' + esc(t(j.note || '')) + '</p></div>'; }).join('') + '</div>';
     root.innerHTML = h;
   }
   function sceneClover(root) {
-    root.innerHTML = '<div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">' + cloverSvg(120, true) + '<div style="display:flex;flex-direction:column;gap:10px;flex:1;min-width:220px"><span class="bx-k">On screen · you found the fifth leaf</span><h2 class="bx-h">' + esc(wt.title) + '</h2><p class="bx-lead">' + esc(wt.line || '') + '</p></div></div>';
+    root.innerHTML = '<div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">' + cloverSvg(120, true) + '<div style="display:flex;flex-direction:column;gap:10px;flex:1;min-width:220px"><span class="bx-k">' + esc(t('On screen · you found the fifth leaf')) + '</span><h2 class="bx-h">' + esc(wt.title) + '</h2><p class="bx-lead">' + esc(t(wt.line || '')) + '</p>' + (wt.body ? '<p class="bx-small" style="max-width:560px">' + esc(t(wt.body)) + '</p>' : '') + '</div></div>';
   }
   var BUILD = { shelf: sceneShelf, gym: sceneGym, football: sceneFootball, kitchen: sceneKitchen, route: sceneRoute, clover: sceneClover };
 
@@ -252,9 +266,9 @@
   function openScene(st, from) {
     closeScene();
     var el = document.createElement('div');
-    el.className = 'bx-scene'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', st.label || 'Beyond the numbers');
-    el.innerHTML = '<div class="bx-panel"><div class="bx-top"><span>$ open --star ' + esc(st.key) + '</span><button class="bx-x" type="button">Close ✕</button></div><div class="bx-body" style="display:flex;flex-direction:column;gap:18px"></div>' +
-      (st.go ? '<button class="bx-go" type="button">✦ Connected: ' + esc(st.goLabel) + '</button>' : '') + '</div>';
+    el.className = 'bx-scene'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', t(st.label || 'Beyond the numbers'));
+    el.innerHTML = '<div class="bx-panel"><div class="bx-top"><span>$ open --star ' + esc(st.key) + '</span><button class="bx-x" type="button">' + esc(t('Close')) + ' ✕</button></div><div class="bx-body" style="display:flex;flex-direction:column;gap:18px"></div>' +
+      (st.go ? '<button class="bx-go" type="button">✦ ' + esc(t('Connected')) + ': ' + esc(t(st.goLabel)) + '</button>' : '') + '</div>';
     document.body.appendChild(el);
     BUILD[st.key](el.querySelector('.bx-body'));
     el.addEventListener('click', function (e) { if (e.target === el) closeScene(); });
