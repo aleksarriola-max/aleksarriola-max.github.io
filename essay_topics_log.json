@@ -710,6 +710,276 @@
       "source": "queue",
       "id": 110,
       "theme": "Bloomberg Client Engagement and Client Service simulations"
+    },
+    {
+      "title": "Revenue Quality Is the First Thing to Rot",
+      "category": "Finance",
+      "source": "queue",
+      "id": 111,
+      "theme": "Scanner revenue quality index signals",
+      "added": "2026-11-14",
+      "words": 305
+    },
+    {
+      "title": "When Bankruptcy Models Disagree, Read the Disagreement",
+      "category": "Finance",
+      "source": "queue",
+      "id": 112,
+      "theme": "Scanner Springate vs Zmijewski divergence",
+      "added": "2026-11-14",
+      "words": 301
+    },
+    {
+      "title": "Write the Bear Case Before You Fall for the Bull Case",
+      "category": "Finance",
+      "source": "queue",
+      "id": 113,
+      "theme": "Orcen Anti-Thesis Simulator bias module",
+      "added": "2026-11-14",
+      "words": 311
+    },
+    {
+      "title": "A Track Record You Cannot Quietly Edit",
+      "category": "Finance",
+      "source": "queue",
+      "id": 114,
+      "theme": "Orcen Analyst Calibration Ledger forecasting accuracy",
+      "added": "2026-11-14",
+      "words": 290
+    },
+    {
+      "title": "Every Valuation Needs a Narrative Bridge",
+      "category": "Finance",
+      "source": "queue",
+      "id": 115,
+      "theme": "Orcen Narrative Bridge story-to-numbers module",
+      "added": "2026-11-14",
+      "words": 294
+    },
+    {
+      "title": "Duplicate Payments Are a Controls Failure Before They Are Fraud",
+      "category": "Finance",
+      "source": "queue",
+      "id": 116,
+      "theme": "Tallyhound accounts payable payment controls",
+      "added": "2026-11-14",
+      "words": 291
+    },
+    {
+      "title": "A Membership Price Is a Bet on Utilization",
+      "category": "Finance",
+      "source": "queue",
+      "id": 117,
+      "theme": "Jet Rose membership pricing unit economics",
+      "added": "2026-11-14",
+      "words": 294
+    },
+    {
+      "title": "Payback Period Is the Number Operators Actually Believe",
+      "category": "Finance",
+      "source": "queue",
+      "id": 118,
+      "theme": "AeroShield payback period capital decisions",
+      "added": "2026-11-14",
+      "words": 296
+    },
+    {
+      "title": "Software Buyouts Live or Die on Retention",
+      "category": "Finance",
+      "source": "queue",
+      "id": 119,
+      "theme": "Vista Equity software private equity simulation",
+      "added": "2026-11-14",
+      "words": 293
+    },
+    {
+      "title": "Payment Networks Are Priced Like Toll Roads for a Reason",
+      "category": "Finance",
+      "source": "queue",
+      "id": 120,
+      "theme": "Mastercard payment network economics",
+      "added": "2026-11-14",
+      "words": 294
+    },
+    {
+      "title": "No Signal Never Means Nobody",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 121,
+      "theme": "Lifeline missing data handling in triage",
+      "added": "2026-11-14",
+      "words": 300
+    },
+    {
+      "title": "Let the Solver Solve and the Model Explain",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 122,
+      "theme": "Lifeline OR-Tools routing vs LLM reasoning",
+      "added": "2026-11-14",
+      "words": 290
+    },
+    {
+      "title": "A Skeptic Agent Is Worth Its Extra Cost",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 123,
+      "theme": "Tallyhound Skeptic adversarial verification agent",
+      "added": "2026-11-14",
+      "words": 287
+    },
+    {
+      "title": "Messy Exports Are the Real Input Format",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 124,
+      "theme": "Tallyhound accounting export ingestion",
+      "added": "2026-11-14",
+      "words": 285
+    },
+    {
+      "title": "Idempotency Is the Agent Property Nobody Demos",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 125,
+      "theme": "agent retries and duplicate side effects",
+      "added": "2026-11-14",
+      "words": 294
+    },
+    {
+      "title": "Prompts Deserve Diffs Like Any Other Code",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 126,
+      "theme": "prompt version control and regression",
+      "added": "2026-11-14",
+      "words": 284
+    },
+    {
+      "title": "Building a Market Console With No Backend",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 127,
+      "theme": "DeepBook Market OS client-side on-chain architecture",
+      "added": "2026-11-14",
+      "words": 282
+    },
+    {
+      "title": "Smart Contracts Make You Write Down the Rules You Were Hiding",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 128,
+      "theme": "Adaptive Funding milestone rules made explicit in Move",
+      "added": "2026-11-14",
+      "words": 282
+    },
+    {
+      "title": "Small Models for Narrow Jobs",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 129,
+      "theme": "IBM Granite model selection for focused tasks",
+      "added": "2026-11-14",
+      "words": 287
+    },
+    {
+      "title": "Fallbacks Should Fail Loudly",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 130,
+      "theme": "graceful degradation visibility in AI apps",
+      "added": "2026-11-14",
+      "words": 301
+    },
+    {
+      "title": "Winning in One Day Was Mostly About What We Left Out",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 131,
+      "theme": "Lifeline single-day hackathon scoping",
+      "added": "2026-11-14",
+      "words": 289
+    },
+    {
+      "title": "Selling Ice Cream in Winter Taught Me to Question the Premise",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 132,
+      "theme": "Far Out Ice Cream seasonal strategy",
+      "added": "2026-11-14",
+      "words": 282
+    },
+    {
+      "title": "A Loyalty Program Is Only as Good as Its Neighbors",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 133,
+      "theme": "Kaktus Somabay local partnership ecosystem",
+      "added": "2026-11-14",
+      "words": 283
+    },
+    {
+      "title": "Personas Are Hypotheses, Not Characters",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 134,
+      "theme": "Explurger persona mapping as testable assumptions",
+      "added": "2026-11-14",
+      "words": 291
+    },
+    {
+      "title": "The Mid-Sized Voice Usually Moves More People",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 135,
+      "theme": "GLP-1 mid-sized creators influence finding",
+      "added": "2026-11-14",
+      "words": 287
+    },
+    {
+      "title": "A Headline Metric Hides the Work That Earned It",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 136,
+      "theme": "The 1525 throughput metric and process",
+      "added": "2026-11-14",
+      "words": 293
+    },
+    {
+      "title": "What I Noticed Across Fifteen Different Firms",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 137,
+      "theme": "cross-firm patterns from Forage simulations",
+      "added": "2026-11-14",
+      "words": 289
+    },
+    {
+      "title": "What I Want to Have Shipped Before I Graduate",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 138,
+      "theme": "graduation timeline and shipping goals",
+      "added": "2026-11-14",
+      "words": 289
+    },
+    {
+      "title": "My Marketing Classes Made My Finance Tools Usable",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 139,
+      "theme": "marketing skills applied to explaining technical tools",
+      "added": "2026-11-14",
+      "words": 284
+    },
+    {
+      "title": "Awards Are Lagging Indicators",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 140,
+      "theme": "PitMind award as lagging indicator of habits",
+      "added": "2026-11-14",
+      "words": 290
     }
   ]
 }
