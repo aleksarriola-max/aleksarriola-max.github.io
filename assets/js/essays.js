@@ -1,6 +1,18 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 111,
+  "tag": "Finance",
+  "date": "November 22, 2026",
+  "title": "Revenue Quality Is the First Thing to Rot",
+  "body": [
+   "When I added the Revenue Quality Index to the Red-Flag Scanner, I assumed it would be a minor input next to the bankruptcy models. It turned out to be the model that moved first. Across the companies the scanner screens, the earliest sign of trouble is rarely a collapsing balance sheet. It is revenue that keeps growing on paper while the cash behind it arrives later, smaller, or through channels that did not exist a year ago.",
+   "The mechanics are simple once you look for them. Receivables grow faster than sales. Deferred revenue shrinks while reported revenue climbs. Days sales outstanding drift upward a few days per quarter, never enough to trigger a headline. None of these is fraud on its own, and most have innocent explanations. But each one is a small loan from the future to the present, and those loans compound quietly until the cash flow statement stops agreeing with the income statement.",
+   "What I learned from building the index is that revenue quality is a slope, not a level. A company with high receivables is not necessarily a problem; a company whose receivables ratio has worsened for six straight quarters usually is. So the scanner compares each firm to its own history before it compares it to peers. That one design choice removed most of the false alarms that came from industries where long payment terms are normal.",
+   "The broader lesson is that the top line deserves more suspicion than it usually gets. Analysts argue endlessly about margins and multiples, but both sit downstream of a revenue number that most people accept without asking how it was earned. If I could keep only one diagnostic from the whole scanner, I would keep the one that asks whether sales are turning into cash at the same pace they are turning into headlines."
+  ]
+ },
+ {
   "id": 110,
   "tag": "Perspective",
   "date": "November 9, 2026",

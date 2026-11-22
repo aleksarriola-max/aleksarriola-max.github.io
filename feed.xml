@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 22 Nov 2026 16:47:03 +0000</lastBuildDate>
+<lastBuildDate>Sun, 22 Nov 2026 21:30:52 +0000</lastBuildDate>
+<item>
+<title>Revenue Quality Is the First Thing to Rot</title>
+<link>https://aleksarriola-max.github.io/#essay-111</link>
+<guid isPermaLink="false">essay-111</guid>
+<category>Finance</category>
+<pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+<description>When I added the Revenue Quality Index to the Red-Flag Scanner, I assumed it would be a minor input next to the bankruptcy models. It turned out to be the model that moved first. Across the companies the scanner screens, the earliest sign of trouble is rarely a collapsing balance sheet. It is revenu</description>
+</item>
 <item>
 <title>What the Bloomberg Client Engagement Course Taught Me About Service</title>
 <link>https://aleksarriola-max.github.io/#essay-110</link>
