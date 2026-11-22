@@ -980,6 +980,276 @@
       "theme": "PitMind award as lagging indicator of habits",
       "added": "2026-11-14",
       "words": 290
+    },
+    {
+      "title": "The Bug Was in the Data, Not the Formula",
+      "category": "Finance",
+      "source": "queue",
+      "id": 141,
+      "theme": "Scanner XBRL tagging defect reconciliation",
+      "added": "2026-11-22",
+      "words": 297
+    },
+    {
+      "title": "The Price of Waiting for Confirmation",
+      "category": "Finance",
+      "source": "queue",
+      "id": 142,
+      "theme": "Scanner convergence rule adds detection lag",
+      "added": "2026-11-22",
+      "words": 294
+    },
+    {
+      "title": "Arithmetic You Can Rerun",
+      "category": "Finance",
+      "source": "queue",
+      "id": 143,
+      "theme": "Orcen YAML config reproducible valuation",
+      "added": "2026-11-22",
+      "words": 286
+    },
+    {
+      "title": "My Old Price Target Is Not Evidence",
+      "category": "Finance",
+      "source": "queue",
+      "id": 144,
+      "theme": "Orcen anchoring on prior targets",
+      "added": "2026-11-22",
+      "words": 289
+    },
+    {
+      "title": "A Screen Decides Where the Two Hours Go",
+      "category": "Finance",
+      "source": "queue",
+      "id": 145,
+      "theme": "The 1525 screening pipeline analyst time allocation",
+      "added": "2026-11-22",
+      "words": 283
+    },
+    {
+      "title": "Reconciliation Is the Oldest Control",
+      "category": "Finance",
+      "source": "queue",
+      "id": 146,
+      "theme": "Western Union cash reconciliation integrity",
+      "added": "2026-11-22",
+      "words": 292
+    },
+    {
+      "title": "Watching a DCF Move Showed Me Where Value Is Fragile",
+      "category": "Finance",
+      "source": "queue",
+      "id": 147,
+      "theme": "Manim DCF sensitivity animation and price risk",
+      "added": "2026-11-22",
+      "words": 283
+    },
+    {
+      "title": "If I Can&#8217;t State the Thesis in a Sentence, I Don&#8217;t Own It",
+      "category": "Finance",
+      "source": "queue",
+      "id": 148,
+      "theme": "Lynch know-why-you-own equity research clarity",
+      "added": "2026-11-22",
+      "words": 287
+    },
+    {
+      "title": "Margin Turns Being Right Into Being Early",
+      "category": "Finance",
+      "source": "queue",
+      "id": 149,
+      "theme": "DeepBook margin leverage and solvency",
+      "added": "2026-11-22",
+      "words": 289
+    },
+    {
+      "title": "Personal Finance Is Where Patience Gets Priced",
+      "category": "Finance",
+      "source": "queue",
+      "id": 150,
+      "theme": "Personal Finance course compounding patience",
+      "added": "2026-11-22",
+      "words": 285
+    },
+    {
+      "title": "Test the Approval Chain That Breaks Halfway",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 151,
+      "theme": "OpsFlow partial approval failure testing",
+      "added": "2026-11-22",
+      "words": 284
+    },
+    {
+      "title": "A Ranked List Reads as Authority",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 152,
+      "theme": "Lifeline ranking stating its own uncertainty",
+      "added": "2026-11-22",
+      "words": 289
+    },
+    {
+      "title": "Provenance Is a Receipt for Creative Work",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 153,
+      "theme": "StoryForge cryptographic provenance ledger",
+      "added": "2026-11-22",
+      "words": 286
+    },
+    {
+      "title": "Thirty-Nine Thousand Lines Started as One DCF",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 154,
+      "theme": "Orcen incremental growth Gall's law",
+      "added": "2026-11-22",
+      "words": 284
+    },
+    {
+      "title": "Make It Work Before You Make It Smart",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 155,
+      "theme": "Tallyhound rules-first before AI layer",
+      "added": "2026-11-22",
+      "words": 291
+    },
+    {
+      "title": "Resourcefulness on a Single Workstation",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 156,
+      "theme": "Lifeline on-device local inference",
+      "added": "2026-11-22",
+      "words": 289
+    },
+    {
+      "title": "Agent Graphs Should Fit in One Head",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 157,
+      "theme": "LangGraph explicit flows and bounded cognition",
+      "added": "2026-11-22",
+      "words": 286
+    },
+    {
+      "title": "Stop Asking Whether the Agent Understands",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 158,
+      "theme": "functional evaluation over anthropomorphizing agents",
+      "added": "2026-11-22",
+      "words": 288
+    },
+    {
+      "title": "Fan Mode Was Built by Taking Things Away",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 159,
+      "theme": "PitMind Fan mode design by subtraction",
+      "added": "2026-11-22",
+      "words": 291
+    },
+    {
+      "title": "Agent Plans Should Expire",
+      "category": "AI Systems",
+      "source": "queue",
+      "id": 160,
+      "theme": "replanning as new evidence arrives",
+      "added": "2026-11-22",
+      "words": 291
+    },
+    {
+      "title": "Why My GitHub Profile Rotates a Quote Every Day",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 161,
+      "theme": "curated daily quote rotation habit",
+      "added": "2026-11-22",
+      "words": 295
+    },
+    {
+      "title": "Deep Work Is Scheduled, Not Scavenged",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 162,
+      "theme": "scheduled deep work calendar habit",
+      "added": "2026-11-22",
+      "words": 290
+    },
+    {
+      "title": "One Kick Ten Thousand Times",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 163,
+      "theme": "drill repetition rebuilding DCF from memory",
+      "added": "2026-11-22",
+      "words": 288
+    },
+    {
+      "title": "Rejections Are Data, Not Verdicts",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 164,
+      "theme": "internship application pipeline rewrite habit",
+      "added": "2026-11-22",
+      "words": 289
+    },
+    {
+      "title": "Making My Impact Last After I Left",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 165,
+      "theme": "The 1525 handing off pipeline to interns",
+      "added": "2026-11-22",
+      "words": 284
+    },
+    {
+      "title": "Strong Without Being Pushy",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 166,
+      "theme": "SeOnline remote negotiation tone",
+      "added": "2026-11-22",
+      "words": 285
+    },
+    {
+      "title": "Every Campaign Is Carried One Small Stone at a Time",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 167,
+      "theme": "Western Union Father's Day event internship",
+      "added": "2026-11-22",
+      "words": 288
+    },
+    {
+      "title": "Changing Direction Before Changing Destination",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 168,
+      "theme": "career direction toward agentic AI finance roles",
+      "added": "2026-11-22",
+      "words": 282
+    },
+    {
+      "title": "Patience With Myself While Learning Two Fields",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 169,
+      "theme": "self-patience learning finance and AI together",
+      "added": "2026-11-22",
+      "words": 293
+    },
+    {
+      "title": "Building the Platform I Wanted to Use",
+      "category": "Perspective",
+      "source": "queue",
+      "id": 170,
+      "theme": "Outsette inventing the student tool",
+      "added": "2026-11-22",
+      "words": 286
     }
   ]
 }
