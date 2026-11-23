@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 22 Nov 2026 21:30:52 +0000</lastBuildDate>
+<lastBuildDate>Mon, 23 Nov 2026 20:43:16 +0000</lastBuildDate>
+<item>
+<title>When Bankruptcy Models Disagree, Read the Disagreement</title>
+<link>https://aleksarriola-max.github.io/#essay-112</link>
+<guid isPermaLink="false">essay-112</guid>
+<category>Finance</category>
+<pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+<description>The Red-Flag Scanner runs five bankruptcy models on every company, and the most interesting output is not any single score. It is the cases where the models disagree. Altman, Springate and Zmijewski were built on different samples, in different decades, with different ratios doing most of the work. </description>
+</item>
 <item>
 <title>Revenue Quality Is the First Thing to Rot</title>
 <link>https://aleksarriola-max.github.io/#essay-111</link>

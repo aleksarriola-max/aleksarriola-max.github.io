@@ -1,6 +1,18 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 112,
+  "tag": "Finance",
+  "date": "November 23, 2026",
+  "title": "When Bankruptcy Models Disagree, Read the Disagreement",
+  "body": [
+   "The Red-Flag Scanner runs five bankruptcy models on every company, and the most interesting output is not any single score. It is the cases where the models disagree. Altman, Springate and Zmijewski were built on different samples, in different decades, with different ratios doing most of the work. When they line up, the conclusion is easy. When one of them flags distress and the others stay calm, the disagreement itself tells you where to look in the financial statements.",
+   "Zmijewski leans heavily on leverage and liquidity, so it reacts to a company that has borrowed aggressively even while operations look fine. Springate weights profitability against current liabilities, so it catches firms whose earnings are thinning before their debt load changes. A company that trips Zmijewski but not Springate usually has a financing story to examine. One that trips Springate alone usually has an operating story. The split points me to a specific page of the filing.",
+   "Early on, I treated disagreement as noise and averaged it away. That was a mistake. Averaging three models that see different things produces a number that sees nothing in particular. Now the scanner keeps each model visible next to the composite, and the earnings-quality card explains which ratio drove the outlier. The composite is useful for sorting six hundred names, but the individual scores are what I actually read once a company makes the shortlist.",
+   "I think this applies well beyond credit models. Whenever several independent methods are pointed at the same question, their spread is information about the shape of the uncertainty. A tight cluster says the question is easy. A wide spread says the answer depends on which part of the business you believe, and that is precisely the judgment an analyst is supposed to make rather than hand off to an average."
+  ]
+ },
+ {
   "id": 111,
   "tag": "Finance",
   "date": "November 22, 2026",
