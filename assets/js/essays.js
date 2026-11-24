@@ -1,6 +1,18 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 113,
+  "tag": "Finance",
+  "date": "November 24, 2026",
+  "title": "Write the Bear Case Before You Fall for the Bull Case",
+  "body": [
+   "One of the seven bias-correction modules in the Orcen Capital valuation kit is called the Anti-Thesis Simulator. Its job is uncomfortable by design: before the report states a verdict, the kit constructs the strongest case against it, using the same filings, the same model and the same assumptions file. I built it because I noticed that every time I finished a valuation, I liked the company a little more than when I started, and that drift was not coming from the numbers.",
+   "The bias is well documented. Once you have spent hours building a model, you have an investment in its conclusion, and you start reading new information as confirmation. The Anti-Thesis Simulator interrupts that by forcing the inputs a skeptic would change: a lower terminal growth rate, a compressed multiple, a margin that mean-reverts instead of holding. It then asks how much of the original thesis survives those changes, and the report prints the answer next to the base case.",
+   "The point is not to be bearish. On the Apple run, the kit still landed on HOLD, and seeing the anti-thesis printed beside the verdict was informative in its own right. It showed me how much of the conclusion depended on assumptions a skeptic would push on. When a thesis collapses under a single reasonable change, I want to know that before I present it, not after someone in a meeting finds it for me.",
+   "I have come to think the bear case should be written first, not last. Writing it last turns it into a formality, a paragraph of risks nobody weighs. Writing it first sets the bar the bull case has to clear. Most of the discipline in valuation is not about finding the right number. It is about building a process that keeps you honest when you have already decided what you want the number to be."
+  ]
+ },
+ {
   "id": 112,
   "tag": "Finance",
   "date": "November 23, 2026",

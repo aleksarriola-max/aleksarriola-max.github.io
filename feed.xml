@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Mon, 23 Nov 2026 20:43:16 +0000</lastBuildDate>
+<lastBuildDate>Tue, 24 Nov 2026 19:48:27 +0000</lastBuildDate>
+<item>
+<title>Write the Bear Case Before You Fall for the Bull Case</title>
+<link>https://aleksarriola-max.github.io/#essay-113</link>
+<guid isPermaLink="false">essay-113</guid>
+<category>Finance</category>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+<description>One of the seven bias-correction modules in the Orcen Capital valuation kit is called the Anti-Thesis Simulator. Its job is uncomfortable by design: before the report states a verdict, the kit constructs the strongest case against it, using the same filings, the same model and the same assumptions f</description>
+</item>
 <item>
 <title>When Bankruptcy Models Disagree, Read the Disagreement</title>
 <link>https://aleksarriola-max.github.io/#essay-112</link>
