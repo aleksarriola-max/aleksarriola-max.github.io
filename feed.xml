@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 24 Nov 2026 19:48:27 +0000</lastBuildDate>
+<lastBuildDate>Wed, 25 Nov 2026 18:54:06 +0000</lastBuildDate>
+<item>
+<title>A Track Record You Cannot Quietly Edit</title>
+<link>https://aleksarriola-max.github.io/#essay-114</link>
+<guid isPermaLink="false">essay-114</guid>
+<category>Finance</category>
+<pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+<description>The Orcen Capital kit includes a module I call the Analyst Calibration Ledger. Every time the kit produces a forecast, whether a revenue estimate, a margin path or a fair value range, the ledger records it with a timestamp and the inputs that produced it. Later, when actual results arrive in the nex</description>
+</item>
 <item>
 <title>Write the Bear Case Before You Fall for the Bull Case</title>
 <link>https://aleksarriola-max.github.io/#essay-113</link>

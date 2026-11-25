@@ -1,6 +1,18 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 114,
+  "tag": "Finance",
+  "date": "November 25, 2026",
+  "title": "A Track Record You Cannot Quietly Edit",
+  "body": [
+   "The Orcen Capital kit includes a module I call the Analyst Calibration Ledger. Every time the kit produces a forecast, whether a revenue estimate, a margin path or a fair value range, the ledger records it with a timestamp and the inputs that produced it. Later, when actual results arrive in the next filing, the ledger scores the forecast. The idea is simple: an analyst who never compares predictions with outcomes has opinions, not a track record.",
+   "What surprised me was how differently I forecast once I knew the ledger was watching. I widened ranges that I had been drawing too narrow because a tight range felt more confident. I stopped anchoring next year’s growth on the last quarter. The ledger did not make me smarter about any company in particular. It made me more honest about how uncertain I was, which is the part of forecasting most people skip because nobody checks.",
+   "Calibration is different from accuracy. A forecaster who says seventy percent and is right seventy percent of the time is well calibrated even when individual calls miss. Markets reward this quietly. A well-calibrated analyst sizes positions correctly and avoids the large losses that come from false certainty. A poorly calibrated one can be right often and still lose money, because the few confident misses are the ones that hurt the most.",
+   "I think every analyst should keep some version of this ledger, even a spreadsheet with three columns. Memory is a generous editor. It rounds our misses into near misses and our lucky calls into insight. Writing predictions down before the outcome arrives is the only reliable way I know to learn from forecasting, because it removes the option of deciding afterward what I meant all along."
+  ]
+ },
+ {
   "id": 113,
   "tag": "Finance",
   "date": "November 24, 2026",
