@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Wed, 25 Nov 2026 18:54:06 +0000</lastBuildDate>
+<lastBuildDate>Thu, 26 Nov 2026 18:43:27 +0000</lastBuildDate>
+<item>
+<title>Every Valuation Needs a Narrative Bridge</title>
+<link>https://aleksarriola-max.github.io/#essay-115</link>
+<guid isPermaLink="false">essay-115</guid>
+<category>Finance</category>
+<pubDate>Thu, 26 Nov 2026 00:00:00 +0000</pubDate>
+<description>Most valuation models contain two documents that never talk to each other. One is a story: the company will gain share, expand margins, enter a new market. The other is a spreadsheet full of growth rates and discount rates. The Narrative Bridge module in the Orcen Capital kit exists to connect them.</description>
+</item>
 <item>
 <title>A Track Record You Cannot Quietly Edit</title>
 <link>https://aleksarriola-max.github.io/#essay-114</link>

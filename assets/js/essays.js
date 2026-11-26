@@ -1,6 +1,18 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 115,
+  "tag": "Finance",
+  "date": "November 26, 2026",
+  "title": "Every Valuation Needs a Narrative Bridge",
+  "body": [
+   "Most valuation models contain two documents that never talk to each other. One is a story: the company will gain share, expand margins, enter a new market. The other is a spreadsheet full of growth rates and discount rates. The Narrative Bridge module in the Orcen Capital kit exists to connect them. It takes each claim in the investment thesis and links it to the specific input it is supposed to justify, so that every assumption has a reason attached.",
+   "Building it exposed how often my own stories and numbers disagreed. I would write that a company had strong pricing power, then model gross margins flat for five years. I would describe a market as saturated, then keep revenue growth above GDP. Neither the story nor the spreadsheet was wrong on its own. They were simply describing different companies, and without a bridge between them, a reader had no way of knowing which one I believed.",
+   "The bridge also makes disagreement productive. When someone challenges a valuation, the argument usually wanders between narrative and math without landing anywhere. With each assumption tied to a sentence, the conversation becomes concrete: do you dispute the claim that margins can expand, or only the size of the expansion? That shift turns a debate about whether you like a stock into a debate about a specific, testable belief.",
+   "I now think the narrative is the real product of a valuation, and the spreadsheet is its audit. Numbers without a story are arbitrary, and a story without numbers cannot be wrong in any useful way. The work is in keeping them consistent, line by line, so that a reader who disagrees knows exactly which sentence to argue with and exactly how much the answer would change if they won."
+  ]
+ },
+ {
   "id": 114,
   "tag": "Finance",
   "date": "November 25, 2026",
