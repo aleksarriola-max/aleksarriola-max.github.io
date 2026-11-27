@@ -1,6 +1,18 @@
 /* Published essays, newest first. Maintained by publish_essay.py — do not hand-edit the JSON shape. */
 window.ESSAYS = [
  {
+  "id": 116,
+  "tag": "Finance",
+  "date": "November 27, 2026",
+  "title": "Duplicate Payments Are a Controls Failure Before They Are Fraud",
+  "body": [
+   "Tallyhound started from a narrow observation about accounts payable: most money that leaks out of a company does not leave through clever fraud. It leaves through duplicate invoices, vendors entered twice under slightly different names, and payments released because nobody had time to compare them against what was actually ordered. These are boring failures, and that is exactly why they persist. Nobody builds a career on catching a duplicate invoice, so nobody looks very hard.",
+   "That is why Tallyhound is built around a payment gate rather than a fraud score. Every line in a payment run is either held or released, and each hold comes with the evidence behind it: the matching invoice number, the near-identical vendor record, the amount that does not match the purchase order. The fixed rules catch most of it. The local AI agents propose findings the rules miss, but a person makes every release decision.",
+   "Working on it changed how I think about internal controls in general. A control is not a policy document; it is a moment in a process where something can be stopped. If the stop happens after the money is gone, it is not a control, it is an investigation. The most valuable place to put scrutiny is the last point before cash moves, because everything after that point costs more to fix.",
+   "Auditors talk about the control environment as if it were a culture. In my experience building this tool, it is mostly plumbing. Can the payment be held? Is the evidence attached? Is the decision recorded in a way that cannot be rewritten later? Fraud makes headlines, but a well-designed payment gate prevents far more loss simply by catching the ordinary mistakes that happen every week in every finance team."
+  ]
+ },
+ {
   "id": 115,
   "tag": "Finance",
   "date": "November 26, 2026",

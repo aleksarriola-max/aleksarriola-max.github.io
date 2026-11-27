@@ -6,7 +6,15 @@
 <description>Essays on AI systems, quantitative finance, and building at their intersection.</description>
 <language>en-us</language>
 <atom:link href="https://aleksarriola-max.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 26 Nov 2026 18:43:27 +0000</lastBuildDate>
+<lastBuildDate>Fri, 27 Nov 2026 18:34:52 +0000</lastBuildDate>
+<item>
+<title>Duplicate Payments Are a Controls Failure Before They Are Fraud</title>
+<link>https://aleksarriola-max.github.io/#essay-116</link>
+<guid isPermaLink="false">essay-116</guid>
+<category>Finance</category>
+<pubDate>Fri, 27 Nov 2026 00:00:00 +0000</pubDate>
+<description>Tallyhound started from a narrow observation about accounts payable: most money that leaks out of a company does not leave through clever fraud. It leaves through duplicate invoices, vendors entered twice under slightly different names, and payments released because nobody had time to compare them a</description>
+</item>
 <item>
 <title>Every Valuation Needs a Narrative Bridge</title>
 <link>https://aleksarriola-max.github.io/#essay-115</link>
